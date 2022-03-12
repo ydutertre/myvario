@@ -16,7 +16,6 @@
   <property id="userSoundsVariometerTones" type="boolean">true</property>
   <property id="userVariometerVibrations" type="boolean">true</property>
   <property id="userMinimumClimb" type="number">3</property> 
-  <property id="userSoundsMuteDistance" type="float">2000.0</property>
   <!-- ... activity -->
   <property id="userActivityAutoStart" type="boolean">true</property>
   <property id="userActivityAutoSpeedStart" type="float">3.0</property>

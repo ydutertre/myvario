@@ -61,7 +61,6 @@ class MySettings {
   public var bSoundsVariometerTones as Boolean = true;
   public var bVariometerVibrations as Boolean = true;
   public var iMinimumClimb as Number = 2; // Default value of 0.2m/s climb threshold before sounds and vibrations are triggered
-  public var fSoundsMuteDistance as Float = 2000.0f;
   // ... activity
   public var bActivityAutoStart as Boolean = true; //Auto-start recording after launch
   public var fActivityAutoSpeedStart as Float = 3.0f;
@@ -124,7 +123,6 @@ class MySettings {
     self.setSoundsVariometerTones(self.loadSoundsVariometerTones());
     self.setVariometerVibrations(self.loadVariometerVibrations());
     self.setMinimumClimb(self.loadMinimumClimb());
-    self.setSoundsMuteDistance(self.loadSoundsMuteDistance());
     // ... activity
     self.setActivityAutoStart(self.loadActivityAutoStart());
     self.setActivityAutoSpeedStart(self.loadActivityAutoSpeedStart());
@@ -355,23 +353,6 @@ class MySettings {
     case 4: self.fMinimumClimb = 0.4f; break;
     case 5: self.fMinimumClimb = 0.5f; break;
     }
-  }
-
-  function loadSoundsMuteDistance() as Float {  // [m]
-    var fValue = App.Properties.getValue("userSoundsMuteDistance") as Float?;
-    return fValue != null ? fValue : 2000.0f;
-  }
-  function saveSoundsMuteDistance(_fValue as Float) as Void {  // [m]
-    App.Properties.setValue("userSoundsMuteDistance", _fValue as App.PropertyValueType);
-  }
-  function setSoundsMuteDistance(_fValue as Float) as Void {  // [m]
-    if(_fValue > 9999.0f) {
-      _fValue = 9999.0f;
-    }
-    else if(_fValue < 0.0f) {
-      _fValue = 0.0f;
-    }
-    self.fSoundsMuteDistance = _fValue;
   }
 
   function loadActivityAutoStart() as Boolean {

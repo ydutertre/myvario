@@ -33,7 +33,6 @@
   <string id="titleSoundsVariometerTones">Variometer Tones</string>
   <string id="titleVariometerVibrations">Vario Vibrations</string>
   <string id="titleMinimumClimb">Min. Climb</string>
-  <string id="titleSoundsMuteDistance">Mute Distance</string>
   <!-- Menu (settings:activity) -->
   <string id="titleSettingsActivity">Activity</string>
   <string id="titleActivityAutoStart">Auto Start</string>
