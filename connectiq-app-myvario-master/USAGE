@@ -1,0 +1,473 @@
+GliderSK (Garmin ConnectIQ) App
+===============================
+Usage instructions
+
+
+   !!! WARNING !!! DISCLAIMER !!! WARNING !!! DISCLAIMER !!! WARNING !!!
+
+   THIS APPLICATION IS NOT TO BE USED AS A MEAN TO INSURE FLIGHT SAFETY.
+
+  Always follow official or recommended procedures to insure flight safety,
+         *independently* from the help this application can offer.
+
+  In particular, this application relies on barometric pressure to derive
+  the altitude and MUST NOT BE USED IN A PRESSURIZED AIRCRAFT.
+
+   !!! WARNING !!! DISCLAIMER !!! WARNING !!! DISCLAIMER !!! WARNING !!!
+
+
+Foreword
+--------
+
+GliderSK relies on your device's raw barometric sensor to compute the altitude,
+using the ad-hoc International Civil Aviation Organization (ICAO) formulas and
+according to the International Standard Atmosphere (ISA).
+
+Consequently, you MUST calibrate GliderSK internal altimeter - using either
+the known QNH or elevation (see Settings below) - to obtain an accurate
+altitude reading (the device's "native" altimeter/barometer settings are
+ignored).
+
+
+General View
+------------
+
+The GliderSK General view displays all the flight data in a single view, without
+any further bells or whistles:
+ - Top-Left:
+   your current acceleration (G-meter)
+ - Top-Right:
+   your current rate-of-turn
+ - Left:
+   your current altitude
+ - Center:
+   your current finesse
+ - Right:
+   your current (GPS) heading
+ - Bottom-Left:
+   your current vertical speed
+ - Bottom-Right:
+   your current ground speed
+
+
+Safety View
+-----------
+
+The GliderSK Safety view works by continuously calculating the height (Above
+Ground Level) that would be reached at your destination, using a two-pass
+algorithm:
+
+ - Pass 1 / Estimation: worst-case finesse and best-case heading
+   the height at destination is estimated using your actual ground
+   speed (as if heading straight towards that destination) and the
+   user-specified reference finesse (or the actual finesse if is lower
+   than that).
+
+ - Pass 2 / Decision: worst-case finesse and heading
+   IF the resulting height (Above Ground Level) is below or equal to
+   the user-specified decision height, the height at destination is
+   calculated again, using the user-specified reference finesse (or the
+   actual finesse if is lower than that) and the *actual* speed-towards-
+   destination (which accounts for heading vs bearing discrepancies).
+
+Once the estimated or actual height at destination have been computed, alerts
+will be issued according to the corresponding height:
+
+ - Critical Alert: red background / high-frequency tone
+   when the height is below or equal to the user-specified critical height
+
+ - Warning Alert: yellow background / low-frequency tone
+   when the height is below or equal to the user-specified warning height
+
+The GliderSK Safety view displays all critical flight safety information in a
+single view, using visually appealing alert colors:
+ - Top-Left:
+   the name of your current destination
+   / OR /
+   the elevation of your current destination
+   / OR /
+   the bearing of your current destination
+ - Top-Right:
+   the distance to your current destination
+ - Left:
+   your current altitude
+ - Center:
+   your current finesse
+   / OR (if in ascent) /
+   your reference finesse (grayed-out)
+ - Right:
+   the actual height (above reference) when reaching your current destination
+   / OR (if the corresponding height is above your decision height) /
+   the estimated height (above reference) when reaching your current destination
+   (grayed-out)
+ - Bottom-Left:
+   your current vertical speed
+ - Bottom-Right:
+   your current ground speed
+   / OR /
+   your current speed towards your current destination
+
+Both Left and Right (altitude/height) fields will have their background:
+ - RED if the corresponding height is below the critical height
+ - YELLOW if is below or equal the warning height
+ - GREEN otherwise.
+
+The Center (finesse) field will have its background:
+ - RED if the actual finesse is below or equal to the reference finesse
+ - YELLOW if the actual finesse is above the reference finesse
+ - GREEN if in ascent (and the reference finesse is used for calculation)
+
+In case the positioning quality gets below Usable, all fields will turn RED.
+If a reasonable "last known" position is available, values will still be displayed
+(all grayed-out), otherwise no value will be displayed.
+
+By pressing the MENU button (long-pressing the UP button) a first time, the
+application will display the current safety-critical settings:
+ - Top-Left:
+   the name of your current destination
+ - Top-Right:
+   the elevation of your current destination
+ - Left:
+   your chosen warning height
+ - Center
+   your chosen reference finesse
+ - Right:
+   your chosen critical height
+ - Bottom-Left:
+   your chosen decision height
+ - Bottom-Right:
+   your chosen reference height
+NOTE: this also cancels the Grace Period (if enabled; see Settings below)
+
+Then, by pressing the SELECT button, the application will toggle the display and
+choice if the Top-Left and Bottom-Right fields. Note than whenever the Safety
+View is in the Pass 2 / Decision mode, those fields will always show, respectively,
+the bearing and speed towards your current destination.
+
+By pressing the MENU button (long-pressing the UP button) a second time, you will
+enter the Safety destination selection menu (and access to the Settings menu):
+ - Load Destination:
+   load your current destination from the destination memory, ordered
+   by distance if your location is available
+ - Edit Destination:
+   edit the name, latitude, longitude and elevation of your current
+   destination OR pick your current location/elevation as destination
+ - Save Destination:
+   save your current destination to the destination memory (100 slots available)
+ - Delete Destination:
+   delete a destination from the destination memory
+ - Safety:
+   safety-specific settings (see Settings below)
+ - Settings:
+   all settings (see Settings below)
+
+
+Rate-of-Turn View
+-----------------
+
+The GliderSK Rate-of-Turn displays your current rate-of-turn both textually
+and graphically, using visually appealing colors:
+ - GREEN for right (starboard) turns
+ - RED for left (port) turns
+
+
+Variometer View
+---------------
+
+The GliderSK Variometer displays your current ascent/descent rate both textu-
+ally and graphically, using visually appealing colors:
+ - GREEN for ascent
+ - RED for descent
+
+
+Varioplot View
+--------------
+
+The GliderSK Varioplot graphically displays you ascent/descent rate along your
+flight path, using visually appealing colors ranging from:
+ - (Bright) GREEN for maximum ascent rate
+ - (Bright) RED for maximum descent rate
+
+In addition, the following values will be displayed in the corner of the plot:
+ - Top-Left:
+   your current altitude
+ - Top-Right:
+   your current vertical speed
+ - Bottom-Left:
+   your current ground speed
+ - Bottom-Right:
+   your current finesse
+
+By pressing the MENU button (long-pressing the UP button), you will enter the
+Pan/Zoom mode, where short pressing the following buttons will result in:
+ - SELECT: switch between zoom in/out, pan up/down, pan left/right
+ - UP:     zoom in  /OR/ pan up   /OR/ pan left
+ - DOWN:   zoom out /OR/ pan down /OR/ pan right
+
+By pressing the MENU button (long-pressing the UP button) a second time, you
+will enter the Settings menu (see Settings below).
+
+
+Timers View
+-----------
+
+The GliderSK Timers view displays the start and elapsed times (or distance/ascent)
+since:
+ - the application was started
+ - the (last) activity (recording) was started (see Activity Recording below)
+ - the last activity (recording) lap
+
+
+Log View
+--------
+
+GliderSK Log view keeps track of your last recorded activities (global session
+details; see Activity Recording below).
+
+Use the SELECT and BACK buttons to browse through the last 100 saved entries.
+
+
+Activity Recording
+------------------
+
+Controlling your activity recording status (start, pause, resume, save, discard)
+is achieved by pressing the SELECT button. When recording, the BACK key will act
+as Lap Key (unless configured not to do so; see Settings below).
+
+GliderSK adds custom fields to the recorded FIT file:
+ - Barometric Altitude
+ - Vertical Speed
+ - Rate-of-Turn
+ - Acceleration
+(which will be plotted in Garmin Connect IF your installed the application
+ through the Garmin ConnectIQ store)
+
+For each lap and globally for the entire recording session, Garmin Connect will
+also show the following details:
+ - Distance: non-thermalling distance
+ - Ascent: cumulative altitude gain and elapsed time spent ascending
+ - Minimum Altitude: value and time
+ - Maximum Altitude: value and time
+
+
+Settings
+--------
+
+Unless explicitely stated otherwise for a given view, you may enter the Settings
+menu by pressing the MENU button (long-pressing the UP button).
+
+The application allows you to specify the following settings:
+
+* Altimeter
+  > Calibration
+    - QNH:
+      calibrate the altimeter using the current known QNH
+    - Elevation:
+      calibrate the altimeter using the current known elevation
+      (QNH shall be adjusted accordingly)
+  > Correction
+    - Absolute:
+      set the absolute device's sensor error correction
+    - Relative:
+      set the relative device's sensor error correction
+
+* Variometer
+  - Range:
+    the range used for the variometer display and tones (3.0, 6.0 or 9.0 m/s)
+  - Mode:
+    whether the variometer tracks altitude variation only (dAlt) or compensates
+    for cinetic energy (speed) variations (dE)
+  - Energy Efficiency:
+    percentage of the short-term cinetic energy (speed) variations that may be
+    recovered as potential energy (altitude)
+  - Plot Range:
+   the time range (in minutes) for plotting the variometer-vs-location history
+
+* Safety
+  - Finesse:
+    the finesse to apply for height estimation (when in ascent)
+  - Decision Height:
+    the height (Above Ground Level) under which to switch from height
+    estimation (using worst-case finesse and best-case heading) to
+    actual height calculation (using actual finesse and heading)
+  - Warning Height:
+    the height (Above Ground Level) under which to issue warning alerts
+  - Critical Height:
+    the height (Above Ground Level) under which to issue critical alerts
+  - Reference Height:
+    the height (Above Ground Level) to use as reference when displaying
+    the actual/estimated safety height in the Safety view
+  - Heading Bug:
+    whether to always hide the heading bug (off), always show it (on) or only
+    in Pass 2 / Decision mode (auto)
+  - Grace Period:
+    the initial period (in minutes) - starting when a valid GPS lock and speed are
+    first acquired - when:
+    - the safety algorithm will stick to Pass 1 / Estimation mode, regardless of
+      the Decision Height (see above)
+    - height-related Safety Tones (see below) will be muted
+    - the Bearing reading and the Heading Bug will be colored PURPLE
+      (if Pass 2 / Decision mode would have been triggered)
+    NOTE: entering and confirming this setting allows to restart the Grace Period,
+    following its expiration or manual cancellation (see Safety View above)
+
+* Sounds
+  - Variometer Tones:
+    whether to play variometer tones
+  - Safety Tones:
+    whether to play alert tones when below warning or critical height
+    (or GPS signal is lost)
+  - Mute distance:
+    the distance (from destination) under which to mute all sounds
+    (and let you concentrate on your take-off or landing)
+
+* Activity
+  - Auto
+    whether to automatically start/pause/resume the activity recording
+    throughout the flight (takeoffs/landings)
+  - Start Speed
+    speed above which the activity automatically starts/resumes
+    (must be greater than the Stop Speed; ignored if set to zero)
+  - Stop Speed
+    speed below which the activity automatically stops (pauses)
+    (must be smaller than the Start Speed; ignored if set to zero)
+
+* General
+  - Time Constant:
+    time constant/window (in seconds) used for averaging (SMA) sensor values
+  - Display Filter:
+    whether to display instantaneous or filtered data (see Data Filtering below)
+  - Background Color:
+    the background color (black or white)
+  - Lap Key:
+    whether the BACK key adds a new lap to a recording activity
+
+* Units
+  - Distance:
+    preferred units for displaying distance (and horizontal speed) values
+  - Elevation:
+    preferred units for displaying elevation (and vertical speed) values
+  - Rate-of-Turn:
+    your preferred unit for displaying rate-of-turn values
+  - Timezone:
+    display Local Time (LT) or Universal Time Coordinates (UTC/Z)
+
+* Storage
+  - Import Data:
+    import data from the specified (JSON) file (see Storage Data below)
+  - Delete All:
+    delete all storage data (destinations memory)
+
+
+About Data Filtering
+--------------------
+
+GliderSK uses Simple Moving Average (SMA) to average data and filter out sensor
+- or piloting! - imprecisions, with a user-configurable Time Constant (see
+Settings above) ranging from 0 (no filtering) to 60 seconds.
+
+BEWARE! The more you increase the Time Constant, the longer the delay between
+GliderSK readings and actual values!
+
+GliderSK also allows to choose whether to display filtered (averaged) or instan-
+taneous data in the various views, according to the user-specified Display Filter
+(see Settings above):
+- off: no data are filtered (all data are instantaneous)
+-  dt: time-derived data - speed, variometer and rate-of-turn - are filtered;
+       other data - acceleration, altitude and heading - are instantaneous
+- all: all data are filtered
+(acceleration is not considered time-derived since measured directly by the watch
+ sensor and not as the time derivative of speed)
+
+However, the following exceptions apply:
+- the Safety View always uses and displays filtered time-derived data;
+  current altitude and Heading Bug are always instantaneous
+- the Varioplot View always displays instantaneous data
+- Activity Recorded (FIT) data are always instantaneous
+
+
+Importing Storage Data
+----------------------
+
+GliderSK allows you to import data into the application storage space - iow.
+destinations memory - from the web; to do so:
+
+1. connect your device to Garmin Connect Mobile (GCM) via Bluetooth
+
+2. [optional] use GCM to edit the Repository URL (GliderSK application) setting;
+   by default:
+
+     https://cdn.jsdelivr.net/gh/cedric-dufour/connectiq-app-glidersk@master/data
+
+3. use the Import Data setting (see Setting above) to specify the JSON data file
+   name to download from the repository, without the .json suffix; example given
+   (for Switzerland airfields):
+
+     lsas
+
+   WARNING! Make sure your GCM phone/tablet doesn't go to sleep while performing
+   this step or it won't allow GCM to relay the data to your watch.
+
+The destination slot(s) will then be updated (overwritten!) based on the data
+contained in the file.
+
+The format of a JSON destination data file is straight-forward; example given:
+
+     https://cdn.jsdelivr.net/gh/cedric-dufour/connectiq-app-glidersk@master/data/lsas.json
+
+Provided you have some web service where to store them, you can write your own
+data file(s). Just edit the Repository URL correspondingly (see point 2. above).
+WARNING: Make sure the HTTP response contains the 'Content-Type: application/json' header.
+Also, if using HTTPS (SSL), make sure the website's certificate is from a well-known Certification
+Authority (CA) or GCM will refuse to download the data.
+
+
+Calibrating the Device Sensor
+-----------------------------
+
+GliderSK allows you to calibrate/correct your device's barometric sensor using
+the following formulas:
+
+   QFEcalibrated = QFEsensor * Crel + Cabs
+
+If you suspect your device's sensor is inaccurate, you shall:
+
+1. install the PilotAltimeter widget to access the device's *QFE* readings
+   (unfortunately, this falls out of GliderSK scope/purpose)
+
+2. take down multiple QFE readings, at different altitude, using your device's
+   *raw* QFE and a reliable, calibrated, reference barometer
+
+3. import those readings in a LibreOffice Calc (or Microsoft Excel) spreadsheet
+   and obtain the Crel and Cabs coefficients by performing a linear regression:
+
+     https://help.libreoffice.org/Calc/Regression_Analysis
+     where Crel = Slope and Cabs = Intercept
+
+   (curve-fitting for dummies: https://xkcd.com/2048/)
+
+4. set Altimeter -> Correction -> Relative/Absolute values to the calculated
+   cofficients
+
+Not an easy feat. But if you must...
+
+
+WARNING!!! GOTCHAS!!!
+---------------------
+
+When using GPS devices, you should be aware that:
+ - GPS is very accurate for location (latitude/longitude) information;
+   even more so when coupled with GLONASS (at the cost of battery usage).
+ - (Garmin) UltraTrac feature is very cool to save battery but does NOT
+   refresh location information frequently enough for GliderSK purpose.
+
+      !!! DO NOT USE ULTRATRAC WITH GLIDERSK !!!
+
+The ConnectIQ framework does NOT allow applications - like GliderSK - to
+control the location source (GPS, GLONASS and/or UltraTrac). The only way
+to circumvent that limitation is to
+
+      !!! USE A NATIVE GARMIN APPLICATION BEFOREHANDS !!!
+
+The ConnectIQ application launched afterwards will then retain those settings.
+

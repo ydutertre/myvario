@@ -1,0 +1,10 @@
+# Manifest
+project.manifest = manifest.xml
+
+# Annotations
+# ... exclude all by default
+base.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_260x260;layout_280x280;layout_240x400
+# ... per (supported) form factor
+round-240x240.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_260x260;layout_280x280;layout_240x400
+round-260x260.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_280x280;layout_240x400
+round-280x280.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_260x260;layout_240x400
