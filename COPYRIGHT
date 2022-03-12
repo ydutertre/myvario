@@ -1,0 +1,53 @@
+My Vario (Garmin ConnectIQ) App
+===============================
+Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+
+My Vario is free software:
+you can redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation, Version 3.
+
+My Vario is distributed in the hope that it will be
+useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+See the GNU General Public License for more details.
+
+My Vario includes all resources which contain the
+following mention in their preamble: "My Vario"
+
+SPDX-License-Identifier: GPL-3.0
+License-Filename: LICENSE/GPL-3.0.txt
+
+My Vario is based on Glider's Swiss Knife (GliderSK) by Cedric Dufour
+
+GliderSK (Garmin ConnectIQ) App
+===============================
+Copyright (C) 2017-2022 Cedric Dufour <http://cedric.dufour.name>
+
+Glider's Swiss Knife (GliderSK) is free software:
+you can redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation, Version 3.
+
+Glider's Swiss Knife (GliderSK) is distributed in the hope that it will be
+useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+See the GNU General Public License for more details.
+
+Glider's Swiss Knife (GliderSK) includes all resources which contain the
+following mention in their preamble: "Glider's Swiss Knife (GliderSK)"
+
+SPDX-License-Identifier: GPL-3.0
+License-Filename: LICENSE/GPL-3.0.txt
+
+
+3rd-party Material
+==================
+Other resources are (and must be) used according to their original license,
+which is (should be made) available from their respective author.
+
+Arial* fonts
+-------------
+Source: http://downloads.sourceforge.net/corefonts/
+See COPYRIGHT.fonts for details
+
