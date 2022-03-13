@@ -89,7 +89,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueXleft = 40;
     self.iLayoutValueXright = 200;
     self.iLayoutValueYtop = 30;
-    self.iLayoutValueYbottom = 193;
+    self.iLayoutValueYbottom = 190;
   }
 
   (:layout_260x260)
@@ -101,7 +101,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueXleft = 43;
     self.iLayoutValueXright = 217;
     self.iLayoutValueYtop = 33;
-    self.iLayoutValueYbottom = 209;
+    self.iLayoutValueYbottom = 205;
   }
 
   (:layout_280x280)
@@ -113,7 +113,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueXleft = 47;
     self.iLayoutValueXright = 233;
     self.iLayoutValueYtop = 35;
-    self.iLayoutValueYbottom = 225;
+    self.iLayoutValueYbottom = 221;
   }
 
 
