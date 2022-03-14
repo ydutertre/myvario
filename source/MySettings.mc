@@ -54,7 +54,7 @@ class MySettings {
   public var iVariometerRange as Number = 0;
   public var iVariometerMode as Number = 0;
   public var bVariometerAutoThermal as Boolean = true;
-  public var iVariometerEnergyEfficiency as Number = 75;
+  public var iVariometerEnergyEfficiency as Number = 25;
   public var iVariometerPlotRange as Number = 2; // A 2 minutes track should be enough to capture around 5 circles according to average thermalling times https://xcmag.com/paragliding-techniques-paramotoring-skills/thermalling-how-tight-should-you-turn/
   public var iVariometerPlotZoom as Number = 9; // Setting zoom level for paragliders to 1m/pixel should be enough to keep track of both thermalling circles but also drift
   // ... sounds
@@ -65,7 +65,7 @@ class MySettings {
   public var bActivityAutoStart as Boolean = true; //Auto-start recording after launch
   public var fActivityAutoSpeedStart as Float = 3.0f;
   // ... general
-  public var iGeneralTimeConstant as Number = 3;
+  public var iGeneralTimeConstant as Number = 1;
   public var iGeneralDisplayFilter as Number = 1;
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
   public var bGeneralLapKey as Boolean = false;
@@ -233,7 +233,7 @@ class MySettings {
 
   function loadVariometerEnergyEfficiency() as Number {  // [%]
     var iValue = App.Properties.getValue("userVariometerEnergyEfficiency") as Number?;
-    return iValue != null ? iValue : 75;
+    return iValue != null ? iValue : 25;
   }
   function saveVariometerEnergyEfficiency(_iValue as Number) as Void {  // [%]
     App.Properties.setValue("userVariometerEnergyEfficiency", _iValue as App.PropertyValueType);
@@ -385,7 +385,7 @@ class MySettings {
 
   function loadGeneralTimeConstant() as Number {  // [s]
     var iValue = App.Properties.getValue("userGeneralTimeConstant") as Number?;
-    return iValue != null ? iValue : 3;
+    return iValue != null ? iValue : 1;
   }
   function saveGeneralTimeConstant(_iValue as Number) as Void {  // [s]
     App.Properties.setValue("userGeneralTimeConstant", _iValue as App.PropertyValueType);
