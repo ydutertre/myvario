@@ -56,9 +56,7 @@ class MyActivity {
   // FIT fields (as per resources/fit.xml)
   // ... record
   public const FITFIELD_VERTICALSPEED = 0;
-  public const FITFIELD_RATEOFTURN = 1;
-  public const FITFIELD_ACCELERATION = 2;
-  public const FITFIELD_BAROMETRICALTITUDE = 3;
+  public const FITFIELD_BAROMETRICALTITUDE = 1;
   // ... lap
   public const FITFIELD_DISTANCE = 10;
   public const FITFIELD_ASCENT = 11;
@@ -115,12 +113,9 @@ class MyActivity {
   private var fUnitCoefficient_Distance as Float = 1.0f;
   private var fUnitCoefficient_Altitude as Float = 1.0f;
   private var fUnitCoefficient_VerticalSpeed as Float = 1.0f;
-  private var fUnitCoefficient_RateOfTurn as Float = 1.0f;
   // ... record
   private var oFitField_BarometricAltitude as FC.Field;
   private var oFitField_VerticalSpeed as FC.Field;
-  private var oFitField_RateOfTurn as FC.Field;
-  private var oFitField_Acceleration as FC.Field;
   // ... lap
   private var oFitField_Distance as FC.Field;
   private var oFitField_Ascent as FC.Field;
@@ -162,7 +157,6 @@ class MyActivity {
     fUnitCoefficient_Distance = $.oMySettings.fUnitDistanceCoefficient;
     fUnitCoefficient_Altitude = $.oMySettings.fUnitElevationCoefficient;
     fUnitCoefficient_VerticalSpeed = $.oMySettings.fUnitVerticalSpeedCoefficient;
-    fUnitCoefficient_RateOfTurn = $.oMySettings.fUnitRateOfTurnCoefficient;
 
     // ... record
     oFitField_BarometricAltitude =
@@ -175,16 +169,6 @@ class MyActivity {
                            MyActivity.FITFIELD_VERTICALSPEED,
                            FC.DATA_TYPE_FLOAT,
                            {:mesgType => FC.MESG_TYPE_RECORD, :units => $.oMySettings.sUnitVerticalSpeed});
-    oFitField_RateOfTurn =
-      oSession.createField("RateOfTurn",
-                           MyApp.FITFIELD_RATEOFTURN,
-                           FC.DATA_TYPE_FLOAT,
-                           {:mesgType => FC.MESG_TYPE_RECORD, :units => $.oMySettings.sUnitRateOfTurn});
-    oFitField_Acceleration =
-      oSession.createField("Acceleration",
-                           MyApp.FITFIELD_ACCELERATION,
-                           FC.DATA_TYPE_FLOAT,
-                           {:mesgType => FC.MESG_TYPE_RECORD, :units => "g"});
 
     // ... lap
     oFitField_Distance =
@@ -502,20 +486,6 @@ class MyActivity {
     //Sys.println(Lang.format("DEBUG: MyActivity.setVerticalSpeed($1$)", [_fValue]));
     if(_fValue != null and LangUtils.notNaN(_fValue)) {
       self.oFitField_VerticalSpeed.setData(_fValue * self.fUnitCoefficient_VerticalSpeed);
-    }
-  }
-
-  function setRateOfTurn(_fValue as Float?) as Void {
-    //Sys.println(Lang.format("DEBUG: MyActivity.setRateOfTurn($1$)", [_fValue]));
-    if(_fValue != null and LangUtils.notNaN(_fValue)) {
-      self.oFitField_RateOfTurn.setData(_fValue * self.fUnitCoefficient_RateOfTurn);
-    }
-  }
-
-  function setAcceleration(_fValue as Float?) as Void {
-    //Sys.println(Lang.format("DEBUG: MyActivity.setAcceleration($1$)", [_fValue]));
-    if(_fValue != null and LangUtils.notNaN(_fValue)) {
-      self.oFitField_Acceleration.setData(_fValue);
     }
   }
 

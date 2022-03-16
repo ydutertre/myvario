@@ -103,9 +103,7 @@ class MyApp extends App.AppBase {
 
   // FIT fields (as per resources/fit.xml)
   public const FITFIELD_VERTICALSPEED = 0;
-  public const FITFIELD_RATEOFTURN = 1;
-  public const FITFIELD_ACCELERATION = 2;
-  public const FITFIELD_BAROMETRICALTITUDE = 3;
+  public const FITFIELD_BAROMETRICALTITUDE = 1;
 
   //
   // VARIABLES
@@ -265,7 +263,6 @@ class MyApp extends App.AppBase {
       if($.oMySettings.iVariometerMode == 0) {
         ($.oMyActivity as MyActivity).setVerticalSpeed($.oMyProcessing.fVariometer);
       }
-      ($.oMyActivity as MyActivity).setAcceleration($.oMyProcessing.fAcceleration);
     }
   }
 
@@ -309,7 +306,6 @@ class MyApp extends App.AppBase {
       if($.oMySettings.iVariometerMode == 1) {
         ($.oMyActivity as MyActivity).setVerticalSpeed($.oMyProcessing.fVariometer);
       }
-      ($.oMyActivity as MyActivity).setRateOfTurn($.oMyProcessing.fRateOfTurn);
     }
   }
 

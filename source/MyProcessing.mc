@@ -87,8 +87,6 @@ class MyProcessing {
   // Public objects
   // ... sensor values (fed by Toybox.Sensor)
   public var iSensorEpoch as Number = -1;
-  public var fAcceleration as Float = NaN;
-  public var fAcceleration_filtered as Float = NaN;
   // ... altimeter values (fed by Toybox.Activity, on Toybox.Sensor events)
   public var fAltitude as Float = NaN;
   public var fAltitude_filtered as Float = NaN;
@@ -108,8 +106,6 @@ class MyProcessing {
   // ... position calculated values
   public var fEnergyTotal as Float = NaN;
   public var fEnergyCinetic as Float = NaN;
-  public var fRateOfTurn as Float = NaN;
-  public var fRateOfTurn_filtered as Float = NaN;
   // ... finesse
   public var bAscent as Boolean = true;
   public var fFinesse as Float = NaN;
@@ -163,8 +159,6 @@ class MyProcessing {
     self.fPreviousAltitude = 0.0f;
     // ... sensor values
     self.iSensorEpoch = -1;
-    self.fAcceleration = NaN;
-    self.fAcceleration_filtered = NaN;
     // ... altimeter values
     self.fAltitude = NaN;
     self.fAltitude_filtered = NaN;
@@ -175,7 +169,6 @@ class MyProcessing {
       $.oMyFilter.resetFilter(MyFilter.VARIOMETER);
     }
     // ... filters
-    $.oMyFilter.resetFilter(MyFilter.ACCELERATION);
   }
 
   function resetPositionData() as Void {
@@ -207,15 +200,12 @@ class MyProcessing {
     }
     self.fEnergyTotal = NaN;
     self.fEnergyCinetic = NaN;
-    self.fRateOfTurn = NaN;
-    self.fRateOfTurn_filtered = NaN;
     // ... finesse
     self.fFinesse = NaN;
     // ... filters
     $.oMyFilter.resetFilter(MyFilter.GROUNDSPEED);
     $.oMyFilter.resetFilter(MyFilter.HEADING_X);
     $.oMyFilter.resetFilter(MyFilter.HEADING_Y);
-    $.oMyFilter.resetFilter(MyFilter.RATEOFTURN);
   }
 
   function importSettings() as Void {
@@ -229,13 +219,13 @@ class MyProcessing {
     // Process sensor data
 
     // ... acceleration
-    if(_oInfo has :accel and _oInfo.accel != null) {
-      self.fAcceleration = Math.sqrt((_oInfo.accel as Array<Number>)[0]*(_oInfo.accel as Array<Number>)[0]
-                                     + (_oInfo.accel as Array<Number>)[1]*(_oInfo.accel as Array<Number>)[1]
-                                     + (_oInfo.accel as Array<Number>)[2]*(_oInfo.accel as Array<Number>)[2]).toFloat()/1000.0f;
-      self.fAcceleration_filtered = $.oMyFilter.filterValue(MyFilter.ACCELERATION, self.fAcceleration);
+    // if(_oInfo has :accel and _oInfo.accel != null) {
+    //  self.fAcceleration = Math.sqrt((_oInfo.accel as Array<Number>)[0]*(_oInfo.accel as Array<Number>)[0]
+    //                                 + (_oInfo.accel as Array<Number>)[1]*(_oInfo.accel as Array<Number>)[1]
+    //                                 + (_oInfo.accel as Array<Number>)[2]*(_oInfo.accel as Array<Number>)[2]).toFloat()/1000.0f;
+    //  self.fAcceleration_filtered = $.oMyFilter.filterValue(MyFilter.ACCELERATION, self.fAcceleration);
       //Sys.println(format("DEBUG: (Sensor.Info) acceleration = $1$ ~ $2$", [self.fAcceleration, self.fAcceleration_filtered]));
-    }
+    //}
     //else {
     //  Sys.println("WARNING: Sensor data have no acceleration information (:accel)");
     //}
@@ -378,27 +368,13 @@ class MyProcessing {
     }
     if(LangUtils.notNaN(self.fHeading)) {
       //Sys.println(format("DEBUG: (Position.Info) heading = $1$ ~ $2$", [self.fHeading, self.fHeading_filtered]));
-      // ... rate of turn
-      if(self.iPreviousHeadingGpoch >= 0 and self.iPositionGpoch-self.iPreviousHeadingGpoch != 0) {
-        fValue = (self.fHeading-self.fPreviousHeading) / (self.iPositionGpoch-self.iPreviousHeadingGpoch);
-        if(fValue < -3.14159265359f) {
-          fValue += 6.28318530718f;
-        }
-        else if(fValue > 3.14159265359f) {
-          fValue -= 6.28318530718f;
-        }
-        self.fRateOfTurn = fValue;
-        self.fRateOfTurn_filtered = $.oMyFilter.filterValue(MyFilter.RATEOFTURN, self.fRateOfTurn);
-        //Sys.println(format("DEBUG: (Calculated) rate of turn = $1$ ~ $2$", [self.fRateOfTurn, self.fRateOfTurn_filtered]));
-      }
+
       self.iPreviousHeadingGpoch = self.iPositionGpoch;
       self.fPreviousHeading = self.fHeading;
     }
     else {
       //Sys.println("WARNING: No heading available");
       self.iPreviousHeadingGpoch = -1;
-      self.fRateOfTurn = NaN;
-      self.fRateOfTurn_filtered = NaN;
     }
     // NOTE: heading and rate-of-turn data are not required for processing finalization
 

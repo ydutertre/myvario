@@ -74,7 +74,6 @@ class MySettings {
   public var iUnitElevation as Number = -1;
   public var iUnitPressure as Number = -1;
   public var iUnitDirection as Number = 1;
-  public var iUnitRateOfTurn as Number = 0;
   public var bUnitTimeUTC as Boolean = false;
 
   // Units
@@ -85,7 +84,6 @@ class MySettings {
   public var sUnitVerticalSpeed as String = "m/s";
   public var sUnitPressure as String = "mb";
   public var sUnitDirection as String = "txt";
-  public var sUnitRateOfTurn as String = "°/s";
   public var sUnitTime as String = "LT";
   // ... conversion coefficients
   public var fUnitDistanceCoefficient as Float = 0.001f;
@@ -93,7 +91,6 @@ class MySettings {
   public var fUnitElevationCoefficient as Float = 1.0f;
   public var fUnitVerticalSpeedCoefficient as Float = 1.0f;
   public var fUnitPressureCoefficient as Float = 0.01f;
-  public var fUnitRateOfTurnCoefficient as Float = 57.2957795131f;
 
   // Other
   public var fVariometerRange as Float = 3.0f;
@@ -136,7 +133,6 @@ class MySettings {
     self.setUnitElevation(self.loadUnitElevation());
     self.setUnitPressure(self.loadUnitPressure());
     self.setUnitDirection(self.loadUnitDirection());
-    self.setUnitRateOfTurn(self.loadUnitRateOfTurn());
     self.setUnitTimeUTC(self.loadUnitTimeUTC());
   }
 
@@ -574,30 +570,6 @@ class MySettings {
     }
     else {  // ... Degrees
       self.sUnitDirection = "°";
-    }
-  }
-
-  function loadUnitRateOfTurn() as Number {
-    var iValue = App.Properties.getValue("userUnitRateOfTurn") as Number?;
-    return iValue != null ? iValue : 0;
-  }
-  function saveUnitRateOfTurn(_iValue as Number) as Void {
-    App.Properties.setValue("userUnitRateOfTurn", _iValue as App.PropertyValueType);
-  }
-  function setUnitRateOfTurn(_iValue as Number) as Void {
-    if(_iValue < 0 or _iValue > 1) {
-      _iValue = 0;
-    }
-    self.iUnitRateOfTurn = _iValue;
-    if(_iValue == 1) {  // ... revolution-per-minute
-      // ... [rpm]
-      self.sUnitRateOfTurn = "rpm";
-      self.fUnitRateOfTurnCoefficient = 9.54929658551f;  // ... rad/s -> rpm
-    }
-    else {  // ... degree-per-second
-      // ... [deg/s]
-      self.sUnitRateOfTurn = "°/s";
-      self.fUnitRateOfTurnCoefficient = 57.2957795131f;  // ... rad/s -> deg/s
     }
   }
 

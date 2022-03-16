@@ -252,21 +252,6 @@ class MyPickerGenericSettings extends Ui.Picker {
             :pattern => [oFactory],
             :defaults => [oFactory.indexOfKey(iUnitDirection)]});
       }
-      else if(_item == :itemRateOfTurn) {
-        var iUnitRateOfTurn = $.oMySettings.loadUnitRateOfTurn();
-        var oFactory = new PickerFactoryDictionary([0, 1],
-                                                   ["°/s", "rpm"],
-                                                   null);
-        Picker.initialize({
-            :title => new Ui.Text({
-                :text => Ui.loadResource(Rez.Strings.titleUnitRateOfTurn) as String,
-                :font => Gfx.FONT_TINY,
-                :locX=>Ui.LAYOUT_HALIGN_CENTER,
-                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
-                :color => Gfx.COLOR_BLUE}),
-            :pattern => [oFactory],
-            :defaults => [oFactory.indexOfKey(iUnitRateOfTurn)]});
-      }
       else if(_item == :itemTimeUTC) {
         var bUnitTimeUTC = $.oMySettings.loadUnitTimeUTC();
         var oFactory = new PickerFactoryDictionary([false, true],
@@ -357,9 +342,6 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
       }
       else if(self.item == :itemDirection) {
         $.oMySettings.saveUnitDirection(_amValues[0] as Number);
-      }
-      else if(self.item == :itemRateOfTurn) {
-        $.oMySettings.saveUnitRateOfTurn(_amValues[0] as Number);
       }
       else if(self.item == :itemTimeUTC) {
         $.oMySettings.saveUnitTimeUTC(_amValues[0] as Boolean);

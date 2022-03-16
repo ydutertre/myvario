@@ -60,11 +60,9 @@ class MyFilter {
   public const ALTIMETER = 0;
   public const GROUNDSPEED = 1;
   public const VARIOMETER = 2;
-  public const ACCELERATION = 3;
-  public const HEADING_X = 4;
-  public const HEADING_Y = 5;
-  public const RATEOFTURN = 6;
-  private const FILTERS = 7;
+  public const HEADING_X = 3;
+  public const HEADING_Y = 4;
+  private const FILTERS = 5;
 
 
   //

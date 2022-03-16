@@ -50,7 +50,6 @@
   <string id="titleUnitElevation">Elevation</string>
   <string id="titleUnitPressure">Pressure</string>
   <string id="titleUnitDirection">Direction</string>  
-  <string id="titleUnitRateOfTurn">Rate-of-Turn</string>
   <string id="titleUnitTimeUTC">Timezone</string>
   <string id="valueUnitTimeLT">LT</string>
   <string id="valueUnitTimeUTC">UTC</string>
@@ -82,11 +81,9 @@
   <!-- Layouts -->
   <string id="titleViewLog">Log</string>
   <string id="labelAltitude">Altitude</string>
-  <string id="labelAcceleration">Accel.</string>
   <string id="labelVerticalSpeed">Vert.Speed</string>
   <string id="labelGroundSpeed">Gnd.Speed</string>
   <string id="labelHeading">Heading</string>
-  <string id="labelRateOfTurn">R.o.Turn</string>
   <string id="labelFinesse">Finesse</string>
   <string id="labelHeightDecision">Dcsn.Hght</string>
   <string id="labelHeightWarning">Warn.Hght</string>
@@ -113,10 +110,6 @@
   <!-- FIT -->
   <string id="titleVerticalSpeed">Vertical Speed</string>
   <string id="unitVerticalSpeed">m/s|ft/m</string>
-  <string id="titleRateOfTurn">Rate of Turn</string>
-  <string id="unitRateOfTurn">°/s|rpm</string>
-  <string id="titleAcceleration">Acceleration</string>
-  <string id="unitAcceleration">g</string>
   <string id="titleAltitude">(Barometric) Altitude</string>
   <string id="unitAltitude">m|ft</string>
   <string id="titleDistance">Distance (~FAI)</string>

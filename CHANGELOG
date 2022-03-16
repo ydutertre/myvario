@@ -1,3 +1,10 @@
+* 1.04
+  - Removal of acceleration and rate of turn FIT fields and related filtering
+  - Acceleration may be added back in the future, once Gyroscope data becomes available in Garmin SDK (for more reactive vario)
+
+* 1.02 & 1.03
+  - Amendment to Manifest & Changelog
+
 * 1.01
   - Changed to larger fonts in Varioplot for better visibility while thermalling
 

@@ -111,7 +111,6 @@ class MyMenuGeneric extends Ui.Menu {
       Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitElevation) as String, :menuUnitElevation);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitPressure) as String, :menuUnitPressure);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitDirection) as String, :menuUnitDirection);      
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitRateOfTurn) as String, :menuUnitRateOfTurn);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitTimeUTC) as String, :menuUnitTimeUTC);
     }
 
@@ -351,11 +350,6 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       else if(_item == :menuUnitDirection) {
         Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemDirection),
                     new MyPickerGenericSettingsDelegate(:contextUnit, :itemDirection),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuUnitRateOfTurn) {
-        Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemRateOfTurn),
-                    new MyPickerGenericSettingsDelegate(:contextUnit, :itemRateOfTurn),
                     Ui.SLIDE_IMMEDIATE);
       }
       else if(_item == :menuUnitTimeUTC) {

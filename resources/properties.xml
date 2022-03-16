@@ -29,7 +29,6 @@
   <property id="userUnitElevation" type="number">-1</property>
   <property id="userUnitPressure" type="number">-1</property>
   <property id="userUnitDirection" type="number">1</property>
-  <property id="userUnitRateOfTurn" type="number">0</property>
   <property id="userUnitTimeUTC" type="boolean">false</property>
   <!-- ... storage -->
 </properties>
