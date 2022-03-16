@@ -118,8 +118,6 @@ as Lap Key (unless configured not to do so; see Settings below).
 My Vario adds custom fields to the recorded FIT file:
  - Barometric Altitude
  - Vertical Speed
- - Rate-of-Turn
- - Acceleration
 (which will be plotted in Garmin Connect IF your installed the application
  through the Garmin ConnectIQ store)
 
@@ -203,8 +201,6 @@ The application allows you to specify the following settings:
     preferred units for displaying pressure
   - Direction:
     whether to show directions as an angle (247, 62, etc.) or as text (NW, SE, N, etc.)
-  - Rate-of-Turn:
-    your preferred unit for displaying rate-of-turn values
   - Timezone:
     display Local Time (LT) or Universal Time Coordinates (UTC/Z)
 
@@ -228,10 +224,8 @@ taneous data in the various views, according to the user-specified Display Filte
 (see Settings above):
 - off: no data are filtered (all data are instantaneous)
 -  dt: time-derived data - speed, variometer and rate-of-turn - are filtered;
-       other data - acceleration, altitude and heading - are instantaneous
+       other data - altitude and heading - are instantaneous
 - all: all data are filtered
-(acceleration is not considered time-derived since measured directly by the watch
- sensor and not as the time derivative of speed)
 
 However, the following exceptions apply:
 - the Varioplot View always displays instantaneous data

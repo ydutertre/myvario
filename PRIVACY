@@ -8,14 +8,14 @@ your device.
 
 The permissions required by GliderSK are:
  - "Sensor" permission:
-   for barometric pressure (elevation) and acceleration data
+   for barometric pressure (elevation)
  - "Positioning" permission:
    for location and speed data
  - "Fit" permission:
    for recording your Activity (to FIT file)
  - "FitContributor" permission:
-   to add barometric altitude, vertical speed, rate of turn and
-   acceleration data in your recorded Activity (FIT file)
+   to add barometric altitude and vertical speed in your
+   recorded Activity (FIT file)
  - "Communications" permission:
    to import data from the web into your destinations memory
    (see the Storage Data section in the USAGE file)
