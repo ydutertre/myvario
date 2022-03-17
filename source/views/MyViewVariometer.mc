@@ -185,7 +185,7 @@ class MyViewVariometer extends MyView {
     _oDC.drawArc(self.iLayoutCenter, self.iLayoutCenter, self.iLayoutValueR, Gfx.ARC_COUNTER_CLOCKWISE, 15, 345);
     _oDC.setColor($.oMySettings.iGeneralBackgroundColor, $.oMySettings.iGeneralBackgroundColor);
     _oDC.drawArc(self.iLayoutCenter, self.iLayoutCenter, self.iLayoutValueR, Gfx.ARC_CLOCKWISE, 15, 345);
-    fValue = $.oMySettings.iGeneralDisplayFilter >= 1 ? $.oMyProcessing.fVariometer_filtered : $.oMyProcessing.fVariometer;
+    fValue = $.oMyProcessing.fVariometer_filtered;
     if($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE) {
       if(fValue > 0.0f) {
         iColor = Gfx.COLOR_DK_GREEN;
@@ -244,7 +244,7 @@ class MyViewVariometer extends MyView {
     // Draw position values
 
     // ... altitude
-    fValue = $.oMySettings.iGeneralDisplayFilter >= 2 ? $.oMyProcessing.fAltitude_filtered : $.oMyProcessing.fAltitude;
+    fValue = $.oMyProcessing.fAltitude;
     if(LangUtils.notNaN(fValue) and $.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE) {
       fValue *= $.oMySettings.fUnitElevationCoefficient;
       sValue = fValue.format("%.0f");
@@ -255,7 +255,7 @@ class MyViewVariometer extends MyView {
     _oDC.drawText(self.iLayoutCacheX, self.iLayoutAltitudeY, Gfx.FONT_MEDIUM, Lang.format("$1$ $2$", [sValue, $.oMySettings.sUnitElevation]), Gfx.TEXT_JUSTIFY_CENTER);
 
     // ... variometer
-    fValue = $.oMySettings.iGeneralDisplayFilter >= 1 ? $.oMyProcessing.fVariometer_filtered : $.oMyProcessing.fVariometer;
+    fValue = $.oMyProcessing.fVariometer_filtered;
     if(LangUtils.notNaN(fValue) and $.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE) {
       fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
       if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {

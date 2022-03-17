@@ -153,15 +153,9 @@ The application allows you to specify the following settings:
 * Variometer
   - Range:
     the range used for the variometer display and tones (3.0, 6.0 or 9.0 m/s)
-  - Mode:
-    whether the variometer tracks altitude variation only (dAlt) or compensates
-    for cinetic energy (speed) variations (dE)
   - Auto Thermal:
     whether the app will switch to Varioplot view automatically when circling is
     detected, and switch back once circling is no longer detected
-  - Energy Efficiency:
-    percentage of the short-term cinetic energy (speed) variations that may be
-    recovered as potential energy (altitude)
   - Plot Range:
    the time range (in minutes) for plotting the variometer-vs-location history
 

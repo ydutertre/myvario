@@ -35,9 +35,6 @@
   <string id="titleActivityAutoSpeedStart">Start Speed</string>
   <!-- Menu (settings:general) -->
   <string id="titleSettingsGeneral">General</string>
-  <string id="titleGeneralTimeConstant">Time Constant</string>
-  <string id="titleGeneralDisplayFilter">Display Filter</string>
-  <string id="valueGeneralDisplayFilterTimeDerived">δt</string>
   <string id="titleGeneralBackgroundColor">Background Color</string>
   <string id="titleGeneralLapKey">Lap Key</string>
   <!-- Menu (settings:units) -->

@@ -63,8 +63,6 @@ class MySettings {
   public var bActivityAutoStart as Boolean = true; //Auto-start recording after launch
   public var fActivityAutoSpeedStart as Float = 3.0f;
   // ... general
-  public var iGeneralTimeConstant as Number = 1;
-  public var iGeneralDisplayFilter as Number = 1;
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
   public var bGeneralLapKey as Boolean = false;
   // ... units
@@ -119,8 +117,6 @@ class MySettings {
     self.setActivityAutoStart(self.loadActivityAutoStart());
     self.setActivityAutoSpeedStart(self.loadActivityAutoSpeedStart());
     // ... general
-    self.setGeneralTimeConstant(self.loadGeneralTimeConstant());
-    self.setGeneralDisplayFilter(self.loadGeneralDisplayFilter());
     self.setGeneralBackgroundColor(self.loadGeneralBackgroundColor());
     self.setGeneralLapKey(self.loadGeneralLapKey());
     // ... units
@@ -337,37 +333,6 @@ class MySettings {
       _fValue = 0.0f;
     }
     self.fActivityAutoSpeedStart = _fValue;
-  }
-
-  function loadGeneralTimeConstant() as Number {  // [s]
-    var iValue = App.Properties.getValue("userGeneralTimeConstant") as Number?;
-    return iValue != null ? iValue : 1;
-  }
-  function saveGeneralTimeConstant(_iValue as Number) as Void {  // [s]
-    App.Properties.setValue("userGeneralTimeConstant", _iValue as App.PropertyValueType);
-  }
-  function setGeneralTimeConstant(_iValue as Number) as Void {  // [s]
-    if(_iValue > 60) {
-      _iValue = 60;
-    }
-    else if(_iValue < 0) {
-      _iValue = 0;
-    }
-    self.iGeneralTimeConstant = _iValue;
-  }
-
-  function loadGeneralDisplayFilter() as Number {
-    var iValue = App.Properties.getValue("userGeneralDisplayFilter") as Number?;
-    return iValue != null ? iValue : 1;
-  }
-  function saveGeneralDisplayFilter(_iValue as Number) as Void {
-    App.Properties.setValue("userGeneralDisplayFilter", _iValue as App.PropertyValueType);
-  }
-  function setGeneralDisplayFilter(_iValue as Number) as Void {
-    if(_iValue < 0 or _iValue > 2) {
-      _iValue = 1;
-    }
-    self.iGeneralDisplayFilter = _iValue;
   }
 
   function loadGeneralBackgroundColor() as Number {

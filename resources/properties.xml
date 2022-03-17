@@ -18,8 +18,6 @@
   <property id="userActivityAutoStart" type="boolean">true</property>
   <property id="userActivityAutoSpeedStart" type="float">3.0</property>
   <!-- ... general -->
-  <property id="userGeneralTimeConstant" type="number">1</property>
-  <property id="userGeneralDisplayFilter" type="number">1</property>
   <property id="userGeneralBackgroundColor" type="number">0</property>
   <property id="userGeneralLapKey" type="boolean">false</property>
   <!-- ... units -->

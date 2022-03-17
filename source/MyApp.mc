@@ -57,7 +57,6 @@ var oMyPositionLocation as Pos.Location?;
 var fMyPositionAltitude as Float = NaN;
 
 // Sensors filter
-var oMyFilter as MyFilter = new MyFilter();
 var oMyKalmanFilter as MyKalmanFilter = new MyKalmanFilter();
 
 // Internal altimeter
@@ -236,7 +235,7 @@ class MyApp extends App.AppBase {
     $.oMySettings.load();
 
     // Apply settings
-    $.oMyFilter.importSettings();
+
     $.oMyAltimeter.importSettings();
 
     // ... tones
@@ -381,7 +380,7 @@ class MyApp extends App.AppBase {
     // ALGO: Tones "tick" is 100ms; we work between 200ms (2 ticks) and 2000ms (20 ticks) pediod,
     //       depending on the ratio between the ascent speed and the variometer range.
     if(self.iTones || self.iVibrations) {
-      var fValue = $.oMySettings.iGeneralDisplayFilter >= 1 ? $.oMyProcessing.fVariometer_filtered : $.oMyProcessing.fVariometer;
+      var fValue = $.oMyProcessing.fVariometer_filtered;
       if(fValue >= $.oMySettings.fMinimumClimb) {
         if(self.iTonesTick-self.iTonesLastTick >= 20.0f-18.0f*fValue/$.oMySettings.fVariometerRange) {
           //Sys.println(format("DEBUG: playTone: variometer @ $1$", [self.iTonesTick]));

@@ -75,7 +75,6 @@ class MyAltimeter {
   // Altitude
   public var fAltitudeISA as Float = NaN;  // [m]
   public var fAltitudeActual as Float = NaN;  // [m]
-  public var fAltitudeActual_filtered as Float = NaN;  // [m]
 
 
   //
@@ -90,10 +89,8 @@ class MyAltimeter {
     // Altitude
     self.fAltitudeISA = NaN;
     self.fAltitudeActual = NaN;
-    self.fAltitudeActual_filtered = NaN;
 
     // Filter
-    $.oMyFilter.resetFilter(MyFilter.ALTIMETER);
   }
 
   function importSettings() as Void {
@@ -116,7 +113,6 @@ class MyAltimeter {
     //Sys.println(format("DEBUG: Altitude (ISA) = $1$", [self.fAltitudeISA]));
     // ... actual
     self.fAltitudeActual = self.fAltitudeISA - (Math.pow(self.fQNH/self.ISA_PRESSURE_MSL, self.ICAO_ALTITUDE_EXP).toFloat() - 1.0f)*self.ISA_TEMPERATURE_MSL/self.ISA_TEMPERATURE_LRATE;
-    self.fAltitudeActual_filtered = $.oMyFilter.filterValue(MyFilter.ALTIMETER, self.fAltitudeActual);
     //Sys.println(format("DEBUG: Altitude (actual) = $1$ ~ $2$", [self.fAltitudeActual, self.fAltitudeActual_filtered]));
   }
 
@@ -126,14 +122,12 @@ class MyAltimeter {
       return;
     }
     self.fQNH = _fQNH;
-    $.oMyFilter.resetFilter(MyFilter.ALTIMETER);
 
     // ISA altitude (<-> QFE) available ?
     if(LangUtils.notNaN(self.fAltitudeISA)) {
       // Derive altitude (ICAO formula)
       // ... actual
       self.fAltitudeActual = self.fAltitudeISA - (Math.pow(self.fQNH/self.ISA_PRESSURE_MSL, self.ICAO_ALTITUDE_EXP).toFloat() - 1.0f)*self.ISA_TEMPERATURE_MSL/self.ISA_TEMPERATURE_LRATE;
-      self.fAltitudeActual_filtered = $.oMyFilter.filterValue(MyFilter.ALTIMETER, self.fAltitudeActual);
       //Sys.println(format("DEBUG: Altitude (actual) = $1$ ~ $2$", [self.fAltitudeActual, self.fAltitudeActual_filtered]));
     }
   }

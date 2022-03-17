@@ -73,6 +73,8 @@ class MyActivity {
   public const FITFIELD_GLOBALTIMEALTITUDEMIN = 84;
   public const FITFIELD_GLOBALALTITUDEMAX = 85;
   public const FITFIELD_GLOBALTIMEALTITUDEMAX = 86;
+  // Time constant
+  public const TIME_CONSTANT = 3;
 
 
   //
@@ -372,7 +374,7 @@ class MyActivity {
        or !(_oInfo has :accuracy) or _oInfo.accuracy < Pos.QUALITY_GOOD
        or !(_oInfo has :position) or _oInfo.position == null
        or !(_oInfo has :altitude) or _oInfo.altitude == null
-       or _iEpoch - self.iEpochLast < $.oMySettings.iGeneralTimeConstant) {
+       or _iEpoch - self.iEpochLast < self.TIME_CONSTANT) {
       return;
     }
 

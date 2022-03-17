@@ -160,7 +160,7 @@ class MyViewGeneral extends MyViewGlobal {
 
     // ... altitude
     (self.oRezValueLeft as Ui.Text).setColor(self.iColorText);
-    fValue = $.oMySettings.iGeneralDisplayFilter >= 2 ? $.oMyProcessing.fAltitude_filtered : $.oMyProcessing.fAltitude;
+    fValue = $.oMyProcessing.fAltitude;
     if(LangUtils.notNaN(fValue)) {
       fValue *= $.oMySettings.fUnitElevationCoefficient;
       sValue = fValue.format("%.0f");
@@ -183,7 +183,7 @@ class MyViewGeneral extends MyViewGlobal {
 
     // ... heading
     (self.oRezValueRight as Ui.Text).setColor(self.iColorText);
-    fValue = $.oMySettings.iGeneralDisplayFilter >= 2 ? $.oMyProcessing.fHeading_filtered : $.oMyProcessing.fHeading;
+    fValue = $.oMyProcessing.fHeading;
 
     if(LangUtils.notNaN(fValue)) {
       //fValue = ((fValue * 180.0f/Math.PI).toNumber()) % 360;
@@ -202,7 +202,7 @@ class MyViewGeneral extends MyViewGlobal {
 
     // ... variometer
     (self.oRezValueBottomLeft as Ui.Text).setColor(self.iColorText);
-    fValue = $.oMySettings.iGeneralDisplayFilter >= 1 ? $.oMyProcessing.fVariometer_filtered : $.oMyProcessing.fVariometer;
+    fValue = $.oMyProcessing.fVariometer_filtered;
     if(LangUtils.notNaN(fValue)) {
       fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
       if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
@@ -235,7 +235,7 @@ class MyViewGeneral extends MyViewGlobal {
 
     // ... ground speed
     (self.oRezValueBottomRight as Ui.Text).setColor(self.iColorText);
-    fValue = $.oMySettings.iGeneralDisplayFilter >= 1 ? $.oMyProcessing.fGroundSpeed_filtered : $.oMyProcessing.fGroundSpeed;
+    fValue = $.oMyProcessing.fGroundSpeed;
     if(LangUtils.notNaN(fValue)) {
       fValue *= $.oMySettings.fUnitHorizontalSpeedCoefficient;
       sValue = fValue.format("%.0f");

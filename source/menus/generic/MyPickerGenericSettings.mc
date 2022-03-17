@@ -108,43 +108,7 @@ class MyPickerGenericSettings extends Ui.Picker {
     }
     else if(_context == :contextGeneral) {
 
-      if(_item == :itemTimeConstant) {
-        var iGeneralTimeConstant = $.oMySettings.loadGeneralTimeConstant();
-        var oFactory = new PickerFactoryDictionary([0, 1, 2, 3, 4, 5, 10, 15, 20, 25, 30, 45, 60],
-                                                   ["0", "1", "2", "3", "4", "5", "10", "15", "20", "25", "30", "45", "60"],
-                                                   null);
-        var iIndex = oFactory.indexOfKey(iGeneralTimeConstant);
-        if(iIndex < 0) {
-          iIndex = 5;
-        }
-        Picker.initialize({
-            :title => new Ui.Text({
-                :text => format("$1$ [s]", [Ui.loadResource(Rez.Strings.titleGeneralTimeConstant)]),
-                :font => Gfx.FONT_TINY,
-                :locX=>Ui.LAYOUT_HALIGN_CENTER,
-                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
-                :color => Gfx.COLOR_BLUE}),
-            :pattern => [oFactory],
-            :defaults => [iIndex]});
-      }
-      else if(_item == :itemDisplayFilter) {
-        var iGeneralDisplayFilter = $.oMySettings.loadGeneralDisplayFilter();
-        var oFactory = new PickerFactoryDictionary([0, 1, 2],
-                                                   [Ui.loadResource(Rez.Strings.valueOff),
-                                                    Ui.loadResource(Rez.Strings.valueGeneralDisplayFilterTimeDerived),
-                                                    Ui.loadResource(Rez.Strings.valueAll)],
-                                                   null);
-        Picker.initialize({
-            :title => new Ui.Text({
-                :text => format("$1$", [Ui.loadResource(Rez.Strings.titleGeneralDisplayFilter)]),
-                :font => Gfx.FONT_TINY,
-                :locX=>Ui.LAYOUT_HALIGN_CENTER,
-                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
-                :color => Gfx.COLOR_BLUE}),
-            :pattern => [oFactory],
-            :defaults => [oFactory.indexOfKey(iGeneralDisplayFilter)]});
-      }
-      else if(_item == :itemBackgroundColor) {
+      if(_item == :itemBackgroundColor) {
         var iColor = $.oMySettings.loadGeneralBackgroundColor();
         var oFactory = new PickerFactoryDictionary([Gfx.COLOR_WHITE, Gfx.COLOR_BLACK],
                                                    [Ui.loadResource(Rez.Strings.valueColorWhite),
@@ -284,13 +248,7 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
     }
     else if(self.context == :contextGeneral) {
 
-      if(self.item == :itemTimeConstant) {
-        $.oMySettings.saveGeneralTimeConstant(_amValues[0] as Number);
-      }
-      else if(self.item == :itemDisplayFilter) {
-        $.oMySettings.saveGeneralDisplayFilter(_amValues[0] as Number);
-      }
-      else if(self.item == :itemBackgroundColor) {
+      if(self.item == :itemBackgroundColor) {
         $.oMySettings.saveGeneralBackgroundColor(_amValues[0] as Number);
       }
 

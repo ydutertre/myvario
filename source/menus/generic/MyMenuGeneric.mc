@@ -97,8 +97,6 @@ class MyMenuGeneric extends Ui.Menu {
 
     else if(_menu == :menuSettingsGeneral) {
       Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsGeneral) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleGeneralTimeConstant) as String, :menuGeneralTimeConstant);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleGeneralDisplayFilter) as String, :menuGeneralDisplayFilter);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleGeneralBackgroundColor) as String, :menuGeneralBackgroundColor);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleGeneralLapKey) as String, :menuGeneralLapKey);
     }
@@ -297,17 +295,7 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
     }
 
     else if(self.menu == :menuSettingsGeneral) {
-      if(_item == :menuGeneralTimeConstant) {
-        Ui.pushView(new MyPickerGenericSettings(:contextGeneral, :itemTimeConstant),
-                    new MyPickerGenericSettingsDelegate(:contextGeneral, :itemTimeConstant),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuGeneralDisplayFilter) {
-        Ui.pushView(new MyPickerGenericSettings(:contextGeneral, :itemDisplayFilter),
-                    new MyPickerGenericSettingsDelegate(:contextGeneral, :itemDisplayFilter),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuGeneralBackgroundColor) {
+      if(_item == :menuGeneralBackgroundColor) {
         Ui.pushView(new MyPickerGenericSettings(:contextGeneral, :itemBackgroundColor),
                     new MyPickerGenericSettingsDelegate(:contextGeneral, :itemBackgroundColor),
                     Ui.SLIDE_IMMEDIATE);

@@ -81,7 +81,6 @@ class MyProcessing {
   public var iSensorEpoch as Number = -1;
   // ... altimeter values (fed by Toybox.Activity, on Toybox.Sensor events)
   public var fAltitude as Float = NaN;
-  public var fAltitude_filtered as Float = NaN;
   // ... altimeter calculated values
   public var fVariometer as Float = NaN;
   public var fVariometer_filtered as Float = NaN;
@@ -91,9 +90,7 @@ class MyProcessing {
   public var iAccuracy as Number = Pos.QUALITY_NOT_AVAILABLE;
   public var oLocation as Pos.Location?;
   public var fGroundSpeed as Float = NaN;
-  public var fGroundSpeed_filtered as Float = NaN;
   public var fHeading as Float = NaN;
-  public var fHeading_filtered as Float = NaN;
   // ... finesse
   public var bAscent as Boolean = true;
   public var fFinesse as Float = NaN;
@@ -149,11 +146,9 @@ class MyProcessing {
     self.iSensorEpoch = -1;
     // ... altimeter values
     self.fAltitude = NaN;
-    self.fAltitude_filtered = NaN;
     // ... altimeter calculated values
     self.fVariometer = NaN;
     self.fVariometer_filtered = NaN;
-    $.oMyFilter.resetFilter(MyFilter.VARIOMETER);
     // ... filters
   }
 
@@ -167,16 +162,11 @@ class MyProcessing {
     self.iAccuracy = Pos.QUALITY_NOT_AVAILABLE;
     self.oLocation = null;
     self.fGroundSpeed = NaN;
-    self.fGroundSpeed_filtered = NaN;
     self.fHeading = NaN;
-    self.fHeading_filtered = NaN;
 
     // ... finesse
     self.fFinesse = NaN;
     // ... filters
-    $.oMyFilter.resetFilter(MyFilter.GROUNDSPEED);
-    $.oMyFilter.resetFilter(MyFilter.HEADING_X);
-    $.oMyFilter.resetFilter(MyFilter.HEADING_Y);
   }
 
   function processSensorInfo(_oInfo as Sensor.Info, _iEpoch as Number) as Void {
@@ -199,7 +189,6 @@ class MyProcessing {
     // ... altitude
     if(LangUtils.notNaN($.oMyAltimeter.fAltitudeActual)) {  // ... the closest to the device's raw barometric sensor value
       self.fAltitude = $.oMyAltimeter.fAltitudeActual;
-      self.fAltitude_filtered = $.oMyAltimeter.fAltitudeActual_filtered;
     }
     //else {
     //  Sys.println("WARNING: Internal altimeter has no altitude available");
@@ -217,12 +206,11 @@ class MyProcessing {
         if($.oMyKalmanFilter.bFilterReady) {
           $.oMyKalmanFilter.update(fAltitude, 0, _iEpoch);
           self.fVariometer_filtered = $.oMyKalmanFilter.fVelocity;
-          Sys.println(format("DEBUG: (Calculated) altimetric variometer = $1$ ~ $2$", [self.fAltitude, $.oMyKalmanFilter.fPosition]));
+          self.fAltitude = $.oMyKalmanFilter.fPosition;
+        //  Sys.println(format("DEBUG: (Calculated) altimetric variometer = $1$ ~ $2$", [self.fAltitude, $.oMyKalmanFilter.fPosition]));
         }
 
-        
-        //var fVariometer_sma = $.oMyFilter.filterValue(MyFilter.VARIOMETER, self.fVariometer);
-        //Sys.println(format("DEBUG: (Calculated) altimetric variometer = $1$ ~ $2$ ~ $3$", [self.fVariometer, self.fVariometer_filtered, fVariometer_sma]));
+        //Sys.println(format("DEBUG: (Calculated) altimetric variometer = $1$ ~ $2$ ~ $3$", [self.fVariometer, self.fVariometer_filtered]));
         
       }
       self.iPreviousAltitudeEpoch = _iEpoch;
@@ -289,8 +277,7 @@ class MyProcessing {
     // ... ground speed
     if(_oInfo has :speed and _oInfo.speed != null) {
       self.fGroundSpeed = _oInfo.speed as Float;
-      self.fGroundSpeed_filtered = $.oMyFilter.filterValue(MyFilter.GROUNDSPEED, self.fGroundSpeed);
-      //Sys.println(format("DEBUG: (Position.Info) ground speed = $1$ ~ $2$", [self.fGroundSpeed, self.fGroundSpeed_filtered]));
+      //Sys.println(format("DEBUG: (Position.Info) ground speed = $1$", [self.fGroundSpeed]));
     }
     //else {
     //  Sys.println("WARNING: Position data have no speed information (:speed)");
@@ -313,17 +300,10 @@ class MyProcessing {
         fValue += 6.28318530718f;
       }
       self.fHeading = fValue;
-      fValue = $.oMyFilter.filterValue(MyFilter.HEADING_X, Math.cos(self.fHeading).toFloat());
-      fValue = Math.atan2($.oMyFilter.filterValue(MyFilter.HEADING_Y, Math.sin(self.fHeading).toFloat()), fValue).toFloat();
-      if(fValue < 0.0f) {
-        fValue += 6.28318530718f;
-      }
-      self.fHeading_filtered = fValue;
     }
     else {
       //Sys.println("WARNING: Position data have no (meaningful) heading information (:heading)"); 
       self.fHeading = NaN;
-      self.fHeading_filtered = NaN;
     }
 
     // NOTE: heading and rate-of-turn data are not required for processing finalization
@@ -342,7 +322,7 @@ class MyProcessing {
         self.aiPlotLatitude[self.iPlotIndex] = (adPositionDegrees[0]*3600000.0f).toNumber();
         self.aiPlotLongitude[self.iPlotIndex] = (adPositionDegrees[1]*3600000.0f).toNumber();
         // ... vertical speed as (integer) millimeter-per-second
-        self.aiPlotVariometer[self.iPlotIndex] = (self.fVariometer*1000.0f).toNumber();
+        self.aiPlotVariometer[self.iPlotIndex] = (self.fVariometer_filtered*1000.0f).toNumber();
       }
     }
 
@@ -379,7 +359,7 @@ class MyProcessing {
     // Ascent/finesse
 
     // ... ascending ?
-    if(self.fVariometer_filtered >= -0.005f * self.fGroundSpeed_filtered) {  // climbing (quite... finesse >= 200)
+    if(self.fVariometer_filtered >= -0.005f * self.fGroundSpeed) {  // climbing (quite... finesse >= 200)
       self.bAscent = true;
     }
     else {  // descending (really!)
@@ -388,8 +368,8 @@ class MyProcessing {
     //Sys.println(format("DEBUG: (Calculated) ascent = $1$", [self.bAscent]));
 
     // ... finesse
-    if(LangUtils.notNaN(self.fGroundSpeed_filtered) && LangUtils.notNaN(self.fVariometer_filtered) && self.fVariometer_filtered != null && self.fHeading_filtered != null && self.fVariometer_filtered != 0){
-      self.fFinesse = - self.fGroundSpeed_filtered / self.fVariometer_filtered;
+    if(LangUtils.notNaN(self.fGroundSpeed) && LangUtils.notNaN(self.fVariometer_filtered) && self.fVariometer_filtered != null && self.fVariometer_filtered != 0){
+      self.fFinesse = - self.fGroundSpeed / self.fVariometer_filtered;
       //Sys.println(format("DEBUG: (Calculated) average finesse ~ $1$", [self.fFinesse]));
     }
   }
@@ -416,11 +396,7 @@ class MyProcessing {
   }
 
   function windStep() as Void {
-    if($.oMySettings.iGeneralDisplayFilter >= 1 && LangUtils.notNaN(self.fHeading_filtered) && LangUtils.notNaN(self.fGroundSpeed_filtered) && self.fHeading_filtered != null && self.fGroundSpeed_filtered !=null) {
-      self.iAngle = ((self.fHeading_filtered * 57.2957795131f).toNumber()) % 360;
-      self.fSpeed = self.fGroundSpeed_filtered;
-    }
-    else if($.oMySettings.iGeneralDisplayFilter < 1 && LangUtils.notNaN(self.fHeading) && LangUtils.notNaN(self.fGroundSpeed) && self.fHeading != null && self.fGroundSpeed != null) {
+    if(LangUtils.notNaN(self.fHeading) && LangUtils.notNaN(self.fGroundSpeed) && self.fHeading != null && self.fGroundSpeed != null) {
       self.iAngle = ((self.fHeading * 57.2957795131f).toNumber()) % 360;
       self.fSpeed = self.fGroundSpeed;      
     } else {

@@ -48,6 +48,9 @@ var iMyViewVarioplotOffsetY as Number = 0;
 
 class MyViewVarioplot extends MyViewHeader {
 
+  //CONSTANTS
+  public const TIME_CONSTANT = 4;
+
   //
   // VARIABLES
   //
@@ -221,7 +224,7 @@ class MyViewVarioplot extends MyViewHeader {
     var iCurrentIndex = (iEndIndex-iVariometerPlotRange+1+MyProcessing.PLOTBUFFER_SIZE) % MyProcessing.PLOTBUFFER_SIZE;
     var fZoomX = $.oMySettings.fVariometerPlotZoom * Math.cos(iEndLatitude / 495035534.9930312523f);
     var fZoomY = $.oMySettings.fVariometerPlotZoom;
-    var iMaxDeltaEpoch = $.oMySettings.iGeneralTimeConstant+1;
+    var iMaxDeltaEpoch = self.TIME_CONSTANT;
     var iLastEpoch = iEndEpoch;  //
     var iLastX = 0;
     var iLastY = 0;
@@ -309,7 +312,7 @@ class MyViewVarioplot extends MyViewHeader {
 
     // ... variometer
     if($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE and LangUtils.notNaN($.oMyProcessing.fVariometer)) {
-      fValue = $.oMyProcessing.fVariometer * $.oMySettings.fUnitVerticalSpeedCoefficient;
+      fValue = $.oMyProcessing.fVariometer_filtered * $.oMySettings.fUnitVerticalSpeedCoefficient;
       if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
         sValue = fValue.format("%+.1f");
       }
