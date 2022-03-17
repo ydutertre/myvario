@@ -238,7 +238,6 @@ class MyApp extends App.AppBase {
     // Apply settings
     $.oMyFilter.importSettings();
     $.oMyAltimeter.importSettings();
-    $.oMyProcessing.importSettings();
 
     // ... tones
     self.muteTones();
@@ -261,9 +260,7 @@ class MyApp extends App.AppBase {
     // Save FIT fields
     if($.oMyActivity != null) {
       ($.oMyActivity as MyActivity).setBarometricAltitude($.oMyProcessing.fAltitude);
-      if($.oMySettings.iVariometerMode == 0) {
-        ($.oMyActivity as MyActivity).setVerticalSpeed($.oMyProcessing.fVariometer);
-      }
+      ($.oMyActivity as MyActivity).setVerticalSpeed($.oMyProcessing.fVariometer);
     }
   }
 
@@ -301,13 +298,6 @@ class MyApp extends App.AppBase {
 
     // UI update
     self.updateUi(iEpoch);
-
-    // Save FIT fields
-    if($.oMyActivity != null) {
-      if($.oMySettings.iVariometerMode == 1) {
-        ($.oMyActivity as MyActivity).setVerticalSpeed($.oMyProcessing.fVariometer);
-      }
-    }
   }
 
   function onUpdateTimer_init() as Void {

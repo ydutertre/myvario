@@ -52,9 +52,7 @@ class MySettings {
   public var fAltimeterCorrectionRelative as Float = 1.0f;
   // ... variometer
   public var iVariometerRange as Number = 0;
-  public var iVariometerMode as Number = 0;
   public var bVariometerAutoThermal as Boolean = true;
-  public var iVariometerEnergyEfficiency as Number = 25;
   public var iVariometerPlotRange as Number = 2; // A 2 minutes track should be enough to capture around 5 circles according to average thermalling times https://xcmag.com/paragliding-techniques-paramotoring-skills/thermalling-how-tight-should-you-turn/
   public var iVariometerPlotZoom as Number = 9; // Setting zoom level for paragliders to 1m/pixel should be enough to keep track of both thermalling circles but also drift
   // ... sounds
@@ -94,7 +92,6 @@ class MySettings {
 
   // Other
   public var fVariometerRange as Float = 3.0f;
-  public var fVariometerEnergyEfficiency as Float = 0.75f;
   public var fVariometerPlotZoom as Float = 0.0308666666667f; //default value for paraglider
   public var fMinimumClimb as Float = 0.2; //default value for paraglider
 
@@ -111,9 +108,7 @@ class MySettings {
     self.setAltimeterCorrectionRelative(self.loadAltimeterCorrectionRelative());
     // ... variometer
     self.setVariometerRange(self.loadVariometerRange());
-    self.setVariometerMode(self.loadVariometerMode());
     self.setVariometerAutoThermal(self.loadVariometerAutoThermal());
-    self.setVariometerEnergyEfficiency(self.loadVariometerEnergyEfficiency());
     self.setVariometerPlotRange(self.loadVariometerPlotRange());
     self.setVariometerPlotZoom(self.loadVariometerPlotZoom());
     // ... sounds and vibration
@@ -208,41 +203,6 @@ class MySettings {
     case 1: self.fVariometerRange = 6.0f; break;
     case 2: self.fVariometerRange = 9.0f; break;
     }
-  }
-
-  function loadVariometerMode() as Number {
-    var iValue = App.Properties.getValue("userVariometerMode") as Number?;
-    return iValue != null ? iValue : 0;
-  }
-  function saveVariometerMode(_iValue as Number) as Void {
-    App.Properties.setValue("userVariometerMode", _iValue as App.PropertyValueType);
-  }
-  function setVariometerMode(_iValue as Number) as Void {
-    if(_iValue > 1) {
-      _iValue = 1;
-    }
-    else if(_iValue < 0) {
-      _iValue = 0;
-    }
-    self.iVariometerMode = _iValue;
-  }
-
-  function loadVariometerEnergyEfficiency() as Number {  // [%]
-    var iValue = App.Properties.getValue("userVariometerEnergyEfficiency") as Number?;
-    return iValue != null ? iValue : 25;
-  }
-  function saveVariometerEnergyEfficiency(_iValue as Number) as Void {  // [%]
-    App.Properties.setValue("userVariometerEnergyEfficiency", _iValue as App.PropertyValueType);
-  }
-  function setVariometerEnergyEfficiency(_iValue as Number) as Void {  // [%]
-    if(_iValue > 100) {
-      _iValue = 100;
-    }
-    else if(_iValue < 0) {
-      _iValue = 0;
-    }
-    self.iVariometerEnergyEfficiency = _iValue;
-    self.fVariometerEnergyEfficiency = self.iVariometerEnergyEfficiency / 100.0f;
   }
 
   function loadVariometerPlotRange() as Number {

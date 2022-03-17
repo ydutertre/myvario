@@ -8,8 +8,6 @@
   <!-- ... variometer -->
   <property id="userVariometerRange" type="number">0</property>
   <property id="userVariometerAutoThermal" type="boolean">true</property>
-  <property id="userVariometerMode" type="number">0</property>
-  <property id="userVariometerEnergyEfficiency" type="number">25</property>
   <property id="userVariometerPlotRange" type="number">2</property>
   <property id="userVariometerPlotZoom" type="number">9</property>
   <!-- ... sounds -->

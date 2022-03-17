@@ -78,9 +78,7 @@ class MyMenuGeneric extends Ui.Menu {
     else if(_menu == :menuSettingsVariometer) {
       Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsVariometer) as String);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerRange) as String, :menuVariometerRange);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerMode) as String, :menuVariometerMode);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerAutoThermal) as String, :menuVariometerAutoThermal);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerEnergyEfficiency) as String, :menuVariometerEnergyEfficiency);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerPlotRange) as String, :menuVariometerPlotRange);
     }
 
@@ -255,19 +253,9 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
                     new MyPickerGenericSettingsDelegate(:contextVariometer, :itemRange),
                     Ui.SLIDE_IMMEDIATE);
       }
-      else if(_item == :menuVariometerMode) {
-        Ui.pushView(new MyPickerGenericSettings(:contextVariometer, :itemMode),
-                    new MyPickerGenericSettingsDelegate(:contextVariometer, :itemMode),
-                    Ui.SLIDE_IMMEDIATE);
-      }
       else if(_item == :menuVariometerAutoThermal) {
         Ui.pushView(new MyPickerGenericOnOff(:contextVariometer, :itemAutoThermal),
                     new MyPickerGenericOnOffDelegate(:contextVariometer, :itemAutoThermal),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuVariometerEnergyEfficiency) {
-        Ui.pushView(new MyPickerGenericSettings(:contextVariometer, :itemEnergyEfficiency),
-                    new MyPickerGenericSettingsDelegate(:contextVariometer, :itemEnergyEfficiency),
                     Ui.SLIDE_IMMEDIATE);
       }
       else if(_item == :menuVariometerPlotRange) {

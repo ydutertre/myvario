@@ -63,17 +63,9 @@ class MyProcessing {
   //
 
   // Internal calculation objects
-  private var fEnergyCineticLossFactor as Float = 0.25f;
   // ... we must calculate our own vertical speed
   private var iPreviousAltitudeEpoch as Number = -1;
   private var fPreviousAltitude as Float = 0.0f;
-  // ... we must calculate our own potential energy "vertical speed"
-  private var iPreviousEnergyGpoch as Number = -1;
-  private var fPreviousEnergyTotal as Float = 0.0f;
-  private var fPreviousEnergyCinetic as Float = 0.0f;
-  // ... we must calculate our own rate of turn
-  private var iPreviousHeadingGpoch as Number = -1;
-  private var fPreviousHeading as Float = 0.0f;
   // ... we must estimate wind direction and speed (and estimate whether circling at the same time)
   private var aiAngle as Array<Number>;
   private var afSpeed as Array<Float>;
@@ -96,16 +88,12 @@ class MyProcessing {
   // ... position values (fed by Toybox.Position)
   public var bPositionStateful as Boolean = false;
   public var iPositionEpoch as Number = -1;
-  public var iPositionGpoch as Number = -1;
   public var iAccuracy as Number = Pos.QUALITY_NOT_AVAILABLE;
   public var oLocation as Pos.Location?;
   public var fGroundSpeed as Float = NaN;
   public var fGroundSpeed_filtered as Float = NaN;
   public var fHeading as Float = NaN;
   public var fHeading_filtered as Float = NaN;
-  // ... position calculated values
-  public var fEnergyTotal as Float = NaN;
-  public var fEnergyCinetic as Float = NaN;
   // ... finesse
   public var bAscent as Boolean = true;
   public var fFinesse as Float = NaN;
@@ -163,11 +151,9 @@ class MyProcessing {
     self.fAltitude = NaN;
     self.fAltitude_filtered = NaN;
     // ... altimeter calculated values
-    if($.oMySettings.iVariometerMode == 0) {
-      self.fVariometer = NaN;
-      self.fVariometer_filtered = NaN;
-      $.oMyFilter.resetFilter(MyFilter.VARIOMETER);
-    }
+    self.fVariometer = NaN;
+    self.fVariometer_filtered = NaN;
+    $.oMyFilter.resetFilter(MyFilter.VARIOMETER);
     // ... filters
   }
 
@@ -175,42 +161,22 @@ class MyProcessing {
     //Sys.println("DEBUG: MyProcessing.resetPositionData()");
 
     // Reset
-    // ... we must calculate our own potential energy "vertical speed"
-    self.iPreviousEnergyGpoch = -1;
-    self.fPreviousEnergyTotal = 0.0f;
-    self.fPreviousEnergyCinetic = 0.0f;
-    // ... we must calculate our own rate of turn
-    self.iPreviousHeadingGpoch = -1;
-    self.fPreviousHeading = 0.0f;
     // ... position values
     self.bPositionStateful = false;
     self.iPositionEpoch = -1;
-    self.iPositionGpoch = -1;
     self.iAccuracy = Pos.QUALITY_NOT_AVAILABLE;
     self.oLocation = null;
     self.fGroundSpeed = NaN;
     self.fGroundSpeed_filtered = NaN;
     self.fHeading = NaN;
     self.fHeading_filtered = NaN;
-    // ... position calculated values
-    if($.oMySettings.iVariometerMode == 1) {
-      self.fVariometer = NaN;
-      self.fVariometer_filtered = NaN;
-      $.oMyFilter.resetFilter(MyFilter.VARIOMETER);
-    }
-    self.fEnergyTotal = NaN;
-    self.fEnergyCinetic = NaN;
+
     // ... finesse
     self.fFinesse = NaN;
     // ... filters
     $.oMyFilter.resetFilter(MyFilter.GROUNDSPEED);
     $.oMyFilter.resetFilter(MyFilter.HEADING_X);
     $.oMyFilter.resetFilter(MyFilter.HEADING_Y);
-  }
-
-  function importSettings() as Void {
-    // Energy compensation
-    self.fEnergyCineticLossFactor = 1.0f - $.oMySettings.fVariometerEnergyEfficiency;
   }
 
   function processSensorInfo(_oInfo as Sensor.Info, _iEpoch as Number) as Void {
@@ -245,20 +211,22 @@ class MyProcessing {
     }
 
     // ... variometer
-    if($.oMySettings.iVariometerMode == 0 and LangUtils.notNaN(self.fAltitude)) {  // ... altimetric variometer
+    if(LangUtils.notNaN(self.fAltitude)) {  // ... altimetric variometer
       if(self.iPreviousAltitudeEpoch >= 0 and _iEpoch-self.iPreviousAltitudeEpoch != 0) {
         self.fVariometer = (self.fAltitude-self.fPreviousAltitude) / (_iEpoch-self.iPreviousAltitudeEpoch);
         if($.oMyKalmanFilter.bFilterReady) {
           $.oMyKalmanFilter.update(fAltitude, 0, _iEpoch);
           self.fVariometer_filtered = $.oMyKalmanFilter.fVelocity;
+          Sys.println(format("DEBUG: (Calculated) altimetric variometer = $1$ ~ $2$", [self.fAltitude, $.oMyKalmanFilter.fPosition]));
         }
+
         
         //var fVariometer_sma = $.oMyFilter.filterValue(MyFilter.VARIOMETER, self.fVariometer);
         //Sys.println(format("DEBUG: (Calculated) altimetric variometer = $1$ ~ $2$ ~ $3$", [self.fVariometer, self.fVariometer_filtered, fVariometer_sma]));
+        
       }
       self.iPreviousAltitudeEpoch = _iEpoch;
       self.fPreviousAltitude = self.fAltitude;
-      self.iPreviousEnergyGpoch = -1;  // ... prevent artefact when switching variometer mode
     }
 
     // Done
@@ -292,9 +260,7 @@ class MyProcessing {
     // WARNING: the value of the position (GPS) timestamp is NOT the UTC epoch but the GPS timestamp (NOT translated to the proper year quadrant... BUG?)
     //          https://en.wikipedia.org/wiki/Global_Positioning_System#Timekeeping
     if(_oInfo has :when and _oInfo.when != null) {
-      self.iPositionGpoch = (_oInfo.when as Time.Moment).value();
-      //DEVEL:self.iPositionGpoch = _iEpoch;  // SDK 3.0.x BUG!!! (:when remains constant)
-      //Sys.println(format("DEBUG: (Position.Info) when = $1$", [self.self.iPositionGpoch]));
+
     }
     else {
       //Sys.println("WARNING: Position data have no timestamp information (:when)");
@@ -334,24 +300,7 @@ class MyProcessing {
     }
 
     // ... variometer
-    if($.oMySettings.iVariometerMode == 1 and LangUtils.notNaN(self.fAltitude) and LangUtils.notNaN(self.fGroundSpeed)) {  // ... energetic variometer
-      self.fEnergyCinetic = 0.5f*self.fGroundSpeed*self.fGroundSpeed;
-      self.fEnergyTotal = self.fEnergyCinetic + 9.80665f*self.fAltitude;
-      //Sys.println(format("DEBUG: (Calculated) total energy = $1$", [self.fEnergyTotal]));
-      if(self.iPreviousEnergyGpoch >= 0 and self.iPositionGpoch-self.iPreviousEnergyGpoch != 0) {
-        self.fVariometer =
-          (self.fEnergyTotal
-           - self.fPreviousEnergyTotal
-           - self.fEnergyCineticLossFactor*(self.fEnergyCinetic-self.fPreviousEnergyCinetic))
-          / (self.iPositionGpoch-self.iPreviousEnergyGpoch) * 0.1019716213f;  // ... 1.0f / 9.80665f = 1.019716213f
-        self.fVariometer_filtered = $.oMyFilter.filterValue(MyFilter.VARIOMETER, self.fVariometer);
-        //Sys.println(format("DEBUG: (Calculated) energetic variometer = $1$ ~ $2$", [self.fVariometer, self.fVariometer_filtered]));
-      }
-      self.iPreviousEnergyGpoch = self.iPositionGpoch;
-      self.fPreviousEnergyTotal = self.fEnergyTotal;
-      self.fPreviousEnergyCinetic = self.fEnergyCinetic;
-      self.iPreviousAltitudeEpoch = -1;  // ... prevent artefact when switching variometer mode
-    }
+
     if(LangUtils.isNaN(self.fVariometer)) {
       bStateful = false;
     }
@@ -376,16 +325,7 @@ class MyProcessing {
       self.fHeading = NaN;
       self.fHeading_filtered = NaN;
     }
-    if(LangUtils.notNaN(self.fHeading)) {
-      //Sys.println(format("DEBUG: (Position.Info) heading = $1$ ~ $2$", [self.fHeading, self.fHeading_filtered]));
 
-      self.iPreviousHeadingGpoch = self.iPositionGpoch;
-      self.fPreviousHeading = self.fHeading;
-    }
-    else {
-      //Sys.println("WARNING: No heading available");
-      self.iPreviousHeadingGpoch = -1;
-    }
     // NOTE: heading and rate-of-turn data are not required for processing finalization
 
     // Finalize

@@ -23,10 +23,6 @@
   <string id="valueVariometerRangeSmall">3.0m/s / 600ft/min</string>
   <string id="valueVariometerRangeMedium">6.0m/s / 1200ft/min</string>
   <string id="valueVariometerRangeLarge">9.0m/s / 1800ft/min</string>
-  <string id="titleVariometerMode">Mode</string>
-  <string id="valueVariometerModeAltitude">δAlt.</string>
-  <string id="valueVariometerModeEnergy">δE</string>
-  <string id="titleVariometerEnergyEfficiency">Energy Efficiency</string>
   <string id="titleVariometerPlotRange">Plot Range</string>
   <!-- Menu (settings:sounds) -->
   <string id="titleSettingsSounds">Sounds</string>

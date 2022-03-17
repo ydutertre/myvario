@@ -66,35 +66,7 @@ class MyPickerGenericSettings extends Ui.Picker {
             :pattern => [oFactory],
             :defaults => [oFactory.indexOfKey(iVariometerRange)]});
       }
-      else if(_item == :itemMode) {
-        var iVariometerMode = $.oMySettings.loadVariometerMode();
-        var oFactory = new PickerFactoryDictionary([0, 1],
-                                                   [Ui.loadResource(Rez.Strings.valueVariometerModeAltitude),
-                                                    Ui.loadResource(Rez.Strings.valueVariometerModeEnergy)],
-                                                   {:font => Gfx.FONT_TINY});
-        Picker.initialize({
-            :title => new Ui.Text({
-                :text => Ui.loadResource(Rez.Strings.titleVariometerMode) as String,
-                :font => Gfx.FONT_TINY,
-                :locX=>Ui.LAYOUT_HALIGN_CENTER,
-                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
-                :color => Gfx.COLOR_BLUE}),
-            :pattern => [oFactory],
-            :defaults => [oFactory.indexOfKey(iVariometerMode)]});
-      }
-      else if(_item == :itemEnergyEfficiency) {
-        var iVariometerEnergyEfficiency = $.oMySettings.loadVariometerEnergyEfficiency();
-        var oFactory = new PickerFactoryNumber(0, 100, null);
-        Picker.initialize({
-            :title => new Ui.Text({
-                :text => format("$1$ [%]", [Ui.loadResource(Rez.Strings.titleVariometerEnergyEfficiency)]),
-                :font => Gfx.FONT_TINY,
-                :locX=>Ui.LAYOUT_HALIGN_CENTER,
-                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
-                :color => Gfx.COLOR_BLUE}),
-            :pattern => [oFactory],
-            :defaults => [oFactory.indexOf(iVariometerEnergyEfficiency)]});
-      }
+
       else if(_item == :itemPlotRange) {
         var iVariometerPlotRange = $.oMySettings.loadVariometerPlotRange();
         var oFactory = new PickerFactoryNumber(1, 5, null);
@@ -299,12 +271,6 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
 
       if(self.item == :itemRange) {
         $.oMySettings.saveVariometerRange(_amValues[0] as Number);
-      }
-      else if(self.item == :itemMode) {
-        $.oMySettings.saveVariometerMode(_amValues[0] as Number);
-      }
-      else if(self.item == :itemEnergyEfficiency) {
-        $.oMySettings.saveVariometerEnergyEfficiency(_amValues[0] as Number);
       }
       else if(self.item == :itemPlotRange) {
         $.oMySettings.saveVariometerPlotRange(_amValues[0] as Number);

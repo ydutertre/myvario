@@ -37,7 +37,7 @@ class MyKalmanFilter {
   // CONSTANTS
   //
 
-  private const ALTITUDE_VARIANCE = 0.01;
+  private const ALTITUDE_VARIANCE = 0.0225; //Setting standard deviation to 0.15m
   private const ACCELERATION_VARIANCE = 0.36; //Value 0.36 taken from Arduino-vario, when no accelerometer present (as of now, because gyro data isn't accessible, the watch accelerometer can't be used)
   
 
