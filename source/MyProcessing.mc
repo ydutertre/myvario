@@ -239,12 +239,22 @@ class MyProcessing {
     //  Sys.println("WARNING: Internal altimeter has no altitude available");
     //}
 
+    // Kalman Filter initialize
+    if(LangUtils.notNaN(self.fPreviousAltitude) && self.fPreviousAltitude != null && !$.oMyKalmanFilter.bFilterReady) {
+      $.oMyKalmanFilter.init(self.fPreviousAltitude, 0, self.iPreviousAltitudeEpoch);
+    }
+
     // ... variometer
     if($.oMySettings.iVariometerMode == 0 and LangUtils.notNaN(self.fAltitude)) {  // ... altimetric variometer
       if(self.iPreviousAltitudeEpoch >= 0 and _iEpoch-self.iPreviousAltitudeEpoch != 0) {
         self.fVariometer = (self.fAltitude-self.fPreviousAltitude) / (_iEpoch-self.iPreviousAltitudeEpoch);
-        self.fVariometer_filtered = $.oMyFilter.filterValue(MyFilter.VARIOMETER, self.fVariometer);
-        //Sys.println(format("DEBUG: (Calculated) altimetric variometer = $1$ ~ $2$", [self.fVariometer, self.fVariometer_filtered]));
+        if($.oMyKalmanFilter.bFilterReady) {
+          $.oMyKalmanFilter.update(fAltitude, 0, _iEpoch);
+          self.fVariometer_filtered = $.oMyKalmanFilter.fVelocity;
+        }
+        
+        //var fVariometer_sma = $.oMyFilter.filterValue(MyFilter.VARIOMETER, self.fVariometer);
+        //Sys.println(format("DEBUG: (Calculated) altimetric variometer = $1$ ~ $2$ ~ $3$", [self.fVariometer, self.fVariometer_filtered, fVariometer_sma]));
       }
       self.iPreviousAltitudeEpoch = _iEpoch;
       self.fPreviousAltitude = self.fAltitude;

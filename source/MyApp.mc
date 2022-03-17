@@ -58,6 +58,7 @@ var fMyPositionAltitude as Float = NaN;
 
 // Sensors filter
 var oMyFilter as MyFilter = new MyFilter();
+var oMyKalmanFilter as MyKalmanFilter = new MyKalmanFilter();
 
 // Internal altimeter
 var oMyAltimeter as MyAltimeter = new MyAltimeter();
