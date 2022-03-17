@@ -91,11 +91,12 @@ class MyKalmanFilter {
     fAcceleration = _fAcceleration;
     var dtPower as Float = dt * dt;
     fPosition += dt * fVelocity + dtPower * fAcceleration/2;
+    fVelocity += dt * fAcceleration;
 
     //covariance
     var inc as Float;
     dtPower *= dt;
-    inc = dt * p22 + dtPower * fAcceleration/2;
+    inc = dt * p22 + dtPower * ACCELERATION_VARIANCE/2;
     dtPower *= dt;
     p11 += dt * (p12 + p21 + inc) - (dtPower * ACCELERATION_VARIANCE/4);
     p21 += inc;
