@@ -1,3 +1,7 @@
+* 1.1
+  - Switched from a simple moving average filter to Kalman filter implementation
+  - cleaned up all settings related to time constant and filtering
+
 * 1.04
   - Removal of acceleration and rate of turn FIT fields and related filtering
   - Acceleration may be added back in the future, once Gyroscope data becomes available in Garmin SDK (for more reactive vario)
