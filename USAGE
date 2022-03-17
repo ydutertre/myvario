@@ -177,10 +177,6 @@ The application allows you to specify the following settings:
     (must be greater than the Stop Speed; ignored if set to zero)
 
 * General
-  - Time Constant:
-    time constant/window (in seconds) used for averaging (SMA) sensor values
-  - Display Filter:
-    whether to display instantaneous or filtered data (see Data Filtering below)
   - Background Color:
     the background color (black or white)
   - Lap Key:
@@ -206,20 +202,13 @@ The application allows you to specify the following settings:
 About Data Filtering
 --------------------
 
-My Vario uses Simple Moving Average (SMA) to average data and filter out sensor
-- or piloting! - imprecisions, with a user-configurable Time Constant (see
-Settings above) ranging from 0 (no filtering) to 60 seconds.
+My Vario uses a Kalman Filter for Altitude and Vertical Speed. The filter
+was derived from implementations in the SkyDrop vario and Arduino Open Vario.
 
-BEWARE! The more you increase the Time Constant, the longer the delay between
-My Vario readings and actual values!
+It currently doesn't use data from the accelerometer, as gyroscope data is not
+yet available from the Garmin SDK.
 
-My Vario also allows to choose whether to display filtered (averaged) or instan-
-taneous data in the various views, according to the user-specified Display Filter
-(see Settings above):
-- off: no data are filtered (all data are instantaneous)
--  dt: time-derived data - speed, variometer and rate-of-turn - are filtered;
-       other data - altitude and heading - are instantaneous
-- all: all data are filtered
+In general, filtered values are used.
 
 However, the following exceptions apply:
 - the Varioplot View always displays instantaneous data
