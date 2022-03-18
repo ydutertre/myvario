@@ -221,6 +221,9 @@ barometric sensor). This can be changed via the Variometer Smoothing setting.
 Higher values of smoothing induce more lag - however, this seems to be less lag
 for better results than the origina simple moving average of GliderSK.
 
+Note that the Minimum Climb setting can be used to compensate for lower smoothing,
+at the price of sensitivity, if using My Vario as an audio/vibration variometer.
+
 However, the following exceptions apply:
 - the Varioplot View always displays instantaneous data
 - Activity Recorded (FIT) data are always instantaneous

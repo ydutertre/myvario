@@ -1,3 +1,6 @@
+* 1.11
+  - Added a smoothing parameter for the Kalman filter
+
 * 1.1
   - Switched from a simple moving average filter to Kalman filter implementation
   - cleaned up all settings related to time constant and filtering
