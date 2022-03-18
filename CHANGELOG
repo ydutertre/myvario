@@ -1,3 +1,6 @@
+* 1.12
+  - Changed activity name to My Vario
+
 * 1.11
   - Added a smoothing parameter for the Kalman filter
   - Removed the Lap feature for leaner application

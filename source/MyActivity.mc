@@ -123,7 +123,7 @@ class MyActivity {
     // Session (recording)
     // SPORT_FLYING = 20 (since API 3.0.10)
     oSession = AR.createSession({
-        :name => "GliderSK",
+        :name => "My Vario",
         :sport => 20 as AR.Sport2,
         :subSport => AR.SUB_SPORT_GENERIC});
 
