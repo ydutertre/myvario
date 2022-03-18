@@ -58,10 +58,6 @@ class MyPickerGenericOnOff extends PickerGenericOnOff {
         PickerGenericOnOff.initialize(Ui.loadResource(Rez.Strings.titleActivityAutoStart) as String,
                                       $.oMySettings.loadActivityAutoStart());
       }
-      else if(_item == :itemGeneralLapKey) {
-        PickerGenericOnOff.initialize(Ui.loadResource(Rez.Strings.titleGeneralLapKey) as String,
-                                      $.oMySettings.loadGeneralLapKey());
-      }
 
     }
     else if(_context == :contextVariometer) {
@@ -106,9 +102,6 @@ class MyPickerGenericOnOffDelegate extends Ui.PickerDelegate {
       }
       else if(self.item == :itemActivityAutoStart) {
         $.oMySettings.saveActivityAutoStart(bValue);
-      }
-      else if(self.item == :itemGeneralLapKey) {
-        $.oMySettings.saveGeneralLapKey(bValue);
       }
 
     }

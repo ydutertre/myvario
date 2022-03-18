@@ -57,14 +57,7 @@ class MyActivity {
   // ... record
   public const FITFIELD_VERTICALSPEED = 0;
   public const FITFIELD_BAROMETRICALTITUDE = 1;
-  // ... lap
-  public const FITFIELD_DISTANCE = 10;
-  public const FITFIELD_ASCENT = 11;
-  public const FITFIELD_ELAPSEDASCENT = 12;
-  public const FITFIELD_ALTITUDEMIN = 13;
-  public const FITFIELD_TIMEALTITUDEMIN = 14;
-  public const FITFIELD_ALTITUDEMAX = 15;
-  public const FITFIELD_TIMEALTITUDEMAX = 16;
+
   // ... session
   public const FITFIELD_GLOBALDISTANCE = 80;
   public const FITFIELD_GLOBALASCENT = 81;
@@ -85,17 +78,7 @@ class MyActivity {
   // ... recording
   private var oSession as AR.Session;
   public var oTimeStart as Time.Moment?;
-  public var oTimeLap as Time.Moment?;
-  public var iCountLaps as Number = -1;
   public var oTimeStop as Time.Moment?;
-  // ... lap
-  public var fDistance as Float = 0.0f;
-  public var fAscent as Float = 0.0f;
-  public var iElapsedAscent as Number = 0;
-  public var fAltitudeMin as Float = NaN;
-  public var oTimeAltitudeMin as Time.Moment?;
-  public var fAltitudeMax as Float = NaN;
-  public var oTimeAltitudeMax as Time.Moment?;
   // ... session
   public var fGlobalDistance as Float = 0.0f;
   public var fGlobalAscent as Float = 0.0f;
@@ -118,14 +101,6 @@ class MyActivity {
   // ... record
   private var oFitField_BarometricAltitude as FC.Field;
   private var oFitField_VerticalSpeed as FC.Field;
-  // ... lap
-  private var oFitField_Distance as FC.Field;
-  private var oFitField_Ascent as FC.Field;
-  private var oFitField_ElapsedAscent as FC.Field;
-  private var oFitField_AltitudeMin as FC.Field;
-  private var oFitField_TimeAltitudeMin as FC.Field;
-  private var oFitField_AltitudeMax as FC.Field;
-  private var oFitField_TimeAltitudeMax as FC.Field;
   // ... session
   private var oFitField_GlobalDistance as FC.Field;
   private var oFitField_GlobalAscent as FC.Field;
@@ -171,44 +146,6 @@ class MyActivity {
                            MyActivity.FITFIELD_VERTICALSPEED,
                            FC.DATA_TYPE_FLOAT,
                            {:mesgType => FC.MESG_TYPE_RECORD, :units => $.oMySettings.sUnitVerticalSpeed});
-
-    // ... lap
-    oFitField_Distance =
-      oSession.createField("Distance",
-                           MyActivity.FITFIELD_DISTANCE,
-                           FC.DATA_TYPE_FLOAT,
-                           {:mesgType => FC.MESG_TYPE_LAP, :units => $.oMySettings.sUnitDistance});
-    oFitField_Ascent =
-      oSession.createField("Ascent",
-                           MyActivity.FITFIELD_ASCENT,
-                           FC.DATA_TYPE_FLOAT,
-                           {:mesgType => FC.MESG_TYPE_LAP, :units => $.oMySettings.sUnitElevation});
-    oFitField_ElapsedAscent =
-      oSession.createField("ElapsedAscent",
-                           MyActivity.FITFIELD_ELAPSEDASCENT,
-                           FC.DATA_TYPE_STRING,
-                           {:mesgType => FC.MESG_TYPE_LAP, :count => 9});
-    oFitField_AltitudeMin =
-      oSession.createField("AltitudeMin",
-                           MyActivity.FITFIELD_ALTITUDEMIN,
-                           FC.DATA_TYPE_FLOAT,
-                           {:mesgType => FC.MESG_TYPE_LAP, :units => $.oMySettings.sUnitElevation});
-    oFitField_TimeAltitudeMin =
-      oSession.createField("TimeAltitudeMin",
-                           MyActivity.FITFIELD_TIMEALTITUDEMIN,
-                           FC.DATA_TYPE_STRING,
-                           {:mesgType => FC.MESG_TYPE_LAP, :count => 9, :units => $.oMySettings.sUnitTime});
-    oFitField_AltitudeMax =
-      oSession.createField("AltitudeMax",
-                           MyActivity.FITFIELD_ALTITUDEMAX,
-                           FC.DATA_TYPE_FLOAT,
-                           {:mesgType => FC.MESG_TYPE_LAP, :units => $.oMySettings.sUnitElevation});
-    oFitField_TimeAltitudeMax =
-      oSession.createField("TimeAltitudeMax",
-                           MyActivity.FITFIELD_TIMEALTITUDEMAX,
-                           FC.DATA_TYPE_STRING,
-                           {:mesgType => FC.MESG_TYPE_LAP, :count => 9, :units => $.oMySettings.sUnitTime});
-    self.resetLapFields();
 
     // ... session
     oFitField_GlobalDistance =
@@ -260,8 +197,6 @@ class MyActivity {
     self.resetLog(true);
     self.oSession.start();
     self.oTimeStart = Time.now();
-    self.oTimeLap = Time.now();
-    self.iCountLaps = 1;
     if(Toybox.Attention has :playTone) {
       Attn.playTone(Attn.TONE_START);
     }
@@ -271,20 +206,6 @@ class MyActivity {
     //Sys.println("DEBUG: MyActivity.isRecording()");
 
     return self.oSession.isRecording();
-  }
-
-  function addLap() as Void {
-    //Sys.println("DEBUG: MyActivity.lap()");
-
-    self.saveLog(false);
-    self.oSession.addLap();
-    self.oTimeLap = Time.now();
-    self.iCountLaps += 1;
-    if(Toybox.Attention has :playTone) {
-      Attn.playTone(Attn.TONE_LAP);
-    }
-    self.resetLapFields();
-    self.resetLog(false);
   }
 
   function pause() as Void {
@@ -332,8 +253,6 @@ class MyActivity {
       }
     }
     self.oTimeStart = null;
-    self.oTimeLap = null;
-    self.iCountLaps = -1;
     self.oTimeStop = null;
   }
 
@@ -346,14 +265,6 @@ class MyActivity {
     self.iEpochLast = -1;
     self.adPositionRadiansLast = null;
     self.fAltitudeLast = NaN;
-    // ... lap
-    self.fDistance = 0.0f;
-    self.fAscent = 0.0f;
-    self.iElapsedAscent = 0;
-    self.fAltitudeMin = NaN;
-    self.oTimeAltitudeMin = null;
-    self.fAltitudeMax = NaN;
-    self.oTimeAltitudeMax = null;
     // ... session
     if(_bSession) {
       self.fGlobalDistance = 0.0f;
@@ -384,8 +295,6 @@ class MyActivity {
       var fLegLength = LangUtils.distanceEstimate(self.adPositionRadiansLast, adPositionRadians);
       if(fLegLength > 1000.0f) {  // # 1000m = 1km should be bigger than thermalling diameter
         self.adPositionRadiansLast = adPositionRadians;
-        // ... lap
-        self.fDistance += fLegLength;
         // ... session
         self.fGlobalDistance += fLegLength;
       }
@@ -396,9 +305,6 @@ class MyActivity {
 
     // Ascent
     if(self.iEpochLast >= 0 and (_oInfo.altitude as Float) > self.fAltitudeLast) {
-      // ... lap
-      self.fAscent += ((_oInfo.altitude as Float) - self.fAltitudeLast);
-      self.iElapsedAscent += (_iEpoch - self.iEpochLast);
       // ... session
       self.fGlobalAscent += ((_oInfo.altitude as Float) - self.fAltitudeLast);
       self.iGlobalElapsedAscent += (_iEpoch - self.iEpochLast);
@@ -406,15 +312,6 @@ class MyActivity {
     self.fAltitudeLast = _oInfo.altitude as Float;
 
     // Altitude
-    // ... lap
-    if(!((_oInfo.altitude as Float) >= self.fAltitudeMin)) {  // NB: ... >= NaN is always false
-      self.fAltitudeMin = _oInfo.altitude as Float;
-      self.oTimeAltitudeMin = _oTimeNow;
-    }
-    if(!((_oInfo.altitude as Float) <= self.fAltitudeMax)) {  // NB: ... <= NaN is always false
-      self.fAltitudeMax = _oInfo.altitude as Float;
-      self.oTimeAltitudeMax = _oTimeNow;
-    }
     // ... session
     if(!((_oInfo.altitude as Float) >= self.fGlobalAltitudeMin)) {  // NB: ... >= NaN is always false
       self.fGlobalAltitudeMin = _oInfo.altitude as Float;
@@ -431,14 +328,6 @@ class MyActivity {
 
   function saveLog(_bSession as Boolean) as Void {
     // FIT fields
-    // ... lap
-    self.setDistance(self.fDistance);
-    self.setAscent(self.fAscent);
-    self.setElapsedAscent(self.iElapsedAscent);
-    self.setAltitudeMin(self.fAltitudeMin);
-    self.setTimeAltitudeMin(self.oTimeAltitudeMin);
-    self.setAltitudeMax(self.fAltitudeMax);
-    self.setTimeAltitudeMax(self.oTimeAltitudeMax);
     // ... session
     if(_bSession) {
       self.setGlobalDistance(self.fGlobalDistance);
@@ -489,61 +378,6 @@ class MyActivity {
     if(_fValue != null and LangUtils.notNaN(_fValue)) {
       self.oFitField_VerticalSpeed.setData(_fValue * self.fUnitCoefficient_VerticalSpeed);
     }
-  }
-
-  // Lap
-
-  function resetLapFields() as Void {
-    self.setDistance(null);
-    self.setAscent(null);
-    self.setElapsedAscent(null);
-    self.setAltitudeMin(null);
-    self.setTimeAltitudeMin(null);
-    self.setAltitudeMax(null);
-    self.setTimeAltitudeMax(null);
-  }
-
-  function setDistance(_fValue as Float?) as Void {
-    //Sys.println(Lang.format("DEBUG: MyActivity.setDistance($1$)", [_fValue]));
-    if(_fValue != null and LangUtils.notNaN(_fValue)) {
-      self.oFitField_Distance.setData(_fValue * self.fUnitCoefficient_Distance);
-    }
-  }
-
-  function setAscent(_fValue as Float?) as Void {
-    //Sys.println(Lang.format("DEBUG: MyActivity.setAscent($1$)", [_fValue]));
-    if(_fValue != null and LangUtils.notNaN(_fValue)) {
-      self.oFitField_Ascent.setData(_fValue * self.fUnitCoefficient_Altitude);
-    }
-  }
-
-  function setElapsedAscent(_iElapsed as Number?) as Void {
-    //Sys.println(Lang.format("DEBUG: MyActivity.setElapsedAscent($1$)", [_iElapsed]));
-    self.oFitField_ElapsedAscent.setData(LangUtils.formatElapsed(_iElapsed, true));
-  }
-
-  function setAltitudeMin(_fValue as Float?) as Void {
-    //Sys.println(Lang.format("DEBUG: MyActivity.setAltitudeMin($1$)", [_fValue]));
-    if(_fValue != null and LangUtils.notNaN(_fValue)) {
-      self.oFitField_AltitudeMin.setData(_fValue * self.fUnitCoefficient_Altitude);
-    }
-  }
-
-  function setTimeAltitudeMin(_oTime as Time.Moment?) as Void {
-    //Sys.println(Lang.format("DEBUG: MyActivity.setTimeAltitudeMin($1$)", [_oTime.value()]));
-    self.oFitField_TimeAltitudeMin.setData(LangUtils.formatTime(_oTime, self.bUnitCoefficient_TimeUTC, true));
-  }
-
-  function setAltitudeMax(_fValue as Float?) as Void {
-    //Sys.println(Lang.format("DEBUG: MyActivity.setAltitudeMax($1$)", [_fValue]));
-    if(_fValue != null and LangUtils.notNaN(_fValue)) {
-      self.oFitField_AltitudeMax.setData(_fValue * self.fUnitCoefficient_Altitude);
-    }
-  }
-
-  function setTimeAltitudeMax(_oTime as Time.Moment?) as Void {
-    //Sys.println(Lang.format("DEBUG: MyActivity.setTimeAltitudeMax($1$)", [_oTime.value()]));
-    self.oFitField_TimeAltitudeMax.setData(LangUtils.formatTime(_oTime, self.bUnitCoefficient_TimeUTC, true));
   }
 
   // Session

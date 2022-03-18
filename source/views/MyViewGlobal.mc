@@ -118,9 +118,7 @@ class MyViewGlobalDelegate extends Ui.BehaviorDelegate {
   function onBack() {
     //Sys.println("DEBUG: MyViewHeaderDelegate.onBack()");
     if($.oMyActivity != null) {
-      if($.oMySettings.bGeneralLapKey) {
-        ($.oMyActivity as MyActivity).addLap();
-      }
+
       return true;
     }
     return false;

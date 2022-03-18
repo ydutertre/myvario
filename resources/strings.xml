@@ -38,7 +38,6 @@
   <!-- Menu (settings:general) -->
   <string id="titleSettingsGeneral">General</string>
   <string id="titleGeneralBackgroundColor">Background Color</string>
-  <string id="titleGeneralLapKey">Lap Key</string>
   <!-- Menu (settings:units) -->
   <string id="titleSettingsUnits">Units</string>
   <string id="titleUnitDistance">Distance</string>
@@ -63,7 +62,6 @@
   <string id="titleActivityPause">Pause</string>
   <string id="titleActivitySave">Save</string>
   <string id="titleActivityDiscard">Discard</string>
-  <string id="titleActivityLap">Lap</string>
   <!-- Values (generic) -->
   <string id="titleConfirm">Confirm</string>
   <string id="valueAuto">auto</string>
@@ -81,7 +79,6 @@
   <string id="labelFinesse">Finesse</string>
   <string id="labelActivity">Activity</string>
   <string id="labelRecording">Recording</string>
-  <string id="labelLap">Lap</string>
   <string id="labelCount">Count</string>
   <string id="labelStart">Start</string>
   <string id="labelStop">Stop</string>

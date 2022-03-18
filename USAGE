@@ -112,8 +112,7 @@ Activity Recording
 ------------------
 
 Controlling your activity recording status (start, pause, resume, save, discard)
-is achieved by pressing the SELECT button. When recording, the BACK key will act
-as Lap Key (unless configured not to do so; see Settings below).
+is achieved by pressing the SELECT button.
 
 My Vario adds custom fields to the recorded FIT file:
  - Barometric Altitude
@@ -121,8 +120,7 @@ My Vario adds custom fields to the recorded FIT file:
 (which will be plotted in Garmin Connect IF your installed the application
  through the Garmin ConnectIQ store)
 
-For each lap and globally for the entire recording session, Garmin Connect will
-also show the following details:
+For the entire recording session, Garmin Connect will also show the following details:
  - Distance: non-thermalling distance
  - Ascent: cumulative altitude gain and elapsed time spent ascending
  - Minimum Altitude: value and time
@@ -182,8 +180,6 @@ The application allows you to specify the following settings:
 * General
   - Background Color:
     the background color (black or white)
-  - Lap Key:
-    whether the BACK key adds a new lap to a recording activity
 
 * Units
   - Distance:

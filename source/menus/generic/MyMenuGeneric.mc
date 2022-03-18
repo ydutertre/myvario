@@ -99,7 +99,6 @@ class MyMenuGeneric extends Ui.Menu {
     else if(_menu == :menuSettingsGeneral) {
       Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsGeneral) as String);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleGeneralBackgroundColor) as String, :menuGeneralBackgroundColor);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleGeneralLapKey) as String, :menuGeneralLapKey);
     }
 
     else if(_menu == :menuSettingsUnits) {
@@ -136,9 +135,6 @@ class MyMenuGeneric extends Ui.Menu {
         }
         Menu.addItem(Ui.loadResource(Rez.Strings.titleActivitySave) as String, :menuActivitySave);
         Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityDiscard) as String, :menuActivityDiscard);
-        if(!$.oMySettings.bGeneralLapKey) {
-          Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityLap) as String, :menuActivityLap);
-        }
       }
     }
 
@@ -306,11 +302,6 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
                     new MyPickerGenericSettingsDelegate(:contextGeneral, :itemBackgroundColor),
                     Ui.SLIDE_IMMEDIATE);
       }
-      else if(_item == :menuGeneralLapKey) {
-        Ui.pushView(new MyPickerGenericOnOff(:contextSettings, :itemGeneralLapKey),
-                    new MyPickerGenericOnOffDelegate(:contextSettings, :itemGeneralLapKey),
-                    Ui.SLIDE_IMMEDIATE);
-      }
     }
 
     else if(self.menu == :menuSettingsUnits) {
@@ -372,11 +363,6 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       else if(_item == :menuActivityDiscard) {
         Ui.pushView(new MyMenuGenericConfirm(:contextActivity, :actionDiscard),
                     new MyMenuGenericConfirmDelegate(:contextActivity, :actionDiscard, true),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuActivityLap) {
-        Ui.pushView(new MyMenuGenericConfirm(:contextActivity, :actionLap),
-                    new MyMenuGenericConfirmDelegate(:contextActivity, :actionLap, true),
                     Ui.SLIDE_IMMEDIATE);
       }
     }

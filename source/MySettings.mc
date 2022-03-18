@@ -65,7 +65,6 @@ class MySettings {
   public var fActivityAutoSpeedStart as Float = 3.0f;
   // ... general
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
-  public var bGeneralLapKey as Boolean = false;
   // ... units
   public var iUnitDistance as Number = -1;
   public var iUnitElevation as Number = -1;
@@ -120,7 +119,6 @@ class MySettings {
     self.setActivityAutoSpeedStart(self.loadActivityAutoSpeedStart());
     // ... general
     self.setGeneralBackgroundColor(self.loadGeneralBackgroundColor());
-    self.setGeneralLapKey(self.loadGeneralLapKey());
     // ... units
     self.setUnitDistance(self.loadUnitDistance());
     self.setUnitElevation(self.loadUnitElevation());
@@ -370,18 +368,7 @@ class MySettings {
   function setGeneralBackgroundColor(_iValue as Number) as Void {
     self.iGeneralBackgroundColor = _iValue;
   }
-
-  function loadGeneralLapKey() as Boolean {
-    var bValue = App.Properties.getValue("userGeneralLapKey") as Boolean?;
-    return bValue != null ? bValue : false;
-  }
-  function saveGeneralLapKey(_bValue as Boolean) as Void {
-    App.Properties.setValue("userGeneralLapKey", _bValue as App.PropertyValueType);
-  }
-  function setGeneralLapKey(_bValue as Boolean) as Void {
-    self.bGeneralLapKey = _bValue;
-  }
-
+  
   function loadUnitDistance() as Number {
     var iValue = App.Properties.getValue("userUnitDistance") as Number?;
     return iValue != null ? iValue : -1;

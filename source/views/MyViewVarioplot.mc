@@ -420,9 +420,7 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
       return true;
     }
     else if($.oMyActivity != null) {
-      if($.oMySettings.bGeneralLapKey) {
-        ($.oMyActivity as MyActivity).addLap();
-      }
+
       return true;
     }
     return false;

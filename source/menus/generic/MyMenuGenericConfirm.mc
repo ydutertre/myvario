@@ -59,9 +59,6 @@ class MyMenuGenericConfirm extends Ui.Menu {
       else if(_action == :actionDiscard) {
         Menu.addItem(format("$1$ ?", [Ui.loadResource(Rez.Strings.titleActivityDiscard)]), :menuNone);
       }
-      else if(_action == :actionLap) {
-        Menu.addItem(format("$1$ ?", [Ui.loadResource(Rez.Strings.titleActivityLap)]), :menuNone);
-      }
     }
     else if(_context == :contextStorage) {
       if(_action == :actionClearLogs) {
@@ -112,11 +109,6 @@ class MyMenuGenericConfirmDelegate extends Ui.MenuInputDelegate {
         if($.oMyActivity != null) {
           ($.oMyActivity as MyActivity).stop(false);
           $.oMyActivity = null;
-        }
-      }
-      else if(self.action == :actionLap) {
-        if($.oMyActivity != null) {
-          ($.oMyActivity as MyActivity).addLap();
         }
       }
     }
