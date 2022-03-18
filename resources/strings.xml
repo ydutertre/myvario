@@ -21,13 +21,10 @@
   <string id="titleVariometerRange">Range</string>
   <string id="titleVariometerAutoThermal">Auto Thermal</string>
   <string id="titleVariometerSmoothing">Smoothing</string>
-  <string id="valueVariometerRangeSmall">3.0m/s / 600ft/min</string>
-  <string id="valueVariometerRangeMedium">6.0m/s / 1200ft/min</string>
-  <string id="valueVariometerRangeLarge">9.0m/s / 1800ft/min</string>
   <string id="valueVariometerSmoothingLow">Low</string>
   <string id="valueVariometerSmoothingMedium">Medium</string>
   <string id="valueVariometerSmoothingHigh">High</string>
-  <string id="valueVariometerSmoothingExtreme">Extreme</string>
+  <string id="valueVariometerSmoothingUltra">Ultra</string>
   <string id="titleVariometerPlotRange">Plot Range</string>
   <!-- Menu (settings:sounds) -->
   <string id="titleSettingsSounds">Sounds</string>
@@ -53,7 +50,6 @@
   <string id="valueUnitTimeUTC">UTC</string>
   <!-- Menu (storage) -->
   <string id="titleStorage">Storage</string>
-  <string id="titleStorageEdit">Edit</string>
   <string id="titleStorageLoad">Load</string>
   <string id="titleStorageSave">Save</string>
   <string id="titleStorageDelete">Delete</string>
@@ -83,10 +79,6 @@
   <string id="labelGroundSpeed">Gnd.Speed</string>
   <string id="labelHeading">Heading</string>
   <string id="labelFinesse">Finesse</string>
-  <string id="labelHeightDecision">Dcsn.Hght</string>
-  <string id="labelHeightWarning">Warn.Hght</string>
-  <string id="labelHeightCritical">Crit.Hght</string>
-  <string id="labelHeightReference">Ref.Hght</string>
   <string id="labelActivity">Activity</string>
   <string id="labelRecording">Recording</string>
   <string id="labelLap">Lap</string>

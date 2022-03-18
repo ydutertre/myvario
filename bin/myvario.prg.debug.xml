@@ -66,18 +66,18 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="5" lineNum="178" parent="globals/MyPickerGenericStorageDelegate" pc="268437208" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="6" lineNum="118" parent="globals/MyPickerGenericStorageDelegate" pc="268508803" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="6" lineNum="118" parent="globals/MyPickerGenericStorageDelegate" pc="268508803" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="105" parent="globals/MyViewVariometer" pc="268437212" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="106" parent="globals/MyViewVariometer" pc="268437216" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="107" parent="globals/MyViewVariometer" pc="268437229" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="108" parent="globals/MyViewVariometer" pc="268437242" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="109" parent="globals/MyViewVariometer" pc="268437255" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="110" parent="globals/MyViewVariometer" pc="268437268" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="111" parent="globals/MyViewVariometer" pc="268437281" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="112" parent="globals/MyViewVariometer" pc="268437294" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="113" parent="globals/MyViewVariometer" pc="268437307" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="114" parent="globals/MyViewVariometer" pc="268437320" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="115" parent="globals/MyViewVariometer" pc="268437333" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="116" parent="globals/MyViewVariometer" pc="268437346" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="90" parent="globals/MyViewVariometer" pc="268437212" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="91" parent="globals/MyViewVariometer" pc="268437216" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="92" parent="globals/MyViewVariometer" pc="268437229" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="93" parent="globals/MyViewVariometer" pc="268437242" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="94" parent="globals/MyViewVariometer" pc="268437255" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="95" parent="globals/MyViewVariometer" pc="268437268" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="96" parent="globals/MyViewVariometer" pc="268437281" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="97" parent="globals/MyViewVariometer" pc="268437294" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="98" parent="globals/MyViewVariometer" pc="268437307" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="99" parent="globals/MyViewVariometer" pc="268437320" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="100" parent="globals/MyViewVariometer" pc="268437333" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="101" parent="globals/MyViewVariometer" pc="268437346" symbol="initLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="9" lineNum="124" parent="globals/MyViewVariometer" pc="268437360" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="9" lineNum="126" parent="globals/MyViewVariometer" pc="268437364" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="9" lineNum="128" parent="globals/MyViewVariometer" pc="268437384" symbol="initialize"/>
@@ -1657,15 +1657,15 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="219" lineNum="63" parent="globals" pc="268508154" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="219" lineNum="66" parent="globals" pc="268508184" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="219" lineNum="67" parent="globals" pc="268508214" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="111" parent="globals/MyViewVarioplot" pc="268479868" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="112" parent="globals/MyViewVarioplot" pc="268479872" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="113" parent="globals/MyViewVarioplot" pc="268479885" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="114" parent="globals/MyViewVarioplot" pc="268479898" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="115" parent="globals/MyViewVarioplot" pc="268479911" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="116" parent="globals/MyViewVarioplot" pc="268479924" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="117" parent="globals/MyViewVarioplot" pc="268479937" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="118" parent="globals/MyViewVarioplot" pc="268479950" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="119" parent="globals/MyViewVarioplot" pc="268479963" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="99" parent="globals/MyViewVarioplot" pc="268479868" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="100" parent="globals/MyViewVarioplot" pc="268479872" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="101" parent="globals/MyViewVarioplot" pc="268479885" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="102" parent="globals/MyViewVarioplot" pc="268479898" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="103" parent="globals/MyViewVarioplot" pc="268479911" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="104" parent="globals/MyViewVarioplot" pc="268479924" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="105" parent="globals/MyViewVarioplot" pc="268479937" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="106" parent="globals/MyViewVarioplot" pc="268479950" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="107" parent="globals/MyViewVarioplot" pc="268479963" symbol="initLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="221" lineNum="127" parent="globals/MyViewVarioplot" pc="268479977" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="221" lineNum="128" parent="globals/MyViewVarioplot" pc="268479981" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="221" lineNum="131" parent="globals/MyViewVarioplot" pc="268479999" symbol="initialize"/>
@@ -2721,60 +2721,60 @@
 <entry filename="Rez" id="392" lineNum="1" parent="globals/Rez" pc="268508412" symbol="&lt;init&gt;"/>
 </pcToLineNum>
 <symbolTable>
-<entry field="true" id="405" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutValueR&gt;"/>
+<entry field="true" id="397" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutValueR&gt;"/>
 <entry id="8388639" module="true" symbol="Graphics"/>
 <entry id="8389626" method="true" symbol="onAccept"/>
 <entry id="175" method="true" symbol="setGlobalAltitudeMax"/>
 <entry field="true" id="100" symbol="FITFIELD_ASCENT"/>
-<entry field="true" id="260" symbol="titleAuthor"/>
-<entry field="true" id="305" symbol="titleSettingsAltimeter"/>
-<entry field="true" id="306" symbol="titleUnitTimeUTC"/>
+<entry field="true" id="276" symbol="titleAuthor"/>
+<entry field="true" id="253" symbol="titleSettingsAltimeter"/>
+<entry field="true" id="254" symbol="titleUnitTimeUTC"/>
 <entry id="68" object="true" symbol="PickerFactoryDictionary"/>
-<entry field="true" id="277" symbol="valueActivityRecording"/>
+<entry field="true" id="303" symbol="valueActivityRecording"/>
 <entry id="236" object="true" symbol="drawButtonRight"/>
-<entry field="true" id="303" symbol="titleVariometerVibrations"/>
-<entry id="348" symbol="storageNone"/>
-<entry id="366" method="true" symbol="playTones"/>
-<entry id="361" method="true" symbol="onUpdateTimer"/>
-<entry id="485" method="true" symbol="setColorBackground"/>
+<entry field="true" id="251" symbol="titleVariometerVibrations"/>
+<entry id="340" symbol="storageNone"/>
+<entry id="358" method="true" symbol="playTones"/>
+<entry id="353" method="true" symbol="onUpdateTimer"/>
+<entry id="477" method="true" symbol="setColorBackground"/>
 <entry id="8389346" symbol="text"/>
-<entry id="626" symbol="menuUnitDirection"/>
+<entry id="618" symbol="menuUnitDirection"/>
 <entry id="56" object="true" symbol="MyViewVarioplotDelegate"/>
-<entry id="614" symbol="menuVariometerSmoothing"/>
-<entry field="true" id="266" symbol="unitVerticalSpeed"/>
+<entry id="606" symbol="menuVariometerSmoothing"/>
+<entry field="true" id="284" symbol="unitVerticalSpeed"/>
 <entry field="true" id="150" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_GlobalAscent&gt;"/>
-<entry field="true" id="460" symbol="&lt;globals/MyViewLog/&lt;&gt;iFieldIndex&gt;"/>
-<entry id="655" symbol="itemDistance"/>
-<entry field="true" id="376" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutValueXleft&gt;"/>
+<entry field="true" id="452" symbol="&lt;globals/MyViewLog/&lt;&gt;iFieldIndex&gt;"/>
+<entry id="647" symbol="itemDistance"/>
+<entry field="true" id="368" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutValueXleft&gt;"/>
 <entry field="true" id="200" symbol="fWindSpeed"/>
-<entry field="true" id="454" symbol="&lt;globals/MyViewLog/&lt;&gt;oRezUnitLeft&gt;"/>
-<entry field="true" id="372" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutCenter&gt;"/>
-<entry id="440" method="true" symbol="init"/>
-<entry field="true" id="255" symbol="titleVersion"/>
-<entry id="554" method="true" symbol="saveVariometerVibrations"/>
-<entry field="true" id="356" symbol="&lt;globals/MyApp/&lt;&gt;iVibrations&gt;"/>
+<entry field="true" id="446" symbol="&lt;globals/MyViewLog/&lt;&gt;oRezUnitLeft&gt;"/>
+<entry field="true" id="364" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutCenter&gt;"/>
+<entry id="432" method="true" symbol="init"/>
+<entry field="true" id="269" symbol="titleVersion"/>
+<entry id="546" method="true" symbol="saveVariometerVibrations"/>
+<entry field="true" id="348" symbol="&lt;globals/MyApp/&lt;&gt;iVibrations&gt;"/>
 <entry id="166" method="true" symbol="setAltitudeMin"/>
-<entry id="365" method="true" symbol="unmuteTones"/>
+<entry id="357" method="true" symbol="unmuteTones"/>
 <entry field="true" id="146" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_TimeAltitudeMin&gt;"/>
-<entry field="true" id="459" symbol="&lt;globals/MyViewLog/&lt;&gt;bTitleShow&gt;"/>
-<entry field="true" id="482" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;oRezHeaderAccuracy4&gt;"/>
-<entry field="true" id="404" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutCenter&gt;"/>
-<entry field="true" id="493" symbol="bVariometerAutoThermal"/>
-<entry id="644" symbol="itemPlotRange"/>
-<entry field="true" id="481" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;oRezHeaderAccuracy3&gt;"/>
-<entry id="398" method="true" symbol="importSettings"/>
-<entry id="488" symbol="menuNone"/>
+<entry field="true" id="451" symbol="&lt;globals/MyViewLog/&lt;&gt;bTitleShow&gt;"/>
+<entry field="true" id="474" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;oRezHeaderAccuracy4&gt;"/>
+<entry field="true" id="396" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutCenter&gt;"/>
+<entry field="true" id="485" symbol="bVariometerAutoThermal"/>
+<entry id="636" symbol="itemPlotRange"/>
+<entry field="true" id="473" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;oRezHeaderAccuracy3&gt;"/>
+<entry id="390" method="true" symbol="importSettings"/>
+<entry id="480" symbol="menuNone"/>
 <entry id="217" method="true" symbol="windStep"/>
-<entry field="true" id="507" symbol="iUnitDirection"/>
-<entry field="true" id="480" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;oRezHeaderAccuracy2&gt;"/>
-<entry id="579" method="true" symbol="setUnitPressure"/>
+<entry field="true" id="499" symbol="iUnitDirection"/>
+<entry field="true" id="472" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;oRezHeaderAccuracy2&gt;"/>
+<entry id="571" method="true" symbol="setUnitPressure"/>
 <entry field="true" id="120" symbol="fAscent"/>
-<entry field="true" id="282" symbol="labelCount"/>
-<entry id="534" method="true" symbol="setAltimeterCorrectionRelative"/>
+<entry field="true" id="312" symbol="labelCount"/>
+<entry id="526" method="true" symbol="setAltimeterCorrectionRelative"/>
 <entry id="8388632" method="true" symbol="&lt;init&gt;"/>
-<entry field="true" id="479" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;oRezHeaderAccuracy1&gt;"/>
-<entry id="613" symbol="menuVariometerAutoThermal"/>
-<entry field="true" id="489" symbol="fAltimeterCalibrationQNH"/>
+<entry field="true" id="471" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;oRezHeaderAccuracy1&gt;"/>
+<entry id="605" symbol="menuVariometerAutoThermal"/>
+<entry field="true" id="481" symbol="fAltimeterCalibrationQNH"/>
 <entry field="true" id="206" symbol="bAutoThermalTriggered"/>
 <entry id="73" object="true" symbol="PickerFactoryNumber"/>
 <entry field="true" id="8390214" symbol="rawAmbientPressure"/>
@@ -2783,684 +2783,676 @@
 <entry id="8389849" symbol="units"/>
 <entry field="true" id="240" symbol="fontPlot"/>
 <entry id="27" object="true" symbol="MyDrawableHeader"/>
-<entry field="true" id="506" symbol="iUnitPressure"/>
-<entry field="true" id="523" symbol="fMinimumClimb"/>
+<entry field="true" id="498" symbol="iUnitPressure"/>
+<entry field="true" id="515" symbol="fMinimumClimb"/>
 <entry id="168" method="true" symbol="setAltitudeMax"/>
-<entry id="566" method="true" symbol="saveGeneralBackgroundColor"/>
+<entry id="558" method="true" symbol="saveGeneralBackgroundColor"/>
 <entry field="true" id="204" symbol="bNotCirclingCount"/>
 <entry field="true" id="99" symbol="FITFIELD_DISTANCE"/>
-<entry field="true" id="377" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutValueXright&gt;"/>
-<entry id="364" method="true" symbol="muteTones"/>
-<entry field="true" id="518" symbol="fUnitElevationCoefficient"/>
+<entry field="true" id="369" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutValueXright&gt;"/>
+<entry id="356" method="true" symbol="muteTones"/>
+<entry field="true" id="510" symbol="fUnitElevationCoefficient"/>
 <entry id="214" method="true" symbol="processSensorInfo"/>
 <entry id="90" method="true" symbol="formatDate"/>
-<entry id="533" method="true" symbol="saveAltimeterCorrectionRelative"/>
-<entry field="true" id="267" symbol="valueActivityPaused"/>
+<entry id="525" method="true" symbol="saveAltimeterCorrectionRelative"/>
+<entry field="true" id="285" symbol="valueActivityPaused"/>
 <entry field="true" id="205" symbol="bIsPreviousGeneral"/>
 <entry field="true" id="101" symbol="FITFIELD_ELAPSEDASCENT"/>
-<entry field="true" id="477" symbol="&lt;globals/MyPickerGenericElevationDelegate/&lt;&gt;context&gt;"/>
-<entry field="true" id="264" symbol="labelLap"/>
+<entry field="true" id="469" symbol="&lt;globals/MyPickerGenericElevationDelegate/&lt;&gt;context&gt;"/>
+<entry field="true" id="282" symbol="labelLap"/>
 <entry id="215" method="true" symbol="processFinesse"/>
-<entry field="true" id="369" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;oRezButtonKeyUp&gt;"/>
+<entry field="true" id="361" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;oRezButtonKeyUp&gt;"/>
 <entry field="true" id="118" symbol="oTimeStop"/>
-<entry id="663" symbol="actionLap"/>
+<entry id="655" symbol="actionLap"/>
 <entry field="true" id="8389312" symbol="when"/>
-<entry field="true" id="353" symbol="&lt;globals/MyApp/&lt;&gt;iTonesTick&gt;"/>
+<entry field="true" id="345" symbol="&lt;globals/MyApp/&lt;&gt;iTonesTick&gt;"/>
 <entry field="true" id="113" symbol="TIME_CONSTANT"/>
 <entry id="8389683" method="true" symbol="onSettingsChanged"/>
 <entry id="162" method="true" symbol="resetLapFields"/>
-<entry id="532" method="true" symbol="loadAltimeterCorrectionRelative"/>
-<entry id="632" symbol="aboutGliderSK"/>
-<entry field="true" id="332" symbol="AppVersion"/>
-<entry field="true" id="483" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;iColorBackground&gt;"/>
+<entry id="524" method="true" symbol="loadAltimeterCorrectionRelative"/>
+<entry id="624" symbol="aboutGliderSK"/>
+<entry field="true" id="304" symbol="AppVersion"/>
+<entry field="true" id="475" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;iColorBackground&gt;"/>
 <entry field="true" id="188" symbol="iSensorEpoch"/>
-<entry field="true" id="329" symbol="valueVariometerRangeMedium"/>
 <entry field="true" id="8388890" symbol="sport"/>
-<entry id="553" method="true" symbol="loadVariometerVibrations"/>
-<entry field="true" id="414" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutUnitY&gt;"/>
-<entry field="true" id="413" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutUnitX&gt;"/>
-<entry field="true" id="498" symbol="bVariometerVibrations"/>
+<entry id="545" method="true" symbol="loadVariometerVibrations"/>
+<entry field="true" id="406" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutUnitY&gt;"/>
+<entry field="true" id="405" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutUnitX&gt;"/>
+<entry field="true" id="490" symbol="bVariometerVibrations"/>
 <entry field="true" id="36" symbol="oMySettings"/>
-<entry field="true" id="340" symbol="labelWindSpeed"/>
+<entry field="true" id="323" symbol="labelWindSpeed"/>
 <entry id="11" object="true" symbol="MyPickerGenericStorageDelegate"/>
 <entry id="25" object="true" symbol="MyPickerGenericElevationDelegate"/>
 <entry field="true" id="210" symbol="aiPlotLongitude"/>
 <entry field="true" id="8389310" symbol="position"/>
-<entry id="646" symbol="itemSoundsVariometerTones"/>
+<entry id="638" symbol="itemSoundsVariometerTones"/>
 <entry field="true" id="116" symbol="oTimeLap"/>
-<entry field="true" id="265" symbol="titleStorage"/>
-<entry id="475" method="true" symbol="setColorAlertCenter"/>
+<entry field="true" id="283" symbol="titleStorage"/>
+<entry id="467" method="true" symbol="setColorAlertCenter"/>
 <entry id="8390718" method="true" symbol="drawLayout"/>
-<entry id="528" method="true" symbol="setAltimeterCalibrationQNH"/>
-<entry field="true" id="418" symbol="&lt;globals/MyPickerGenericOnOffDelegate/&lt;&gt;item&gt;"/>
-<entry field="true" id="422" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;sLangFormat&gt;"/>
-<entry id="649" symbol="itemActivityAutoStart"/>
-<entry field="true" id="342" symbol="labelAltitudeMin"/>
-<entry field="true" id="425" symbol="&lt;globals/MyView/&lt;&gt;bShow&gt;"/>
-<entry field="true" id="281" symbol="valueActivityStandby"/>
-<entry id="383" method="true" symbol="drawPlot"/>
-<entry field="true" id="322" symbol="labelHeightCritical"/>
+<entry id="520" method="true" symbol="setAltimeterCalibrationQNH"/>
+<entry field="true" id="410" symbol="&lt;globals/MyPickerGenericOnOffDelegate/&lt;&gt;item&gt;"/>
+<entry field="true" id="414" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;sLangFormat&gt;"/>
+<entry id="641" symbol="itemActivityAutoStart"/>
+<entry field="true" id="326" symbol="labelAltitudeMin"/>
+<entry field="true" id="417" symbol="&lt;globals/MyView/&lt;&gt;bShow&gt;"/>
+<entry field="true" id="311" symbol="valueActivityStandby"/>
+<entry id="375" method="true" symbol="drawPlot"/>
 <entry field="true" id="94" symbol="&lt;globals/MyPickerGenericPressureDelegate/&lt;&gt;context&gt;"/>
-<entry field="true" id="469" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;iColorFieldsBackground&gt;"/>
+<entry field="true" id="461" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;iColorFieldsBackground&gt;"/>
 <entry id="16" object="true" symbol="MyViewGlobalDelegate"/>
 <entry id="244" method="true" symbol="layoutGlobal"/>
-<entry field="true" id="466" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;oRezAlertLeft&gt;"/>
+<entry field="true" id="458" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;oRezAlertLeft&gt;"/>
 <entry field="true" id="177" symbol="PLOTBUFFER_SIZE"/>
-<entry field="true" id="311" symbol="labelWindDirection"/>
+<entry field="true" id="264" symbol="labelWindDirection"/>
 <entry id="165" method="true" symbol="setElapsedAscent"/>
 <entry id="31" object="true" symbol="PickerGenericPressure"/>
-<entry field="true" id="403" symbol="&lt;globals/MyViewVariometer/&lt;&gt;oRezFontStatus&gt;"/>
-<entry id="623" symbol="menuUnitDistance"/>
-<entry id="527" method="true" symbol="saveAltimeterCalibrationQNH"/>
-<entry id="598" symbol="menuSettingsAltimeter"/>
-<entry field="true" id="256" symbol="titleAltimeterCorrectionRelative"/>
-<entry field="true" id="339" symbol="titleSettingsSounds"/>
+<entry field="true" id="395" symbol="&lt;globals/MyViewVariometer/&lt;&gt;oRezFontStatus&gt;"/>
+<entry id="615" symbol="menuUnitDistance"/>
+<entry id="519" method="true" symbol="saveAltimeterCalibrationQNH"/>
+<entry id="590" symbol="menuSettingsAltimeter"/>
+<entry field="true" id="271" symbol="titleAltimeterCorrectionRelative"/>
+<entry field="true" id="321" symbol="titleSettingsSounds"/>
 <entry field="true" id="220" symbol="AppIcon"/>
-<entry id="565" method="true" symbol="loadGeneralBackgroundColor"/>
+<entry id="557" method="true" symbol="loadGeneralBackgroundColor"/>
 <entry id="8391787" method="true" symbol="resume"/>
-<entry id="631" symbol="aboutAuthor"/>
-<entry id="576" method="true" symbol="setUnitElevation"/>
+<entry id="623" symbol="aboutAuthor"/>
+<entry id="568" method="true" symbol="setUnitElevation"/>
 <entry field="true" id="155" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_GlobalTimeAltitudeMax&gt;"/>
 <entry field="true" id="181" symbol="&lt;globals/MyProcessing/&lt;&gt;aiAngle&gt;"/>
 <entry id="8388924" module="true" symbol="Gregorian"/>
-<entry field="true" id="426" symbol="sValueActivityStandby"/>
+<entry field="true" id="418" symbol="sValueActivityStandby"/>
 <entry id="159" method="true" symbol="saveLog"/>
 <entry field="true" id="75" symbol="&lt;globals/PickerFactoryDictionary/&lt;&gt;amValues&gt;"/>
 <entry field="true" id="8389405" symbol="weightUnits"/>
 <entry id="85" method="true" symbol="isNaN"/>
-<entry field="true" id="321" symbol="titleStorageEdit"/>
 <entry id="70" object="true" symbol="MyViewGeneral"/>
-<entry field="true" id="497" symbol="bSoundsVariometerTones"/>
+<entry field="true" id="489" symbol="bSoundsVariometerTones"/>
 <entry field="true" id="109" symbol="FITFIELD_GLOBALALTITUDEMIN"/>
-<entry field="true" id="301" symbol="labelAltitudeMax"/>
-<entry id="476" method="true" symbol="setColorAlertRight"/>
-<entry field="true" id="370" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;oRezButtonKeyDown&gt;"/>
+<entry field="true" id="248" symbol="labelAltitudeMax"/>
+<entry id="468" method="true" symbol="setColorAlertRight"/>
+<entry field="true" id="362" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;oRezButtonKeyDown&gt;"/>
 <entry id="89" method="true" symbol="distanceEstimate"/>
 <entry id="8389629" method="true" symbol="getValue"/>
-<entry field="true" id="410" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutTimeY&gt;"/>
+<entry field="true" id="402" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutTimeY&gt;"/>
 <entry field="true" id="8388611" module="true" symbol="Toybox"/>
 <entry field="true" id="183" symbol="&lt;globals/MyProcessing/&lt;&gt;fSpeed&gt;"/>
-<entry field="true" id="461" symbol="&lt;globals/MyViewLog/&lt;&gt;iFieldEpoch&gt;"/>
+<entry field="true" id="453" symbol="&lt;globals/MyViewLog/&lt;&gt;iFieldEpoch&gt;"/>
 <entry id="34" object="true" symbol="MyPickerGenericPressure"/>
 <entry id="60" object="true" symbol="MyPickerGenericOnOff"/>
-<entry field="true" id="409" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutActivityY&gt;"/>
-<entry id="616" symbol="menuSoundsVariometerTones"/>
-<entry field="true" id="419" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;iNumberMinimum&gt;"/>
+<entry field="true" id="401" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutActivityY&gt;"/>
+<entry id="608" symbol="menuSoundsVariometerTones"/>
+<entry field="true" id="411" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;iNumberMinimum&gt;"/>
 <entry field="true" id="122" symbol="fAltitudeMin"/>
 <entry id="35" object="true" symbol="MyPickerGenericPressureDelegate"/>
 <entry field="true" id="242" symbol="fontLabel"/>
-<entry field="true" id="299" symbol="titleStorageDelete"/>
+<entry field="true" id="334" symbol="titleStorageDelete"/>
 <entry id="227" object="true" symbol="drawFieldsBorders"/>
 <entry id="14" object="true" symbol="PickerGenericSpeed"/>
-<entry field="true" id="331" symbol="valueColorWhite"/>
-<entry field="true" id="524" symbol="fVariometerSmoothing"/>
-<entry id="464" method="true" symbol="loadLog"/>
-<entry field="true" id="274" symbol="valueVariometerSmoothingMedium"/>
+<entry field="true" id="302" symbol="valueColorWhite"/>
+<entry field="true" id="516" symbol="fVariometerSmoothing"/>
+<entry id="456" method="true" symbol="loadLog"/>
+<entry field="true" id="294" symbol="valueVariometerSmoothingMedium"/>
 <entry field="true" id="95" symbol="&lt;globals/MyPickerGenericPressureDelegate/&lt;&gt;item&gt;"/>
 <entry field="true" id="179" symbol="&lt;globals/MyProcessing/&lt;&gt;iPreviousAltitudeEpoch&gt;"/>
-<entry id="636" symbol="menuActivityDiscard"/>
+<entry id="628" symbol="menuActivityDiscard"/>
 <entry field="true" id="111" symbol="FITFIELD_GLOBALALTITUDEMAX"/>
-<entry id="397" method="true" symbol="reset"/>
-<entry field="true" id="318" symbol="titleSettings"/>
-<entry field="true" id="285" symbol="valueColorBlack"/>
-<entry field="true" id="463" symbol="&lt;globals/MyViewLog/&lt;&gt;dictLog&gt;"/>
+<entry id="389" method="true" symbol="reset"/>
+<entry field="true" id="279" symbol="titleSettings"/>
+<entry field="true" id="315" symbol="valueColorBlack"/>
+<entry field="true" id="455" symbol="&lt;globals/MyViewLog/&lt;&gt;dictLog&gt;"/>
 <entry field="true" id="148" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_TimeAltitudeMax&gt;"/>
 <entry id="233" object="true" symbol="drawButtonUp"/>
 <entry field="true" id="185" symbol="&lt;globals/MyProcessing/&lt;&gt;iWindSectorCount&gt;"/>
 <entry field="true" id="145" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_AltitudeMin&gt;"/>
 <entry id="167" method="true" symbol="setTimeAltitudeMin"/>
 <entry id="164" method="true" symbol="setAscent"/>
-<entry field="true" id="334" symbol="titleAltitudeMin"/>
-<entry id="549" method="true" symbol="setVariometerPlotZoom"/>
-<entry id="594" symbol="menuSettings"/>
-<entry field="true" id="451" symbol="&lt;globals/MyViewHeader/&lt;&gt;oRezValueBatteryLevel&gt;"/>
-<entry id="595" symbol="contextActivity"/>
-<entry id="618" symbol="menuMinimumClimb"/>
-<entry field="true" id="346" symbol="unitTime"/>
-<entry field="true" id="247" symbol="titleActivityDiscard"/>
+<entry field="true" id="306" symbol="titleAltitudeMin"/>
+<entry id="541" method="true" symbol="setVariometerPlotZoom"/>
+<entry id="586" symbol="menuSettings"/>
+<entry field="true" id="443" symbol="&lt;globals/MyViewHeader/&lt;&gt;oRezValueBatteryLevel&gt;"/>
+<entry id="587" symbol="contextActivity"/>
+<entry id="610" symbol="menuMinimumClimb"/>
+<entry field="true" id="338" symbol="unitTime"/>
+<entry field="true" id="249" symbol="titleActivityDiscard"/>
 <entry field="true" id="124" symbol="fAltitudeMax"/>
-<entry field="true" id="336" symbol="labelHeightWarning"/>
-<entry id="573" method="true" symbol="setUnitDistance"/>
-<entry field="true" id="330" symbol="AppName"/>
+<entry id="565" method="true" symbol="setUnitDistance"/>
+<entry field="true" id="301" symbol="AppName"/>
 <entry id="238" object="true" symbol="drawButtonBottomRight"/>
 <entry field="true" id="8388963" symbol="altitude"/>
-<entry field="true" id="434" symbol="&lt;globals/MyKalmanFilter/&lt;&gt;p22&gt;"/>
-<entry field="true" id="271" symbol="titleActivityAutoStart"/>
-<entry field="true" id="436" symbol="fVelocity"/>
-<entry field="true" id="392" symbol="fQNH"/>
-<entry field="true" id="310" symbol="labelAltitude"/>
-<entry field="true" id="385" symbol="ISA_PRESSURE_MSL"/>
-<entry field="true" id="433" symbol="&lt;globals/MyKalmanFilter/&lt;&gt;p21&gt;"/>
+<entry field="true" id="426" symbol="&lt;globals/MyKalmanFilter/&lt;&gt;p22&gt;"/>
+<entry field="true" id="290" symbol="titleActivityAutoStart"/>
+<entry field="true" id="428" symbol="fVelocity"/>
+<entry field="true" id="384" symbol="fQNH"/>
+<entry field="true" id="262" symbol="labelAltitude"/>
+<entry field="true" id="377" symbol="ISA_PRESSURE_MSL"/>
+<entry field="true" id="425" symbol="&lt;globals/MyKalmanFilter/&lt;&gt;p21&gt;"/>
 <entry id="58" object="true" symbol="MyPickerGenericSpeedDelegate"/>
 <entry id="9" module="true" symbol="globals/Rez/Strings"/>
-<entry id="561" method="true" symbol="setActivityAutoStart"/>
+<entry id="553" method="true" symbol="setActivityAutoStart"/>
 <entry id="91" method="true" symbol="formatTime"/>
-<entry field="true" id="504" symbol="iUnitDistance"/>
+<entry field="true" id="496" symbol="iUnitDistance"/>
 <entry field="true" id="189" symbol="fAltitude"/>
-<entry field="true" id="293" symbol="labelElapsed"/>
-<entry id="601" symbol="menuSettingsActivity"/>
-<entry field="true" id="408" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutBatteryY&gt;"/>
+<entry field="true" id="328" symbol="labelElapsed"/>
+<entry id="593" symbol="menuSettingsActivity"/>
+<entry field="true" id="400" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutBatteryY&gt;"/>
 <entry id="8389080" method="true" symbol="onMenu"/>
 <entry id="169" method="true" symbol="setTimeAltitudeMax"/>
 <entry id="8388772" module="true" object="true" symbol="Fonts"/>
-<entry field="true" id="338" symbol="titleAltitudeMax"/>
-<entry id="570" method="true" symbol="setGeneralLapKey"/>
-<entry id="559" method="true" symbol="loadActivityAutoStart"/>
-<entry field="true" id="313" symbol="valueAuto"/>
-<entry id="575" method="true" symbol="saveUnitElevation"/>
-<entry id="360" method="true" symbol="onUpdateTimer_init"/>
-<entry field="true" id="323" symbol="titleLicense"/>
-<entry id="583" method="true" symbol="loadUnitTimeUTC"/>
-<entry field="true" id="284" symbol="valueVariometerSmoothingLow"/>
+<entry field="true" id="317" symbol="titleAltitudeMax"/>
+<entry id="562" method="true" symbol="setGeneralLapKey"/>
+<entry id="551" method="true" symbol="loadActivityAutoStart"/>
+<entry field="true" id="268" symbol="valueAuto"/>
+<entry id="567" method="true" symbol="saveUnitElevation"/>
+<entry id="352" method="true" symbol="onUpdateTimer_init"/>
+<entry field="true" id="287" symbol="titleLicense"/>
+<entry id="575" method="true" symbol="loadUnitTimeUTC"/>
+<entry field="true" id="314" symbol="valueVariometerSmoothingLow"/>
 <entry id="8388631" module="true" symbol="Activity"/>
-<entry id="643" symbol="itemAutoThermal"/>
-<entry field="true" id="352" symbol="&lt;globals/MyApp/&lt;&gt;oTonesTimer&gt;"/>
-<entry field="true" id="296" symbol="labelHeightReference"/>
-<entry field="true" id="394" symbol="fQFE"/>
+<entry id="635" symbol="itemAutoThermal"/>
+<entry field="true" id="344" symbol="&lt;globals/MyApp/&lt;&gt;oTonesTimer&gt;"/>
+<entry field="true" id="386" symbol="fQFE"/>
 <entry id="21" object="true" symbol="MyActivity"/>
 <entry id="8388648" module="true" symbol="WatchUi"/>
 <entry field="true" id="119" symbol="fDistance"/>
-<entry field="true" id="501" symbol="fActivityAutoSpeedStart"/>
+<entry field="true" id="493" symbol="fActivityAutoSpeedStart"/>
 <entry id="8389081" method="true" symbol="onBack"/>
-<entry field="true" id="411" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutAltitudeY&gt;"/>
-<entry id="563" method="true" symbol="saveActivityAutoSpeedStart"/>
+<entry field="true" id="403" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutAltitudeY&gt;"/>
+<entry id="555" method="true" symbol="saveActivityAutoSpeedStart"/>
 <entry field="true" id="37" symbol="oMyPositionLocation"/>
-<entry field="true" id="448" symbol="oRezValueBottomRight"/>
-<entry id="640" symbol="itemAltimeterCorrection"/>
-<entry id="382" method="true" symbol="prepare"/>
-<entry field="true" id="442" symbol="oRezValueTopLeft"/>
-<entry id="567" method="true" symbol="setGeneralBackgroundColor"/>
+<entry field="true" id="440" symbol="oRezValueBottomRight"/>
+<entry id="632" symbol="itemAltimeterCorrection"/>
+<entry id="374" method="true" symbol="prepare"/>
+<entry field="true" id="434" symbol="oRezValueTopLeft"/>
+<entry id="559" method="true" symbol="setGeneralBackgroundColor"/>
 <entry id="3" module="true" symbol="globals/Rez"/>
-<entry id="547" method="true" symbol="loadVariometerPlotZoom"/>
-<entry id="629" symbol="aboutVersion"/>
-<entry id="558" method="true" symbol="setMinimumClimb"/>
-<entry field="true" id="465" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;oRezFieldsBackground&gt;"/>
+<entry id="539" method="true" symbol="loadVariometerPlotZoom"/>
+<entry id="621" symbol="aboutVersion"/>
+<entry id="550" method="true" symbol="setMinimumClimb"/>
+<entry field="true" id="457" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;oRezFieldsBackground&gt;"/>
 <entry field="true" id="190" symbol="fVariometer"/>
-<entry field="true" id="441" symbol="oRezDrawableGlobal"/>
+<entry field="true" id="433" symbol="oRezDrawableGlobal"/>
 <entry id="88" method="true" symbol="sort"/>
 <entry field="true" id="209" symbol="aiPlotLatitude"/>
-<entry id="574" method="true" symbol="loadUnitElevation"/>
+<entry id="566" method="true" symbol="loadUnitElevation"/>
 <entry field="true" id="133" symbol="&lt;globals/MyActivity/&lt;&gt;iEpochLast&gt;"/>
 <entry field="true" id="202" symbol="bWindValid"/>
-<entry field="true" id="421" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;sFormat&gt;"/>
-<entry id="659" symbol="itemTimeUTC"/>
-<entry field="true" id="320" symbol="titleAltimeterCalibrationQNH"/>
-<entry field="true" id="386" symbol="ISA_TEMPERATURE_MSL"/>
-<entry field="true" id="380" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;aiScale&gt;"/>
+<entry field="true" id="413" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;sFormat&gt;"/>
+<entry id="651" symbol="itemTimeUTC"/>
+<entry field="true" id="281" symbol="titleAltimeterCalibrationQNH"/>
+<entry field="true" id="378" symbol="ISA_TEMPERATURE_MSL"/>
+<entry field="true" id="372" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;aiScale&gt;"/>
 <entry field="true" id="144" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_ElapsedAscent&gt;"/>
 <entry id="8389124" method="true" symbol="onUpdate"/>
 <entry field="true" id="8389065" symbol="locY"/>
 <entry field="true" id="8389064" symbol="locX"/>
-<entry field="true" id="445" symbol="oRezValueCenter"/>
-<entry field="true" id="328" symbol="valueOff"/>
-<entry id="627" symbol="menuUnitTimeUTC"/>
-<entry field="true" id="468" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;oRezAlertRight&gt;"/>
-<entry id="525" method="true" symbol="load"/>
-<entry field="true" id="249" symbol="titleSettingsActivity"/>
+<entry field="true" id="437" symbol="oRezValueCenter"/>
+<entry field="true" id="299" symbol="valueOff"/>
+<entry id="619" symbol="menuUnitTimeUTC"/>
+<entry field="true" id="460" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;oRezAlertRight&gt;"/>
+<entry id="517" method="true" symbol="load"/>
+<entry field="true" id="257" symbol="titleSettingsActivity"/>
 <entry field="true" id="102" symbol="FITFIELD_ALTITUDEMIN"/>
 <entry field="true" id="54" symbol="iMyViewVarioplotOffsetY"/>
 <entry field="true" id="53" symbol="iMyViewVarioplotOffsetX"/>
-<entry id="538" method="true" symbol="loadVariometerPlotRange"/>
-<entry id="628" symbol="menuStorageClearLogs"/>
+<entry id="530" method="true" symbol="loadVariometerPlotRange"/>
+<entry id="620" symbol="menuStorageClearLogs"/>
 <entry id="8388764" method="true" symbol="format"/>
-<entry id="633" symbol="menuActivityPause"/>
-<entry field="true" id="492" symbol="iVariometerRange"/>
+<entry id="625" symbol="menuActivityPause"/>
+<entry field="true" id="484" symbol="iVariometerRange"/>
 <entry id="226" object="true" symbol="drawFieldsBackground"/>
-<entry id="560" method="true" symbol="saveActivityAutoStart"/>
+<entry id="552" method="true" symbol="saveActivityAutoStart"/>
 <entry id="8388771" module="true" object="true" symbol="Drawables"/>
 <entry id="8389348" symbol="font"/>
 <entry id="18" object="true" symbol="MyProcessing"/>
 <entry id="8389630" method="true" symbol="getSize"/>
-<entry field="true" id="444" symbol="oRezValueLeft"/>
+<entry field="true" id="436" symbol="oRezValueLeft"/>
 <entry id="212" method="true" symbol="resetSensorData"/>
 <entry id="8388880" method="true" symbol="addLap"/>
 <entry field="true" id="178" symbol="DIRECTION_NUM_OF_SECTORS"/>
-<entry id="606" symbol="menuAltimeterCalibration"/>
-<entry field="true" id="512" symbol="sUnitVerticalSpeed"/>
+<entry id="598" symbol="menuAltimeterCalibration"/>
+<entry field="true" id="504" symbol="sUnitVerticalSpeed"/>
 <entry id="24" object="true" symbol="MyPickerGenericElevation"/>
 <entry id="8389079" method="true" symbol="onPreviousPage"/>
 <entry field="true" id="104" symbol="FITFIELD_ALTITUDEMAX"/>
 <entry id="219" module="true" symbol="Menus"/>
 <entry field="true" id="138" symbol="&lt;globals/MyActivity/&lt;&gt;fUnitCoefficient_Altitude&gt;"/>
-<entry field="true" id="273" symbol="titleActivityResume"/>
+<entry field="true" id="293" symbol="titleActivityResume"/>
 <entry id="7" module="true" symbol="globals/Rez/Layouts"/>
-<entry id="562" method="true" symbol="loadActivityAutoSpeedStart"/>
-<entry field="true" id="432" symbol="&lt;globals/MyKalmanFilter/&lt;&gt;p12&gt;"/>
+<entry id="554" method="true" symbol="loadActivityAutoSpeedStart"/>
+<entry field="true" id="424" symbol="&lt;globals/MyKalmanFilter/&lt;&gt;p12&gt;"/>
 <entry id="174" method="true" symbol="setGlobalTimeAltitudeMin"/>
 <entry field="true" id="191" symbol="fVariometer_filtered"/>
 <entry field="true" id="82" symbol="&lt;globals/MyMenuGenericConfirmDelegate/&lt;&gt;action&gt;"/>
-<entry field="true" id="431" symbol="&lt;globals/MyKalmanFilter/&lt;&gt;p11&gt;"/>
-<entry id="610" symbol="menuAltimeterCorrectionAbsolute"/>
-<entry id="591" symbol="actionLoad"/>
+<entry field="true" id="423" symbol="&lt;globals/MyKalmanFilter/&lt;&gt;p11&gt;"/>
+<entry id="602" symbol="menuAltimeterCorrectionAbsolute"/>
+<entry id="583" symbol="actionLoad"/>
 <entry field="true" id="151" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_GlobalElapsedAscent&gt;"/>
-<entry id="619" symbol="menuActivityAutoStart"/>
+<entry id="611" symbol="menuActivityAutoStart"/>
 <entry id="81" symbol="contextNone"/>
-<entry id="568" method="true" symbol="loadGeneralLapKey"/>
-<entry field="true" id="502" symbol="iGeneralBackgroundColor"/>
-<entry field="true" id="248" symbol="labelAscent"/>
-<entry field="true" id="354" symbol="&lt;globals/MyApp/&lt;&gt;iTonesLastTick&gt;"/>
+<entry id="560" method="true" symbol="loadGeneralLapKey"/>
+<entry field="true" id="494" symbol="iGeneralBackgroundColor"/>
+<entry field="true" id="255" symbol="labelAscent"/>
+<entry field="true" id="346" symbol="&lt;globals/MyApp/&lt;&gt;iTonesLastTick&gt;"/>
 <entry id="8389850" symbol="count"/>
 <entry id="8389122" method="true" symbol="onLayout"/>
 <entry id="163" method="true" symbol="setDistance"/>
-<entry field="true" id="462" symbol="&lt;globals/MyViewLog/&lt;&gt;iLogIndex&gt;"/>
+<entry field="true" id="454" symbol="&lt;globals/MyViewLog/&lt;&gt;iLogIndex&gt;"/>
 <entry field="true" id="147" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_AltitudeMax&gt;"/>
 <entry field="true" id="197" symbol="fHeading"/>
-<entry field="true" id="391" symbol="ICAO_PRESSURE_EXP"/>
-<entry field="true" id="417" symbol="&lt;globals/MyPickerGenericOnOffDelegate/&lt;&gt;context&gt;"/>
+<entry field="true" id="383" symbol="ICAO_PRESSURE_EXP"/>
+<entry field="true" id="409" symbol="&lt;globals/MyPickerGenericOnOffDelegate/&lt;&gt;context&gt;"/>
 <entry field="true" id="97" symbol="FITFIELD_VERTICALSPEED"/>
 <entry field="true" id="8389063" symbol="identifier"/>
-<entry field="true" id="257" symbol="titleVariometerPlotRange"/>
+<entry field="true" id="273" symbol="titleVariometerPlotRange"/>
 <entry id="29" object="true" symbol="MyPickerGenericSettingsDelegate"/>
 <entry id="176" method="true" symbol="setGlobalTimeAltitudeMax"/>
 <entry id="79" method="true" symbol="indexOfValue"/>
-<entry field="true" id="316" symbol="valueVariometerRangeLarge"/>
-<entry id="537" method="true" symbol="setVariometerRange"/>
+<entry id="529" method="true" symbol="setVariometerRange"/>
 <entry id="8389349" symbol="justification"/>
-<entry id="578" method="true" symbol="saveUnitPressure"/>
-<entry id="617" symbol="menuVariometerVibrations"/>
-<entry id="543" method="true" symbol="setVariometerAutoThermal"/>
-<entry field="true" id="520" symbol="fUnitPressureCoefficient"/>
-<entry id="592" symbol="actionDelete"/>
+<entry id="570" method="true" symbol="saveUnitPressure"/>
+<entry id="609" symbol="menuVariometerVibrations"/>
+<entry id="535" method="true" symbol="setVariometerAutoThermal"/>
+<entry field="true" id="512" symbol="fUnitPressureCoefficient"/>
+<entry id="584" symbol="actionDelete"/>
 <entry id="235" object="true" symbol="drawButtonLeft"/>
 <entry id="8388987" method="true" symbol="vibrate"/>
-<entry field="true" id="337" symbol="titleAltimeterCorrection"/>
+<entry field="true" id="316" symbol="titleAltimeterCorrection"/>
 <entry field="true" id="184" symbol="&lt;globals/MyProcessing/&lt;&gt;iAngle&gt;"/>
-<entry field="true" id="495" symbol="iVariometerPlotRange"/>
-<entry id="526" method="true" symbol="loadAltimeterCalibrationQNH"/>
+<entry field="true" id="487" symbol="iVariometerPlotRange"/>
+<entry id="518" method="true" symbol="loadAltimeterCalibrationQNH"/>
 <entry id="33" object="true" symbol="MyMenuGenericConfirmDelegate"/>
 <entry id="51" object="true" symbol="MyApp"/>
-<entry id="645" symbol="itemSmoothing"/>
-<entry id="621" symbol="menuGeneralBackgroundColor"/>
-<entry id="555" method="true" symbol="setVariometerVibrations"/>
-<entry field="true" id="333" symbol="labelStop"/>
+<entry id="637" symbol="itemSmoothing"/>
+<entry id="613" symbol="menuGeneralBackgroundColor"/>
+<entry id="547" method="true" symbol="setVariometerVibrations"/>
+<entry field="true" id="305" symbol="labelStop"/>
 <entry id="12" object="true" symbol="MyViewVariometer"/>
 <entry field="true" id="76" symbol="&lt;globals/PickerFactoryDictionary/&lt;&gt;amSettingsKeys&gt;"/>
-<entry field="true" id="304" symbol="titleAbout"/>
+<entry field="true" id="252" symbol="titleAbout"/>
 <entry id="225" object="true" symbol="drawContentBorders"/>
 <entry field="true" id="42" symbol="oMyTimeStart"/>
 <entry id="8389644" symbol="defaults"/>
 <entry field="true" id="47" symbol="MY_NOVALUE_BLANK"/>
-<entry id="536" method="true" symbol="saveVariometerRange"/>
-<entry id="571" method="true" symbol="loadUnitDistance"/>
+<entry id="528" method="true" symbol="saveVariometerRange"/>
+<entry id="563" method="true" symbol="loadUnitDistance"/>
 <entry id="67" object="true" symbol="MyViewLogDelegate"/>
-<entry field="true" id="263" symbol="labelGroundSpeed"/>
-<entry field="true" id="484" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;iPositionAccuracy&gt;"/>
-<entry id="541" method="true" symbol="loadVariometerAutoThermal"/>
-<entry field="true" id="496" symbol="iVariometerPlotZoom"/>
+<entry field="true" id="278" symbol="labelGroundSpeed"/>
+<entry field="true" id="476" symbol="&lt;globals/MyDrawableHeader/&lt;&gt;iPositionAccuracy&gt;"/>
+<entry id="533" method="true" symbol="loadVariometerAutoThermal"/>
+<entry field="true" id="488" symbol="iVariometerPlotZoom"/>
 <entry id="8" module="true" symbol="globals/Rez/JsonData"/>
 <entry field="true" id="195" symbol="oLocation"/>
 <entry id="15" object="true" symbol="MyViewGlobal"/>
 <entry id="158" method="true" symbol="processPositionInfo"/>
-<entry field="true" id="246" symbol="labelActivity"/>
-<entry field="true" id="325" symbol="titleUnitElevation"/>
+<entry field="true" id="247" symbol="labelActivity"/>
+<entry field="true" id="296" symbol="titleUnitElevation"/>
 <entry field="true" id="129" symbol="fGlobalAltitudeMin"/>
-<entry field="true" id="387" symbol="ISA_TEMPERATURE_LRATE"/>
+<entry field="true" id="379" symbol="ISA_TEMPERATURE_LRATE"/>
 <entry field="true" id="114" symbol="&lt;globals/MyActivity/&lt;&gt;oSession&gt;"/>
 <entry field="true" id="241" symbol="fontStatus"/>
-<entry field="true" id="487" symbol="&lt;globals/MyMenuGenericDelegate/&lt;&gt;menu&gt;"/>
-<entry id="600" symbol="menuSettingsSounds"/>
-<entry id="612" symbol="menuVariometerRange"/>
-<entry field="true" id="511" symbol="sUnitElevation"/>
-<entry field="true" id="326" symbol="labelStart"/>
+<entry field="true" id="479" symbol="&lt;globals/MyMenuGenericDelegate/&lt;&gt;menu&gt;"/>
+<entry id="592" symbol="menuSettingsSounds"/>
+<entry id="604" symbol="menuVariometerRange"/>
+<entry field="true" id="503" symbol="sUnitElevation"/>
+<entry field="true" id="297" symbol="labelStart"/>
 <entry field="true" id="8388911" method="true" symbol="distance"/>
 <entry field="true" id="127" symbol="fGlobalAscent"/>
-<entry id="584" method="true" symbol="saveUnitTimeUTC"/>
-<entry field="true" id="258" symbol="titleActivityLap"/>
-<entry field="true" id="252" symbol="labelDistance"/>
-<entry id="582" method="true" symbol="setUnitDirection"/>
+<entry id="576" method="true" symbol="saveUnitTimeUTC"/>
+<entry field="true" id="274" symbol="titleActivityLap"/>
+<entry field="true" id="263" symbol="labelDistance"/>
+<entry id="574" method="true" symbol="setUnitDirection"/>
 <entry field="true" id="198" symbol="bAscent"/>
-<entry field="true" id="300" symbol="valueAll"/>
-<entry id="577" method="true" symbol="loadUnitPressure"/>
-<entry field="true" id="423" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;amSettingsKeys&gt;"/>
+<entry field="true" id="246" symbol="valueAll"/>
+<entry id="569" method="true" symbol="loadUnitPressure"/>
+<entry field="true" id="415" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;amSettingsKeys&gt;"/>
 <entry field="true" id="106" symbol="FITFIELD_GLOBALDISTANCE"/>
-<entry field="true" id="513" symbol="sUnitPressure"/>
-<entry id="609" symbol="menuAltimeterCalibrationElevation"/>
-<entry field="true" id="262" symbol="valueVariometerRangeSmall"/>
-<entry field="true" id="291" symbol="titleSettingsUnits"/>
+<entry field="true" id="505" symbol="sUnitPressure"/>
+<entry id="601" symbol="menuAltimeterCalibrationElevation"/>
+<entry field="true" id="324" symbol="titleSettingsUnits"/>
 <entry id="232" object="true" symbol="drawButtonMinus"/>
-<entry field="true" id="490" symbol="fAltimeterCorrectionAbsolute"/>
+<entry field="true" id="482" symbol="fAltimeterCorrectionAbsolute"/>
 <entry field="true" id="243" symbol="fontUnit"/>
 <entry id="32" object="true" symbol="MyMenuGenericConfirm"/>
-<entry field="true" id="250" symbol="titleVariometerRange"/>
+<entry field="true" id="258" symbol="titleVariometerRange"/>
 <entry id="4" module="true" symbol="globals/Rez/Drawables"/>
-<entry id="638" symbol="contextSettings"/>
+<entry id="630" symbol="contextSettings"/>
 <entry field="true" id="131" symbol="fGlobalAltitudeMax"/>
-<entry id="416" method="true" symbol="updateLayout"/>
+<entry id="408" method="true" symbol="updateLayout"/>
 <entry field="true" id="196" symbol="fGroundSpeed"/>
-<entry id="641" symbol="contextVariometer"/>
-<entry field="true" id="292" symbol="titleVariometerAutoThermal"/>
-<entry field="true" id="272" symbol="labelRecording"/>
-<entry id="564" method="true" symbol="setActivityAutoSpeedStart"/>
-<entry id="590" symbol="actionSave"/>
-<entry id="540" method="true" symbol="setVariometerPlotRange"/>
-<entry field="true" id="308" symbol="titleStorageLoad"/>
+<entry id="633" symbol="contextVariometer"/>
+<entry field="true" id="327" symbol="titleVariometerAutoThermal"/>
+<entry field="true" id="291" symbol="labelRecording"/>
+<entry id="556" method="true" symbol="setActivityAutoSpeedStart"/>
+<entry id="582" symbol="actionSave"/>
+<entry id="532" method="true" symbol="setVariometerPlotRange"/>
+<entry field="true" id="259" symbol="titleStorageLoad"/>
 <entry id="8388699" method="true" symbol="stop"/>
 <entry field="true" id="77" symbol="&lt;globals/PickerFactoryDictionary/&lt;&gt;amSettingsValues&gt;"/>
 <entry field="true" id="103" symbol="FITFIELD_TIMEALTITUDEMIN"/>
 <entry id="13" object="true" symbol="MyViewVariometerDelegate"/>
 <entry id="8389823" method="true" symbol="indexOf"/>
-<entry id="539" method="true" symbol="saveVariometerPlotRange"/>
-<entry id="535" method="true" symbol="loadVariometerRange"/>
-<entry field="true" id="499" symbol="iMinimumClimb"/>
-<entry id="486" method="true" symbol="setPositionAccuracy"/>
-<entry field="true" id="319" symbol="titleAltimeterCalibrationElevation"/>
+<entry id="531" method="true" symbol="saveVariometerPlotRange"/>
+<entry id="527" method="true" symbol="loadVariometerRange"/>
+<entry field="true" id="491" symbol="iMinimumClimb"/>
+<entry id="478" method="true" symbol="setPositionAccuracy"/>
+<entry field="true" id="280" symbol="titleAltimeterCalibrationElevation"/>
 <entry field="true" id="139" symbol="&lt;globals/MyActivity/&lt;&gt;fUnitCoefficient_VerticalSpeed&gt;"/>
-<entry id="544" method="true" symbol="loadVariometerSmoothing"/>
-<entry id="630" symbol="aboutLicense"/>
+<entry id="536" method="true" symbol="loadVariometerSmoothing"/>
+<entry id="622" symbol="aboutLicense"/>
 <entry id="8389628" method="true" symbol="getDrawable"/>
-<entry field="true" id="389" symbol="ICAO_ALTITUDE_K2"/>
-<entry field="true" id="388" symbol="ICAO_ALTITUDE_K1"/>
+<entry field="true" id="381" symbol="ICAO_ALTITUDE_K2"/>
+<entry field="true" id="380" symbol="ICAO_ALTITUDE_K1"/>
 <entry id="61" object="true" symbol="MyPickerGenericOnOffDelegate"/>
-<entry field="true" id="452" symbol="&lt;globals/MyViewHeader/&lt;&gt;oRezValueActivityStatus&gt;"/>
-<entry field="true" id="516" symbol="fUnitDistanceCoefficient"/>
+<entry field="true" id="444" symbol="&lt;globals/MyViewHeader/&lt;&gt;oRezValueActivityStatus&gt;"/>
+<entry field="true" id="508" symbol="fUnitDistanceCoefficient"/>
 <entry id="96" symbol="itemNone"/>
-<entry field="true" id="424" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;amSettingsValues&gt;"/>
-<entry field="true" id="280" symbol="titleAscent"/>
+<entry field="true" id="416" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;amSettingsValues&gt;"/>
+<entry field="true" id="310" symbol="titleAscent"/>
 <entry id="19" object="true" symbol="MyDrawableGlobal"/>
-<entry field="true" id="428" symbol="sValueActivityPaused"/>
+<entry field="true" id="420" symbol="sValueActivityPaused"/>
 <entry id="8388985" method="true" symbol="playTone"/>
 <entry id="30" object="true" symbol="MySettings"/>
 <entry field="true" id="115" symbol="oTimeStart"/>
-<entry field="true" id="390" symbol="ICAO_ALTITUDE_EXP"/>
-<entry field="true" id="402" symbol="&lt;globals/MyViewVariometer/&lt;&gt;oRezFontMeter&gt;"/>
+<entry field="true" id="382" symbol="ICAO_ALTITUDE_EXP"/>
+<entry field="true" id="394" symbol="&lt;globals/MyViewVariometer/&lt;&gt;oRezFontMeter&gt;"/>
 <entry field="true" id="74" symbol="&lt;globals/PickerFactoryDictionary/&lt;&gt;amKeys&gt;"/>
-<entry field="true" id="314" symbol="titleGeneralLapKey"/>
+<entry field="true" id="270" symbol="titleGeneralLapKey"/>
 <entry field="true" id="105" symbol="FITFIELD_TIMEALTITUDEMAX"/>
-<entry id="607" symbol="menuAltimeterCorrection"/>
+<entry id="599" symbol="menuAltimeterCorrection"/>
 <entry field="true" id="192" symbol="bPositionStateful"/>
-<entry id="569" method="true" symbol="saveGeneralLapKey"/>
-<entry field="true" id="254" symbol="titleGeneralBackgroundColor"/>
-<entry field="true" id="430" symbol="&lt;globals/MyKalmanFilter/&lt;&gt;ACCELERATION_VARIANCE&gt;"/>
-<entry id="552" method="true" symbol="setSoundsVariometerTones"/>
+<entry id="561" method="true" symbol="saveGeneralLapKey"/>
+<entry field="true" id="266" symbol="titleGeneralBackgroundColor"/>
+<entry field="true" id="422" symbol="&lt;globals/MyKalmanFilter/&lt;&gt;ACCELERATION_VARIANCE&gt;"/>
+<entry id="544" method="true" symbol="setSoundsVariometerTones"/>
 <entry field="true" id="46" symbol="MY_STORAGE_SLOTS"/>
-<entry field="true" id="251" symbol="titleUnitDirection"/>
+<entry field="true" id="261" symbol="titleUnitDirection"/>
 <entry id="20" object="true" symbol="PickerGenericElevation"/>
 <entry field="true" id="203" symbol="bCirclingCount"/>
 <entry id="234" object="true" symbol="drawButtonDown"/>
-<entry id="581" method="true" symbol="saveUnitDirection"/>
+<entry id="573" method="true" symbol="saveUnitDirection"/>
 <entry field="true" id="123" symbol="oTimeAltitudeMin"/>
-<entry field="true" id="514" symbol="sUnitDirection"/>
+<entry field="true" id="506" symbol="sUnitDirection"/>
 <entry id="216" method="true" symbol="convertDirection"/>
-<entry field="true" id="458" symbol="&lt;globals/MyViewLog/&lt;&gt;sUnitElevation_fmt&gt;"/>
-<entry field="true" id="439" symbol="bFilterReady"/>
+<entry field="true" id="450" symbol="&lt;globals/MyViewLog/&lt;&gt;sUnitElevation_fmt&gt;"/>
+<entry field="true" id="431" symbol="bFilterReady"/>
 <entry id="8389619" method="true" symbol="onSelect"/>
-<entry field="true" id="438" symbol="fTimestamp"/>
-<entry field="true" id="517" symbol="fUnitHorizontalSpeedCoefficient"/>
+<entry field="true" id="430" symbol="fTimestamp"/>
+<entry field="true" id="509" symbol="fUnitHorizontalSpeedCoefficient"/>
 <entry id="245" method="true" symbol="layoutHeader"/>
 <entry id="8388645" module="true" symbol="Time"/>
 <entry id="8388769" module="true" object="true" symbol="Rez"/>
-<entry field="true" id="278" symbol="labelVerticalSpeed"/>
+<entry field="true" id="307" symbol="labelVerticalSpeed"/>
 <entry field="true" id="65" symbol="iMyViewLogIndex"/>
 <entry field="true" id="52" symbol="iMyViewVarioplotPanZoom"/>
-<entry field="true" id="450" symbol="&lt;globals/MyViewHeader/&lt;&gt;oRezDrawableHeader&gt;"/>
-<entry field="true" id="378" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutValueYtop&gt;"/>
-<entry id="550" method="true" symbol="loadSoundsVariometerTones"/>
+<entry field="true" id="442" symbol="&lt;globals/MyViewHeader/&lt;&gt;oRezDrawableHeader&gt;"/>
+<entry field="true" id="370" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutValueYtop&gt;"/>
+<entry id="542" method="true" symbol="loadSoundsVariometerTones"/>
 <entry id="62" object="true" symbol="MyPickerAltimeterCorrectionRelative"/>
-<entry field="true" id="269" symbol="labelHeading"/>
-<entry field="true" id="457" symbol="&lt;globals/MyViewLog/&lt;&gt;sTitle&gt;"/>
+<entry field="true" id="288" symbol="labelHeading"/>
+<entry field="true" id="449" symbol="&lt;globals/MyViewLog/&lt;&gt;sTitle&gt;"/>
 <entry id="83" symbol="actionNone"/>
-<entry id="654" symbol="contextUnit"/>
+<entry id="646" symbol="contextUnit"/>
 <entry field="true" id="239" symbol="fontMeter"/>
-<entry id="572" method="true" symbol="saveUnitDistance"/>
+<entry id="564" method="true" symbol="saveUnitDistance"/>
 <entry id="213" method="true" symbol="resetPositionData"/>
 <entry field="true" id="125" symbol="oTimeAltitudeMax"/>
 <entry id="229" object="true" symbol="drawGlobalAlertCenter"/>
 <entry id="93" method="true" symbol="formatElapsed"/>
-<entry id="596" symbol="actionStart"/>
+<entry id="588" symbol="actionStart"/>
 <entry id="71" object="true" symbol="MyViewGeneralDelegate"/>
-<entry id="604" symbol="menuStorage"/>
+<entry id="596" symbol="menuStorage"/>
 <entry field="true" id="8388965" symbol="heading"/>
-<entry id="660" symbol="contextStorage"/>
-<entry id="400" method="true" symbol="setQNH"/>
-<entry id="656" symbol="itemElevation"/>
+<entry id="652" symbol="contextStorage"/>
+<entry id="392" method="true" symbol="setQNH"/>
+<entry id="648" symbol="itemElevation"/>
 <entry field="true" id="186" symbol="&lt;globals/MyProcessing/&lt;&gt;iWindOldSector&gt;"/>
-<entry id="401" method="true" symbol="setAltitudeActual"/>
-<entry id="580" method="true" symbol="loadUnitDirection"/>
-<entry id="624" symbol="menuUnitElevation"/>
+<entry id="393" method="true" symbol="setAltitudeActual"/>
+<entry id="572" method="true" symbol="loadUnitDirection"/>
+<entry id="616" symbol="menuUnitElevation"/>
 <entry id="8388640" module="true" symbol="Lang"/>
 <entry id="59" object="true" symbol="MyView"/>
-<entry id="548" method="true" symbol="saveVariometerPlotZoom"/>
+<entry id="540" method="true" symbol="saveVariometerPlotZoom"/>
 <entry id="8388881" method="true" symbol="isRecording"/>
-<entry field="true" id="253" symbol="titleAltitude"/>
+<entry field="true" id="265" symbol="titleAltitude"/>
 <entry field="true" id="8389404" symbol="elevationUnits"/>
 <entry field="true" id="8389402" symbol="distanceUnits"/>
 <entry id="8390088" module="true" object="true" symbol="JsonData"/>
-<entry field="true" id="494" symbol="iVariometerSmoothing"/>
-<entry field="true" id="276" symbol="titleSettingsVariometer"/>
+<entry field="true" id="486" symbol="iVariometerSmoothing"/>
+<entry field="true" id="300" symbol="titleSettingsVariometer"/>
 <entry id="8389068" method="true" symbol="draw"/>
-<entry field="true" id="586" symbol="&lt;globals/MyPickerGenericSettingsDelegate/&lt;&gt;context&gt;"/>
+<entry field="true" id="578" symbol="&lt;globals/MyPickerGenericSettingsDelegate/&lt;&gt;context&gt;"/>
 <entry field="true" id="121" symbol="iElapsedAscent"/>
-<entry id="531" method="true" symbol="setAltimeterCorrectionAbsolute"/>
+<entry id="523" method="true" symbol="setAltimeterCorrectionAbsolute"/>
 <entry field="true" id="208" symbol="aiPlotEpoch"/>
 <entry id="55" object="true" symbol="MyViewVarioplot"/>
 <entry id="26" object="true" symbol="PickerGenericOnOff"/>
-<entry field="true" id="259" symbol="titleStorageSave"/>
-<entry field="true" id="297" symbol="titleActivity"/>
+<entry field="true" id="275" symbol="titleStorageSave"/>
+<entry field="true" id="332" symbol="titleActivity"/>
 <entry id="8388610" symbol="statics"/>
-<entry field="true" id="294" symbol="titleStorageClearLogs"/>
+<entry field="true" id="329" symbol="titleStorageClearLogs"/>
 <entry id="8389123" method="true" symbol="onShow"/>
-<entry field="true" id="505" symbol="iUnitElevation"/>
-<entry field="true" id="279" symbol="titleSoundsVariometerTones"/>
+<entry field="true" id="497" symbol="iUnitElevation"/>
+<entry field="true" id="308" symbol="titleSoundsVariometerTones"/>
 <entry id="224" object="true" symbol="drawHeaderAccuracy4"/>
 <entry id="223" object="true" symbol="drawHeaderAccuracy3"/>
 <entry id="222" object="true" symbol="drawHeaderAccuracy2"/>
 <entry id="221" object="true" symbol="drawHeaderAccuracy1"/>
-<entry id="597" symbol="menuActivity"/>
-<entry field="true" id="324" symbol="titleUnitPressure"/>
+<entry id="589" symbol="menuActivity"/>
+<entry field="true" id="292" symbol="titleUnitPressure"/>
 <entry field="true" id="137" symbol="&lt;globals/MyActivity/&lt;&gt;fUnitCoefficient_Distance&gt;"/>
 <entry id="8388643" module="true" symbol="Sensor"/>
 <entry field="true" id="143" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_Ascent&gt;"/>
-<entry field="true" id="307" symbol="titleDistance"/>
-<entry id="399" method="true" symbol="setQFE"/>
-<entry field="true" id="587" symbol="&lt;globals/MyPickerGenericSettingsDelegate/&lt;&gt;item&gt;"/>
-<entry field="true" id="447" symbol="oRezValueBottomLeft"/>
-<entry field="true" id="446" symbol="oRezValueRight"/>
-<entry id="620" symbol="menuActivityAutoSpeedStart"/>
+<entry field="true" id="256" symbol="titleDistance"/>
+<entry id="391" method="true" symbol="setQFE"/>
+<entry field="true" id="579" symbol="&lt;globals/MyPickerGenericSettingsDelegate/&lt;&gt;item&gt;"/>
+<entry field="true" id="439" symbol="oRezValueBottomLeft"/>
+<entry field="true" id="438" symbol="oRezValueRight"/>
+<entry id="612" symbol="menuActivityAutoSpeedStart"/>
 <entry id="57" object="true" symbol="MyPickerGenericSpeed"/>
-<entry field="true" id="344" symbol="valueOn"/>
-<entry field="true" id="379" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutValueYbottom&gt;"/>
-<entry field="true" id="510" symbol="sUnitHorizontalSpeed"/>
+<entry field="true" id="335" symbol="valueOn"/>
+<entry field="true" id="371" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutValueYbottom&gt;"/>
+<entry field="true" id="502" symbol="sUnitHorizontalSpeed"/>
 <entry id="230" object="true" symbol="drawGlobalAlertRight"/>
-<entry id="530" method="true" symbol="saveAltimeterCorrectionAbsolute"/>
-<entry field="true" id="429" symbol="iColorText"/>
-<entry id="363" method="true" symbol="updateUi"/>
-<entry field="true" id="298" symbol="titleConfirm"/>
+<entry id="522" method="true" symbol="saveAltimeterCorrectionAbsolute"/>
+<entry field="true" id="421" symbol="iColorText"/>
+<entry id="355" method="true" symbol="updateUi"/>
+<entry field="true" id="333" symbol="titleConfirm"/>
 <entry id="157" method="true" symbol="resetLog"/>
-<entry id="648" symbol="itemMinimumClimb"/>
-<entry id="557" method="true" symbol="saveMinimumClimb"/>
+<entry id="640" symbol="itemMinimumClimb"/>
+<entry id="549" method="true" symbol="saveMinimumClimb"/>
 <entry id="8389350" module="true" symbol="globals"/>
-<entry field="true" id="509" symbol="sUnitDistance"/>
+<entry field="true" id="501" symbol="sUnitDistance"/>
 <entry field="true" id="41" symbol="oMyProcessing"/>
-<entry id="650" symbol="itemActivityAutoSpeedStart"/>
-<entry field="true" id="437" symbol="fAcceleration"/>
+<entry id="642" symbol="itemActivityAutoSpeedStart"/>
+<entry field="true" id="429" symbol="fAcceleration"/>
 <entry field="true" id="128" symbol="iGlobalElapsedAscent"/>
-<entry id="529" method="true" symbol="loadAltimeterCorrectionAbsolute"/>
+<entry id="521" method="true" symbol="loadAltimeterCorrectionAbsolute"/>
 <entry field="true" id="8388958" symbol="speed"/>
 <entry field="true" id="152" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_GlobalAltitudeMin&gt;"/>
 <entry id="8388770" module="true" object="true" symbol="Strings"/>
-<entry field="true" id="295" symbol="titleViewLog"/>
+<entry field="true" id="330" symbol="titleViewLog"/>
 <entry field="true" id="194" symbol="iAccuracy"/>
+<entry field="true" id="336" symbol="valueVariometerSmoothingUltra"/>
 <entry id="23" object="true" symbol="MyMenuGenericDelegate"/>
-<entry id="634" symbol="menuActivityResume"/>
-<entry field="true" id="302" symbol="valueVariometerSmoothingHigh"/>
-<entry id="662" symbol="actionDiscard"/>
+<entry id="626" symbol="menuActivityResume"/>
+<entry field="true" id="250" symbol="valueVariometerSmoothingHigh"/>
+<entry id="654" symbol="actionDiscard"/>
 <entry id="8388702" method="true" symbol="initialize"/>
-<entry field="true" id="472" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;iColorAlertRight&gt;"/>
+<entry field="true" id="464" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;iColorAlertRight&gt;"/>
 <entry field="true" id="39" symbol="oMyKalmanFilter"/>
-<entry field="true" id="521" symbol="fVariometerRange"/>
-<entry field="true" id="286" symbol="labelFinesse"/>
+<entry field="true" id="513" symbol="fVariometerRange"/>
+<entry field="true" id="318" symbol="labelFinesse"/>
 <entry id="69" object="true" symbol="MyAltimeter"/>
-<entry id="546" method="true" symbol="setVariometerSmoothing"/>
+<entry id="538" method="true" symbol="setVariometerSmoothing"/>
 <entry field="true" id="110" symbol="FITFIELD_GLOBALTIMEALTITUDEMIN"/>
-<entry id="622" symbol="menuGeneralLapKey"/>
+<entry id="614" symbol="menuGeneralLapKey"/>
 <entry id="8389279" method="true" symbol="onStart"/>
-<entry id="611" symbol="menuAltimeterCorrectionRelative"/>
+<entry id="603" symbol="menuAltimeterCorrectionRelative"/>
 <entry id="171" method="true" symbol="setGlobalAscent"/>
 <entry field="true" id="130" symbol="oGlobalTimeAltitudeMin"/>
 <entry field="true" id="8388891" symbol="subSport"/>
 <entry field="true" id="199" symbol="fFinesse"/>
-<entry id="658" symbol="itemDirection"/>
-<entry id="652" symbol="itemBackgroundColor"/>
-<entry id="473" method="true" symbol="setColorFieldsBackground"/>
-<entry field="true" id="453" symbol="oRezValueFooter"/>
-<entry id="545" method="true" symbol="saveVariometerSmoothing"/>
-<entry field="true" id="345" symbol="titleActivitySave"/>
+<entry id="650" symbol="itemDirection"/>
+<entry id="644" symbol="itemBackgroundColor"/>
+<entry id="465" method="true" symbol="setColorFieldsBackground"/>
+<entry field="true" id="445" symbol="oRezValueFooter"/>
+<entry id="537" method="true" symbol="saveVariometerSmoothing"/>
+<entry field="true" id="337" symbol="titleActivitySave"/>
 <entry id="2" module="true" symbol="globals/LangUtils"/>
 <entry field="true" id="8388892" symbol="name"/>
 <entry id="8388641" module="true" symbol="Math"/>
 <entry field="true" id="149" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_GlobalDistance&gt;"/>
 <entry id="8389541" method="true" symbol="onCancel"/>
 <entry id="170" method="true" symbol="setGlobalDistance"/>
-<entry id="585" method="true" symbol="setUnitTimeUTC"/>
-<entry id="599" symbol="menuSettingsVariometer"/>
-<entry id="556" method="true" symbol="loadMinimumClimb"/>
-<entry field="true" id="449" symbol="bHeaderOnly"/>
+<entry id="577" method="true" symbol="setUnitTimeUTC"/>
+<entry id="591" symbol="menuSettingsVariometer"/>
+<entry id="548" method="true" symbol="loadMinimumClimb"/>
+<entry field="true" id="441" symbol="bHeaderOnly"/>
 <entry id="17" object="true" symbol="MyKalmanFilter"/>
-<entry field="true" id="455" symbol="&lt;globals/MyViewLog/&lt;&gt;oRezUnitRight&gt;"/>
+<entry field="true" id="447" symbol="&lt;globals/MyViewLog/&lt;&gt;oRezUnitRight&gt;"/>
 <entry field="true" id="38" symbol="fMyPositionAltitude"/>
 <entry field="true" id="141" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_VerticalSpeed&gt;"/>
 <entry field="true" id="112" symbol="FITFIELD_GLOBALTIMEALTITUDEMAX"/>
 <entry field="true" id="117" symbol="iCountLaps"/>
 <entry id="92" method="true" symbol="formatElapsedTime"/>
-<entry field="true" id="515" symbol="sUnitTime"/>
-<entry id="542" method="true" symbol="saveVariometerAutoThermal"/>
+<entry field="true" id="507" symbol="sUnitTime"/>
+<entry id="534" method="true" symbol="saveVariometerAutoThermal"/>
 <entry field="true" id="80" symbol="&lt;globals/MyMenuGenericConfirmDelegate/&lt;&gt;context&gt;"/>
-<entry id="615" symbol="menuVariometerPlotRange"/>
-<entry id="384" method="true" symbol="drawValues"/>
+<entry id="607" symbol="menuVariometerPlotRange"/>
+<entry id="376" method="true" symbol="drawValues"/>
 <entry field="true" id="132" symbol="oGlobalTimeAltitudeMax"/>
-<entry id="635" symbol="menuActivitySave"/>
-<entry field="true" id="309" symbol="titleAltimeterCorrectionAbsolute"/>
+<entry id="627" symbol="menuActivitySave"/>
+<entry field="true" id="260" symbol="titleAltimeterCorrectionAbsolute"/>
 <entry id="10" object="true" symbol="MyPickerGenericStorage"/>
-<entry id="657" symbol="itemPressure"/>
+<entry id="649" symbol="itemPressure"/>
 <entry field="true" id="44" symbol="oMyActivity"/>
 <entry id="172" method="true" symbol="setGlobalElapsedAscent"/>
 <entry id="8389280" method="true" symbol="getInitialView"/>
-<entry field="true" id="467" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;oRezAlertCenter&gt;"/>
-<entry field="true" id="589" symbol="&lt;globals/MyPickerGenericSpeedDelegate/&lt;&gt;item&gt;"/>
+<entry field="true" id="459" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;oRezAlertCenter&gt;"/>
+<entry field="true" id="581" symbol="&lt;globals/MyPickerGenericSpeedDelegate/&lt;&gt;item&gt;"/>
 <entry id="8389281" method="true" symbol="onStop"/>
-<entry id="653" symbol="itemGeneralLapKey"/>
+<entry id="645" symbol="itemGeneralLapKey"/>
 <entry field="true" id="107" symbol="FITFIELD_GLOBALASCENT"/>
-<entry id="651" symbol="contextGeneral"/>
+<entry id="643" symbol="contextGeneral"/>
 <entry field="true" id="193" symbol="iPositionEpoch"/>
-<entry field="true" id="522" symbol="fVariometerPlotZoom"/>
+<entry field="true" id="514" symbol="fVariometerPlotZoom"/>
 <entry id="8389109" method="true" symbol="onMenuItem"/>
 <entry id="8389847" symbol="mesgType"/>
 <entry id="8389347" symbol="color"/>
-<entry field="true" id="393" symbol="fQFE_raw"/>
-<entry field="true" id="456" symbol="&lt;globals/MyViewLog/&lt;&gt;oRezUnitBottomRight&gt;"/>
-<entry id="642" symbol="itemRange"/>
-<entry field="true" id="396" symbol="fAltitudeActual"/>
-<entry field="true" id="289" symbol="titleActivityAutoSpeedStart"/>
-<entry id="639" symbol="itemAltimeterCalibration"/>
-<entry field="true" id="355" symbol="&lt;globals/MyApp/&lt;&gt;iTones&gt;"/>
+<entry field="true" id="385" symbol="fQFE_raw"/>
+<entry field="true" id="448" symbol="&lt;globals/MyViewLog/&lt;&gt;oRezUnitBottomRight&gt;"/>
+<entry id="634" symbol="itemRange"/>
+<entry field="true" id="388" symbol="fAltitudeActual"/>
+<entry field="true" id="322" symbol="titleActivityAutoSpeedStart"/>
+<entry id="631" symbol="itemAltimeterCalibration"/>
+<entry field="true" id="347" symbol="&lt;globals/MyApp/&lt;&gt;iTones&gt;"/>
 <entry field="true" id="180" symbol="&lt;globals/MyProcessing/&lt;&gt;fPreviousAltitude&gt;"/>
-<entry field="true" id="478" symbol="&lt;globals/MyPickerGenericElevationDelegate/&lt;&gt;item&gt;"/>
+<entry field="true" id="470" symbol="&lt;globals/MyPickerGenericElevationDelegate/&lt;&gt;item&gt;"/>
 <entry id="72" module="true" symbol="LangUtils"/>
-<entry field="true" id="415" symbol="&lt;globals/MyViewGeneral/&lt;&gt;sUnitElapsed&gt;"/>
+<entry field="true" id="407" symbol="&lt;globals/MyViewGeneral/&lt;&gt;sUnitElapsed&gt;"/>
 <entry field="true" id="8389311" symbol="accuracy"/>
-<entry field="true" id="420" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;iNumberMaximum&gt;"/>
-<entry field="true" id="588" symbol="&lt;globals/MyPickerGenericSpeedDelegate/&lt;&gt;context&gt;"/>
-<entry id="637" symbol="menuActivityLap"/>
-<entry id="602" symbol="menuSettingsGeneral"/>
-<entry field="true" id="443" symbol="oRezValueTopRight"/>
-<entry field="true" id="406" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutCacheX&gt;"/>
+<entry field="true" id="412" symbol="&lt;globals/PickerFactoryNumber/&lt;&gt;iNumberMaximum&gt;"/>
+<entry field="true" id="580" symbol="&lt;globals/MyPickerGenericSpeedDelegate/&lt;&gt;context&gt;"/>
+<entry id="629" symbol="menuActivityLap"/>
+<entry id="594" symbol="menuSettingsGeneral"/>
+<entry field="true" id="435" symbol="oRezValueTopRight"/>
+<entry field="true" id="398" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutCacheX&gt;"/>
 <entry id="161" method="true" symbol="setVerticalSpeed"/>
-<entry field="true" id="290" symbol="valueVariometerSmoothingExtreme"/>
-<entry field="true" id="312" symbol="unitAltitude"/>
-<entry id="381" method="true" symbol="initLayout"/>
-<entry id="608" symbol="menuAltimeterCalibrationQNH"/>
+<entry field="true" id="267" symbol="unitAltitude"/>
+<entry id="373" method="true" symbol="initLayout"/>
+<entry id="600" symbol="menuAltimeterCalibrationQNH"/>
 <entry id="8388646" module="true" object="true" symbol="Timer"/>
-<entry field="true" id="508" symbol="bUnitTimeUTC"/>
-<entry field="true" id="335" symbol="titleVariometerSmoothing"/>
+<entry field="true" id="500" symbol="bUnitTimeUTC"/>
+<entry field="true" id="309" symbol="titleVariometerSmoothing"/>
 <entry id="218" module="true" symbol="Layouts"/>
-<entry field="true" id="491" symbol="fAltimeterCorrectionRelative"/>
+<entry field="true" id="483" symbol="fAltimeterCorrectionRelative"/>
 <entry id="160" method="true" symbol="setBarometricAltitude"/>
 <entry field="true" id="211" symbol="aiPlotVariometer"/>
-<entry field="true" id="275" symbol="titleSettingsGeneral"/>
-<entry field="true" id="350" symbol="&lt;globals/MyApp/&lt;&gt;oUpdateTimer&gt;"/>
-<entry field="true" id="373" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutClipY&gt;"/>
-<entry id="357" method="true" symbol="loadSettings"/>
-<entry field="true" id="471" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;iColorAlertCenter&gt;"/>
-<entry id="605" symbol="menuAbout"/>
+<entry field="true" id="295" symbol="titleSettingsGeneral"/>
+<entry field="true" id="342" symbol="&lt;globals/MyApp/&lt;&gt;oUpdateTimer&gt;"/>
+<entry field="true" id="365" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutClipY&gt;"/>
+<entry id="349" method="true" symbol="loadSettings"/>
+<entry field="true" id="463" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;iColorAlertCenter&gt;"/>
+<entry id="597" symbol="menuAbout"/>
 <entry id="8388698" method="true" symbol="start"/>
 <entry id="231" object="true" symbol="drawButtonPlus"/>
-<entry field="true" id="347" symbol="&lt;globals/MyPickerGenericStorageDelegate/&lt;&gt;storage&gt;"/>
+<entry field="true" id="339" symbol="&lt;globals/MyPickerGenericStorageDelegate/&lt;&gt;storage&gt;"/>
 <entry id="8389643" symbol="pattern"/>
 <entry field="true" id="182" symbol="&lt;globals/MyProcessing/&lt;&gt;afSpeed&gt;"/>
-<entry field="true" id="374" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutClipW&gt;"/>
-<entry field="true" id="407" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutCacheR&gt;"/>
-<entry field="true" id="427" symbol="sValueActivityRecording"/>
+<entry field="true" id="366" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutClipW&gt;"/>
+<entry field="true" id="399" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutCacheR&gt;"/>
+<entry field="true" id="419" symbol="sValueActivityRecording"/>
 <entry field="true" id="43" symbol="iMyLogIndex"/>
-<entry field="true" id="268" symbol="unitDistance"/>
-<entry id="647" symbol="itemVariometerVibrations"/>
-<entry field="true" id="343" symbol="titleUnitDistance"/>
+<entry field="true" id="286" symbol="unitDistance"/>
+<entry id="639" symbol="itemVariometerVibrations"/>
+<entry field="true" id="331" symbol="titleUnitDistance"/>
 <entry field="true" id="108" symbol="FITFIELD_GLOBALELAPSEDASCENT"/>
-<entry field="true" id="435" symbol="fPosition"/>
+<entry field="true" id="427" symbol="fPosition"/>
 <entry id="237" object="true" symbol="drawButtonTopLeft"/>
 <entry field="true" id="136" symbol="&lt;globals/MyActivity/&lt;&gt;bUnitCoefficient_TimeUTC&gt;"/>
 <entry field="true" id="40" symbol="oMyAltimeter"/>
-<entry field="true" id="371" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;oRezFontPlot&gt;"/>
+<entry field="true" id="363" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;oRezFontPlot&gt;"/>
 <entry field="true" id="45" symbol="oMyView"/>
 <entry field="true" id="84" symbol="&lt;globals/MyMenuGenericConfirmDelegate/&lt;&gt;popout&gt;"/>
-<entry id="593" symbol="langFormat"/>
+<entry id="585" symbol="langFormat"/>
 <entry id="156" method="true" symbol="pause"/>
-<entry id="367" method="true" symbol="clearStorageLogs"/>
+<entry id="359" method="true" symbol="clearStorageLogs"/>
 <entry id="86" method="true" symbol="notNaN"/>
 <entry id="28" object="true" symbol="MyPickerGenericSettings"/>
 <entry field="true" id="187" symbol="&lt;globals/MyProcessing/&lt;&gt;iWindSector&gt;"/>
 <entry field="true" id="201" symbol="iWindDirection"/>
-<entry id="603" symbol="menuSettingsUnits"/>
-<entry field="true" id="470" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;iColorAlertLeft&gt;"/>
+<entry id="595" symbol="menuSettingsUnits"/>
+<entry field="true" id="462" symbol="&lt;globals/MyDrawableGlobal/&lt;&gt;iColorAlertLeft&gt;"/>
 <entry id="6" module="true" symbol="globals/Rez/Fonts"/>
 <entry id="87" method="true" symbol="copy"/>
-<entry id="474" method="true" symbol="setColorAlertLeft"/>
-<entry id="362" method="true" symbol="onTonesTimer"/>
-<entry field="true" id="351" symbol="&lt;globals/MyApp/&lt;&gt;iUpdateLastEpoch&gt;"/>
+<entry id="466" method="true" symbol="setColorAlertLeft"/>
+<entry id="354" method="true" symbol="onTonesTimer"/>
+<entry field="true" id="343" symbol="&lt;globals/MyApp/&lt;&gt;iUpdateLastEpoch&gt;"/>
 <entry field="true" id="140" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_BarometricAltitude&gt;"/>
 <entry field="true" id="154" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_GlobalAltitudeMax&gt;"/>
 <entry field="true" id="134" symbol="&lt;globals/MyActivity/&lt;&gt;adPositionRadiansLast&gt;"/>
-<entry field="true" id="368" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iPanZoom&gt;"/>
+<entry field="true" id="360" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iPanZoom&gt;"/>
 <entry field="true" id="98" symbol="FITFIELD_BAROMETRICALTITUDE"/>
-<entry field="true" id="288" symbol="titleAltimeterCalibration"/>
-<entry field="true" id="261" symbol="valueUnitTimeUTC"/>
+<entry field="true" id="320" symbol="titleAltimeterCalibration"/>
+<entry field="true" id="277" symbol="valueUnitTimeUTC"/>
 <entry id="22" object="true" symbol="MyMenuGeneric"/>
 <entry id="8389125" method="true" symbol="onHide"/>
 <entry id="228" object="true" symbol="drawGlobalAlertLeft"/>
-<entry field="true" id="395" symbol="fAltitudeISA"/>
+<entry field="true" id="387" symbol="fAltitudeISA"/>
 <entry id="8390514" method="true" symbol="update"/>
-<entry id="359" method="true" symbol="onLocationEvent"/>
+<entry id="351" method="true" symbol="onLocationEvent"/>
 <entry field="true" id="50" symbol="MY_NOVALUE_LEN4"/>
 <entry field="true" id="49" symbol="MY_NOVALUE_LEN3"/>
 <entry field="true" id="48" symbol="MY_NOVALUE_LEN2"/>
-<entry field="true" id="412" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutValueY&gt;"/>
+<entry field="true" id="404" symbol="&lt;globals/MyViewVariometer/&lt;&gt;iLayoutValueY&gt;"/>
 <entry id="78" method="true" symbol="indexOfKey"/>
-<entry field="true" id="270" symbol="titleActivityStart"/>
+<entry field="true" id="289" symbol="titleActivityStart"/>
 <entry field="true" id="135" symbol="&lt;globals/MyActivity/&lt;&gt;fAltitudeLast&gt;"/>
-<entry field="true" id="500" symbol="bActivityAutoStart"/>
+<entry field="true" id="492" symbol="bActivityAutoStart"/>
 <entry field="true" id="207" symbol="iPlotIndex"/>
-<entry id="551" method="true" symbol="saveSoundsVariometerTones"/>
-<entry field="true" id="349" symbol="&lt;globals/MyPickerGenericStorageDelegate/&lt;&gt;action&gt;"/>
+<entry id="543" method="true" symbol="saveSoundsVariometerTones"/>
+<entry field="true" id="341" symbol="&lt;globals/MyPickerGenericStorageDelegate/&lt;&gt;action&gt;"/>
 <entry id="173" method="true" symbol="setGlobalAltitudeMin"/>
-<entry id="358" method="true" symbol="onSensorEvent"/>
+<entry id="350" method="true" symbol="onSensorEvent"/>
 <entry id="8389078" method="true" symbol="onNextPage"/>
-<entry id="661" symbol="actionClearLogs"/>
-<entry id="625" symbol="menuUnitPressure"/>
-<entry field="true" id="317" symbol="valueUnitTimeLT"/>
+<entry id="653" symbol="actionClearLogs"/>
+<entry id="617" symbol="menuUnitPressure"/>
+<entry field="true" id="272" symbol="valueUnitTimeLT"/>
 <entry field="true" id="142" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_Distance&gt;"/>
 <entry field="true" id="8389642" symbol="title"/>
 <entry id="63" object="true" symbol="MyPickerAltimeterCorrectionRelativeDelegate"/>
-<entry field="true" id="327" symbol="valueHeightInvalid"/>
+<entry field="true" id="298" symbol="valueHeightInvalid"/>
 <entry field="true" id="126" symbol="fGlobalDistance"/>
-<entry field="true" id="503" symbol="bGeneralLapKey"/>
-<entry field="true" id="287" symbol="titleVerticalSpeed"/>
+<entry field="true" id="495" symbol="bGeneralLapKey"/>
+<entry field="true" id="319" symbol="titleVerticalSpeed"/>
 <entry id="64" object="true" symbol="MyViewHeader"/>
 <entry field="true" id="153" symbol="&lt;globals/MyActivity/&lt;&gt;oFitField_GlobalTimeAltitudeMin&gt;"/>
 <entry field="true" id="8389929" method="true" symbol="bearing"/>
-<entry field="true" id="283" symbol="titleActivityPause"/>
-<entry field="true" id="519" symbol="fUnitVerticalSpeedCoefficient"/>
-<entry field="true" id="375" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutClipH&gt;"/>
-<entry field="true" id="341" symbol="titleMinimumClimb"/>
-<entry field="true" id="315" symbol="labelHeightDecision"/>
+<entry field="true" id="313" symbol="titleActivityPause"/>
+<entry field="true" id="511" symbol="fUnitVerticalSpeedCoefficient"/>
+<entry field="true" id="367" symbol="&lt;globals/MyViewVarioplot/&lt;&gt;iLayoutClipH&gt;"/>
+<entry field="true" id="325" symbol="titleMinimumClimb"/>
 </symbolTable>
 <localVars>
 <entry endPc="268435804" name="s" stackId="11" startPc="268435600"/>
@@ -3911,8 +3903,10 @@
 <entry arg="true" endPc="268503254" name="dc" stackId="1" startPc="268502910"/>
 <entry arg="true" endPc="268503628" name="dc" stackId="1" startPc="268503284"/>
 <entry arg="true" endPc="268504002" name="dc" stackId="1" startPc="268503658"/>
+<entry endPc="268507509" name="rez_cmp_local_custom_drawable_57852090985684407488" stackId="5" startPc="268504015"/>
 <entry endPc="268507509" name="local_Rez_Fonts_fontLabel" stackId="4" startPc="268504015"/>
 <entry endPc="268507509" name="local_Rez_Fonts_fontStatus" stackId="2" startPc="268504015"/>
+<entry endPc="268507509" name="rez_cmp_local_custom_drawable_17911806475855175803" stackId="6" startPc="268504015"/>
 <entry endPc="268507509" name="rez_cmp_local_text_unitTopRight" stackId="15" startPc="268504015"/>
 <entry endPc="268507509" name="rez_cmp_local_text_labelTopLeft" stackId="11" startPc="268504015"/>
 <entry endPc="268507509" name="rez_cmp_local_text_labelBottomRight" stackId="28" startPc="268504015"/>
@@ -3938,12 +3932,10 @@
 <entry endPc="268507509" name="rez_cmp_local_text_unitTopLeft" stackId="12" startPc="268504015"/>
 <entry endPc="268507509" name="rez_cmp_local_text_valueBatteryLevel" stackId="9" startPc="268504015"/>
 <entry endPc="268507509" name="rez_cmp_local_text_labelBottomLeft" stackId="25" startPc="268504015"/>
-<entry endPc="268507509" name="rez_cmp_local_custom_drawable_54062924672888384015" stackId="5" startPc="268504015"/>
 <entry endPc="268507509" name="rez_cmp_local_text_labelTopRight" stackId="14" startPc="268504015"/>
-<entry endPc="268507509" name="rez_cmp_local_custom_drawable_92971961614984123742" stackId="6" startPc="268504015"/>
 <entry arg="true" endPc="268507510" name="dc" stackId="1" startPc="268504003"/>
 <entry endPc="268508092" name="rez_cmp_local_text_valueBatteryLevel" stackId="5" startPc="268507523"/>
-<entry endPc="268508092" name="rez_cmp_local_custom_drawable_30489561089399730032" stackId="3" startPc="268507523"/>
+<entry endPc="268508092" name="rez_cmp_local_custom_drawable_19363123731075941086" stackId="3" startPc="268507523"/>
 <entry endPc="268508092" name="rez_cmp_local_text_valueFooter" stackId="7" startPc="268507523"/>
 <entry endPc="268508092" name="rez_cmp_local_text_valueActivityStatus" stackId="6" startPc="268507523"/>
 <entry endPc="268508092" name="rez_cmp_local_custom_drawable_drawContentBorders" stackId="4" startPc="268507523"/>
@@ -3951,113 +3943,105 @@
 <entry arg="true" endPc="268508093" name="dc" stackId="1" startPc="268507511"/>
 </localVars>
 <annotations>
-<annotationEntry annotation="layout_280x280" class="MyViewVariometer" module="globals" symbol="initLayout"/>
-<annotationEntry annotation="layout_280x280" class="MyViewVarioplot" module="globals" symbol="initLayout"/>
+<annotationEntry annotation="layout_260x260" class="MyViewVariometer" module="globals" symbol="initLayout"/>
+<annotationEntry annotation="layout_260x260" class="MyViewVarioplot" module="globals" symbol="initLayout"/>
 <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="AppIcon"/>
 <annotationEntry annotation="initialized" class="Fonts" module="globals/Rez" symbol="fontMeter"/>
 <annotationEntry annotation="initialized" class="Fonts" module="globals/Rez" symbol="fontPlot"/>
 <annotationEntry annotation="initialized" class="Fonts" module="globals/Rez" symbol="fontStatus"/>
 <annotationEntry annotation="initialized" class="Fonts" module="globals/Rez" symbol="fontLabel"/>
 <annotationEntry annotation="initialized" class="Fonts" module="globals/Rez" symbol="fontUnit"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueAll"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelActivity"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelAltitudeMax"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleActivityDiscard"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueVariometerSmoothingHigh"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleVariometerVibrations"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAbout"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSettingsAltimeter"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleUnitTimeUTC"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelAscent"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleDistance"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSettingsActivity"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleVariometerRange"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleStorageLoad"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltimeterCorrectionAbsolute"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleUnitDirection"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelAltitude"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelDistance"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelWindDirection"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltitude"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleGeneralBackgroundColor"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="unitAltitude"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueAuto"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleVersion"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleGeneralLapKey"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltimeterCorrectionRelative"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueUnitTimeLT"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleVariometerPlotRange"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleActivityLap"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleStorageSave"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAuthor"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueUnitTimeUTC"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueVariometerRangeSmall"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelGroundSpeed"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSettings"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltimeterCalibrationElevation"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltimeterCalibrationQNH"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelLap"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleStorage"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="unitVerticalSpeed"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueActivityPaused"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="unitDistance"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleLicense"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelHeading"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleActivityStart"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleActivityAutoStart"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelRecording"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleUnitPressure"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleActivityResume"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueVariometerSmoothingMedium"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSettingsGeneral"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleUnitElevation"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelStart"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueHeightInvalid"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueOff"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSettingsVariometer"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppName"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueColorWhite"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueActivityRecording"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppVersion"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelStop"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltitudeMin"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelVerticalSpeed"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSoundsVariometerTones"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleVariometerSmoothing"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAscent"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueActivityStandby"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelCount"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleActivityPause"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueVariometerSmoothingLow"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueColorBlack"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltimeterCorrection"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltitudeMax"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelFinesse"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleVerticalSpeed"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltimeterCalibration"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSettingsSounds"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleActivityAutoSpeedStart"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueVariometerSmoothingExtreme"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelWindSpeed"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSettingsUnits"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleMinimumClimb"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelAltitudeMin"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleVariometerAutoThermal"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelElapsed"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleStorageClearLogs"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleViewLog"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelHeightReference"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleUnitDistance"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleActivity"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleConfirm"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleStorageDelete"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueAll"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelAltitudeMax"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueVariometerSmoothingHigh"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleVariometerVibrations"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAbout"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSettingsAltimeter"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleUnitTimeUTC"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleDistance"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleStorageLoad"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltimeterCorrectionAbsolute"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelAltitude"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelWindDirection"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="unitAltitude"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueAuto"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleGeneralLapKey"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelHeightDecision"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueVariometerRangeLarge"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueUnitTimeLT"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSettings"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltimeterCalibrationElevation"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltimeterCalibrationQNH"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleStorageEdit"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelHeightCritical"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleLicense"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleUnitPressure"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleUnitElevation"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelStart"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueHeightInvalid"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueOff"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueVariometerRangeMedium"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppName"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueColorWhite"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="AppVersion"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelStop"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltitudeMin"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleVariometerSmoothing"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelHeightWarning"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltimeterCorrection"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleAltitudeMax"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleSettingsSounds"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelWindSpeed"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleMinimumClimb"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="labelAltitudeMin"/>
-<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleUnitDistance"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueOn"/>
+<annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="valueVariometerSmoothingUltra"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="titleActivitySave"/>
 <annotationEntry annotation="initialized" class="Strings" module="globals/Rez" symbol="unitTime"/>
 </annotations>
@@ -4096,43 +4080,43 @@
 <dataEntry label="globals/Rez/Layouts" offset="3624" parentId="Rez" symbolId="Layouts" type="module"/>
 <dataEntry label="globals/Rez/JsonData" offset="3671" parentId="Rez" symbolId="JsonData" type="module"/>
 <dataEntry label="globals/Rez/Strings" offset="3702" parentId="Rez" symbolId="Strings" type="module"/>
-<dataEntry label="globals/MyPickerGenericSpeed" offset="4541" parentId="globals" symbolId="MyPickerGenericSpeed" type="class"/>
-<dataEntry label="globals/MyPickerGenericStorageDelegate" offset="4588" parentId="globals" symbolId="MyPickerGenericStorageDelegate" type="class"/>
-<dataEntry label="globals/MyApp" offset="4667" parentId="globals" symbolId="MyApp" type="class"/>
-<dataEntry label="globals/MyViewVarioplot" offset="4906" parentId="globals" symbolId="MyViewVarioplot" type="class"/>
-<dataEntry label="globals/MyViewVarioplotDelegate" offset="5113" parentId="globals" symbolId="MyViewVarioplotDelegate" type="class"/>
-<dataEntry label="globals/MyAltimeter" offset="5200" parentId="globals" symbolId="MyAltimeter" type="class"/>
-<dataEntry label="globals/MyViewVariometer" offset="5383" parentId="globals" symbolId="MyViewVariometer" type="class"/>
-<dataEntry label="globals/MyPickerAltimeterCorrectionRelativeDelegate" offset="5582" parentId="globals" symbolId="MyPickerAltimeterCorrectionRelativeDelegate" type="class"/>
-<dataEntry label="globals/MyPickerGenericStorage" offset="5645" parentId="globals" symbolId="MyPickerGenericStorage" type="class"/>
-<dataEntry label="globals/PickerGenericPressure" offset="5692" parentId="globals" symbolId="PickerGenericPressure" type="class"/>
-<dataEntry label="globals/PickerGenericOnOff" offset="5747" parentId="globals" symbolId="PickerGenericOnOff" type="class"/>
-<dataEntry label="globals/MyViewGeneral" offset="5802" parentId="globals" symbolId="MyViewGeneral" type="class"/>
-<dataEntry label="globals/MyPickerGenericOnOffDelegate" offset="5881" parentId="globals" symbolId="MyPickerGenericOnOffDelegate" type="class"/>
-<dataEntry label="globals/PickerFactoryNumber" offset="5960" parentId="globals" symbolId="PickerFactoryNumber" type="class"/>
-<dataEntry label="globals/MyView" offset="6087" parentId="globals" symbolId="MyView" type="class"/>
-<dataEntry label="globals/MyViewGlobalDelegate" offset="6214" parentId="globals" symbolId="MyViewGlobalDelegate" type="class"/>
-<dataEntry label="globals/MyKalmanFilter" offset="6285" parentId="globals" symbolId="MyKalmanFilter" type="class"/>
-<dataEntry label="globals/MyViewGlobal" offset="6428" parentId="globals" symbolId="MyViewGlobal" type="class"/>
-<dataEntry label="globals/MyMenuGenericConfirm" offset="6547" parentId="globals" symbolId="MyMenuGenericConfirm" type="class"/>
-<dataEntry label="globals/MyPickerAltimeterCorrectionRelative" offset="6594" parentId="globals" symbolId="MyPickerAltimeterCorrectionRelative" type="class"/>
-<dataEntry label="globals/MyViewHeader" offset="6641" parentId="globals" symbolId="MyViewHeader" type="class"/>
-<dataEntry label="globals/MyPickerGenericElevation" offset="6752" parentId="globals" symbolId="MyPickerGenericElevation" type="class"/>
-<dataEntry label="globals/MyPickerGenericOnOff" offset="6799" parentId="globals" symbolId="MyPickerGenericOnOff" type="class"/>
-<dataEntry label="globals/MyPickerGenericSettings" offset="6846" parentId="globals" symbolId="MyPickerGenericSettings" type="class"/>
-<dataEntry label="globals/MyViewLog" offset="6893" parentId="globals" symbolId="MyViewLog" type="class"/>
-<dataEntry label="globals/MyDrawableGlobal" offset="7052" parentId="globals" symbolId="MyDrawableGlobal" type="class"/>
-<dataEntry label="globals/MyPickerGenericElevationDelegate" offset="7203" parentId="globals" symbolId="MyPickerGenericElevationDelegate" type="class"/>
-<dataEntry label="globals/MyViewGeneralDelegate" offset="7282" parentId="globals" symbolId="MyViewGeneralDelegate" type="class"/>
-<dataEntry label="globals/MyPickerGenericPressure" offset="7345" parentId="globals" symbolId="MyPickerGenericPressure" type="class"/>
-<dataEntry label="globals/MyDrawableHeader" offset="7392" parentId="globals" symbolId="MyDrawableHeader" type="class"/>
-<dataEntry label="globals/MyMenuGenericDelegate" offset="7511" parentId="globals" symbolId="MyMenuGenericDelegate" type="class"/>
-<dataEntry label="globals/MySettings" offset="7574" parentId="globals" symbolId="MySettings" type="class"/>
-<dataEntry label="globals/MyMenuGeneric" offset="8397" parentId="globals" symbolId="MyMenuGeneric" type="class"/>
-<dataEntry label="globals/MyPickerGenericSettingsDelegate" offset="8444" parentId="globals" symbolId="MyPickerGenericSettingsDelegate" type="class"/>
-<dataEntry label="globals/MyPickerGenericSpeedDelegate" offset="8523" parentId="globals" symbolId="MyPickerGenericSpeedDelegate" type="class"/>
-<dataEntry label="globals/MyViewLogDelegate" offset="8602" parentId="globals" symbolId="MyViewLogDelegate" type="class"/>
-<dataEntry label="globals/MyViewVariometerDelegate" offset="8681" parentId="globals" symbolId="MyViewVariometerDelegate" type="class"/>
+<dataEntry label="globals/MyPickerGenericSpeed" offset="4477" parentId="globals" symbolId="MyPickerGenericSpeed" type="class"/>
+<dataEntry label="globals/MyPickerGenericStorageDelegate" offset="4524" parentId="globals" symbolId="MyPickerGenericStorageDelegate" type="class"/>
+<dataEntry label="globals/MyApp" offset="4603" parentId="globals" symbolId="MyApp" type="class"/>
+<dataEntry label="globals/MyViewVarioplot" offset="4842" parentId="globals" symbolId="MyViewVarioplot" type="class"/>
+<dataEntry label="globals/MyViewVarioplotDelegate" offset="5049" parentId="globals" symbolId="MyViewVarioplotDelegate" type="class"/>
+<dataEntry label="globals/MyAltimeter" offset="5136" parentId="globals" symbolId="MyAltimeter" type="class"/>
+<dataEntry label="globals/MyViewVariometer" offset="5319" parentId="globals" symbolId="MyViewVariometer" type="class"/>
+<dataEntry label="globals/MyPickerAltimeterCorrectionRelativeDelegate" offset="5518" parentId="globals" symbolId="MyPickerAltimeterCorrectionRelativeDelegate" type="class"/>
+<dataEntry label="globals/MyPickerGenericStorage" offset="5581" parentId="globals" symbolId="MyPickerGenericStorage" type="class"/>
+<dataEntry label="globals/PickerGenericPressure" offset="5628" parentId="globals" symbolId="PickerGenericPressure" type="class"/>
+<dataEntry label="globals/PickerGenericOnOff" offset="5683" parentId="globals" symbolId="PickerGenericOnOff" type="class"/>
+<dataEntry label="globals/MyViewGeneral" offset="5738" parentId="globals" symbolId="MyViewGeneral" type="class"/>
+<dataEntry label="globals/MyPickerGenericOnOffDelegate" offset="5817" parentId="globals" symbolId="MyPickerGenericOnOffDelegate" type="class"/>
+<dataEntry label="globals/PickerFactoryNumber" offset="5896" parentId="globals" symbolId="PickerFactoryNumber" type="class"/>
+<dataEntry label="globals/MyView" offset="6023" parentId="globals" symbolId="MyView" type="class"/>
+<dataEntry label="globals/MyViewGlobalDelegate" offset="6150" parentId="globals" symbolId="MyViewGlobalDelegate" type="class"/>
+<dataEntry label="globals/MyKalmanFilter" offset="6221" parentId="globals" symbolId="MyKalmanFilter" type="class"/>
+<dataEntry label="globals/MyViewGlobal" offset="6364" parentId="globals" symbolId="MyViewGlobal" type="class"/>
+<dataEntry label="globals/MyMenuGenericConfirm" offset="6483" parentId="globals" symbolId="MyMenuGenericConfirm" type="class"/>
+<dataEntry label="globals/MyPickerAltimeterCorrectionRelative" offset="6530" parentId="globals" symbolId="MyPickerAltimeterCorrectionRelative" type="class"/>
+<dataEntry label="globals/MyViewHeader" offset="6577" parentId="globals" symbolId="MyViewHeader" type="class"/>
+<dataEntry label="globals/MyPickerGenericElevation" offset="6688" parentId="globals" symbolId="MyPickerGenericElevation" type="class"/>
+<dataEntry label="globals/MyPickerGenericOnOff" offset="6735" parentId="globals" symbolId="MyPickerGenericOnOff" type="class"/>
+<dataEntry label="globals/MyPickerGenericSettings" offset="6782" parentId="globals" symbolId="MyPickerGenericSettings" type="class"/>
+<dataEntry label="globals/MyViewLog" offset="6829" parentId="globals" symbolId="MyViewLog" type="class"/>
+<dataEntry label="globals/MyDrawableGlobal" offset="6988" parentId="globals" symbolId="MyDrawableGlobal" type="class"/>
+<dataEntry label="globals/MyPickerGenericElevationDelegate" offset="7139" parentId="globals" symbolId="MyPickerGenericElevationDelegate" type="class"/>
+<dataEntry label="globals/MyViewGeneralDelegate" offset="7218" parentId="globals" symbolId="MyViewGeneralDelegate" type="class"/>
+<dataEntry label="globals/MyPickerGenericPressure" offset="7281" parentId="globals" symbolId="MyPickerGenericPressure" type="class"/>
+<dataEntry label="globals/MyDrawableHeader" offset="7328" parentId="globals" symbolId="MyDrawableHeader" type="class"/>
+<dataEntry label="globals/MyMenuGenericDelegate" offset="7447" parentId="globals" symbolId="MyMenuGenericDelegate" type="class"/>
+<dataEntry label="globals/MySettings" offset="7510" parentId="globals" symbolId="MySettings" type="class"/>
+<dataEntry label="globals/MyMenuGeneric" offset="8333" parentId="globals" symbolId="MyMenuGeneric" type="class"/>
+<dataEntry label="globals/MyPickerGenericSettingsDelegate" offset="8380" parentId="globals" symbolId="MyPickerGenericSettingsDelegate" type="class"/>
+<dataEntry label="globals/MyPickerGenericSpeedDelegate" offset="8459" parentId="globals" symbolId="MyPickerGenericSpeedDelegate" type="class"/>
+<dataEntry label="globals/MyViewLogDelegate" offset="8538" parentId="globals" symbolId="MyViewLogDelegate" type="class"/>
+<dataEntry label="globals/MyViewVariometerDelegate" offset="8617" parentId="globals" symbolId="MyViewVariometerDelegate" type="class"/>
 </dataEntryOffsetMappings>
 <functions>
 <functionEntry accessMode="public" endPc="268436575" name="initialize" parent="MyPickerGenericStorage" startPc="268435456">

@@ -70,7 +70,7 @@ class MyPickerGenericSettings extends Ui.Picker {
       else if(_item == :itemSmoothing) {
         var iVariometerSmoothing = $.oMySettings.loadVariometerSmoothing();
         $.oMySettings.load();  // ... reload potentially modified settings
-        var asValues = [Ui.loadResource(Rez.Strings.valueVariometerSmoothingLow),Ui.loadResource(Rez.Strings.valueVariometerSmoothingMedium),Ui.loadResource(Rez.Strings.valueVariometerSmoothingHigh),Ui.loadResource(Rez.Strings.valueVariometerSmoothingExtreme)];
+        var asValues = [Ui.loadResource(Rez.Strings.valueVariometerSmoothingLow),Ui.loadResource(Rez.Strings.valueVariometerSmoothingMedium),Ui.loadResource(Rez.Strings.valueVariometerSmoothingHigh),Ui.loadResource(Rez.Strings.valueVariometerSmoothingUltra)];
         var oFactory = new PickerFactoryDictionary([0, 1, 2, 3], asValues, {:font => Gfx.FONT_TINY});
         Picker.initialize({
             :title => new Ui.Text({
