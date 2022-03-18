@@ -37,7 +37,6 @@ class MyKalmanFilter {
   // CONSTANTS
   //
 
-  private const ALTITUDE_VARIANCE = 0.0225; //Setting standard deviation to 0.15m
   private const ACCELERATION_VARIANCE = 0.36; //Value 0.36 taken from Arduino-vario, when no accelerometer present (as of now, because gyro data isn't accessible, the watch accelerometer can't be used)
   
 
@@ -65,17 +64,17 @@ class MyKalmanFilter {
   //
 
   function init(_fStartP as Float, _fStartA as Float, _fTimestamp as Number) as Void {
-    fPosition = _fStartP;
-    fVelocity = 0;
-    fAcceleration = _fStartA;
-    fTimestamp = _fTimestamp;
+    self.fPosition = _fStartP;
+    self.fVelocity = 0;
+    self.fAcceleration = _fStartA;
+    self.fTimestamp = _fTimestamp;
 
-    p11 = 0;
-    p12 = 0;
-    p21 = 0;
-    p22 = 0;
+    self.p11 = 0;
+    self.p12 = 0;
+    self.p21 = 0;
+    self.p22 = 0;
 
-    bFilterReady = true;
+    self.bFilterReady = true;
   }
 
   function update(_fPosition as Float, _fAcceleration as Float, _fTimestamp as Number) as Void {
@@ -83,40 +82,43 @@ class MyKalmanFilter {
     // Delta time
     var deltaTime as Number = _fTimestamp - fTimestamp;
     var dt as Float = deltaTime.toFloat();
-    fTimestamp = _fTimestamp;
+    self.fTimestamp = _fTimestamp;
+
+    // Variance
+    var fAltitudeVariance = $.oMySettings.fVariometerSmoothing * $.oMySettings.fVariometerSmoothing;
 
     //Prediction
 
     //values
-    fAcceleration = _fAcceleration;
+    self.fAcceleration = _fAcceleration;
     var dtPower as Float = dt * dt;
-    fPosition += dt * fVelocity + dtPower * fAcceleration/2;
-    fVelocity += dt * fAcceleration;
+    self.fPosition += dt * self.fVelocity + dtPower * self.fAcceleration/2;
+    self.fVelocity += dt * self.fAcceleration;
 
     //covariance
     var inc as Float;
     dtPower *= dt;
-    inc = dt * p22 + dtPower * ACCELERATION_VARIANCE/2;
+    inc = dt * self.p22 + dtPower * self.ACCELERATION_VARIANCE/2;
     dtPower *= dt;
-    p11 += dt * (p12 + p21 + inc) - (dtPower * ACCELERATION_VARIANCE/4);
-    p21 += inc;
-    p12 += inc;
-    p22 += dt * dt * ACCELERATION_VARIANCE;
+    self.p11 += dt * (self.p12 + self.p21 + inc) - (dtPower * self.ACCELERATION_VARIANCE/4);
+    self.p21 += inc;
+    self.p12 += inc;
+    self.p22 += dt * dt * self.ACCELERATION_VARIANCE;
 
     //Gaussian Product
 
     //kalman gain
-    var s as Float = p11 + ALTITUDE_VARIANCE;
-    var k11 as Float = p11 / s;
-    var k12 as Float = p12 / s;
-    var y as Float = _fPosition - fPosition;
+    var s as Float = self.p11 + fAltitudeVariance;
+    var k11 as Float = self.p11 / s;
+    var k12 as Float = self.p12 / s;
+    var y as Float = _fPosition - self.fPosition;
 
     //update
-    fPosition += k11 * y;
-    fVelocity += k12 * y;
-    p22 -= k12 * p21;
-    p12 -= k12 * p11;
-    p21 -= k11 * p21;
-    p11 -= k11 * p11;
+    self.fPosition += k11 * y;
+    self.fVelocity += k12 * y;
+    self.p22 -= k12 * self.p21;
+    self.p12 -= k12 * self.p11;
+    self.p21 -= k11 * self.p21;
+    self.p11 -= k11 * self.p11;
   }
 }

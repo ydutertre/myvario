@@ -20,9 +20,14 @@
   <string id="titleSettingsVariometer">Variometer</string>
   <string id="titleVariometerRange">Range</string>
   <string id="titleVariometerAutoThermal">Auto Thermal</string>
+  <string id="titleVariometerSmoothing">Smoothing</string>
   <string id="valueVariometerRangeSmall">3.0m/s / 600ft/min</string>
   <string id="valueVariometerRangeMedium">6.0m/s / 1200ft/min</string>
   <string id="valueVariometerRangeLarge">9.0m/s / 1800ft/min</string>
+  <string id="valueVariometerSmoothingLow">Low</string>
+  <string id="valueVariometerSmoothingMedium">Medium</string>
+  <string id="valueVariometerSmoothingHigh">High</string>
+  <string id="valueVariometerSmoothingExtreme">Extreme</string>
   <string id="titleVariometerPlotRange">Plot Range</string>
   <!-- Menu (settings:sounds) -->
   <string id="titleSettingsSounds">Sounds</string>

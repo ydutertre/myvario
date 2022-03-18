@@ -156,8 +156,11 @@ The application allows you to specify the following settings:
   - Auto Thermal:
     whether the app will switch to Varioplot view automatically when circling is
     detected, and switch back once circling is no longer detected
+  - Smoothing:
+    the amount of smoothing to apply to the variometer reading (determines the standard
+    deviation of altitude applied to the Kalman Filter: 0.2, 0.5, 0.7, or 1.0)
   - Plot Range:
-   the time range (in minutes) for plotting the variometer-vs-location history
+    the time range (in minutes) for plotting the variometer-vs-location history
 
 * Sounds
   - Variometer Tones:
@@ -205,10 +208,18 @@ About Data Filtering
 My Vario uses a Kalman Filter for Altitude and Vertical Speed. The filter
 was derived from implementations in the SkyDrop vario and Arduino Open Vario.
 
-It currently doesn't use data from the accelerometer, as gyroscope data is not
-yet available from the Garmin SDK.
+Other values are not filtered.
+
+The filter currently doesn't use data from the accelerometer, as gyroscope data 
+is not yet available from the Garmin SDK. I am planning on adding this for System 5
+devices, once SDK 4.1.0 comes out of Beta.
 
 In general, filtered values are used.
+
+Smoothing relies on the standard deviation of the Altitude (which depends on the
+barometric sensor). This can be changed via the Variometer Smoothing setting.
+Higher values of smoothing induce more lag - however, this seems to be less lag
+for better results than the origina simple moving average of GliderSK.
 
 However, the following exceptions apply:
 - the Varioplot View always displays instantaneous data

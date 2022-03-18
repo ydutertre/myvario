@@ -67,6 +67,22 @@ class MyPickerGenericSettings extends Ui.Picker {
             :defaults => [oFactory.indexOfKey(iVariometerRange)]});
       }
 
+      else if(_item == :itemSmoothing) {
+        var iVariometerSmoothing = $.oMySettings.loadVariometerSmoothing();
+        $.oMySettings.load();  // ... reload potentially modified settings
+        var asValues = [Ui.loadResource(Rez.Strings.valueVariometerSmoothingLow),Ui.loadResource(Rez.Strings.valueVariometerSmoothingMedium),Ui.loadResource(Rez.Strings.valueVariometerSmoothingHigh),Ui.loadResource(Rez.Strings.valueVariometerSmoothingExtreme)];
+        var oFactory = new PickerFactoryDictionary([0, 1, 2, 3], asValues, {:font => Gfx.FONT_TINY});
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => Ui.loadResource(Rez.Strings.titleVariometerRange) as String,
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
+                :color => Gfx.COLOR_BLUE}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iVariometerSmoothing)]});
+      }
+
       else if(_item == :itemPlotRange) {
         var iVariometerPlotRange = $.oMySettings.loadVariometerPlotRange();
         var oFactory = new PickerFactoryNumber(1, 5, null);
@@ -235,6 +251,9 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
 
       if(self.item == :itemRange) {
         $.oMySettings.saveVariometerRange(_amValues[0] as Number);
+      }
+      else if(self.item == :itemSmoothing) {
+        $.oMySettings.saveVariometerSmoothing(_amValues[0] as Number);
       }
       else if(self.item == :itemPlotRange) {
         $.oMySettings.saveVariometerPlotRange(_amValues[0] as Number);

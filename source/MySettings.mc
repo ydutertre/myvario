@@ -53,6 +53,7 @@ class MySettings {
   // ... variometer
   public var iVariometerRange as Number = 0;
   public var bVariometerAutoThermal as Boolean = true;
+  public var iVariometerSmoothing as Number = 1;
   public var iVariometerPlotRange as Number = 2; // A 2 minutes track should be enough to capture around 5 circles according to average thermalling times https://xcmag.com/paragliding-techniques-paramotoring-skills/thermalling-how-tight-should-you-turn/
   public var iVariometerPlotZoom as Number = 9; // Setting zoom level for paragliders to 1m/pixel should be enough to keep track of both thermalling circles but also drift
   // ... sounds
@@ -92,7 +93,7 @@ class MySettings {
   public var fVariometerRange as Float = 3.0f;
   public var fVariometerPlotZoom as Float = 0.0308666666667f; //default value for paraglider
   public var fMinimumClimb as Float = 0.2; //default value for paraglider
-
+  public var fVariometerSmoothing as Float = 0.5; //Standard deviation of altitude measurement at fixed altitude
 
   //
   // FUNCTIONS: self
@@ -107,6 +108,7 @@ class MySettings {
     // ... variometer
     self.setVariometerRange(self.loadVariometerRange());
     self.setVariometerAutoThermal(self.loadVariometerAutoThermal());
+    self.setVariometerSmoothing(self.loadVariometerSmoothing());
     self.setVariometerPlotRange(self.loadVariometerPlotRange());
     self.setVariometerPlotZoom(self.loadVariometerPlotZoom());
     // ... sounds and vibration
@@ -227,6 +229,29 @@ class MySettings {
   }
   function setVariometerAutoThermal(_bValue as Boolean) as Void {
     self.bVariometerAutoThermal = _bValue;
+  }
+
+  function loadVariometerSmoothing() as Number { 
+    var iValue = App.Properties.getValue("userVariometerSmoothing") as Number?;
+    return iValue != null ? iValue : 1;
+  }
+  function saveVariometerSmoothing(_iValue as Number) as Void { 
+    App.Properties.setValue("userVariometerSmoothing", _iValue as App.PropertyValueType);
+  }
+  function setVariometerSmoothing(_iValue as Number) as Void {
+    if(_iValue > 3) {
+      _iValue = 3;
+    }
+    else if(_iValue < 0) {
+      _iValue = 0;
+    }
+    self.iMinimumClimb = _iValue;
+    switch(self.iMinimumClimb) {
+    case 0: self.fVariometerSmoothing = 0.2f; break;
+    case 1: self.fVariometerSmoothing = 0.5f; break;
+    case 2: self.fVariometerSmoothing = 0.7f; break;
+    case 3: self.fVariometerSmoothing = 1.0f; break;
+    }
   }
 
   function loadVariometerPlotZoom() as Number {
