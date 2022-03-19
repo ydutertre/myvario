@@ -366,7 +366,7 @@ class MyApp extends App.AppBase {
 
     // Start tones timer
     // NOTE: For variometer tones, we need a 10Hz <-> 100ms resolution;
-    if(self.iTones) {
+    if(self.iTones || self.iVibrations) {
       self.iTonesTick = 1000;
       self.iTonesLastTick = 0;
       self.oTonesTimer = new Timer.Timer();
