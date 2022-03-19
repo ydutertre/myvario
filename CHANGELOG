@@ -1,3 +1,6 @@
+* 1.13
+  - Fixed bug where vibrations wouldn't be triggered if tones were off
+
 * 1.12
   - Changed activity name to My Vario
 
