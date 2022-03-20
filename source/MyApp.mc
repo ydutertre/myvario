@@ -401,7 +401,7 @@ class MyApp extends App.AppBase {
         return;
       }
       else if(fValue <= $.oMySettings.fMinimumSink && !self.bSinkToneTriggered) {
-        var toneProfile = [new Attn.ToneProfile(150, 2000)];
+        var toneProfile = [new Attn.ToneProfile(220, 2000)];
         Attn.playTone({:toneProfile=>toneProfile});
         self.bSinkToneTriggered = true;
       }
