@@ -60,6 +60,7 @@ class MySettings {
   public var bSoundsVariometerTones as Boolean = true;
   public var bVariometerVibrations as Boolean = true;
   public var iMinimumClimb as Number = 2; // Default value of 0.2m/s climb threshold before sounds and vibrations are triggered
+  public var iMinimumSink as Number = 1;
   // ... activity
   public var bActivityAutoStart as Boolean = true; //Auto-start recording after launch
   public var fActivityAutoSpeedStart as Float = 3.0f;
@@ -92,6 +93,7 @@ class MySettings {
   public var fVariometerRange as Float = 3.0f;
   public var fVariometerPlotZoom as Float = 0.0308666666667f; //default value for paraglider
   public var fMinimumClimb as Float = 0.2; //default value for paraglider
+  public var fMinimumSink as Float = 2.0;
   public var fVariometerSmoothing as Float = 0.5; //Standard deviation of altitude measurement at fixed altitude
 
   //
@@ -114,6 +116,7 @@ class MySettings {
     self.setSoundsVariometerTones(self.loadSoundsVariometerTones());
     self.setVariometerVibrations(self.loadVariometerVibrations());
     self.setMinimumClimb(self.loadMinimumClimb());
+    self.setMinimumSink(self.loadMinimumSink());
     // ... activity
     self.setActivityAutoStart(self.loadActivityAutoStart());
     self.setActivityAutoSpeedStart(self.loadActivityAutoSpeedStart());
@@ -218,7 +221,7 @@ class MySettings {
     self.iVariometerPlotRange = _iValue;
   }
 
-    function loadVariometerAutoThermal() as Boolean {
+  function loadVariometerAutoThermal() as Boolean {
     var bValue = App.Properties.getValue("userVariometerAutoThermal") as Boolean?;
     return bValue != null ? bValue : true;
   }
@@ -243,8 +246,8 @@ class MySettings {
     else if(_iValue < 0) {
       _iValue = 0;
     }
-    self.iMinimumClimb = _iValue;
-    switch(self.iMinimumClimb) {
+    self.iVariometerSmoothing = _iValue;
+    switch(self.iVariometerSmoothing) {
     case 0: self.fVariometerSmoothing = 0.2f; break;
     case 1: self.fVariometerSmoothing = 0.5f; break;
     case 2: self.fVariometerSmoothing = 0.7f; break;
@@ -327,6 +330,31 @@ class MySettings {
     case 3: self.fMinimumClimb = 0.3f; break;
     case 4: self.fMinimumClimb = 0.4f; break;
     case 5: self.fMinimumClimb = 0.5f; break;
+    }
+  }
+
+  function loadMinimumSink() as Number { 
+    var iValue = App.Properties.getValue("userMinimumSink") as Number?;
+    return iValue != null ? iValue : 1;
+  }
+  function saveMinimumSink(_iValue as Number) as Void {  // [m/s]
+    App.Properties.setValue("userMinimumSink", _iValue as App.PropertyValueType);
+  }
+  function setMinimumSink(_iValue as Number) as Void {
+    if(_iValue > 5) {
+      _iValue = 5;
+    }
+    else if(_iValue < 0) {
+      _iValue = 0;
+    }
+    self.iMinimumSink = _iValue;
+    switch(self.iMinimumSink) {
+    case 0: self.fMinimumSink = -1.0f; break;
+    case 1: self.fMinimumSink = -2.0f; break;
+    case 2: self.fMinimumSink = -3.0f; break;
+    case 3: self.fMinimumSink = -4.0f; break;
+    case 4: self.fMinimumSink = -6.0f; break;
+    case 5: self.fMinimumSink = -10.0f; break;
     }
   }
 

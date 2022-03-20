@@ -169,6 +169,9 @@ The application allows you to specify the following settings:
   - Min. Climb:
     the minimum vertical speed required to play variometer tones and/or
     vibrations
+  - Min. Sink:
+    the minimum sink speed required to play variometer sink tone (no vibration)
+    the tone will be triggered once, each time the sink is escaped and then entered again
 
 * Activity
   - Auto Start

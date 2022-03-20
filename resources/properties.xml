@@ -15,6 +15,7 @@
   <property id="userSoundsVariometerTones" type="boolean">true</property>
   <property id="userVariometerVibrations" type="boolean">true</property>
   <property id="userMinimumClimb" type="number">2</property> 
+  <property id="userMinimumSink" type="number">1</property> 
   <!-- ... activity -->
   <property id="userActivityAutoStart" type="boolean">true</property>
   <property id="userActivityAutoSpeedStart" type="float">3.0</property>

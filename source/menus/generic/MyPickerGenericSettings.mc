@@ -121,6 +121,28 @@ class MyPickerGenericSettings extends Ui.Picker {
             :pattern => [oFactory],
             :defaults => [oFactory.indexOfKey(iMinimumClimb)]});
       }
+      else if(_item == :itemMinimumSink) {
+        var iMinimumSink = $.oMySettings.loadMinimumSink();
+        $.oMySettings.load();  // ... reload potentially modified settings
+        var sFormat = $.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f ? "%.01f" : "%.0f";
+        var asValues =
+          [format("$1$\n$2$", [(-1.0f*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed]),
+            format("$1$\n$2$", [(-2.0f*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed]),
+            format("$1$\n$2$", [(-3.0f*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed]),
+            format("$1$\n$2$", [(-4.0f*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed]),
+            format("$1$\n$2$", [(-6.0f*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed]),
+            format("$1$\n$2$", [(-10.0f*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed])];
+        var oFactory = new PickerFactoryDictionary([0, 1, 2, 3, 4, 5], asValues, {:font => Gfx.FONT_TINY});
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => Ui.loadResource(Rez.Strings.titleMinimumSink) as String,
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
+                :color => Gfx.COLOR_BLUE}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iMinimumSink)]});
+      }
     }
     else if(_context == :contextGeneral) {
 
@@ -263,6 +285,9 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
     else if(self.context == :contextSettings) {
       if(self.item == :itemMinimumClimb) {
         $.oMySettings.saveMinimumClimb(_amValues[0] as Number);
+      }
+      else if(self.item == :itemMinimumSink) {
+        $.oMySettings.saveMinimumSink(_amValues[0] as Number);
       }
     }
     else if(self.context == :contextGeneral) {

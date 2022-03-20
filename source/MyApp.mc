@@ -121,6 +121,7 @@ class MyApp extends App.AppBase {
   // Tones
   private var iTones as Number = 0;
   private var iVibrations as Number =0;
+  private var bSinkToneTriggered as Boolean = false;
 
 
   //
@@ -398,6 +399,15 @@ class MyApp extends App.AppBase {
         }
         self.iTonesLastTick = self.iTonesTick;
         return;
+      }
+      else if(fValue <= $.oMySettings.fMinimumSink && !self.bSinkToneTriggered) {
+        var toneProfile = [new Attn.ToneProfile(150, 2000)];
+        Attn.playTone({:toneProfile=>toneProfile});
+        self.bSinkToneTriggered = true;
+      }
+      //Reset minimum sink tone if we get significantly above it
+      if(fValue >= $.oMySettings.fMinimumSink + 1.0f && self.bSinkToneTriggered) {
+        self.bSinkToneTriggered = false;
       }
     }
   }
