@@ -1,3 +1,6 @@
+* 1.3
+  - Added a sink tone along with a sink tone threshold parameter
+
 * 1.2
   - Added a proper tone, frequency, and vibration length curve (not user editable)
 
@@ -9,7 +12,7 @@
 
 * 1.11
   - Added a smoothing parameter for the Kalman filter
-  - Removed the Lap feature for leaner application
+  - Removed the GliderSK Lap feature for leaner application
 
 * 1.1
   - Switched from a simple moving average filter to Kalman filter implementation

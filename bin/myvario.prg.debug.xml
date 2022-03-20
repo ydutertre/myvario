@@ -3822,7 +3822,9 @@
 <entry arg="true" endPc="268503270" name="dc" stackId="1" startPc="268502926"/>
 <entry endPc="268506777" name="local_Rez_Fonts_fontLabel" stackId="4" startPc="268503283"/>
 <entry endPc="268506777" name="local_Rez_Fonts_fontStatus" stackId="2" startPc="268503283"/>
+<entry endPc="268506777" name="rez_cmp_local_custom_drawable_15554521224024396191" stackId="6" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_unitTopRight" stackId="15" startPc="268503283"/>
+<entry endPc="268506777" name="rez_cmp_local_custom_drawable_13096562348255559521" stackId="5" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_labelTopLeft" stackId="11" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_labelBottomRight" stackId="28" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_unitBottomRight" stackId="29" startPc="268503283"/>
@@ -3831,7 +3833,6 @@
 <entry endPc="268506777" name="rez_cmp_local_text_unitBottomLeft" stackId="26" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_valueActivityStatus" stackId="10" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_labelLeft" stackId="17" startPc="268503283"/>
-<entry endPc="268506777" name="rez_cmp_local_custom_drawable_19816848501829641126" stackId="6" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_labelRight" stackId="22" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_unitLeft" stackId="18" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_valueBottomRight" stackId="30" startPc="268503283"/>
@@ -3840,7 +3841,6 @@
 <entry endPc="268506777" name="rez_cmp_local_text_valueCenter" stackId="21" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_custom_drawable_drawContentBorders" stackId="7" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_valueRight" stackId="24" startPc="268503283"/>
-<entry endPc="268506777" name="rez_cmp_local_custom_drawable_13119074058776657022" stackId="5" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_valueTopLeft" stackId="13" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_text_valueTopRight" stackId="16" startPc="268503283"/>
 <entry endPc="268506777" name="rez_cmp_local_custom_drawable_drawFieldsBorders" stackId="8" startPc="268503283"/>
@@ -3855,7 +3855,7 @@
 <entry endPc="268507360" name="rez_cmp_local_text_valueFooter" stackId="7" startPc="268506791"/>
 <entry endPc="268507360" name="rez_cmp_local_text_valueActivityStatus" stackId="6" startPc="268506791"/>
 <entry endPc="268507360" name="rez_cmp_local_custom_drawable_drawContentBorders" stackId="4" startPc="268506791"/>
-<entry endPc="268507360" name="rez_cmp_local_custom_drawable_44454207510234868961" stackId="3" startPc="268506791"/>
+<entry endPc="268507360" name="rez_cmp_local_custom_drawable_22087191761882824611" stackId="3" startPc="268506791"/>
 <entry endPc="268507360" name="local_Rez_Fonts_fontStatus" stackId="2" startPc="268506791"/>
 <entry arg="true" endPc="268507361" name="dc" stackId="1" startPc="268506779"/>
 </localVars>
