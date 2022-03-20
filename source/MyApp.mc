@@ -377,23 +377,27 @@ class MyApp extends App.AppBase {
   function playTones() as Void {
     //Sys.println(format("DEBUG: MyApp.playTones() @ $1$", [self.iTonesTick]));
     // Variometer
-    // ALGO: Tones "tick" is 100ms; we work between 200ms (2 ticks) and 2000ms (20 ticks) pediod,
-    //       depending on the ratio between the ascent speed and the variometer range.
+    // ALGO: Tones "tick" is 100ms; I try to do a curve that is similar to the Skybean vario
+    // Medium curve in terms of tone length, pause, and one frequency.
+    // Tones need to be more frequent than in GliderSK even at low climb rates to be able to
+    // properly map thermals (especially broken up thermals) in a slow and sensitive paraglider
     if(self.iTones || self.iVibrations) {
       var fValue = $.oMyProcessing.fVariometer_filtered;
-      if(fValue >= $.oMySettings.fMinimumClimb) {
-        if(self.iTonesTick-self.iTonesLastTick >= 20.0f-18.0f*fValue/$.oMySettings.fVariometerRange) {
-          //Sys.println(format("DEBUG: playTone: variometer @ $1$", [self.iTonesTick]));
-          if(self.iTones) {
-            Attn.playTone(Attn.TONE_KEY);
-          }
-          if(self.iVibrations) {
-            var vibeData = [new Attn.VibeProfile(100, 75)];
-            Attn.vibrate(vibeData);
-          }
-          self.iTonesLastTick = self.iTonesTick;
-          return;
+      var iDeltaTick = (self.iTonesTick-self.iTonesLastTick) > 8 ? 8 : self.iTonesTick-self.iTonesLastTick;
+      if(fValue >= $.oMySettings.fMinimumClimb && iDeltaTick >= 8.0f - fValue) {
+        //Sys.println(format("DEBUG: playTone: variometer @ $1$", [self.iTonesTick]));
+        var iToneLength = (iDeltaTick > 2) ? iDeltaTick * 50 - 100: 50;
+        if(self.iTones) {
+          var iToneFrequency = 1200 - iToneLength * 2 - 200; 
+          var toneProfile = [new Attn.ToneProfile(iToneFrequency, iToneLength)]; //contrary to Garmin API Doc, first parameter seems to be frequency, and second length
+          Attn.playTone({:toneProfile=>toneProfile});
         }
+        if(self.iVibrations) {
+          var vibeData = [new Attn.VibeProfile(100, (iToneLength > 200) ? iToneLength / 2 : 50)]; //Keeping vibration length shorter than tone for battery and wrist!
+          Attn.vibrate(vibeData);
+        }
+        self.iTonesLastTick = self.iTonesTick;
+        return;
       }
     }
   }

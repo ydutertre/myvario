@@ -1,3 +1,6 @@
+* 1.2
+  - Added a proper tone, frequency, and vibration length curve (not user editable)
+
 * 1.13
   - Fixed bug where vibrations wouldn't be triggered if tones were off
 
