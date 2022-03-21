@@ -389,7 +389,7 @@ class MyApp extends App.AppBase {
         //Sys.println(format("DEBUG: playTone: variometer @ $1$", [self.iTonesTick]));
         var iToneLength = (iDeltaTick > 2) ? iDeltaTick * 50 - 100: 50;
         if(self.iTones) {
-          var iToneFrequency = 1200 - iToneLength * 2 - 200; 
+          var iToneFrequency = (400 + fValue * 100) > 1100 ? 1100 : (400 + fValue * 100).toNumber();
           var toneProfile = [new Attn.ToneProfile(iToneFrequency, iToneLength)]; //contrary to Garmin API Doc, first parameter seems to be frequency, and second length
           Attn.playTone({:toneProfile=>toneProfile});
         }
