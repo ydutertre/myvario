@@ -127,6 +127,21 @@ For the entire recording session, Garmin Connect will also show the following de
  - Maximum Altitude: value and time
 
 
+!!!! ABOUT ALTITUDE RECORDING !!!!
+
+Note that Garmin doesn't allow applications to overwrite default FIT fields, and as such
+there will be two Altitude fields in the generated activity log: the Garmin "official"
+altitude, and our (better) barometric altitude field. By default, Garmin watches
+attribute pressure changes to either weather or altitude changes. This can cause the
+official altitude field to be wildly incorrect compared to our barometric altitude field.
+
+If exporting your log to gpx format and uploading to Ayvri, the Garmin altitude field will
+be used (unfortunately), and this can lead to some funky issues. It is thus better to set
+the altimeter to Altimeter only in the watch settings before using the application.
+
+This can be done in Settings -> Sensors & Accessories -> Altimeter -> Sensor Mode ->
+Altimeter Only.
+
 Settings
 --------
 
