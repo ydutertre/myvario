@@ -6,7 +6,7 @@
 ## Overview
 
 My Vario is a fork of the excellent Glider SK - shortname for Glider Swiss
-Knife. It has been modified and simplified for my needs as a paraglider pilot.
+Knife. It has been modified and simplified free flight.
 Features:
  - a Global view, displaying all flight data in a single pane: altitude,
    ground and vertical speeds, finesse, heading, wind direction and speed
