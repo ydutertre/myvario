@@ -34,14 +34,14 @@
 
 * 1.0:
   Changes from GliderSK:
-  - Removed Safety features and tones (Different dynamic with paragliding)
+  - Removed Safety features and tones (App should NOT be used for safety)
   - Added vibration Vario for quiet flying
   - Added computation of wind direction speed
   - Changed general view to have wind direction and speed (acceleration and rate of turn removed)
   - Restricted views to General -> Vario -> Vario Plot/Thermal Assistant -> Log (removed other views)
   - Log view is skipped while the activity is recording (e.g. no need to check logs while in flight!)
   - Added auto-switch to Vario Plot when circling, and auto-switch back to previous view when no longer circling
-  - Modified some default settings for paragliding use-case
+  - Modified some default settings for free flight use-case
   - Added additional vario plot ranges (0.5m/px and 0.25m/px)
   - Added a Minimum Climb setting for vario
   - Removed AutoSpeedStop / Renamed setting to Auto Start (need to stop manually - this is to avoid issues where glider appears to have null ground speed, but still flying)
