@@ -85,7 +85,7 @@ class MyPickerGenericSettings extends Ui.Picker {
 
       else if(_item == :itemPlotRange) {
         var iVariometerPlotRange = $.oMySettings.loadVariometerPlotRange();
-        var oFactory = new PickerFactoryNumber(1, 5, null);
+        var oFactory = new PickerFactoryNumber(1, 3, null);
         Picker.initialize({
             :title => new Ui.Text({
                 :text => format("$1$ [min]", [Ui.loadResource(Rez.Strings.titleVariometerPlotRange)]),

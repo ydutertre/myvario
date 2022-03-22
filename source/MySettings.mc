@@ -212,8 +212,8 @@ class MySettings {
     App.Properties.setValue("userVariometerPlotRange", _iValue as App.PropertyValueType);
   }
   function setVariometerPlotRange(_iValue as Number) as Void {
-    if(_iValue > 5) {
-      _iValue = 5;
+    if(_iValue > 3) {
+      _iValue = 3;
     }
     else if(_iValue < 1) {
       _iValue = 1;

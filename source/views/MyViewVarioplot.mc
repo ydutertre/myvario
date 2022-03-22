@@ -269,10 +269,9 @@ class MyViewVarioplot extends MyViewHeader {
             if(iCurrentX != iLastX or iCurrentY != iLastY or iCurrentColor != iLastColor) {  // ... better a few comparison than drawLine() for nothing
               _oDC.setColor(iCurrentColor, Gfx.COLOR_TRANSPARENT);
               _oDC.drawLine(iLastX, iLastY, iCurrentX, iCurrentY);
-            }
-            if(i == 1) {
-              _oDC.setColor(iCurrentColor, Gfx.COLOR_TRANSPARENT);
-              _oDC.fillCircle(iCurrentX, iCurrentY, 5);
+              if(i == 1) {
+                _oDC.fillCircle(iCurrentX, iCurrentY, 5);
+              }
             }
             iLastColor = iCurrentColor;
           }

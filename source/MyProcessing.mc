@@ -54,7 +54,7 @@ class MyProcessing {
   //
 
   // Plot buffer
-  public const PLOTBUFFER_SIZE = 300;  // 5 minutes = 300 seconds
+  public const PLOTBUFFER_SIZE = 180;  // 3 minutes = 180 seconds
   // Wind estimation sectors
   public const DIRECTION_NUM_OF_SECTORS = 8;
 
