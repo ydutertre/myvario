@@ -37,8 +37,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="1" lineNum="100" parent="globals/MyPickerGenericStorage" pc="268436303" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="1" lineNum="104" parent="globals/MyPickerGenericStorage" pc="268436387" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="1" lineNum="105" parent="globals/MyPickerGenericStorage" pc="268436394" symbol="initialize"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="2" lineNum="42" parent="globals/MyPickerGenericStorage" pc="268508338" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="2" lineNum="42" parent="globals/MyPickerGenericStorage" pc="268508338" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="2" lineNum="42" parent="globals/MyPickerGenericStorage" pc="268508333" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="2" lineNum="42" parent="globals/MyPickerGenericStorage" pc="268508333" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="3" lineNum="132" parent="globals/MyPickerGenericStorageDelegate" pc="268436576" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="3" lineNum="133" parent="globals/MyPickerGenericStorageDelegate" pc="268436580" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="3" lineNum="134" parent="globals/MyPickerGenericStorageDelegate" pc="268436598" symbol="initialize"/>
@@ -64,20 +64,20 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="5" lineNum="175" parent="globals/MyPickerGenericStorageDelegate" pc="268437176" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="5" lineNum="177" parent="globals/MyPickerGenericStorageDelegate" pc="268437180" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="5" lineNum="178" parent="globals/MyPickerGenericStorageDelegate" pc="268437208" symbol="onCancel"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="6" lineNum="118" parent="globals/MyPickerGenericStorageDelegate" pc="268508105" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="6" lineNum="118" parent="globals/MyPickerGenericStorageDelegate" pc="268508105" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="105" parent="globals/MyViewVariometer" pc="268437212" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="106" parent="globals/MyViewVariometer" pc="268437216" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="107" parent="globals/MyViewVariometer" pc="268437229" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="108" parent="globals/MyViewVariometer" pc="268437242" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="109" parent="globals/MyViewVariometer" pc="268437255" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="110" parent="globals/MyViewVariometer" pc="268437268" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="111" parent="globals/MyViewVariometer" pc="268437281" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="112" parent="globals/MyViewVariometer" pc="268437294" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="113" parent="globals/MyViewVariometer" pc="268437307" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="114" parent="globals/MyViewVariometer" pc="268437320" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="115" parent="globals/MyViewVariometer" pc="268437333" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="116" parent="globals/MyViewVariometer" pc="268437346" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="6" lineNum="118" parent="globals/MyPickerGenericStorageDelegate" pc="268508100" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="6" lineNum="118" parent="globals/MyPickerGenericStorageDelegate" pc="268508100" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="75" parent="globals/MyViewVariometer" pc="268437212" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="76" parent="globals/MyViewVariometer" pc="268437216" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="77" parent="globals/MyViewVariometer" pc="268437229" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="78" parent="globals/MyViewVariometer" pc="268437242" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="79" parent="globals/MyViewVariometer" pc="268437255" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="80" parent="globals/MyViewVariometer" pc="268437268" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="81" parent="globals/MyViewVariometer" pc="268437281" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="82" parent="globals/MyViewVariometer" pc="268437294" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="83" parent="globals/MyViewVariometer" pc="268437307" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="84" parent="globals/MyViewVariometer" pc="268437320" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="85" parent="globals/MyViewVariometer" pc="268437333" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="86" parent="globals/MyViewVariometer" pc="268437346" symbol="initLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="9" lineNum="124" parent="globals/MyViewVariometer" pc="268437360" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="9" lineNum="126" parent="globals/MyViewVariometer" pc="268437364" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="9" lineNum="128" parent="globals/MyViewVariometer" pc="268437384" symbol="initialize"/>
@@ -162,8 +162,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="14" lineNum="277" parent="globals/MyViewVariometer" pc="268439820" symbol="drawLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="14" lineNum="278" parent="globals/MyViewVariometer" pc="268439870" symbol="drawLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="14" lineNum="279" parent="globals/MyViewVariometer" pc="268439942" symbol="drawLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="15" lineNum="45" parent="globals/MyViewVariometer" pc="268508300" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="15" lineNum="45" parent="globals/MyViewVariometer" pc="268508300" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="15" lineNum="45" parent="globals/MyViewVariometer" pc="268508295" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="15" lineNum="45" parent="globals/MyViewVariometer" pc="268508295" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="16" lineNum="285" parent="globals/MyViewVariometerDelegate" pc="268440013" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="16" lineNum="286" parent="globals/MyViewVariometerDelegate" pc="268440017" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="17" lineNum="289" parent="globals/MyViewVariometerDelegate" pc="268440036" symbol="onPreviousPage"/>
@@ -172,8 +172,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="18" lineNum="297" parent="globals/MyViewVariometerDelegate" pc="268440116" symbol="onNextPage"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="18" lineNum="299" parent="globals/MyViewVariometerDelegate" pc="268440120" symbol="onNextPage"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="18" lineNum="302" parent="globals/MyViewVariometerDelegate" pc="268440192" symbol="onNextPage"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="19" lineNum="283" parent="globals/MyViewVariometerDelegate" pc="268509022" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="19" lineNum="283" parent="globals/MyViewVariometerDelegate" pc="268509022" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="19" lineNum="283" parent="globals/MyViewVariometerDelegate" pc="268509017" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="19" lineNum="283" parent="globals/MyViewVariometerDelegate" pc="268509017" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericSpeed.mc" id="21" lineNum="30" parent="globals/PickerGenericSpeed" pc="268440196" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericSpeed.mc" id="21" lineNum="33" parent="globals/PickerGenericSpeed" pc="268440200" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericSpeed.mc" id="21" lineNum="34" parent="globals/PickerGenericSpeed" pc="268440219" symbol="initialize"/>
@@ -249,8 +249,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="26" lineNum="82" parent="globals/MyViewGlobal" pc="268441823" symbol="onLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="26" lineNum="83" parent="globals/MyViewGlobal" pc="268441853" symbol="onLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="26" lineNum="84" parent="globals/MyViewGlobal" pc="268441883" symbol="onLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="27" lineNum="40" parent="globals/MyViewGlobal" pc="268508539" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="27" lineNum="40" parent="globals/MyViewGlobal" pc="268508539" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="27" lineNum="40" parent="globals/MyViewGlobal" pc="268508534" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="27" lineNum="40" parent="globals/MyViewGlobal" pc="268508534" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="28" lineNum="91" parent="globals/MyViewGlobalDelegate" pc="268441914" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="28" lineNum="92" parent="globals/MyViewGlobalDelegate" pc="268441918" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="29" lineNum="95" parent="globals/MyViewGlobalDelegate" pc="268441937" symbol="onMenu"/>
@@ -265,8 +265,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="31" lineNum="120" parent="globals/MyViewGlobalDelegate" pc="268442235" symbol="onBack"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="31" lineNum="122" parent="globals/MyViewGlobalDelegate" pc="268442252" symbol="onBack"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="31" lineNum="124" parent="globals/MyViewGlobalDelegate" pc="268442258" symbol="onBack"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="32" lineNum="89" parent="globals/MyViewGlobalDelegate" pc="268508519" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="32" lineNum="89" parent="globals/MyViewGlobalDelegate" pc="268508519" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="32" lineNum="89" parent="globals/MyViewGlobalDelegate" pc="268508514" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGlobal.mc" id="32" lineNum="89" parent="globals/MyViewGlobalDelegate" pc="268508514" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyKalmanFilter.mc" id="34" lineNum="66" parent="globals/MyKalmanFilter" pc="268442262" symbol="init"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyKalmanFilter.mc" id="34" lineNum="67" parent="globals/MyKalmanFilter" pc="268442266" symbol="init"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyKalmanFilter.mc" id="34" lineNum="68" parent="globals/MyKalmanFilter" pc="268442276" symbol="init"/>
@@ -304,7 +304,7 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyKalmanFilter.mc" id="35" lineNum="120" parent="globals/MyKalmanFilter" pc="268442811" symbol="update"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyKalmanFilter.mc" id="35" lineNum="121" parent="globals/MyKalmanFilter" pc="268442836" symbol="update"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyKalmanFilter.mc" id="35" lineNum="122" parent="globals/MyKalmanFilter" pc="268442861" symbol="update"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyKalmanFilter.mc" id="36" lineNum="34" parent="globals/MyKalmanFilter" pc="268508538" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyKalmanFilter.mc" id="36" lineNum="34" parent="globals/MyKalmanFilter" pc="268508533" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyKalmanFilter.mc" id="37" lineNum="34" parent="globals/MyKalmanFilter" pc="268442887" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyProcessing.mc" id="39" lineNum="118" parent="globals/MyProcessing" pc="268442890" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyProcessing.mc" id="39" lineNum="121" parent="globals/MyProcessing" pc="268442894" symbol="initialize"/>
@@ -498,12 +498,12 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="53" lineNum="110" parent="globals/MyDrawableGlobal" pc="268447083" symbol="setColorAlertCenter"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="54" lineNum="113" parent="globals/MyDrawableGlobal" pc="268447094" symbol="setColorAlertRight"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="54" lineNum="114" parent="globals/MyDrawableGlobal" pc="268447098" symbol="setColorAlertRight"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="40" parent="globals/MyDrawableGlobal" pc="268508691" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="53" parent="globals/MyDrawableGlobal" pc="268508709" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="54" parent="globals/MyDrawableGlobal" pc="268508729" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="55" parent="globals/MyDrawableGlobal" pc="268508749" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="56" parent="globals/MyDrawableGlobal" pc="268508769" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="40" parent="globals/MyDrawableGlobal" pc="268508691" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="40" parent="globals/MyDrawableGlobal" pc="268508686" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="53" parent="globals/MyDrawableGlobal" pc="268508704" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="54" parent="globals/MyDrawableGlobal" pc="268508724" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="55" parent="globals/MyDrawableGlobal" pc="268508744" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="56" parent="globals/MyDrawableGlobal" pc="268508764" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableGlobal.mc" id="55" lineNum="40" parent="globals/MyDrawableGlobal" pc="268508686" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericElevation.mc" id="57" lineNum="30" parent="globals/PickerGenericElevation" pc="268447109" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericElevation.mc" id="57" lineNum="33" parent="globals/PickerGenericElevation" pc="268447113" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericElevation.mc" id="57" lineNum="34" parent="globals/PickerGenericElevation" pc="268447132" symbol="initialize"/>
@@ -745,8 +745,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="82" lineNum="135" parent="globals/MyMenuGeneric" pc="268455265" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="82" lineNum="137" parent="globals/MyMenuGeneric" pc="268455323" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="82" lineNum="138" parent="globals/MyMenuGeneric" pc="268455381" symbol="initialize"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="83" lineNum="39" parent="globals/MyMenuGeneric" pc="268508946" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="83" lineNum="39" parent="globals/MyMenuGeneric" pc="268508946" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="83" lineNum="39" parent="globals/MyMenuGeneric" pc="268508941" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="83" lineNum="39" parent="globals/MyMenuGeneric" pc="268508941" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="84" lineNum="159" parent="globals/MyMenuGenericDelegate" pc="268455446" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="84" lineNum="160" parent="globals/MyMenuGenericDelegate" pc="268455450" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="84" lineNum="161" parent="globals/MyMenuGenericDelegate" pc="268455468" symbol="initialize"/>
@@ -834,14 +834,14 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="85" lineNum="365" parent="globals/MyMenuGenericDelegate" pc="268458991" symbol="onMenuItem"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="85" lineNum="369" parent="globals/MyMenuGenericDelegate" pc="268459088" symbol="onMenuItem"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="85" lineNum="370" parent="globals/MyMenuGenericDelegate" pc="268459099" symbol="onMenuItem"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="86" lineNum="146" parent="globals/MyMenuGenericDelegate" pc="268508906" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="86" lineNum="146" parent="globals/MyMenuGenericDelegate" pc="268508906" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="86" lineNum="146" parent="globals/MyMenuGenericDelegate" pc="268508901" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGeneric.mc" id="86" lineNum="146" parent="globals/MyMenuGenericDelegate" pc="268508901" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="88" lineNum="46" parent="globals/MyPickerGenericElevation" pc="268459200" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="88" lineNum="47" parent="globals/MyPickerGenericElevation" pc="268459204" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="88" lineNum="49" parent="globals/MyPickerGenericElevation" pc="268459215" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="88" lineNum="50" parent="globals/MyPickerGenericElevation" pc="268459226" symbol="initialize"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="89" lineNum="40" parent="globals/MyPickerGenericElevation" pc="268508615" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="89" lineNum="40" parent="globals/MyPickerGenericElevation" pc="268508615" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="89" lineNum="40" parent="globals/MyPickerGenericElevation" pc="268508610" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="89" lineNum="40" parent="globals/MyPickerGenericElevation" pc="268508610" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="90" lineNum="74" parent="globals/MyPickerGenericElevationDelegate" pc="268459324" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="90" lineNum="75" parent="globals/MyPickerGenericElevationDelegate" pc="268459328" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="90" lineNum="76" parent="globals/MyPickerGenericElevationDelegate" pc="268459346" symbol="initialize"/>
@@ -857,16 +857,16 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="92" lineNum="93" parent="globals/MyPickerGenericElevationDelegate" pc="268459546" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="92" lineNum="95" parent="globals/MyPickerGenericElevationDelegate" pc="268459550" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="92" lineNum="96" parent="globals/MyPickerGenericElevationDelegate" pc="268459578" symbol="onCancel"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="93" lineNum="60" parent="globals/MyPickerGenericElevationDelegate" pc="268508790" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="93" lineNum="60" parent="globals/MyPickerGenericElevationDelegate" pc="268508790" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="93" lineNum="60" parent="globals/MyPickerGenericElevationDelegate" pc="268508785" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericElevation.mc" id="93" lineNum="60" parent="globals/MyPickerGenericElevationDelegate" pc="268508785" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericOnOff.mc" id="95" lineNum="30" parent="globals/PickerGenericOnOff" pc="268459582" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericOnOff.mc" id="95" lineNum="33" parent="globals/PickerGenericOnOff" pc="268459586" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericOnOff.mc" id="95" lineNum="36" parent="globals/PickerGenericOnOff" pc="268459602" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericOnOff.mc" id="95" lineNum="40" parent="globals/PickerGenericOnOff" pc="268459745" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericOnOff.mc" id="96" lineNum="56" parent="globals/PickerGenericOnOff" pc="268459959" symbol="getValue"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericOnOff.mc" id="96" lineNum="58" parent="globals/PickerGenericOnOff" pc="268459963" symbol="getValue"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericOnOff.mc" id="97" lineNum="24" parent="globals/PickerGenericOnOff" pc="268508376" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericOnOff.mc" id="97" lineNum="24" parent="globals/PickerGenericOnOff" pc="268508376" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericOnOff.mc" id="97" lineNum="24" parent="globals/PickerGenericOnOff" pc="268508371" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericOnOff.mc" id="97" lineNum="24" parent="globals/PickerGenericOnOff" pc="268508371" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="99" lineNum="64" parent="globals/MyDrawableHeader" pc="268459973" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="99" lineNum="65" parent="globals/MyDrawableHeader" pc="268459977" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="99" lineNum="68" parent="globals/MyDrawableHeader" pc="268460014" symbol="initialize"/>
@@ -914,10 +914,10 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="101" lineNum="136" parent="globals/MyDrawableHeader" pc="268461089" symbol="setColorBackground"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="102" lineNum="139" parent="globals/MyDrawableHeader" pc="268461100" symbol="setPositionAccuracy"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="102" lineNum="140" parent="globals/MyDrawableHeader" pc="268461104" symbol="setPositionAccuracy"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="103" lineNum="41" parent="globals/MyDrawableHeader" pc="268508847" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="103" lineNum="54" parent="globals/MyDrawableHeader" pc="268508865" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="103" lineNum="57" parent="globals/MyDrawableHeader" pc="268508885" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="103" lineNum="41" parent="globals/MyDrawableHeader" pc="268508847" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="103" lineNum="41" parent="globals/MyDrawableHeader" pc="268508842" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="103" lineNum="54" parent="globals/MyDrawableHeader" pc="268508860" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="103" lineNum="57" parent="globals/MyDrawableHeader" pc="268508880" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyDrawableHeader.mc" id="103" lineNum="41" parent="globals/MyDrawableHeader" pc="268508842" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="105" lineNum="47" parent="globals/MyPickerGenericSettings" pc="268461115" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="105" lineNum="48" parent="globals/MyPickerGenericSettings" pc="268461119" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="105" lineNum="50" parent="globals/MyPickerGenericSettings" pc="268461130" symbol="initialize"/>
@@ -978,8 +978,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="105" lineNum="230" parent="globals/MyPickerGenericSettings" pc="268467173" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="105" lineNum="231" parent="globals/MyPickerGenericSettings" pc="268467196" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="105" lineNum="235" parent="globals/MyPickerGenericSettings" pc="268467339" symbol="initialize"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="106" lineNum="41" parent="globals/MyPickerGenericSettings" pc="268508653" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="106" lineNum="41" parent="globals/MyPickerGenericSettings" pc="268508653" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="106" lineNum="41" parent="globals/MyPickerGenericSettings" pc="268508648" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="106" lineNum="41" parent="globals/MyPickerGenericSettings" pc="268508648" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="107" lineNum="265" parent="globals/MyPickerGenericSettingsDelegate" pc="268467592" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="107" lineNum="266" parent="globals/MyPickerGenericSettingsDelegate" pc="268467596" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="107" lineNum="267" parent="globals/MyPickerGenericSettingsDelegate" pc="268467614" symbol="initialize"/>
@@ -1017,8 +1017,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="109" lineNum="324" parent="globals/MyPickerGenericSettingsDelegate" pc="268468323" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="109" lineNum="326" parent="globals/MyPickerGenericSettingsDelegate" pc="268468327" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="109" lineNum="327" parent="globals/MyPickerGenericSettingsDelegate" pc="268468355" symbol="onCancel"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="110" lineNum="251" parent="globals/MyPickerGenericSettingsDelegate" pc="268508965" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="110" lineNum="251" parent="globals/MyPickerGenericSettingsDelegate" pc="268508965" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="110" lineNum="251" parent="globals/MyPickerGenericSettingsDelegate" pc="268508960" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSettings.mc" id="110" lineNum="251" parent="globals/MyPickerGenericSettingsDelegate" pc="268508960" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="112" lineNum="103" parent="globals/MySettings" pc="268468359" symbol="load"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="112" lineNum="106" parent="globals/MySettings" pc="268468363" symbol="load"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="112" lineNum="107" parent="globals/MySettings" pc="268468386" symbol="load"/>
@@ -1344,8 +1344,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="172" lineNum="550" parent="globals/MySettings" pc="268473267" symbol="setUnitTimeUTC"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="172" lineNum="551" parent="globals/MySettings" pc="268473272" symbol="setUnitTimeUTC"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="172" lineNum="554" parent="globals/MySettings" pc="268473288" symbol="setUnitTimeUTC"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="173" lineNum="68" parent="globals/MySettings" pc="268508925" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="173" lineNum="42" parent="globals/MySettings" pc="268508925" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="173" lineNum="68" parent="globals/MySettings" pc="268508920" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="173" lineNum="42" parent="globals/MySettings" pc="268508920" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MySettings.mc" id="174" lineNum="42" parent="globals/MySettings" pc="268473302" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericPressure.mc" id="176" lineNum="30" parent="globals/PickerGenericPressure" pc="268473305" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericPressure.mc" id="176" lineNum="33" parent="globals/PickerGenericPressure" pc="268473309" symbol="initialize"/>
@@ -1397,8 +1397,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericPressure.mc" id="177" lineNum="129" parent="globals/PickerGenericPressure" pc="268474628" symbol="getValue"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericPressure.mc" id="177" lineNum="132" parent="globals/PickerGenericPressure" pc="268474641" symbol="getValue"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericPressure.mc" id="177" lineNum="136" parent="globals/PickerGenericPressure" pc="268474651" symbol="getValue"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericPressure.mc" id="178" lineNum="24" parent="globals/PickerGenericPressure" pc="268508357" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericPressure.mc" id="178" lineNum="24" parent="globals/PickerGenericPressure" pc="268508357" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericPressure.mc" id="178" lineNum="24" parent="globals/PickerGenericPressure" pc="268508352" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerGenericPressure.mc" id="178" lineNum="24" parent="globals/PickerGenericPressure" pc="268508352" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="180" lineNum="49" parent="globals/MyMenuGenericConfirm" pc="268474655" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="180" lineNum="50" parent="globals/MyMenuGenericConfirm" pc="268474659" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="180" lineNum="51" parent="globals/MyMenuGenericConfirm" pc="268474677" symbol="initialize"/>
@@ -1412,8 +1412,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="180" lineNum="63" parent="globals/MyMenuGenericConfirm" pc="268475050" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="180" lineNum="64" parent="globals/MyMenuGenericConfirm" pc="268475061" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="180" lineNum="65" parent="globals/MyMenuGenericConfirm" pc="268475072" symbol="initialize"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="181" lineNum="43" parent="globals/MyMenuGenericConfirm" pc="268508558" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="181" lineNum="43" parent="globals/MyMenuGenericConfirm" pc="268508558" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="181" lineNum="43" parent="globals/MyMenuGenericConfirm" pc="268508553" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="181" lineNum="43" parent="globals/MyMenuGenericConfirm" pc="268508553" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="182" lineNum="87" parent="globals/MyMenuGenericConfirmDelegate" pc="268475167" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="182" lineNum="88" parent="globals/MyMenuGenericConfirmDelegate" pc="268475171" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyMenuGenericConfirm.mc" id="182" lineNum="89" parent="globals/MyMenuGenericConfirmDelegate" pc="268475189" symbol="initialize"/>
@@ -1446,8 +1446,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericPressure.mc" id="186" lineNum="50" parent="globals/MyPickerGenericPressure" pc="268475628" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericPressure.mc" id="186" lineNum="55" parent="globals/MyPickerGenericPressure" pc="268475722" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericPressure.mc" id="186" lineNum="56" parent="globals/MyPickerGenericPressure" pc="268475733" symbol="initialize"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericPressure.mc" id="187" lineNum="40" parent="globals/MyPickerGenericPressure" pc="268508828" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericPressure.mc" id="187" lineNum="40" parent="globals/MyPickerGenericPressure" pc="268508828" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericPressure.mc" id="187" lineNum="40" parent="globals/MyPickerGenericPressure" pc="268508823" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericPressure.mc" id="187" lineNum="40" parent="globals/MyPickerGenericPressure" pc="268508823" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericPressure.mc" id="188" lineNum="81" parent="globals/MyPickerGenericPressureDelegate" pc="268475834" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericPressure.mc" id="188" lineNum="82" parent="globals/MyPickerGenericPressureDelegate" pc="268475838" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericPressure.mc" id="188" lineNum="83" parent="globals/MyPickerGenericPressureDelegate" pc="268475856" symbol="initialize"/>
@@ -1604,22 +1604,22 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="208" lineNum="419" parent="globals/MyApp" pc="268479236" symbol="clearStorageLogs"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="208" lineNum="421" parent="globals/MyApp" pc="268479303" symbol="clearStorageLogs"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="208" lineNum="422" parent="globals/MyApp" pc="268479330" symbol="clearStorageLogs"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="209" lineNum="98" parent="globals/MyApp" pc="268508124" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="209" lineNum="98" parent="globals/MyApp" pc="268508124" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="209" lineNum="98" parent="globals/MyApp" pc="268508119" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="209" lineNum="98" parent="globals/MyApp" pc="268508119" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="210" lineNum="53" parent="globals" pc="268507396" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="210" lineNum="60" parent="globals" pc="268507426" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="210" lineNum="63" parent="globals" pc="268507456" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="210" lineNum="66" parent="globals" pc="268507486" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="210" lineNum="67" parent="globals" pc="268507516" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="111" parent="globals/MyViewVarioplot" pc="268479348" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="112" parent="globals/MyViewVarioplot" pc="268479352" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="113" parent="globals/MyViewVarioplot" pc="268479365" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="114" parent="globals/MyViewVarioplot" pc="268479378" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="115" parent="globals/MyViewVarioplot" pc="268479391" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="116" parent="globals/MyViewVarioplot" pc="268479404" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="117" parent="globals/MyViewVarioplot" pc="268479417" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="118" parent="globals/MyViewVarioplot" pc="268479430" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="119" parent="globals/MyViewVarioplot" pc="268479443" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="87" parent="globals/MyViewVarioplot" pc="268479348" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="88" parent="globals/MyViewVarioplot" pc="268479352" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="89" parent="globals/MyViewVarioplot" pc="268479365" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="90" parent="globals/MyViewVarioplot" pc="268479378" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="91" parent="globals/MyViewVarioplot" pc="268479391" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="92" parent="globals/MyViewVarioplot" pc="268479404" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="93" parent="globals/MyViewVarioplot" pc="268479417" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="94" parent="globals/MyViewVarioplot" pc="268479430" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="211" lineNum="95" parent="globals/MyViewVarioplot" pc="268479443" symbol="initLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="212" lineNum="127" parent="globals/MyViewVarioplot" pc="268479457" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="212" lineNum="128" parent="globals/MyViewVarioplot" pc="268479461" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="212" lineNum="131" parent="globals/MyViewVarioplot" pc="268479479" symbol="initialize"/>
@@ -1752,9 +1752,9 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="217" lineNum="358" parent="globals/MyViewVarioplot" pc="268482812" symbol="onHide"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="217" lineNum="362" parent="globals/MyViewVarioplot" pc="268482837" symbol="onHide"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="217" lineNum="363" parent="globals/MyViewVarioplot" pc="268482846" symbol="onHide"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="218" lineNum="49" parent="globals/MyViewVarioplot" pc="268508143" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="218" lineNum="79" parent="globals/MyViewVarioplot" pc="268508161" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="218" lineNum="49" parent="globals/MyViewVarioplot" pc="268508143" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="218" lineNum="49" parent="globals/MyViewVarioplot" pc="268508138" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="218" lineNum="79" parent="globals/MyViewVarioplot" pc="268508156" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="218" lineNum="49" parent="globals/MyViewVarioplot" pc="268508138" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="219" lineNum="370" parent="globals/MyViewVarioplotDelegate" pc="268482856" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="219" lineNum="371" parent="globals/MyViewVarioplotDelegate" pc="268482860" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="220" lineNum="374" parent="globals/MyViewVarioplotDelegate" pc="268482879" symbol="onMenu"/>
@@ -1824,14 +1824,14 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="224" lineNum="484" parent="globals/MyViewVarioplotDelegate" pc="268484503" symbol="onNextPage"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="224" lineNum="485" parent="globals/MyViewVarioplotDelegate" pc="268484526" symbol="onNextPage"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="224" lineNum="487" parent="globals/MyViewVarioplotDelegate" pc="268484545" symbol="onNextPage"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="225" lineNum="368" parent="globals/MyViewVarioplotDelegate" pc="268508280" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="225" lineNum="368" parent="globals/MyViewVarioplotDelegate" pc="268508280" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="225" lineNum="368" parent="globals/MyViewVarioplotDelegate" pc="268508275" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="225" lineNum="368" parent="globals/MyViewVarioplotDelegate" pc="268508275" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="227" lineNum="46" parent="globals/MyPickerGenericSpeed" pc="268484549" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="227" lineNum="47" parent="globals/MyPickerGenericSpeed" pc="268484553" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="227" lineNum="49" parent="globals/MyPickerGenericSpeed" pc="268484564" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="227" lineNum="50" parent="globals/MyPickerGenericSpeed" pc="268484575" symbol="initialize"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="228" lineNum="40" parent="globals/MyPickerGenericSpeed" pc="268508086" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="228" lineNum="40" parent="globals/MyPickerGenericSpeed" pc="268508086" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="228" lineNum="40" parent="globals/MyPickerGenericSpeed" pc="268508081" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="228" lineNum="40" parent="globals/MyPickerGenericSpeed" pc="268508081" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="229" lineNum="74" parent="globals/MyPickerGenericSpeedDelegate" pc="268484676" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="229" lineNum="75" parent="globals/MyPickerGenericSpeedDelegate" pc="268484680" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="229" lineNum="76" parent="globals/MyPickerGenericSpeedDelegate" pc="268484698" symbol="initialize"/>
@@ -1846,8 +1846,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="231" lineNum="92" parent="globals/MyPickerGenericSpeedDelegate" pc="268484858" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="231" lineNum="94" parent="globals/MyPickerGenericSpeedDelegate" pc="268484862" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="231" lineNum="95" parent="globals/MyPickerGenericSpeedDelegate" pc="268484890" symbol="onCancel"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="232" lineNum="60" parent="globals/MyPickerGenericSpeedDelegate" pc="268508984" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="232" lineNum="60" parent="globals/MyPickerGenericSpeedDelegate" pc="268508984" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="232" lineNum="60" parent="globals/MyPickerGenericSpeedDelegate" pc="268508979" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericSpeed.mc" id="232" lineNum="60" parent="globals/MyPickerGenericSpeedDelegate" pc="268508979" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="234" lineNum="67" parent="globals/MyView" pc="268484894" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="234" lineNum="68" parent="globals/MyView" pc="268484898" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="235" lineNum="71" parent="globals/MyView" pc="268484917" symbol="onShow"/>
@@ -1868,9 +1868,9 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="238" lineNum="113" parent="globals/MyView" pc="268485216" symbol="updateUi"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="239" lineNum="117" parent="globals/MyView" pc="268485236" symbol="updateLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="239" lineNum="121" parent="globals/MyView" pc="268485240" symbol="updateLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="240" lineNum="44" parent="globals/MyView" pc="268508480" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="240" lineNum="60" parent="globals/MyView" pc="268508498" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="240" lineNum="44" parent="globals/MyView" pc="268508480" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="240" lineNum="44" parent="globals/MyView" pc="268508475" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="240" lineNum="60" parent="globals/MyView" pc="268508493" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyView.mc" id="240" lineNum="44" parent="globals/MyView" pc="268508475" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="242" lineNum="46" parent="globals/MyPickerGenericOnOff" pc="268485297" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="242" lineNum="47" parent="globals/MyPickerGenericOnOff" pc="268485301" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="242" lineNum="49" parent="globals/MyPickerGenericOnOff" pc="268485312" symbol="initialize"/>
@@ -1882,8 +1882,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="242" lineNum="63" parent="globals/MyPickerGenericOnOff" pc="268485579" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="242" lineNum="64" parent="globals/MyPickerGenericOnOff" pc="268485590" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="242" lineNum="65" parent="globals/MyPickerGenericOnOff" pc="268485601" symbol="initialize"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="243" lineNum="40" parent="globals/MyPickerGenericOnOff" pc="268508634" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="243" lineNum="40" parent="globals/MyPickerGenericOnOff" pc="268508634" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="243" lineNum="40" parent="globals/MyPickerGenericOnOff" pc="268508629" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="243" lineNum="40" parent="globals/MyPickerGenericOnOff" pc="268508629" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="244" lineNum="87" parent="globals/MyPickerGenericOnOffDelegate" pc="268485682" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="244" lineNum="88" parent="globals/MyPickerGenericOnOffDelegate" pc="268485686" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="244" lineNum="89" parent="globals/MyPickerGenericOnOffDelegate" pc="268485704" symbol="initialize"/>
@@ -1905,8 +1905,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="246" lineNum="117" parent="globals/MyPickerGenericOnOffDelegate" pc="268485998" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="246" lineNum="119" parent="globals/MyPickerGenericOnOffDelegate" pc="268486002" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="246" lineNum="120" parent="globals/MyPickerGenericOnOffDelegate" pc="268486030" symbol="onCancel"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="247" lineNum="73" parent="globals/MyPickerGenericOnOffDelegate" pc="268508414" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="247" lineNum="73" parent="globals/MyPickerGenericOnOffDelegate" pc="268508414" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="247" lineNum="73" parent="globals/MyPickerGenericOnOffDelegate" pc="268508409" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericOnOff.mc" id="247" lineNum="73" parent="globals/MyPickerGenericOnOffDelegate" pc="268508409" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="249" lineNum="47" parent="globals/MyPickerAltimeterCorrectionRelative" pc="268486034" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="249" lineNum="49" parent="globals/MyPickerAltimeterCorrectionRelative" pc="268486038" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="249" lineNum="52" parent="globals/MyPickerAltimeterCorrectionRelative" pc="268486067" symbol="initialize"/>
@@ -1921,8 +1921,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="249" lineNum="61" parent="globals/MyPickerAltimeterCorrectionRelative" pc="268486215" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="249" lineNum="62" parent="globals/MyPickerAltimeterCorrectionRelative" pc="268486225" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="249" lineNum="65" parent="globals/MyPickerAltimeterCorrectionRelative" pc="268486244" symbol="initialize"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="250" lineNum="41" parent="globals/MyPickerAltimeterCorrectionRelative" pc="268508577" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="250" lineNum="41" parent="globals/MyPickerAltimeterCorrectionRelative" pc="268508577" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="250" lineNum="41" parent="globals/MyPickerAltimeterCorrectionRelative" pc="268508572" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="250" lineNum="41" parent="globals/MyPickerAltimeterCorrectionRelative" pc="268508572" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="251" lineNum="88" parent="globals/MyPickerAltimeterCorrectionRelativeDelegate" pc="268486679" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="251" lineNum="89" parent="globals/MyPickerAltimeterCorrectionRelativeDelegate" pc="268486683" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="252" lineNum="92" parent="globals/MyPickerAltimeterCorrectionRelativeDelegate" pc="268486702" symbol="onAccept"/>
@@ -1934,8 +1934,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="253" lineNum="101" parent="globals/MyPickerAltimeterCorrectionRelativeDelegate" pc="268486842" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="253" lineNum="103" parent="globals/MyPickerAltimeterCorrectionRelativeDelegate" pc="268486846" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="253" lineNum="104" parent="globals/MyPickerAltimeterCorrectionRelativeDelegate" pc="268486874" symbol="onCancel"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="254" lineNum="82" parent="globals/MyPickerAltimeterCorrectionRelativeDelegate" pc="268508319" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="254" lineNum="82" parent="globals/MyPickerAltimeterCorrectionRelativeDelegate" pc="268508319" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="254" lineNum="82" parent="globals/MyPickerAltimeterCorrectionRelativeDelegate" pc="268508314" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\MyPickerAltimeterCorrectionRelative.mc" id="254" lineNum="82" parent="globals/MyPickerAltimeterCorrectionRelativeDelegate" pc="268508314" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewHeader.mc" id="256" lineNum="67" parent="globals/MyViewHeader" pc="268486878" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewHeader.mc" id="256" lineNum="68" parent="globals/MyViewHeader" pc="268486882" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewHeader.mc" id="257" lineNum="71" parent="globals/MyViewHeader" pc="268486901" symbol="onLayout"/>
@@ -1968,8 +1968,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewHeader.mc" id="259" lineNum="133" parent="globals/MyViewHeader" pc="268487561" symbol="updateLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewHeader.mc" id="259" lineNum="134" parent="globals/MyViewHeader" pc="268487645" symbol="updateLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewHeader.mc" id="259" lineNum="135" parent="globals/MyViewHeader" pc="268487671" symbol="updateLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewHeader.mc" id="260" lineNum="44" parent="globals/MyViewHeader" pc="268508596" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewHeader.mc" id="260" lineNum="44" parent="globals/MyViewHeader" pc="268508596" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewHeader.mc" id="260" lineNum="44" parent="globals/MyViewHeader" pc="268508591" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewHeader.mc" id="260" lineNum="44" parent="globals/MyViewHeader" pc="268508591" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="262" lineNum="85" parent="globals/MyViewLog" pc="268487842" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="262" lineNum="86" parent="globals/MyViewLog" pc="268487846" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="262" lineNum="89" parent="globals/MyViewLog" pc="268487864" symbol="initialize"/>
@@ -2098,8 +2098,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="266" lineNum="311" parent="globals/MyViewLog" pc="268491276" symbol="loadLog"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="266" lineNum="313" parent="globals/MyViewLog" pc="268491358" symbol="loadLog"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="266" lineNum="317" parent="globals/MyViewLog" pc="268491378" symbol="loadLog"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="267" lineNum="56" parent="globals/MyViewLog" pc="268508672" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="267" lineNum="56" parent="globals/MyViewLog" pc="268508672" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="267" lineNum="56" parent="globals/MyViewLog" pc="268508667" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="267" lineNum="56" parent="globals/MyViewLog" pc="268508667" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="268" lineNum="324" parent="globals/MyViewLogDelegate" pc="268491389" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="268" lineNum="325" parent="globals/MyViewLogDelegate" pc="268491393" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="269" lineNum="328" parent="globals/MyViewLogDelegate" pc="268491412" symbol="onSelect"/>
@@ -2120,8 +2120,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="272" lineNum="360" parent="globals/MyViewLogDelegate" pc="268491735" symbol="onNextPage"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="272" lineNum="362" parent="globals/MyViewLogDelegate" pc="268491739" symbol="onNextPage"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="272" lineNum="365" parent="globals/MyViewLogDelegate" pc="268491811" symbol="onNextPage"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="273" lineNum="322" parent="globals/MyViewLogDelegate" pc="268509003" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="273" lineNum="322" parent="globals/MyViewLogDelegate" pc="268509003" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="273" lineNum="322" parent="globals/MyViewLogDelegate" pc="268508998" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewLog.mc" id="273" lineNum="322" parent="globals/MyViewLogDelegate" pc="268508998" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryDictionary.mc" id="275" lineNum="38" parent="globals/PickerFactoryDictionary" pc="268491815" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryDictionary.mc" id="275" lineNum="39" parent="globals/PickerFactoryDictionary" pc="268491819" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryDictionary.mc" id="275" lineNum="40" parent="globals/PickerFactoryDictionary" pc="268491837" symbol="initialize"/>
@@ -2172,7 +2172,7 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyAltimeter.mc" id="287" lineNum="137" parent="globals/MyAltimeter" pc="268492710" symbol="setAltitudeActual"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyAltimeter.mc" id="287" lineNum="139" parent="globals/MyAltimeter" pc="268492738" symbol="setAltitudeActual"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyAltimeter.mc" id="287" lineNum="143" parent="globals/MyAltimeter" pc="268492816" symbol="setAltitudeActual"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyAltimeter.mc" id="288" lineNum="48" parent="globals/MyAltimeter" pc="268508299" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyAltimeter.mc" id="288" lineNum="48" parent="globals/MyAltimeter" pc="268508294" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyAltimeter.mc" id="289" lineNum="48" parent="globals/MyAltimeter" pc="268492834" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="291" lineNum="55" parent="globals/MyViewGeneral" pc="268492837" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="291" lineNum="57" parent="globals/MyViewGeneral" pc="268492841" symbol="initialize"/>
@@ -2289,8 +2289,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="294" lineNum="249" parent="globals/MyViewGeneral" pc="268496027" symbol="onHide"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="294" lineNum="251" parent="globals/MyViewGeneral" pc="268496031" symbol="onHide"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="294" lineNum="254" parent="globals/MyViewGeneral" pc="268496049" symbol="onHide"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="295" lineNum="43" parent="globals/MyViewGeneral" pc="268508395" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="295" lineNum="43" parent="globals/MyViewGeneral" pc="268508395" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="295" lineNum="43" parent="globals/MyViewGeneral" pc="268508390" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="295" lineNum="43" parent="globals/MyViewGeneral" pc="268508390" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="296" lineNum="261" parent="globals/MyViewGeneralDelegate" pc="268496075" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="296" lineNum="262" parent="globals/MyViewGeneralDelegate" pc="268496079" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="297" lineNum="265" parent="globals/MyViewGeneralDelegate" pc="268496098" symbol="onPreviousPage"/>
@@ -2301,8 +2301,8 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="298" lineNum="280" parent="globals/MyViewGeneralDelegate" pc="268496270" symbol="onNextPage"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="298" lineNum="282" parent="globals/MyViewGeneralDelegate" pc="268496274" symbol="onNextPage"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="298" lineNum="285" parent="globals/MyViewGeneralDelegate" pc="268496346" symbol="onNextPage"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="299" lineNum="259" parent="globals/MyViewGeneralDelegate" pc="268508809" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="299" lineNum="259" parent="globals/MyViewGeneralDelegate" pc="268508809" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="299" lineNum="259" parent="globals/MyViewGeneralDelegate" pc="268508804" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewGeneral.mc" id="299" lineNum="259" parent="globals/MyViewGeneralDelegate" pc="268508804" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\LangUtils.mc" id="301" lineNum="31" parent="globals/LangUtils" pc="268496350" symbol="isNaN"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\LangUtils.mc" id="301" lineNum="32" parent="globals/LangUtils" pc="268496362" symbol="isNaN"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\LangUtils.mc" id="302" lineNum="34" parent="globals/LangUtils" pc="268496379" symbol="notNaN"/>
@@ -2429,34 +2429,34 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="317" lineNum="83" parent="globals/PickerFactoryNumber" pc="268499607" symbol="getSize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="318" lineNum="91" parent="globals/PickerFactoryNumber" pc="268499632" symbol="indexOf"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="318" lineNum="92" parent="globals/PickerFactoryNumber" pc="268499636" symbol="indexOf"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="319" lineNum="23" parent="globals/PickerFactoryNumber" pc="268508433" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="319" lineNum="33" parent="globals/PickerFactoryNumber" pc="268508451" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="319" lineNum="34" parent="globals/PickerFactoryNumber" pc="268508465" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="319" lineNum="23" parent="globals/PickerFactoryNumber" pc="268508433" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="319" lineNum="23" parent="globals/PickerFactoryNumber" pc="268508428" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="319" lineNum="33" parent="globals/PickerFactoryNumber" pc="268508446" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="319" lineNum="34" parent="globals/PickerFactoryNumber" pc="268508460" symbol="&lt;init&gt;"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\generic\\PickerFactoryNumber.mc" id="319" lineNum="23" parent="globals/PickerFactoryNumber" pc="268508428" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="321" lineNum="12" parent="globals/Rez/Drawables/drawHeaderAccuracy1" pc="268499649" symbol="initialize"/>
 <entry filename="Rez" id="321" lineNum="13" parent="globals/Rez/Drawables/drawHeaderAccuracy1" pc="268499653" symbol="initialize"/>
 <entry filename="Rez" id="322" lineNum="16" parent="globals/Rez/Drawables/drawHeaderAccuracy1" pc="268499678" symbol="draw"/>
 <entry filename="Rez" id="322" lineNum="18" parent="globals/Rez/Drawables/drawHeaderAccuracy1" pc="268499682" symbol="draw"/>
-<entry filename="Rez" id="323" lineNum="10" parent="globals/Rez/Drawables/drawHeaderAccuracy1" pc="268507986" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="323" lineNum="10" parent="globals/Rez/Drawables/drawHeaderAccuracy1" pc="268507986" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="323" lineNum="10" parent="globals/Rez/Drawables/drawHeaderAccuracy1" pc="268507981" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="323" lineNum="10" parent="globals/Rez/Drawables/drawHeaderAccuracy1" pc="268507981" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="324" lineNum="31" parent="globals/Rez/Drawables/drawHeaderAccuracy2" pc="268499715" symbol="initialize"/>
 <entry filename="Rez" id="324" lineNum="32" parent="globals/Rez/Drawables/drawHeaderAccuracy2" pc="268499719" symbol="initialize"/>
 <entry filename="Rez" id="325" lineNum="35" parent="globals/Rez/Drawables/drawHeaderAccuracy2" pc="268499744" symbol="draw"/>
 <entry filename="Rez" id="325" lineNum="37" parent="globals/Rez/Drawables/drawHeaderAccuracy2" pc="268499748" symbol="draw"/>
-<entry filename="Rez" id="326" lineNum="29" parent="globals/Rez/Drawables/drawHeaderAccuracy2" pc="268507967" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="326" lineNum="29" parent="globals/Rez/Drawables/drawHeaderAccuracy2" pc="268507967" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="326" lineNum="29" parent="globals/Rez/Drawables/drawHeaderAccuracy2" pc="268507962" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="326" lineNum="29" parent="globals/Rez/Drawables/drawHeaderAccuracy2" pc="268507962" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="327" lineNum="50" parent="globals/Rez/Drawables/drawHeaderAccuracy3" pc="268499781" symbol="initialize"/>
 <entry filename="Rez" id="327" lineNum="51" parent="globals/Rez/Drawables/drawHeaderAccuracy3" pc="268499785" symbol="initialize"/>
 <entry filename="Rez" id="328" lineNum="54" parent="globals/Rez/Drawables/drawHeaderAccuracy3" pc="268499810" symbol="draw"/>
 <entry filename="Rez" id="328" lineNum="56" parent="globals/Rez/Drawables/drawHeaderAccuracy3" pc="268499814" symbol="draw"/>
-<entry filename="Rez" id="329" lineNum="48" parent="globals/Rez/Drawables/drawHeaderAccuracy3" pc="268507948" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="329" lineNum="48" parent="globals/Rez/Drawables/drawHeaderAccuracy3" pc="268507948" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="329" lineNum="48" parent="globals/Rez/Drawables/drawHeaderAccuracy3" pc="268507943" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="329" lineNum="48" parent="globals/Rez/Drawables/drawHeaderAccuracy3" pc="268507943" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="330" lineNum="69" parent="globals/Rez/Drawables/drawHeaderAccuracy4" pc="268499847" symbol="initialize"/>
 <entry filename="Rez" id="330" lineNum="70" parent="globals/Rez/Drawables/drawHeaderAccuracy4" pc="268499851" symbol="initialize"/>
 <entry filename="Rez" id="331" lineNum="73" parent="globals/Rez/Drawables/drawHeaderAccuracy4" pc="268499876" symbol="draw"/>
 <entry filename="Rez" id="331" lineNum="75" parent="globals/Rez/Drawables/drawHeaderAccuracy4" pc="268499880" symbol="draw"/>
-<entry filename="Rez" id="332" lineNum="67" parent="globals/Rez/Drawables/drawHeaderAccuracy4" pc="268507929" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="332" lineNum="67" parent="globals/Rez/Drawables/drawHeaderAccuracy4" pc="268507929" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="332" lineNum="67" parent="globals/Rez/Drawables/drawHeaderAccuracy4" pc="268507924" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="332" lineNum="67" parent="globals/Rez/Drawables/drawHeaderAccuracy4" pc="268507924" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="333" lineNum="88" parent="globals/Rez/Drawables/drawContentBorders" pc="268499913" symbol="initialize"/>
 <entry filename="Rez" id="333" lineNum="89" parent="globals/Rez/Drawables/drawContentBorders" pc="268499917" symbol="initialize"/>
 <entry filename="Rez" id="334" lineNum="92" parent="globals/Rez/Drawables/drawContentBorders" pc="268499942" symbol="draw"/>
@@ -2464,14 +2464,14 @@
 <entry filename="Rez" id="334" lineNum="95" parent="globals/Rez/Drawables/drawContentBorders" pc="268499982" symbol="draw"/>
 <entry filename="Rez" id="334" lineNum="97" parent="globals/Rez/Drawables/drawContentBorders" pc="268500014" symbol="draw"/>
 <entry filename="Rez" id="334" lineNum="98" parent="globals/Rez/Drawables/drawContentBorders" pc="268500050" symbol="draw"/>
-<entry filename="Rez" id="335" lineNum="86" parent="globals/Rez/Drawables/drawContentBorders" pc="268507910" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="335" lineNum="86" parent="globals/Rez/Drawables/drawContentBorders" pc="268507910" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="335" lineNum="86" parent="globals/Rez/Drawables/drawContentBorders" pc="268507905" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="335" lineNum="86" parent="globals/Rez/Drawables/drawContentBorders" pc="268507905" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="336" lineNum="111" parent="globals/Rez/Drawables/drawFieldsBackground" pc="268500083" symbol="initialize"/>
 <entry filename="Rez" id="336" lineNum="112" parent="globals/Rez/Drawables/drawFieldsBackground" pc="268500087" symbol="initialize"/>
 <entry filename="Rez" id="337" lineNum="115" parent="globals/Rez/Drawables/drawFieldsBackground" pc="268500112" symbol="draw"/>
 <entry filename="Rez" id="337" lineNum="117" parent="globals/Rez/Drawables/drawFieldsBackground" pc="268500116" symbol="draw"/>
-<entry filename="Rez" id="338" lineNum="109" parent="globals/Rez/Drawables/drawFieldsBackground" pc="268507739" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="338" lineNum="109" parent="globals/Rez/Drawables/drawFieldsBackground" pc="268507739" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="338" lineNum="109" parent="globals/Rez/Drawables/drawFieldsBackground" pc="268507734" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="338" lineNum="109" parent="globals/Rez/Drawables/drawFieldsBackground" pc="268507734" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="339" lineNum="130" parent="globals/Rez/Drawables/drawFieldsBorders" pc="268500149" symbol="initialize"/>
 <entry filename="Rez" id="339" lineNum="131" parent="globals/Rez/Drawables/drawFieldsBorders" pc="268500153" symbol="initialize"/>
 <entry filename="Rez" id="340" lineNum="134" parent="globals/Rez/Drawables/drawFieldsBorders" pc="268500178" symbol="draw"/>
@@ -2487,26 +2487,26 @@
 <entry filename="Rez" id="340" lineNum="149" parent="globals/Rez/Drawables/drawFieldsBorders" pc="268500490" symbol="draw"/>
 <entry filename="Rez" id="340" lineNum="151" parent="globals/Rez/Drawables/drawFieldsBorders" pc="268500522" symbol="draw"/>
 <entry filename="Rez" id="340" lineNum="152" parent="globals/Rez/Drawables/drawFieldsBorders" pc="268500558" symbol="draw"/>
-<entry filename="Rez" id="341" lineNum="128" parent="globals/Rez/Drawables/drawFieldsBorders" pc="268507815" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="341" lineNum="128" parent="globals/Rez/Drawables/drawFieldsBorders" pc="268507815" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="341" lineNum="128" parent="globals/Rez/Drawables/drawFieldsBorders" pc="268507810" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="341" lineNum="128" parent="globals/Rez/Drawables/drawFieldsBorders" pc="268507810" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="342" lineNum="165" parent="globals/Rez/Drawables/drawGlobalAlertLeft" pc="268500591" symbol="initialize"/>
 <entry filename="Rez" id="342" lineNum="166" parent="globals/Rez/Drawables/drawGlobalAlertLeft" pc="268500595" symbol="initialize"/>
 <entry filename="Rez" id="343" lineNum="169" parent="globals/Rez/Drawables/drawGlobalAlertLeft" pc="268500620" symbol="draw"/>
 <entry filename="Rez" id="343" lineNum="171" parent="globals/Rez/Drawables/drawGlobalAlertLeft" pc="268500624" symbol="draw"/>
-<entry filename="Rez" id="344" lineNum="163" parent="globals/Rez/Drawables/drawGlobalAlertLeft" pc="268508062" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="344" lineNum="163" parent="globals/Rez/Drawables/drawGlobalAlertLeft" pc="268508062" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="344" lineNum="163" parent="globals/Rez/Drawables/drawGlobalAlertLeft" pc="268508057" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="344" lineNum="163" parent="globals/Rez/Drawables/drawGlobalAlertLeft" pc="268508057" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="345" lineNum="184" parent="globals/Rez/Drawables/drawGlobalAlertCenter" pc="268500657" symbol="initialize"/>
 <entry filename="Rez" id="345" lineNum="185" parent="globals/Rez/Drawables/drawGlobalAlertCenter" pc="268500661" symbol="initialize"/>
 <entry filename="Rez" id="346" lineNum="188" parent="globals/Rez/Drawables/drawGlobalAlertCenter" pc="268500686" symbol="draw"/>
 <entry filename="Rez" id="346" lineNum="190" parent="globals/Rez/Drawables/drawGlobalAlertCenter" pc="268500690" symbol="draw"/>
-<entry filename="Rez" id="347" lineNum="182" parent="globals/Rez/Drawables/drawGlobalAlertCenter" pc="268507891" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="347" lineNum="182" parent="globals/Rez/Drawables/drawGlobalAlertCenter" pc="268507891" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="347" lineNum="182" parent="globals/Rez/Drawables/drawGlobalAlertCenter" pc="268507886" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="347" lineNum="182" parent="globals/Rez/Drawables/drawGlobalAlertCenter" pc="268507886" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="348" lineNum="203" parent="globals/Rez/Drawables/drawGlobalAlertRight" pc="268500723" symbol="initialize"/>
 <entry filename="Rez" id="348" lineNum="204" parent="globals/Rez/Drawables/drawGlobalAlertRight" pc="268500727" symbol="initialize"/>
 <entry filename="Rez" id="349" lineNum="207" parent="globals/Rez/Drawables/drawGlobalAlertRight" pc="268500752" symbol="draw"/>
 <entry filename="Rez" id="349" lineNum="209" parent="globals/Rez/Drawables/drawGlobalAlertRight" pc="268500756" symbol="draw"/>
-<entry filename="Rez" id="350" lineNum="201" parent="globals/Rez/Drawables/drawGlobalAlertRight" pc="268508024" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="350" lineNum="201" parent="globals/Rez/Drawables/drawGlobalAlertRight" pc="268508024" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="350" lineNum="201" parent="globals/Rez/Drawables/drawGlobalAlertRight" pc="268508019" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="350" lineNum="201" parent="globals/Rez/Drawables/drawGlobalAlertRight" pc="268508019" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="351" lineNum="222" parent="globals/Rez/Drawables/drawButtonPlus" pc="268500789" symbol="initialize"/>
 <entry filename="Rez" id="351" lineNum="223" parent="globals/Rez/Drawables/drawButtonPlus" pc="268500793" symbol="initialize"/>
 <entry filename="Rez" id="352" lineNum="226" parent="globals/Rez/Drawables/drawButtonPlus" pc="268500818" symbol="draw"/>
@@ -2514,15 +2514,15 @@
 <entry filename="Rez" id="352" lineNum="229" parent="globals/Rez/Drawables/drawButtonPlus" pc="268500858" symbol="draw"/>
 <entry filename="Rez" id="352" lineNum="231" parent="globals/Rez/Drawables/drawButtonPlus" pc="268500890" symbol="draw"/>
 <entry filename="Rez" id="352" lineNum="232" parent="globals/Rez/Drawables/drawButtonPlus" pc="268500926" symbol="draw"/>
-<entry filename="Rez" id="353" lineNum="220" parent="globals/Rez/Drawables/drawButtonPlus" pc="268507777" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="353" lineNum="220" parent="globals/Rez/Drawables/drawButtonPlus" pc="268507777" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="353" lineNum="220" parent="globals/Rez/Drawables/drawButtonPlus" pc="268507772" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="353" lineNum="220" parent="globals/Rez/Drawables/drawButtonPlus" pc="268507772" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="354" lineNum="245" parent="globals/Rez/Drawables/drawButtonMinus" pc="268500959" symbol="initialize"/>
 <entry filename="Rez" id="354" lineNum="246" parent="globals/Rez/Drawables/drawButtonMinus" pc="268500963" symbol="initialize"/>
 <entry filename="Rez" id="355" lineNum="249" parent="globals/Rez/Drawables/drawButtonMinus" pc="268500988" symbol="draw"/>
 <entry filename="Rez" id="355" lineNum="251" parent="globals/Rez/Drawables/drawButtonMinus" pc="268500992" symbol="draw"/>
 <entry filename="Rez" id="355" lineNum="252" parent="globals/Rez/Drawables/drawButtonMinus" pc="268501028" symbol="draw"/>
-<entry filename="Rez" id="356" lineNum="243" parent="globals/Rez/Drawables/drawButtonMinus" pc="268507853" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="356" lineNum="243" parent="globals/Rez/Drawables/drawButtonMinus" pc="268507853" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="356" lineNum="243" parent="globals/Rez/Drawables/drawButtonMinus" pc="268507848" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="356" lineNum="243" parent="globals/Rez/Drawables/drawButtonMinus" pc="268507848" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="357" lineNum="265" parent="globals/Rez/Drawables/drawButtonUp" pc="268501061" symbol="initialize"/>
 <entry filename="Rez" id="357" lineNum="266" parent="globals/Rez/Drawables/drawButtonUp" pc="268501065" symbol="initialize"/>
 <entry filename="Rez" id="358" lineNum="269" parent="globals/Rez/Drawables/drawButtonUp" pc="268501090" symbol="draw"/>
@@ -2536,8 +2536,8 @@
 <entry filename="Rez" id="358" lineNum="281" parent="globals/Rez/Drawables/drawButtonUp" pc="268501334" symbol="draw"/>
 <entry filename="Rez" id="358" lineNum="283" parent="globals/Rez/Drawables/drawButtonUp" pc="268501366" symbol="draw"/>
 <entry filename="Rez" id="358" lineNum="284" parent="globals/Rez/Drawables/drawButtonUp" pc="268501402" symbol="draw"/>
-<entry filename="Rez" id="359" lineNum="263" parent="globals/Rez/Drawables/drawButtonUp" pc="268507758" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="359" lineNum="263" parent="globals/Rez/Drawables/drawButtonUp" pc="268507758" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="359" lineNum="263" parent="globals/Rez/Drawables/drawButtonUp" pc="268507753" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="359" lineNum="263" parent="globals/Rez/Drawables/drawButtonUp" pc="268507753" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="360" lineNum="297" parent="globals/Rez/Drawables/drawButtonDown" pc="268501435" symbol="initialize"/>
 <entry filename="Rez" id="360" lineNum="298" parent="globals/Rez/Drawables/drawButtonDown" pc="268501439" symbol="initialize"/>
 <entry filename="Rez" id="361" lineNum="301" parent="globals/Rez/Drawables/drawButtonDown" pc="268501464" symbol="draw"/>
@@ -2551,8 +2551,8 @@
 <entry filename="Rez" id="361" lineNum="313" parent="globals/Rez/Drawables/drawButtonDown" pc="268501708" symbol="draw"/>
 <entry filename="Rez" id="361" lineNum="315" parent="globals/Rez/Drawables/drawButtonDown" pc="268501740" symbol="draw"/>
 <entry filename="Rez" id="361" lineNum="316" parent="globals/Rez/Drawables/drawButtonDown" pc="268501776" symbol="draw"/>
-<entry filename="Rez" id="362" lineNum="295" parent="globals/Rez/Drawables/drawButtonDown" pc="268508005" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="362" lineNum="295" parent="globals/Rez/Drawables/drawButtonDown" pc="268508005" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="362" lineNum="295" parent="globals/Rez/Drawables/drawButtonDown" pc="268508000" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="362" lineNum="295" parent="globals/Rez/Drawables/drawButtonDown" pc="268508000" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="363" lineNum="329" parent="globals/Rez/Drawables/drawButtonLeft" pc="268501809" symbol="initialize"/>
 <entry filename="Rez" id="363" lineNum="330" parent="globals/Rez/Drawables/drawButtonLeft" pc="268501813" symbol="initialize"/>
 <entry filename="Rez" id="364" lineNum="333" parent="globals/Rez/Drawables/drawButtonLeft" pc="268501838" symbol="draw"/>
@@ -2566,8 +2566,8 @@
 <entry filename="Rez" id="364" lineNum="345" parent="globals/Rez/Drawables/drawButtonLeft" pc="268502082" symbol="draw"/>
 <entry filename="Rez" id="364" lineNum="347" parent="globals/Rez/Drawables/drawButtonLeft" pc="268502114" symbol="draw"/>
 <entry filename="Rez" id="364" lineNum="348" parent="globals/Rez/Drawables/drawButtonLeft" pc="268502150" symbol="draw"/>
-<entry filename="Rez" id="365" lineNum="327" parent="globals/Rez/Drawables/drawButtonLeft" pc="268507872" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="365" lineNum="327" parent="globals/Rez/Drawables/drawButtonLeft" pc="268507872" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="365" lineNum="327" parent="globals/Rez/Drawables/drawButtonLeft" pc="268507867" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="365" lineNum="327" parent="globals/Rez/Drawables/drawButtonLeft" pc="268507867" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="366" lineNum="361" parent="globals/Rez/Drawables/drawButtonRight" pc="268502183" symbol="initialize"/>
 <entry filename="Rez" id="366" lineNum="362" parent="globals/Rez/Drawables/drawButtonRight" pc="268502187" symbol="initialize"/>
 <entry filename="Rez" id="367" lineNum="365" parent="globals/Rez/Drawables/drawButtonRight" pc="268502212" symbol="draw"/>
@@ -2581,8 +2581,8 @@
 <entry filename="Rez" id="367" lineNum="377" parent="globals/Rez/Drawables/drawButtonRight" pc="268502456" symbol="draw"/>
 <entry filename="Rez" id="367" lineNum="379" parent="globals/Rez/Drawables/drawButtonRight" pc="268502488" symbol="draw"/>
 <entry filename="Rez" id="367" lineNum="380" parent="globals/Rez/Drawables/drawButtonRight" pc="268502524" symbol="draw"/>
-<entry filename="Rez" id="368" lineNum="359" parent="globals/Rez/Drawables/drawButtonRight" pc="268507796" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="368" lineNum="359" parent="globals/Rez/Drawables/drawButtonRight" pc="268507796" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="368" lineNum="359" parent="globals/Rez/Drawables/drawButtonRight" pc="268507791" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="368" lineNum="359" parent="globals/Rez/Drawables/drawButtonRight" pc="268507791" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="369" lineNum="393" parent="globals/Rez/Drawables/drawButtonTopLeft" pc="268502557" symbol="initialize"/>
 <entry filename="Rez" id="369" lineNum="394" parent="globals/Rez/Drawables/drawButtonTopLeft" pc="268502561" symbol="initialize"/>
 <entry filename="Rez" id="370" lineNum="397" parent="globals/Rez/Drawables/drawButtonTopLeft" pc="268502586" symbol="draw"/>
@@ -2596,8 +2596,8 @@
 <entry filename="Rez" id="370" lineNum="409" parent="globals/Rez/Drawables/drawButtonTopLeft" pc="268502830" symbol="draw"/>
 <entry filename="Rez" id="370" lineNum="411" parent="globals/Rez/Drawables/drawButtonTopLeft" pc="268502862" symbol="draw"/>
 <entry filename="Rez" id="370" lineNum="412" parent="globals/Rez/Drawables/drawButtonTopLeft" pc="268502898" symbol="draw"/>
-<entry filename="Rez" id="371" lineNum="391" parent="globals/Rez/Drawables/drawButtonTopLeft" pc="268508043" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="371" lineNum="391" parent="globals/Rez/Drawables/drawButtonTopLeft" pc="268508043" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="371" lineNum="391" parent="globals/Rez/Drawables/drawButtonTopLeft" pc="268508038" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="371" lineNum="391" parent="globals/Rez/Drawables/drawButtonTopLeft" pc="268508038" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="372" lineNum="425" parent="globals/Rez/Drawables/drawButtonBottomRight" pc="268502931" symbol="initialize"/>
 <entry filename="Rez" id="372" lineNum="426" parent="globals/Rez/Drawables/drawButtonBottomRight" pc="268502935" symbol="initialize"/>
 <entry filename="Rez" id="373" lineNum="429" parent="globals/Rez/Drawables/drawButtonBottomRight" pc="268502960" symbol="draw"/>
@@ -2611,11 +2611,11 @@
 <entry filename="Rez" id="373" lineNum="441" parent="globals/Rez/Drawables/drawButtonBottomRight" pc="268503204" symbol="draw"/>
 <entry filename="Rez" id="373" lineNum="443" parent="globals/Rez/Drawables/drawButtonBottomRight" pc="268503236" symbol="draw"/>
 <entry filename="Rez" id="373" lineNum="444" parent="globals/Rez/Drawables/drawButtonBottomRight" pc="268503272" symbol="draw"/>
-<entry filename="Rez" id="374" lineNum="423" parent="globals/Rez/Drawables/drawButtonBottomRight" pc="268507834" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="374" lineNum="423" parent="globals/Rez/Drawables/drawButtonBottomRight" pc="268507834" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="375" lineNum="2" parent="globals/Rez/Drawables" pc="268507738" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="376" lineNum="451" parent="globals/Rez/Fonts" pc="268508082" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="377" lineNum="459" parent="globals/Rez/JsonData" pc="268508084" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="374" lineNum="423" parent="globals/Rez/Drawables/drawButtonBottomRight" pc="268507829" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="374" lineNum="423" parent="globals/Rez/Drawables/drawButtonBottomRight" pc="268507829" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="375" lineNum="2" parent="globals/Rez/Drawables" pc="268507733" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="376" lineNum="451" parent="globals/Rez/Fonts" pc="268508077" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="377" lineNum="459" parent="globals/Rez/JsonData" pc="268508079" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="378" lineNum="468" parent="globals/Rez/Layouts" pc="268503305" symbol="layoutGlobal"/>
 <entry filename="Rez" id="378" lineNum="469" parent="globals/Rez/Layouts" pc="268503317" symbol="layoutGlobal"/>
 <entry filename="Rez" id="378" lineNum="470" parent="globals/Rez/Layouts" pc="268503358" symbol="layoutGlobal"/>
@@ -2662,9 +2662,9 @@
 <entry filename="Rez" id="379" lineNum="525" parent="globals/Rez/Layouts" pc="268507082" symbol="layoutHeader"/>
 <entry filename="Rez" id="379" lineNum="526" parent="globals/Rez/Layouts" pc="268507205" symbol="layoutHeader"/>
 <entry filename="Rez" id="379" lineNum="528" parent="globals/Rez/Layouts" pc="268507338" symbol="layoutHeader"/>
-<entry filename="Rez" id="380" lineNum="461" parent="globals/Rez/Layouts" pc="268508083" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="381" lineNum="533" parent="globals/Rez/Menus" pc="268508081" symbol="&lt;init&gt;"/>
-<entry filename="Rez" id="382" lineNum="535" parent="globals/Rez/Strings" pc="268508085" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="380" lineNum="461" parent="globals/Rez/Layouts" pc="268508078" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="381" lineNum="533" parent="globals/Rez/Menus" pc="268508076" symbol="&lt;init&gt;"/>
+<entry filename="Rez" id="382" lineNum="535" parent="globals/Rez/Strings" pc="268508080" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="383" lineNum="1" parent="globals/Rez" pc="268507714" symbol="&lt;init&gt;"/>
 <entry filename="Rez" id="383" lineNum="1" parent="globals/Rez" pc="268507714" symbol="&lt;init&gt;"/>
 </pcToLineNum>
@@ -3837,7 +3837,6 @@
 <entry endPc="268506811" name="rez_cmp_local_text_valueBottomLeft" stackId="27" startPc="268503317"/>
 <entry endPc="268506811" name="rez_cmp_local_text_labelCenter" stackId="20" startPc="268503317"/>
 <entry endPc="268506811" name="rez_cmp_local_text_valueCenter" stackId="21" startPc="268503317"/>
-<entry endPc="268506811" name="rez_cmp_local_custom_drawable_13828765381972267008" stackId="5" startPc="268503317"/>
 <entry endPc="268506811" name="rez_cmp_local_custom_drawable_drawContentBorders" stackId="7" startPc="268503317"/>
 <entry endPc="268506811" name="rez_cmp_local_text_valueRight" stackId="24" startPc="268503317"/>
 <entry endPc="268506811" name="rez_cmp_local_text_valueTopLeft" stackId="13" startPc="268503317"/>
@@ -3848,20 +3847,21 @@
 <entry endPc="268506811" name="rez_cmp_local_text_unitTopLeft" stackId="12" startPc="268503317"/>
 <entry endPc="268506811" name="rez_cmp_local_text_valueBatteryLevel" stackId="9" startPc="268503317"/>
 <entry endPc="268506811" name="rez_cmp_local_text_labelBottomLeft" stackId="25" startPc="268503317"/>
+<entry endPc="268506811" name="rez_cmp_local_custom_drawable_15421560871908816013" stackId="6" startPc="268503317"/>
 <entry endPc="268506811" name="rez_cmp_local_text_labelTopRight" stackId="14" startPc="268503317"/>
-<entry endPc="268506811" name="rez_cmp_local_custom_drawable_91462190081813557899" stackId="6" startPc="268503317"/>
+<entry endPc="268506811" name="rez_cmp_local_custom_drawable_23139082910212380441" stackId="5" startPc="268503317"/>
 <entry arg="true" endPc="268506812" name="dc" stackId="1" startPc="268503305"/>
 <entry endPc="268507394" name="rez_cmp_local_text_valueBatteryLevel" stackId="5" startPc="268506825"/>
+<entry endPc="268507394" name="rez_cmp_local_custom_drawable_20472962742672860694" stackId="3" startPc="268506825"/>
 <entry endPc="268507394" name="rez_cmp_local_text_valueFooter" stackId="7" startPc="268506825"/>
 <entry endPc="268507394" name="rez_cmp_local_text_valueActivityStatus" stackId="6" startPc="268506825"/>
 <entry endPc="268507394" name="rez_cmp_local_custom_drawable_drawContentBorders" stackId="4" startPc="268506825"/>
 <entry endPc="268507394" name="local_Rez_Fonts_fontStatus" stackId="2" startPc="268506825"/>
-<entry endPc="268507394" name="rez_cmp_local_custom_drawable_83334712149997006717" stackId="3" startPc="268506825"/>
 <entry arg="true" endPc="268507395" name="dc" stackId="1" startPc="268506813"/>
 </localVars>
 <annotations>
-<annotationEntry annotation="layout_280x280" class="MyViewVariometer" module="globals" symbol="initLayout"/>
-<annotationEntry annotation="layout_280x280" class="MyViewVarioplot" module="globals" symbol="initLayout"/>
+<annotationEntry annotation="layout_240x240" class="MyViewVariometer" module="globals" symbol="initLayout"/>
+<annotationEntry annotation="layout_240x240" class="MyViewVarioplot" module="globals" symbol="initLayout"/>
 <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="AppIcon"/>
 <annotationEntry annotation="initialized" class="Fonts" module="globals/Rez" symbol="fontMeter"/>
 <annotationEntry annotation="initialized" class="Fonts" module="globals/Rez" symbol="fontPlot"/>
@@ -4039,7 +4039,7 @@
 <param id="_action"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508356" name="&lt;init&gt;" parent="MyPickerGenericStorage" startPc="268508338">
+<functionEntry accessMode="protected" endPc="268508351" name="&lt;init&gt;" parent="MyPickerGenericStorage" startPc="268508333">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268436618" name="initialize" parent="MyPickerGenericStorageDelegate" startPc="268436576">
@@ -4054,7 +4054,7 @@
 <functionEntry accessMode="public" endPc="268437211" name="onCancel" parent="MyPickerGenericStorageDelegate" startPc="268437176">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508123" name="&lt;init&gt;" parent="MyPickerGenericStorageDelegate" startPc="268508105">
+<functionEntry accessMode="protected" endPc="268508118" name="&lt;init&gt;" parent="MyPickerGenericStorageDelegate" startPc="268508100">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268437359" name="initLayout" parent="MyViewVariometer" startPc="268437212">
@@ -4081,7 +4081,7 @@
 <param id="_oDC"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508318" name="&lt;init&gt;" parent="MyViewVariometer" startPc="268508300">
+<functionEntry accessMode="protected" endPc="268508313" name="&lt;init&gt;" parent="MyViewVariometer" startPc="268508295">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268440035" name="initialize" parent="MyViewVariometerDelegate" startPc="268440013">
@@ -4093,7 +4093,7 @@
 <functionEntry accessMode="public" endPc="268440195" name="onNextPage" parent="MyViewVariometerDelegate" startPc="268440116">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268509040" name="&lt;init&gt;" parent="MyViewVariometerDelegate" startPc="268509022">
+<functionEntry accessMode="protected" endPc="268509035" name="&lt;init&gt;" parent="MyViewVariometerDelegate" startPc="268509017">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268441340" name="initialize" parent="PickerGenericSpeed" startPc="268440196">
@@ -4118,7 +4118,7 @@
 <param id="_oDC"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508557" name="&lt;init&gt;" parent="MyViewGlobal" startPc="268508539">
+<functionEntry accessMode="protected" endPc="268508552" name="&lt;init&gt;" parent="MyViewGlobal" startPc="268508534">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268441936" name="initialize" parent="MyViewGlobalDelegate" startPc="268441914">
@@ -4133,7 +4133,7 @@
 <functionEntry accessMode="public" endPc="268442261" name="onBack" parent="MyViewGlobalDelegate" startPc="268442231">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508537" name="&lt;init&gt;" parent="MyViewGlobalDelegate" startPc="268508519">
+<functionEntry accessMode="protected" endPc="268508532" name="&lt;init&gt;" parent="MyViewGlobalDelegate" startPc="268508514">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268442371" name="init" parent="MyKalmanFilter" startPc="268442262">
@@ -4148,7 +4148,7 @@
 <param id="_fTimestamp"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508538" name="&lt;init&gt;" parent="MyKalmanFilter" startPc="268508538">
+<functionEntry accessMode="protected" endPc="268508533" name="&lt;init&gt;" parent="MyKalmanFilter" startPc="268508533">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268442889" name="initialize" parent="MyKalmanFilter" startPc="268442887">
@@ -4209,7 +4209,7 @@
 <param id="_iColor"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508789" name="&lt;init&gt;" parent="MyDrawableGlobal" startPc="268508691">
+<functionEntry accessMode="protected" endPc="268508784" name="&lt;init&gt;" parent="MyDrawableGlobal" startPc="268508686">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268448149" name="initialize" parent="PickerGenericElevation" startPc="268447109">
@@ -4303,7 +4303,7 @@
 <param id="_menu"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508964" name="&lt;init&gt;" parent="MyMenuGeneric" startPc="268508946">
+<functionEntry accessMode="protected" endPc="268508959" name="&lt;init&gt;" parent="MyMenuGeneric" startPc="268508941">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268455478" name="initialize" parent="MyMenuGenericDelegate" startPc="268455446">
@@ -4314,7 +4314,7 @@
 <param id="_item"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508924" name="&lt;init&gt;" parent="MyMenuGenericDelegate" startPc="268508906">
+<functionEntry accessMode="protected" endPc="268508919" name="&lt;init&gt;" parent="MyMenuGenericDelegate" startPc="268508901">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268459323" name="initialize" parent="MyPickerGenericElevation" startPc="268459200">
@@ -4322,7 +4322,7 @@
 <param id="_item"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508633" name="&lt;init&gt;" parent="MyPickerGenericElevation" startPc="268508615">
+<functionEntry accessMode="protected" endPc="268508628" name="&lt;init&gt;" parent="MyPickerGenericElevation" startPc="268508610">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268459366" name="initialize" parent="MyPickerGenericElevationDelegate" startPc="268459324">
@@ -4337,7 +4337,7 @@
 <functionEntry accessMode="public" endPc="268459581" name="onCancel" parent="MyPickerGenericElevationDelegate" startPc="268459546">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508808" name="&lt;init&gt;" parent="MyPickerGenericElevationDelegate" startPc="268508790">
+<functionEntry accessMode="protected" endPc="268508803" name="&lt;init&gt;" parent="MyPickerGenericElevationDelegate" startPc="268508785">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268459958" name="initialize" parent="PickerGenericOnOff" startPc="268459582">
@@ -4349,7 +4349,7 @@
 <param id="_amValues"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508394" name="&lt;init&gt;" parent="PickerGenericOnOff" startPc="268508376">
+<functionEntry accessMode="protected" endPc="268508389" name="&lt;init&gt;" parent="PickerGenericOnOff" startPc="268508371">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268460182" name="initialize" parent="MyDrawableHeader" startPc="268459973">
@@ -4367,7 +4367,7 @@
 <param id="_iPositionAccuracy"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508905" name="&lt;init&gt;" parent="MyDrawableHeader" startPc="268508847">
+<functionEntry accessMode="protected" endPc="268508900" name="&lt;init&gt;" parent="MyDrawableHeader" startPc="268508842">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268467591" name="initialize" parent="MyPickerGenericSettings" startPc="268461115">
@@ -4375,7 +4375,7 @@
 <param id="_item"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508671" name="&lt;init&gt;" parent="MyPickerGenericSettings" startPc="268508653">
+<functionEntry accessMode="protected" endPc="268508666" name="&lt;init&gt;" parent="MyPickerGenericSettings" startPc="268508648">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268467634" name="initialize" parent="MyPickerGenericSettingsDelegate" startPc="268467592">
@@ -4390,7 +4390,7 @@
 <functionEntry accessMode="public" endPc="268468358" name="onCancel" parent="MyPickerGenericSettingsDelegate" startPc="268468323">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508983" name="&lt;init&gt;" parent="MyPickerGenericSettingsDelegate" startPc="268508965">
+<functionEntry accessMode="protected" endPc="268508978" name="&lt;init&gt;" parent="MyPickerGenericSettingsDelegate" startPc="268508960">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268468823" name="load" parent="MySettings" startPc="268468359">
@@ -4616,7 +4616,7 @@
 <param id="_bValue"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508945" name="&lt;init&gt;" parent="MySettings" startPc="268508925">
+<functionEntry accessMode="protected" endPc="268508940" name="&lt;init&gt;" parent="MySettings" startPc="268508920">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268473304" name="initialize" parent="MySettings" startPc="268473302">
@@ -4634,7 +4634,7 @@
 <param id="_iUnit"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508375" name="&lt;init&gt;" parent="PickerGenericPressure" startPc="268508357">
+<functionEntry accessMode="protected" endPc="268508370" name="&lt;init&gt;" parent="PickerGenericPressure" startPc="268508352">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268475166" name="initialize" parent="MyMenuGenericConfirm" startPc="268474655">
@@ -4642,7 +4642,7 @@
 <param id="_action"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508576" name="&lt;init&gt;" parent="MyMenuGenericConfirm" startPc="268508558">
+<functionEntry accessMode="protected" endPc="268508571" name="&lt;init&gt;" parent="MyMenuGenericConfirm" startPc="268508553">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268475219" name="initialize" parent="MyMenuGenericConfirmDelegate" startPc="268475167">
@@ -4663,7 +4663,7 @@
 <param id="_item"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508846" name="&lt;init&gt;" parent="MyPickerGenericPressure" startPc="268508828">
+<functionEntry accessMode="protected" endPc="268508841" name="&lt;init&gt;" parent="MyPickerGenericPressure" startPc="268508823">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268475876" name="initialize" parent="MyPickerGenericPressureDelegate" startPc="268475834">
@@ -4734,7 +4734,7 @@
 <functionEntry accessMode="public" endPc="268479347" name="clearStorageLogs" parent="MyApp" startPc="268479189">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508142" name="&lt;init&gt;" parent="MyApp" startPc="268508124">
+<functionEntry accessMode="protected" endPc="268508137" name="&lt;init&gt;" parent="MyApp" startPc="268508119">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268479456" name="initLayout" parent="MyViewVarioplot" startPc="268479348">
@@ -4761,7 +4761,7 @@
 <functionEntry accessMode="public" endPc="268482855" name="onHide" parent="MyViewVarioplot" startPc="268482739">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508279" name="&lt;init&gt;" parent="MyViewVarioplot" startPc="268508143">
+<functionEntry accessMode="protected" endPc="268508274" name="&lt;init&gt;" parent="MyViewVarioplot" startPc="268508138">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268482878" name="initialize" parent="MyViewVarioplotDelegate" startPc="268482856">
@@ -4782,7 +4782,7 @@
 <functionEntry accessMode="public" endPc="268484548" name="onNextPage" parent="MyViewVarioplotDelegate" startPc="268483981">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508298" name="&lt;init&gt;" parent="MyViewVarioplotDelegate" startPc="268508280">
+<functionEntry accessMode="protected" endPc="268508293" name="&lt;init&gt;" parent="MyViewVarioplotDelegate" startPc="268508275">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268484675" name="initialize" parent="MyPickerGenericSpeed" startPc="268484549">
@@ -4790,7 +4790,7 @@
 <param id="_item"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508104" name="&lt;init&gt;" parent="MyPickerGenericSpeed" startPc="268508086">
+<functionEntry accessMode="protected" endPc="268508099" name="&lt;init&gt;" parent="MyPickerGenericSpeed" startPc="268508081">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268484718" name="initialize" parent="MyPickerGenericSpeedDelegate" startPc="268484676">
@@ -4805,7 +4805,7 @@
 <functionEntry accessMode="public" endPc="268484893" name="onCancel" parent="MyPickerGenericSpeedDelegate" startPc="268484858">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268509002" name="&lt;init&gt;" parent="MyPickerGenericSpeedDelegate" startPc="268508984">
+<functionEntry accessMode="protected" endPc="268508997" name="&lt;init&gt;" parent="MyPickerGenericSpeedDelegate" startPc="268508979">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268484916" name="initialize" parent="MyView" startPc="268484894">
@@ -4827,7 +4827,7 @@
 <param id="_bUpdateTime"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508518" name="&lt;init&gt;" parent="MyView" startPc="268508480">
+<functionEntry accessMode="protected" endPc="268508513" name="&lt;init&gt;" parent="MyView" startPc="268508475">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268485681" name="initialize" parent="MyPickerGenericOnOff" startPc="268485297">
@@ -4835,7 +4835,7 @@
 <param id="_item"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508652" name="&lt;init&gt;" parent="MyPickerGenericOnOff" startPc="268508634">
+<functionEntry accessMode="protected" endPc="268508647" name="&lt;init&gt;" parent="MyPickerGenericOnOff" startPc="268508629">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268485724" name="initialize" parent="MyPickerGenericOnOffDelegate" startPc="268485682">
@@ -4850,13 +4850,13 @@
 <functionEntry accessMode="public" endPc="268486033" name="onCancel" parent="MyPickerGenericOnOffDelegate" startPc="268485998">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508432" name="&lt;init&gt;" parent="MyPickerGenericOnOffDelegate" startPc="268508414">
+<functionEntry accessMode="protected" endPc="268508427" name="&lt;init&gt;" parent="MyPickerGenericOnOffDelegate" startPc="268508409">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268486678" name="initialize" parent="MyPickerAltimeterCorrectionRelative" startPc="268486034">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508595" name="&lt;init&gt;" parent="MyPickerAltimeterCorrectionRelative" startPc="268508577">
+<functionEntry accessMode="protected" endPc="268508590" name="&lt;init&gt;" parent="MyPickerAltimeterCorrectionRelative" startPc="268508572">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268486701" name="initialize" parent="MyPickerAltimeterCorrectionRelativeDelegate" startPc="268486679">
@@ -4869,7 +4869,7 @@
 <functionEntry accessMode="public" endPc="268486877" name="onCancel" parent="MyPickerAltimeterCorrectionRelativeDelegate" startPc="268486842">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508337" name="&lt;init&gt;" parent="MyPickerAltimeterCorrectionRelativeDelegate" startPc="268508319">
+<functionEntry accessMode="protected" endPc="268508332" name="&lt;init&gt;" parent="MyPickerAltimeterCorrectionRelativeDelegate" startPc="268508314">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268486900" name="initialize" parent="MyViewHeader" startPc="268486878">
@@ -4887,7 +4887,7 @@
 <param id="_bUpdateTime"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508614" name="&lt;init&gt;" parent="MyViewHeader" startPc="268508596">
+<functionEntry accessMode="protected" endPc="268508609" name="&lt;init&gt;" parent="MyViewHeader" startPc="268508591">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268487920" name="initialize" parent="MyViewLog" startPc="268487842">
@@ -4907,7 +4907,7 @@
 <functionEntry accessMode="public" endPc="268491388" name="loadLog" parent="MyViewLog" startPc="268490099">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508690" name="&lt;init&gt;" parent="MyViewLog" startPc="268508672">
+<functionEntry accessMode="protected" endPc="268508685" name="&lt;init&gt;" parent="MyViewLog" startPc="268508667">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268491411" name="initialize" parent="MyViewLogDelegate" startPc="268491389">
@@ -4925,7 +4925,7 @@
 <functionEntry accessMode="public" endPc="268491814" name="onNextPage" parent="MyViewLogDelegate" startPc="268491735">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268509021" name="&lt;init&gt;" parent="MyViewLogDelegate" startPc="268509003">
+<functionEntry accessMode="protected" endPc="268509016" name="&lt;init&gt;" parent="MyViewLogDelegate" startPc="268508998">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268491933" name="initialize" parent="PickerFactoryDictionary" startPc="268491815">
@@ -4975,7 +4975,7 @@
 <param id="_fAltitudeActual"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508299" name="&lt;init&gt;" parent="MyAltimeter" startPc="268508299">
+<functionEntry accessMode="protected" endPc="268508294" name="&lt;init&gt;" parent="MyAltimeter" startPc="268508294">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268492836" name="initialize" parent="MyAltimeter" startPc="268492834">
@@ -4994,7 +4994,7 @@
 <functionEntry accessMode="public" endPc="268496074" name="onHide" parent="MyViewGeneral" startPc="268496027">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508413" name="&lt;init&gt;" parent="MyViewGeneral" startPc="268508395">
+<functionEntry accessMode="protected" endPc="268508408" name="&lt;init&gt;" parent="MyViewGeneral" startPc="268508390">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268496097" name="initialize" parent="MyViewGeneralDelegate" startPc="268496075">
@@ -5006,7 +5006,7 @@
 <functionEntry accessMode="public" endPc="268496349" name="onNextPage" parent="MyViewGeneralDelegate" startPc="268496270">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508827" name="&lt;init&gt;" parent="MyViewGeneralDelegate" startPc="268508809">
+<functionEntry accessMode="protected" endPc="268508822" name="&lt;init&gt;" parent="MyViewGeneralDelegate" startPc="268508804">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268496378" name="isNaN" parent="LangUtils" startPc="268496350">
@@ -5087,7 +5087,7 @@
 <param id="_iNumber"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508479" name="&lt;init&gt;" parent="PickerFactoryNumber" startPc="268508433">
+<functionEntry accessMode="protected" endPc="268508474" name="&lt;init&gt;" parent="PickerFactoryNumber" startPc="268508428">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268499677" name="initialize" parent="drawHeaderAccuracy1" startPc="268499649">
@@ -5097,7 +5097,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508004" name="&lt;init&gt;" parent="drawHeaderAccuracy1" startPc="268507986">
+<functionEntry accessMode="protected" endPc="268507999" name="&lt;init&gt;" parent="drawHeaderAccuracy1" startPc="268507981">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268499743" name="initialize" parent="drawHeaderAccuracy2" startPc="268499715">
@@ -5107,7 +5107,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507985" name="&lt;init&gt;" parent="drawHeaderAccuracy2" startPc="268507967">
+<functionEntry accessMode="protected" endPc="268507980" name="&lt;init&gt;" parent="drawHeaderAccuracy2" startPc="268507962">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268499809" name="initialize" parent="drawHeaderAccuracy3" startPc="268499781">
@@ -5117,7 +5117,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507966" name="&lt;init&gt;" parent="drawHeaderAccuracy3" startPc="268507948">
+<functionEntry accessMode="protected" endPc="268507961" name="&lt;init&gt;" parent="drawHeaderAccuracy3" startPc="268507943">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268499875" name="initialize" parent="drawHeaderAccuracy4" startPc="268499847">
@@ -5127,7 +5127,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507947" name="&lt;init&gt;" parent="drawHeaderAccuracy4" startPc="268507929">
+<functionEntry accessMode="protected" endPc="268507942" name="&lt;init&gt;" parent="drawHeaderAccuracy4" startPc="268507924">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268499941" name="initialize" parent="drawContentBorders" startPc="268499913">
@@ -5137,7 +5137,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507928" name="&lt;init&gt;" parent="drawContentBorders" startPc="268507910">
+<functionEntry accessMode="protected" endPc="268507923" name="&lt;init&gt;" parent="drawContentBorders" startPc="268507905">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268500111" name="initialize" parent="drawFieldsBackground" startPc="268500083">
@@ -5147,7 +5147,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507757" name="&lt;init&gt;" parent="drawFieldsBackground" startPc="268507739">
+<functionEntry accessMode="protected" endPc="268507752" name="&lt;init&gt;" parent="drawFieldsBackground" startPc="268507734">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268500177" name="initialize" parent="drawFieldsBorders" startPc="268500149">
@@ -5157,7 +5157,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507833" name="&lt;init&gt;" parent="drawFieldsBorders" startPc="268507815">
+<functionEntry accessMode="protected" endPc="268507828" name="&lt;init&gt;" parent="drawFieldsBorders" startPc="268507810">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268500619" name="initialize" parent="drawGlobalAlertLeft" startPc="268500591">
@@ -5167,7 +5167,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508080" name="&lt;init&gt;" parent="drawGlobalAlertLeft" startPc="268508062">
+<functionEntry accessMode="protected" endPc="268508075" name="&lt;init&gt;" parent="drawGlobalAlertLeft" startPc="268508057">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268500685" name="initialize" parent="drawGlobalAlertCenter" startPc="268500657">
@@ -5177,7 +5177,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507909" name="&lt;init&gt;" parent="drawGlobalAlertCenter" startPc="268507891">
+<functionEntry accessMode="protected" endPc="268507904" name="&lt;init&gt;" parent="drawGlobalAlertCenter" startPc="268507886">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268500751" name="initialize" parent="drawGlobalAlertRight" startPc="268500723">
@@ -5187,7 +5187,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508042" name="&lt;init&gt;" parent="drawGlobalAlertRight" startPc="268508024">
+<functionEntry accessMode="protected" endPc="268508037" name="&lt;init&gt;" parent="drawGlobalAlertRight" startPc="268508019">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268500817" name="initialize" parent="drawButtonPlus" startPc="268500789">
@@ -5197,7 +5197,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507795" name="&lt;init&gt;" parent="drawButtonPlus" startPc="268507777">
+<functionEntry accessMode="protected" endPc="268507790" name="&lt;init&gt;" parent="drawButtonPlus" startPc="268507772">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268500987" name="initialize" parent="drawButtonMinus" startPc="268500959">
@@ -5207,7 +5207,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507871" name="&lt;init&gt;" parent="drawButtonMinus" startPc="268507853">
+<functionEntry accessMode="protected" endPc="268507866" name="&lt;init&gt;" parent="drawButtonMinus" startPc="268507848">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268501089" name="initialize" parent="drawButtonUp" startPc="268501061">
@@ -5217,7 +5217,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507776" name="&lt;init&gt;" parent="drawButtonUp" startPc="268507758">
+<functionEntry accessMode="protected" endPc="268507771" name="&lt;init&gt;" parent="drawButtonUp" startPc="268507753">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268501463" name="initialize" parent="drawButtonDown" startPc="268501435">
@@ -5227,7 +5227,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508023" name="&lt;init&gt;" parent="drawButtonDown" startPc="268508005">
+<functionEntry accessMode="protected" endPc="268508018" name="&lt;init&gt;" parent="drawButtonDown" startPc="268508000">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268501837" name="initialize" parent="drawButtonLeft" startPc="268501809">
@@ -5237,7 +5237,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507890" name="&lt;init&gt;" parent="drawButtonLeft" startPc="268507872">
+<functionEntry accessMode="protected" endPc="268507885" name="&lt;init&gt;" parent="drawButtonLeft" startPc="268507867">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268502211" name="initialize" parent="drawButtonRight" startPc="268502183">
@@ -5247,7 +5247,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507814" name="&lt;init&gt;" parent="drawButtonRight" startPc="268507796">
+<functionEntry accessMode="protected" endPc="268507809" name="&lt;init&gt;" parent="drawButtonRight" startPc="268507791">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268502585" name="initialize" parent="drawButtonTopLeft" startPc="268502557">
@@ -5257,7 +5257,7 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508061" name="&lt;init&gt;" parent="drawButtonTopLeft" startPc="268508043">
+<functionEntry accessMode="protected" endPc="268508056" name="&lt;init&gt;" parent="drawButtonTopLeft" startPc="268508038">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268502959" name="initialize" parent="drawButtonBottomRight" startPc="268502931">
@@ -5267,16 +5267,16 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507852" name="&lt;init&gt;" parent="drawButtonBottomRight" startPc="268507834">
+<functionEntry accessMode="protected" endPc="268507847" name="&lt;init&gt;" parent="drawButtonBottomRight" startPc="268507829">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507738" name="&lt;init&gt;" parent="Drawables" startPc="268507738">
+<functionEntry accessMode="protected" endPc="268507733" name="&lt;init&gt;" parent="Drawables" startPc="268507733">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508082" name="&lt;init&gt;" parent="Fonts" startPc="268508082">
+<functionEntry accessMode="protected" endPc="268508077" name="&lt;init&gt;" parent="Fonts" startPc="268508077">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508084" name="&lt;init&gt;" parent="JsonData" startPc="268508084">
+<functionEntry accessMode="protected" endPc="268508079" name="&lt;init&gt;" parent="JsonData" startPc="268508079">
 <documentation/>
 </functionEntry>
 <functionEntry accessMode="public" endPc="268506812" name="layoutGlobal" parent="Layouts" startPc="268503305">
@@ -5287,16 +5287,16 @@
 <param id="dc"/>
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508083" name="&lt;init&gt;" parent="Layouts" startPc="268508083">
+<functionEntry accessMode="protected" endPc="268508078" name="&lt;init&gt;" parent="Layouts" startPc="268508078">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508081" name="&lt;init&gt;" parent="Menus" startPc="268508081">
+<functionEntry accessMode="protected" endPc="268508076" name="&lt;init&gt;" parent="Menus" startPc="268508076">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268508085" name="&lt;init&gt;" parent="Strings" startPc="268508085">
+<functionEntry accessMode="protected" endPc="268508080" name="&lt;init&gt;" parent="Strings" startPc="268508080">
 <documentation/>
 </functionEntry>
-<functionEntry accessMode="protected" endPc="268507737" name="&lt;init&gt;" parent="Rez" startPc="268507714">
+<functionEntry accessMode="protected" endPc="268507732" name="&lt;init&gt;" parent="Rez" startPc="268507714">
 <documentation/>
 </functionEntry>
 </functions>

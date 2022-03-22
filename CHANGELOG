@@ -1,3 +1,6 @@
+* 1.32
+  - Fixed issue with vario tone frequencies and supported watches
+
 * 1.31
   - Tweak tone curve to have continuous frequency values rather than discrete
 

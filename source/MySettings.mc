@@ -54,8 +54,8 @@ class MySettings {
   public var iVariometerRange as Number = 0;
   public var bVariometerAutoThermal as Boolean = true;
   public var iVariometerSmoothing as Number = 1;
-  public var iVariometerPlotRange as Number = 2; // A 2 minutes track should be enough to capture around 5 circles according to average thermalling times https://xcmag.com/paragliding-techniques-paramotoring-skills/thermalling-how-tight-should-you-turn/
-  public var iVariometerPlotZoom as Number = 9; // Setting zoom level for paragliders to 1m/pixel should be enough to keep track of both thermalling circles but also drift
+  public var iVariometerPlotRange as Number = 2;
+  public var iVariometerPlotZoom as Number = 9;
   // ... sounds
   public var bSoundsVariometerTones as Boolean = true;
   public var bVariometerVibrations as Boolean = true;
@@ -91,8 +91,8 @@ class MySettings {
 
   // Other
   public var fVariometerRange as Float = 3.0f;
-  public var fVariometerPlotZoom as Float = 0.0308666666667f; //default value for paraglider
-  public var fMinimumClimb as Float = 0.2; //default value for paraglider
+  public var fVariometerPlotZoom as Float = 0.0308666666667f;
+  public var fMinimumClimb as Float = 0.2;
   public var fMinimumSink as Float = 2.0;
   public var fVariometerSmoothing as Float = 0.5; //Standard deviation of altitude measurement at fixed altitude
 

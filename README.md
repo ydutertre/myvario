@@ -26,9 +26,10 @@ Please refer to the USAGE file.
 
 ## Supported watches
 
-I have kept the same list of supported watches as GliderSK, as I haven't
-added anything that could be a problem for these watches. However, I am
-testing this application on my Garmin Fenix 7X.
+I have reduced the number of watches supported compared to GliderSK. This
+is because I am using variable frequency tones for the vario, which are
+only supported for SDK 3.1.0 and above. I am testing this application on
+my Garmin Fenix 7X.
 
 ## Not a programmer
 
