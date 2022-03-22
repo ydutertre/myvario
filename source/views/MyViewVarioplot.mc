@@ -270,6 +270,10 @@ class MyViewVarioplot extends MyViewHeader {
               _oDC.setColor(iCurrentColor, Gfx.COLOR_TRANSPARENT);
               _oDC.drawLine(iLastX, iLastY, iCurrentX, iCurrentY);
             }
+            if(i == 1) {
+              _oDC.setColor(iCurrentColor, Gfx.COLOR_TRANSPARENT);
+              _oDC.fillCircle(iCurrentX, iCurrentY, 5);
+            }
             iLastColor = iCurrentColor;
           }
           else {

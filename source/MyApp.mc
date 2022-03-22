@@ -381,7 +381,7 @@ class MyApp extends App.AppBase {
     // ALGO: Tones "tick" is 100ms; I try to do a curve that is similar to the Skybean vario
     // Medium curve in terms of tone length, pause, and one frequency.
     // Tones need to be more frequent than in GliderSK even at low climb rates to be able to
-    // properly map thermals (especially broken up thermals) in a slow and sensitive paraglider
+    // properly map thermals (especially broken up thermals)
     if(self.iTones || self.iVibrations) {
       var fValue = $.oMyProcessing.fVariometer_filtered;
       var iDeltaTick = (self.iTonesTick-self.iTonesLastTick) > 8 ? 8 : self.iTonesTick-self.iTonesLastTick;
