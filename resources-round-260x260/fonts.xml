@@ -3,6 +3,6 @@
   <font id="fontMeter" filename="../resources/fonts/ArialBold-DIGIT-69.fnt" />
   <font id="fontPlot" filename="../resources/fonts/ArialBold-NEHE-22.fnt" />
   <font id="fontStatus" filename="../resources/fonts/ArialBold-NEHE-15.fnt" />
-  <font id="fontLabel" filename="../resources/fonts/Arial-ASCII-13.fnt" />
-  <font id="fontUnit" filename="../resources/fonts/Arial-ASCII-13.fnt" />
+  <font id="fontLabel" filename="../resources/fonts/Arial-NEHE-16.fnt" />
+  <font id="fontUnit" filename="../resources/fonts/Arial-NEHE-16.fnt" />
 </fonts>
