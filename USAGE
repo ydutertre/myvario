@@ -34,8 +34,11 @@ altitude reading (the device's "native" altimeter/barometer settings are
 ignored).
 
 My Vario is based on the excellent GliderSK by Cedric Dufour. If you like this
-application, you should consider donating to him (see DONATE file).
+application, you should consider donating to him (see DONATE file or below).
 
+http://cedric.dufour.name/software/donate.html
+
+A lot of this USAGE text is also verbatim from Cedric's manual.
 
 General View
 ------------
@@ -233,15 +236,14 @@ In general, filtered values are used.
 
 Smoothing relies on the standard deviation of the Altitude (which depends on the
 barometric sensor). This can be changed via the Variometer Smoothing setting.
-Higher values of smoothing induce more lag - however, this seems to be less lag
-for better results than the origina simple moving average of GliderSK.
+Higher values of smoothing induce more lag - however, this still seems to be to
+provide better reactivity for the same amount of smoothing as the original
+simple moving average of GliderSK.
 
-Note that the Minimum Climb setting can be used to compensate for lower smoothing,
-at the price of sensitivity, if using My Vario as an audio/vibration variometer.
+Note that the Minimum Climb setting can be used to compensate for weaker smoothing,
+if using My Vario as an audio/vibration variometer.
 
-However, the following exceptions apply:
-- the Varioplot View always displays instantaneous data
-- Activity Recorded (FIT) data are always instantaneous
+However, the Activity Recorded (FIT) data are always instantaneous rather than smoothed.
 
 Calibrating the Device Sensor
 -----------------------------
