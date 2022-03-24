@@ -1,3 +1,10 @@
+* 1.4
+  - Added the Forerunner 645 Music as a supported watch
+  - Added thermal detection option (see USAGE)
+  - Added marker of current location on varioplot
+  - Limited varioplot to three minutes / 7-9 thermal circling to save memory
+  - Replaced General view cell header/unit font to save memory
+
 * 1.32
   - Fixed issue with vario tone frequencies and supported watches
 

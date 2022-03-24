@@ -109,6 +109,11 @@ class MyProcessing {
   public var aiPlotLatitude as Array<Number>;
   public var aiPlotLongitude as Array<Number>;
   public var aiPlotVariometer as Array<Number>;
+  // Thermal core calculation
+  public var iCenterLongitude as Number = 0;
+  public var iCenterLatitude as Number = 0;
+  public var iStandardDev as Number = 0;
+  public var aiPointAltitude as Array<Number>;
 
 
   //
@@ -133,6 +138,8 @@ class MyProcessing {
     for(var i=0; i<self.PLOTBUFFER_SIZE; i++) { self.aiPlotLongitude[i] = 0; }
     aiPlotVariometer = new Array<Number>[self.PLOTBUFFER_SIZE];
     for(var i=0; i<self.PLOTBUFFER_SIZE; i++) { self.aiPlotVariometer[i] = 0; }
+    aiPointAltitude = new Array<Number>[self.PLOTBUFFER_SIZE];
+    for(var i=0; i<self.PLOTBUFFER_SIZE; i++) { self.aiPointAltitude[i] = 0; }
   }
 
   function resetSensorData() as Void {
@@ -323,6 +330,57 @@ class MyProcessing {
         self.aiPlotLongitude[self.iPlotIndex] = (adPositionDegrees[1]*3600000.0f).toNumber();
         // ... vertical speed as (integer) millimeter-per-second
         self.aiPlotVariometer[self.iPlotIndex] = (self.fVariometer_filtered*1000.0f).toNumber();
+        self.aiPointAltitude[self.iPlotIndex] = self.fAltitude.toNumber();
+
+        if($.oMySettings.bVariometerThermalDetect) {
+          // Thermal core detector
+          var iWeightedSum= 0 as Number;
+          var iWeightedSum2 = 0 as Number;
+          var fWeightedSumLongitude = 0.0f as Float;
+          var fWeightedSumLatitude = 0.0f as Float;
+          var fWeightedMeanLongitude = 0.0f as Float;
+          var fWeightedMeanLongitudeOld = 0.0f as Float;
+          var fWeightedSLongitude = 0.0f as Float;
+          var fWeightedMeanLatitude = 0.0f as Float;
+          var fWeightedMeanLatitudeOld = 0.0f as Float;
+          var fWeightedSLatitude = 0.0f as Float;
+          var iCountClimb = 0 as Number; 
+
+          // Thermal detector uses 1 minute of data
+          for(var i = 0; i<60; i++){
+            var index = (self.iPlotIndex - i) >= 0 ? (self.iPlotIndex - i) : self.PLOTBUFFER_SIZE + (self.iPlotIndex - i);
+            if(aiPlotLatitude[index] != 0 && aiPlotLongitude[index] != 0 && self.aiPlotVariometer[index] > $.oMySettings.fMinimumClimb * 1000.0f) {
+              // Point weight is relative to climb rate
+              var weight = self.aiPlotVariometer[index];
+              // Point weight decreases as measurement altitude is farther from current altitude
+              weight -= ((self.fAltitude.toNumber() - self.aiPointAltitude[index]) * 40).abs();
+              // Point weight decreases with age of point
+              weight -= i * 10;
+              weight = (weight < 0) ? 0 : weight;
+              // One pass weighted mean and weighted variance calculation
+              iWeightedSum += weight;
+              iWeightedSum2 += weight * weight;
+              fWeightedMeanLongitudeOld = fWeightedMeanLongitude;
+              fWeightedMeanLatitudeOld = fWeightedMeanLatitude;
+              if(iWeightedSum != 0) {
+                fWeightedMeanLongitude = fWeightedMeanLongitudeOld + (weight.toFloat() / iWeightedSum.toFloat()) * (self.aiPlotLongitude[index].toFloat() - fWeightedMeanLongitudeOld);
+                fWeightedMeanLatitude = fWeightedMeanLatitudeOld + (weight.toFloat() / iWeightedSum.toFloat()) * (self.aiPlotLatitude[index].toFloat() - fWeightedMeanLatitudeOld);
+              }
+              else {
+                fWeightedMeanLongitude = fWeightedMeanLongitudeOld;
+                fWeightedMeanLatitude = fWeightedMeanLatitudeOld;
+              }
+              fWeightedSLongitude += weight * (self.aiPlotLongitude[index] - fWeightedMeanLongitudeOld) * (self.aiPlotLongitude[index] - fWeightedMeanLongitude);
+              fWeightedSLatitude += weight * (self.aiPlotLatitude[index] - fWeightedMeanLatitudeOld) * (self.aiPlotLatitude[index] - fWeightedMeanLatitude);
+            }
+            
+          }
+          if(iWeightedSum != 1) {
+            self.iCenterLongitude = fWeightedMeanLongitude.toNumber();
+            self.iCenterLatitude = fWeightedMeanLatitude.toNumber();
+            self.iStandardDev = Math.sqrt((fWeightedSLongitude + fWeightedSLatitude) / (2 * iWeightedSum - 2)).toNumber();
+          }
+        }
       }
     }
 

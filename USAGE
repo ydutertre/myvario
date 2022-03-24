@@ -173,6 +173,9 @@ The application allows you to specify the following settings:
   - Auto Thermal:
     whether the app will switch to Varioplot view automatically when circling is
     detected, and switch back once circling is no longer detected
+  - Thermal Detect (EXPERIMENTAL):
+    whether the app will try to detect and map a thermal in the Varioplot view
+    see "About thermal detection" for more information
   - Smoothing:
     the amount of smoothing to apply to the variometer reading (determines the standard
     deviation of altitude applied to the Kalman Filter: 0.2, 0.5, 0.7, or 1.0)
@@ -244,6 +247,22 @@ Note that the Minimum Climb setting can be used to compensate for weaker smoothi
 if using My Vario as an audio/vibration variometer.
 
 However, the Activity Recorded (FIT) data are always instantaneous rather than smoothed.
+
+About Thermal Detection
+-----------------------
+
+Thermal detection can be enabled in the settings menu, under Variometer. This performs the
+following across the last 60 seconds of location and variometer data:
+- It assigns a weight to each location. The stronger the climb at that location the higher
+  the weight. However, it also decreases the weight the further that point is from the current
+  altitude. The older the data point, the lower its weight as well.
+- Locations with a climb rate of less than the Min. Climb setting are ignored
+- It computes the weighted average of the coordinates and uses that as the thermal center
+- It computes at the same time the weighted standard deviation of the coordinates and uses
+  that as the radius of the thermal
+- It then draws the thermal as a circle in blue on the varioplot
+
+This feature is experimental, and could be completely useless. Use at your own risk.
 
 Calibrating the Device Sensor
 -----------------------------

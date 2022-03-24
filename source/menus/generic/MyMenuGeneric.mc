@@ -79,6 +79,7 @@ class MyMenuGeneric extends Ui.Menu {
       Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsVariometer) as String);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerRange) as String, :menuVariometerRange);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerAutoThermal) as String, :menuVariometerAutoThermal);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerThermalDetect) as String, :menuVariometerThermalDetect);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerSmoothing) as String, :menuVariometerSmoothing);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerPlotRange) as String, :menuVariometerPlotRange);
     }
@@ -252,6 +253,11 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       else if(_item == :menuVariometerAutoThermal) {
         Ui.pushView(new MyPickerGenericOnOff(:contextVariometer, :itemAutoThermal),
                     new MyPickerGenericOnOffDelegate(:contextVariometer, :itemAutoThermal),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if(_item == :menuVariometerThermalDetect) {
+        Ui.pushView(new MyPickerGenericOnOff(:contextVariometer, :itemThermalDetect),
+                    new MyPickerGenericOnOffDelegate(:contextVariometer, :itemThermalDetect),
                     Ui.SLIDE_IMMEDIATE);
       }
       else if(_item == :menuVariometerPlotRange) {

@@ -27,7 +27,8 @@ when circling)
 - a Variometer view, where the vertical speed can be visually seen
 
 - a Varioplot/thermal assistant view, allowing to keep track of your ascent/descent
-rate along your flight path
+rate along your flight path. This view can optionally include a detected thermal
+core to help keep within the thermal
 
 - a Log view, allowing to keep track of your last activities (unavailable during
 flight) including flight start and end times, maximum and minimum altitudes, etc.

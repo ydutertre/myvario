@@ -74,6 +74,7 @@ class MyViewVarioplot extends MyViewHeader {
   private var iLayoutValueXright as Number = 200;
   private var iLayoutValueYtop as Number = 30;
   private var iLayoutValueYbottom as Number = 193;
+  private var iDotRadius = 5 as Number;
 
   // Color scale
   private var aiScale as Array<Number> = [-3000, -2000, -1000, -50, 50, 1000, 2000, 3000] as Array<Number>;
@@ -93,6 +94,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueXright = 200;
     self.iLayoutValueYtop = 30;
     self.iLayoutValueYbottom = 190;
+    self.iDotRadius = 3;
   }
 
   (:layout_260x260)
@@ -105,6 +107,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueXright = 217;
     self.iLayoutValueYtop = 33;
     self.iLayoutValueYbottom = 205;
+    self.iDotRadius = 4;
   }
 
   (:layout_280x280)
@@ -117,6 +120,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueXright = 233;
     self.iLayoutValueYtop = 35;
     self.iLayoutValueYbottom = 221;
+    self.iDotRadius = 5;
   }
 
 
@@ -270,7 +274,7 @@ class MyViewVarioplot extends MyViewHeader {
               _oDC.setColor(iCurrentColor, Gfx.COLOR_TRANSPARENT);
               _oDC.drawLine(iLastX, iLastY, iCurrentX, iCurrentY);
               if(i == 1) {
-                _oDC.fillCircle(iCurrentX, iCurrentY, 5);
+                _oDC.fillCircle(iCurrentX, iCurrentY, self.iDotRadius);
               }
             }
             iLastColor = iCurrentColor;
@@ -292,6 +296,13 @@ class MyViewVarioplot extends MyViewHeader {
       }
       iCurrentIndex = (iCurrentIndex+1) % MyProcessing.PLOTBUFFER_SIZE;
     }
+    if($.oMyProcessing.iCenterLongitude != 0 && $.oMyProcessing.iCenterLatitude != 0 && $.oMyProcessing.iStandardDev != 0) {
+      var myX = self.iLayoutCenter + $.iMyViewVarioplotOffsetX+(($.oMyProcessing.iCenterLongitude-iEndLongitude)*fZoomX).toNumber();
+      var myY = self.iLayoutCenter + $.iMyViewVarioplotOffsetY-(($.oMyProcessing.iCenterLatitude-iEndLatitude)*fZoomY).toNumber();
+      _oDC.setColor(Gfx.COLOR_BLUE, Gfx.COLOR_TRANSPARENT);
+      _oDC.drawCircle(myX, myY, ($.oMyProcessing.iStandardDev*fZoomY).toNumber());
+    }
+    //Sys.println(format("DEBUG: centerX, centerY, iEndLongitude, iEndLatitude = $1$, $2$, $3$, $4$", [$.oMyProcessing.iCenterLongitude, $.oMyProcessing.iCenterLatitude, iEndLongitude, iEndLatitude]));
     _oDC.clearClip();
   }
 

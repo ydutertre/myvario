@@ -53,6 +53,7 @@ class MySettings {
   // ... variometer
   public var iVariometerRange as Number = 0;
   public var bVariometerAutoThermal as Boolean = true;
+  public var bVariometerThermalDetect as Boolean = true;
   public var iVariometerSmoothing as Number = 1;
   public var iVariometerPlotRange as Number = 2;
   public var iVariometerPlotZoom as Number = 9;
@@ -109,6 +110,7 @@ class MySettings {
     // ... variometer
     self.setVariometerRange(self.loadVariometerRange());
     self.setVariometerAutoThermal(self.loadVariometerAutoThermal());
+    self.setVariometerThermalDetect(self.loadVariometerThermalDetect());
     self.setVariometerSmoothing(self.loadVariometerSmoothing());
     self.setVariometerPlotRange(self.loadVariometerPlotRange());
     self.setVariometerPlotZoom(self.loadVariometerPlotZoom());
@@ -230,6 +232,17 @@ class MySettings {
   }
   function setVariometerAutoThermal(_bValue as Boolean) as Void {
     self.bVariometerAutoThermal = _bValue;
+  }
+
+  function loadVariometerThermalDetect() as Boolean {
+    var bValue = App.Properties.getValue("userVariometerThermalDetect") as Boolean?;
+    return bValue != null ? bValue : true;
+  }
+  function saveVariometerThermalDetect(_bValue as Boolean) as Void {
+    App.Properties.setValue("userVariometerThermalDetect", _bValue as App.PropertyValueType);
+  }
+  function setVariometerThermalDetect(_bValue as Boolean) as Void {
+    self.bVariometerThermalDetect = _bValue;
   }
 
   function loadVariometerSmoothing() as Number { 

@@ -65,6 +65,10 @@ class MyPickerGenericOnOff extends PickerGenericOnOff {
         PickerGenericOnOff.initialize(Ui.loadResource(Rez.Strings.titleVariometerAutoThermal) as String,
                                       $.oMySettings.loadVariometerAutoThermal());
       }
+      else if(_item == :itemThermalDetect) {
+        PickerGenericOnOff.initialize(Ui.loadResource(Rez.Strings.titleVariometerThermalDetect) as String,
+                                      $.oMySettings.loadVariometerThermalDetect());
+      }
     }
   }
 
@@ -108,6 +112,9 @@ class MyPickerGenericOnOffDelegate extends Ui.PickerDelegate {
     else if(self.context == :contextVariometer) {
       if(self.item == :itemAutoThermal) {
         $.oMySettings.saveVariometerAutoThermal(bValue);
+      }
+      else if(self.item == :itemThermalDetect) {
+        $.oMySettings.saveVariometerThermalDetect(bValue);
       }
     }
     Ui.popView(Ui.SLIDE_IMMEDIATE);
