@@ -21,6 +21,28 @@ Usage instructions
    !!! WARNING !!! DISCLAIMER !!! WARNING !!! DISCLAIMER !!! WARNING !!!
 
 
+Getting Started
+---------
+
+First, if you're confused that the app is not displaying any data, don't fret!
+You just need to get a GPS fix :) Go to a window or go outside, and all will
+become clear.
+
+Next is navigation. The app is geared towards watches that can be used without
+a touch interface, such as Forerunner or Fenix series.
+
+Up button (middle left) and Down button (bottom left) can be used to go from one
+view to another. Swiping up and down on a touchscreen also does the trick.
+
+Long pressing the Up button will bring up the menu (except in the Varioplot view!
+See the rest of this doc to learn more). You can navigate the menu and its various
+settings with the Up, Down, Start/Validate (top right button) and Back (bottom right)
+buttons. Swipes and taps also work. Check the settings and set them to what you like!
+
+The start button can be used to start and stop the activity recording, and back can
+be used to exit the app (except in the log view, so check further down this usage
+guide for details).
+
 Foreword
 --------
 
@@ -263,6 +285,7 @@ following across the last 60 seconds of location and variometer data:
 - It then draws the thermal as a circle in blue on the varioplot
 
 This feature is experimental, and could be completely useless. Use at your own risk.
+If you have a better algo in mind, please let me know!!
 
 Calibrating the Device Sensor
 -----------------------------
