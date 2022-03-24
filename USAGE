@@ -36,10 +36,10 @@ view to another. Swiping up and down on a touchscreen also does the trick.
 
 Long pressing the Up button will bring up the menu (except in the Varioplot view!
 See the rest of this doc to learn more). You can navigate the menu and its various
-settings with the Up, Down, Start/Validate (top right button) and Back (bottom right)
+settings with the Up, Down, Select (top right button) and Back (bottom right)
 buttons. Swipes and taps also work. Check the settings and set them to what you like!
 
-The start button can be used to start and stop the activity recording, and back can
+The Select button can be used to start and stop the activity recording, and Back can
 be used to exit the app (except in the log view, so check further down this usage
 guide for details).
 
