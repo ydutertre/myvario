@@ -28,9 +28,6 @@ using Toybox.System as Sys;
 // CLASS
 //
 
-// We use Simple Moving Average (SMA) to smoothen the sensor values over
-// the user-specified "time constant" or time period.
-
 class MyKalmanFilter {
 
   //
