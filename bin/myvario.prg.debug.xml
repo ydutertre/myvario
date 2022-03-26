@@ -66,18 +66,18 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="5" lineNum="178" parent="globals/MyPickerGenericStorageDelegate" pc="268437208" symbol="onCancel"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="6" lineNum="118" parent="globals/MyPickerGenericStorageDelegate" pc="268510185" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\menus\\generic\\MyPickerGenericStorage.mc" id="6" lineNum="118" parent="globals/MyPickerGenericStorageDelegate" pc="268510185" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="120" parent="globals/MyViewVariometer" pc="268437212" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="121" parent="globals/MyViewVariometer" pc="268437216" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="122" parent="globals/MyViewVariometer" pc="268437229" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="123" parent="globals/MyViewVariometer" pc="268437242" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="124" parent="globals/MyViewVariometer" pc="268437255" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="125" parent="globals/MyViewVariometer" pc="268437268" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="126" parent="globals/MyViewVariometer" pc="268437281" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="127" parent="globals/MyViewVariometer" pc="268437294" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="128" parent="globals/MyViewVariometer" pc="268437307" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="129" parent="globals/MyViewVariometer" pc="268437320" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="130" parent="globals/MyViewVariometer" pc="268437333" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="131" parent="globals/MyViewVariometer" pc="268437346" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="105" parent="globals/MyViewVariometer" pc="268437212" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="106" parent="globals/MyViewVariometer" pc="268437216" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="107" parent="globals/MyViewVariometer" pc="268437229" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="108" parent="globals/MyViewVariometer" pc="268437242" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="109" parent="globals/MyViewVariometer" pc="268437255" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="110" parent="globals/MyViewVariometer" pc="268437268" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="111" parent="globals/MyViewVariometer" pc="268437281" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="112" parent="globals/MyViewVariometer" pc="268437294" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="113" parent="globals/MyViewVariometer" pc="268437307" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="114" parent="globals/MyViewVariometer" pc="268437320" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="115" parent="globals/MyViewVariometer" pc="268437333" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="8" lineNum="116" parent="globals/MyViewVariometer" pc="268437346" symbol="initLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="9" lineNum="139" parent="globals/MyViewVariometer" pc="268437360" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="9" lineNum="141" parent="globals/MyViewVariometer" pc="268437364" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVariometer.mc" id="9" lineNum="143" parent="globals/MyViewVariometer" pc="268437384" symbol="initialize"/>
@@ -1658,16 +1658,16 @@
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="213" lineNum="63" parent="globals" pc="268509536" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="213" lineNum="66" parent="globals" pc="268509566" symbol="&lt;init&gt;"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\MyApp.mc" id="213" lineNum="67" parent="globals" pc="268509596" symbol="&lt;init&gt;"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="127" parent="globals/MyViewVarioplot" pc="268480419" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="128" parent="globals/MyViewVarioplot" pc="268480423" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="129" parent="globals/MyViewVarioplot" pc="268480436" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="130" parent="globals/MyViewVarioplot" pc="268480449" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="131" parent="globals/MyViewVarioplot" pc="268480462" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="132" parent="globals/MyViewVarioplot" pc="268480475" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="133" parent="globals/MyViewVarioplot" pc="268480488" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="134" parent="globals/MyViewVarioplot" pc="268480501" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="135" parent="globals/MyViewVarioplot" pc="268480514" symbol="initLayout"/>
-<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="136" parent="globals/MyViewVarioplot" pc="268480527" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="114" parent="globals/MyViewVarioplot" pc="268480419" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="115" parent="globals/MyViewVarioplot" pc="268480423" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="116" parent="globals/MyViewVarioplot" pc="268480436" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="117" parent="globals/MyViewVarioplot" pc="268480449" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="118" parent="globals/MyViewVarioplot" pc="268480462" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="119" parent="globals/MyViewVarioplot" pc="268480475" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="120" parent="globals/MyViewVarioplot" pc="268480488" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="121" parent="globals/MyViewVarioplot" pc="268480501" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="122" parent="globals/MyViewVarioplot" pc="268480514" symbol="initLayout"/>
+<entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="214" lineNum="123" parent="globals/MyViewVarioplot" pc="268480527" symbol="initLayout"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="215" lineNum="144" parent="globals/MyViewVarioplot" pc="268480541" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="215" lineNum="145" parent="globals/MyViewVarioplot" pc="268480545" symbol="initialize"/>
 <entry filename="C:\\Users\\yanni\\Documents\\GitHub\\myvario\\source\\views\\MyViewVarioplot.mc" id="215" lineNum="148" parent="globals/MyViewVarioplot" pc="268480563" symbol="initialize"/>
@@ -3979,12 +3979,13 @@
 <entry endPc="268508891" name="rez_cmp_local_text_labelRight" stackId="22" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_text_unitLeft" stackId="18" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_text_valueBottomRight" stackId="30" startPc="268505397"/>
+<entry endPc="268508891" name="rez_cmp_local_custom_drawable_19677913404137827232" stackId="6" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_text_valueBottomLeft" stackId="27" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_text_labelCenter" stackId="20" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_text_valueCenter" stackId="21" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_custom_drawable_drawContentBorders" stackId="7" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_text_valueRight" stackId="24" startPc="268505397"/>
-<entry endPc="268508891" name="rez_cmp_local_custom_drawable_20097339176802625861" stackId="5" startPc="268505397"/>
+<entry endPc="268508891" name="rez_cmp_local_custom_drawable_21117177202029225864" stackId="5" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_text_valueTopLeft" stackId="13" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_text_valueTopRight" stackId="16" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_custom_drawable_drawFieldsBorders" stackId="8" startPc="268505397"/>
@@ -3994,19 +3995,18 @@
 <entry endPc="268508891" name="rez_cmp_local_text_valueBatteryLevel" stackId="9" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_text_labelBottomLeft" stackId="25" startPc="268505397"/>
 <entry endPc="268508891" name="rez_cmp_local_text_labelTopRight" stackId="14" startPc="268505397"/>
-<entry endPc="268508891" name="rez_cmp_local_custom_drawable_66503932019250673780" stackId="6" startPc="268505397"/>
 <entry arg="true" endPc="268508892" name="dc" stackId="1" startPc="268505385"/>
 <entry endPc="268509474" name="rez_cmp_local_text_valueBatteryLevel" stackId="5" startPc="268508905"/>
 <entry endPc="268509474" name="rez_cmp_local_text_valueFooter" stackId="7" startPc="268508905"/>
 <entry endPc="268509474" name="rez_cmp_local_text_valueActivityStatus" stackId="6" startPc="268508905"/>
 <entry endPc="268509474" name="rez_cmp_local_custom_drawable_drawContentBorders" stackId="4" startPc="268508905"/>
-<entry endPc="268509474" name="rez_cmp_local_custom_drawable_48421256818908353483" stackId="3" startPc="268508905"/>
+<entry endPc="268509474" name="rez_cmp_local_custom_drawable_58777322770451672491" stackId="3" startPc="268508905"/>
 <entry endPc="268509474" name="local_Rez_Fonts_fontStatus" stackId="2" startPc="268508905"/>
 <entry arg="true" endPc="268509475" name="dc" stackId="1" startPc="268508893"/>
 </localVars>
 <annotations>
-<annotationEntry annotation="layout_416x416" class="MyViewVariometer" module="globals" symbol="initLayout"/>
-<annotationEntry annotation="layout_416x416" class="MyViewVarioplot" module="globals" symbol="initLayout"/>
+<annotationEntry annotation="layout_280x280" class="MyViewVariometer" module="globals" symbol="initLayout"/>
+<annotationEntry annotation="layout_280x280" class="MyViewVarioplot" module="globals" symbol="initLayout"/>
 <annotationEntry annotation="initialized" class="Drawables" module="globals/Rez" symbol="AppIcon"/>
 <annotationEntry annotation="initialized" class="Fonts" module="globals/Rez" symbol="fontMeter"/>
 <annotationEntry annotation="initialized" class="Fonts" module="globals/Rez" symbol="fontPlot"/>
