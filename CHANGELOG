@@ -1,4 +1,7 @@
-* 1.4
+* 1.50
+  - Added the Epix (Gen 2) as a supported watch
+
+* 1.40
   - Added the Forerunner 645 Music as a supported watch
   - Added thermal detection option (see USAGE)
   - Added marker of current location on varioplot

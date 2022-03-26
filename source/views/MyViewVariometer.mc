@@ -116,6 +116,21 @@ class MyViewVariometer extends MyView {
     self.iLayoutUnitY = 123;
   }
 
+  (:layout_416x416)
+  function initLayout() as Void {
+    self.iLayoutCenter = 208;
+    self.iLayoutValueR = 104;
+    self.iLayoutCacheX = 178;
+    self.iLayoutCacheR = 156;
+    self.iLayoutBatteryY = 257;
+    self.iLayoutActivityY = 131;
+    self.iLayoutTimeY = 281;
+    self.iLayoutAltitudeY = 73;
+    self.iLayoutValueY = 144;
+    self.iLayoutUnitX = 367;
+    self.iLayoutUnitY = 183;
+  }
+
 
   //
   // FUNCTIONS: MyView (override/implement)
