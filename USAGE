@@ -24,9 +24,18 @@ Usage instructions
 Getting Started
 ---------
 
-First, if you're confused that the app is not displaying any data, don't fret!
-You just need to get a GPS fix :) Go to a window or go outside, and all will
-become clear.
+Upon launch, the application automatically calibrates its raw pressure reading
+to match the altitude detected by the watch. As such, if your watch supports maps,
+it is a good idea to do a DEM Calibration at takeoff, prior to launching the app.
+This is done outside of the app in the watch Settings -> Sensors and Accessories
+-> Altimeter -> Calibrate -> Use DEM.
+
+Otherwise, you will need to manually calibrate the altitude after launching My Vario,
+as detailed in the Settings section.
+
+After launching the app, if you're confused that the app is not displaying any
+data, don't fret! You just need to get a GPS fix :) Go to a window or go outside,
+and all will become clear.
 
 Next is navigation. The app is geared towards watches that can be used without
 a touch interface, such as Forerunner or Fenix series.
@@ -50,10 +59,15 @@ My Vario relies on your device's raw barometric sensor to compute the altitude,
 using the ad-hoc International Civil Aviation Organization (ICAO) formulas and
 according to the International Standard Atmosphere (ISA).
 
-Consequently, you MUST calibrate My Vario internal altimeter - using either
-the known QNH or elevation (see Settings below) - to obtain an accurate
-altitude reading (the device's "native" altimeter/barometer settings are
-ignored).
+Upon startup, the application will read the watch altitude (if available) and
+calibrate its barometer based on that. If the watch altitude was correct, then
+everything is fine, and no further calibration is needed.
+
+If, however you are unsure that your watch altitude is correct, or you know the
+exact altitude of takeoff better than the watch does, you should calibrate My
+Vario internal altimeter - using either the known QNH or elevation (see Settings
+below) - to obtain an accurate altitude reading (besides the initial automated
+calibration, the device's "native" altimeter/barometer settings are ignored).
 
 My Vario is based on the excellent GliderSK by Cedric Dufour. If you like this
 application, you should consider donating to him (see DONATE file or below).
@@ -112,6 +126,9 @@ In addition, the following values will be displayed in the corner of the plot:
    your current ground speed
  - Bottom-Right:
    your current finesse
+
+If turned on, the current thermal detected core will be displayed as a blue circle.
+See "About Thermal Detection" for more details.
 
 By pressing the MENU button (long-pressing the UP button), you will enter the
 Pan/Zoom mode, where short pressing the following buttons will result in:
@@ -188,6 +205,9 @@ The application allows you to specify the following settings:
     - Relative:
       set the relative device's sensor error correction
 
+Note: absolute and relative corrections shouldn't be needed in most cases. Check the
+"calibrating device sensor" for more information.
+
 * Variometer
   - Range:
     the range used for the variometer display (3.0, 6.0 or 9.0 m/s) and varioplot
@@ -227,6 +247,10 @@ The application allows you to specify the following settings:
 * General
   - Background Color:
     the background color (black or white)
+  - Positioning:
+    the positioning constellations to use: GPS, GPS+GLONASS (Gon),
+    GPS+GALILEO (Gali). Note that the Garmin SDK doesn't provide access
+    to the Fenix 7 / Epix Gen 2 GNSS systems.
 
 * Units
   - Distance:
@@ -295,6 +319,10 @@ the following formulas:
 
    QFEcalibrated = QFEsensor * Crel + Cabs
 
+Please note that this is very optional (like, extremely optional, extremely nerdy,
+and wholly unnecessary). This functionality is inherited from GliderSK and is here
+for people who need absolute precision in atltitude display and recording.
+
 If you suspect your device's sensor is inaccurate, you shall:
 
 1. install the PilotAltimeter widget to access the device's *QFE* readings
@@ -315,24 +343,3 @@ If you suspect your device's sensor is inaccurate, you shall:
    cofficients
 
 Not an easy feat. But if you must...
-
-
-WARNING!!! GOTCHAS!!!
----------------------
-
-When using GPS devices, you should be aware that:
- - GPS is very accurate for location (latitude/longitude) information;
-   even more so when coupled with GLONASS (at the cost of battery usage).
- - (Garmin) UltraTrac feature is very cool to save battery but does NOT
-   refresh location information frequently enough for My Vario purpose.
-
-      !!! DO NOT USE ULTRATRAC WITH MY VARIO !!!
-
-The ConnectIQ framework does NOT allow applications - like My Vario - to
-control the location source (GPS, GLONASS and/or UltraTrac). The only way
-to circumvent that limitation is to
-
-      !!! USE A NATIVE GARMIN APPLICATION BEFOREHANDS !!!
-
-The ConnectIQ application launched afterwards will then retain those settings.
-

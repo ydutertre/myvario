@@ -67,6 +67,7 @@ class MySettings {
   public var fActivityAutoSpeedStart as Float = 3.0f;
   // ... general
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
+  public var iGeneralPositioning as Number = 1;
   // ... units
   public var iUnitDistance as Number = -1;
   public var iUnitElevation as Number = -1;
@@ -124,6 +125,7 @@ class MySettings {
     self.setActivityAutoSpeedStart(self.loadActivityAutoSpeedStart());
     // ... general
     self.setGeneralBackgroundColor(self.loadGeneralBackgroundColor());
+    self.setGeneralPositioning(self.loadGeneralPositioning());
     // ... units
     self.setUnitDistance(self.loadUnitDistance());
     self.setUnitElevation(self.loadUnitElevation());
@@ -408,6 +410,17 @@ class MySettings {
   }
   function setGeneralBackgroundColor(_iValue as Number) as Void {
     self.iGeneralBackgroundColor = _iValue;
+  }
+
+  function loadGeneralPositioning() as Number {
+    var iValue = App.Properties.getValue("userGeneralPositioning") as Number?;
+    return iValue != null ? iValue : 1;
+  }
+  function saveGeneralPositioning(_iValue as Number) as Void {
+    App.Properties.setValue("userGeneralPositioning", _iValue as App.PropertyValueType);
+  }
+  function setGeneralPositioning(_iValue as Number) as Void {
+    self.iGeneralPositioning = _iValue;
   }
   
   function loadUnitDistance() as Number {

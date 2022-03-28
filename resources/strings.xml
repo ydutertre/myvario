@@ -1,7 +1,7 @@
 <!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
 <strings>
   <string id="AppName">My Vario</string>
-  <string id="AppVersion">1.51</string>
+  <string id="AppVersion">1.60</string>
   <!-- Properties -->
   <string id="titleVersion">Version</string>
   <string id="titleLicense">License</string>
@@ -40,6 +40,7 @@
   <!-- Menu (settings:general) -->
   <string id="titleSettingsGeneral">General</string>
   <string id="titleGeneralBackgroundColor">Background Color</string>
+  <string id="titleGeneralPositioning">Positioning</string>
   <!-- Menu (settings:units) -->
   <string id="titleSettingsUnits">Units</string>
   <string id="titleUnitDistance">Distance</string>
@@ -72,6 +73,9 @@
   <string id="valueAll">all</string>
   <string id="valueColorWhite">white</string>
   <string id="valueColorBlack">black</string>
+  <string id="valueGPS">GPS</string>
+  <string id="valueGPSGlonass">Glon</string>
+  <string id="valueGPSGalileo">Gali</string>
   <!-- Layouts -->
   <string id="titleViewLog">Log</string>
   <string id="labelAltitude">Altitude</string>

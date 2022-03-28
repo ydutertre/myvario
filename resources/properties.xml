@@ -22,6 +22,7 @@
   <property id="userActivityAutoSpeedStart" type="float">3.0</property>
   <!-- ... general -->
   <property id="userGeneralBackgroundColor" type="number">0</property>
+  <property id="userGeneralPositioning" type="number">1</property>
   <!-- ... units -->
   <property id="userUnitDistance" type="number">-1</property>
   <property id="userUnitElevation" type="number">-1</property>

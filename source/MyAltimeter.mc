@@ -76,6 +76,9 @@ class MyAltimeter {
   public var fAltitudeISA as Float = NaN;  // [m]
   public var fAltitudeActual as Float = NaN;  // [m]
 
+  //Automated calibration
+  public var bFirstRun as Boolean = true;
+
 
   //
   // FUNCTIONS: self

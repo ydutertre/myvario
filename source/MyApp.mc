@@ -176,7 +176,7 @@ class MyApp extends App.AppBase {
     Sensor.enableSensorEvents(method(:onSensorEvent));
 
     // Enable position events
-    Pos.enableLocationEvents(Pos.LOCATION_CONTINUOUS, method(:onLocationEvent));
+    self.enablePositioning();
 
     // Start UI update timer (every multiple of 5 seconds, to save energy)
     // NOTE: in normal circumstances, UI update will be triggered by position events (every ~1 second)
@@ -238,6 +238,7 @@ class MyApp extends App.AppBase {
     // Apply settings
 
     $.oMyAltimeter.importSettings();
+    self.enablePositioning();
 
     // ... tones
     self.muteTones();
@@ -251,6 +252,13 @@ class MyApp extends App.AppBase {
     if(oActivityInfo != null) {
       if(oActivityInfo has :rawAmbientPressure and oActivityInfo.rawAmbientPressure != null) {
         $.oMyAltimeter.setQFE(oActivityInfo.rawAmbientPressure as Float);
+        
+        //Initial automated calibration based on watch altitude
+        if($.oMyAltimeter.bFirstRun && _oInfo has :altitude && _oInfo.altitude != null) {
+          $.oMyAltimeter.bFirstRun = false;
+          $.oMyAltimeter.setAltitudeActual(_oInfo.altitude);
+          $.oMySettings.saveAltimeterCalibrationQNH($.oMyAltimeter.fQNH);
+        }
       }
     }
 
@@ -400,7 +408,7 @@ class MyApp extends App.AppBase {
         self.iTonesLastTick = self.iTonesTick;
         return;
       }
-      else if(fValue <= $.oMySettings.fMinimumSink && !self.bSinkToneTriggered) {
+      else if(fValue <= $.oMySettings.fMinimumSink && !self.bSinkToneTriggered && self.iTones) {
         var toneProfile = [new Attn.ToneProfile(220, 2000)];
         Attn.playTone({:toneProfile=>toneProfile});
         self.bSinkToneTriggered = true;
@@ -420,6 +428,24 @@ class MyApp extends App.AppBase {
     }
     App.Storage.deleteValue("storLogIndex");
     $.iMyLogIndex = -1;
+  }
+
+  function enablePositioning() as Void {
+    var aPositioning as Array = [Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS];
+    if($.oMySettings.iGeneralPositioning != null && LangUtils.notNaN($.oMySettings.iGeneralPositioning)) {
+      if($.oMySettings.iGeneralPositioning == 0) {
+        aPositioning = [Pos.CONSTELLATION_GPS];
+      } else if($.oMySettings.iGeneralPositioning == 2) {
+        aPositioning = [Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GALILEO];
+      } else {
+        aPositioning = [Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS];
+      }
+    }
+    Pos.enableLocationEvents({
+      :acquisitionType => Pos.LOCATION_CONTINUOUS,
+      :constellations => aPositioning},
+      method(:onLocationEvent)
+    );
   }
 
 }

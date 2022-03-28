@@ -1,3 +1,11 @@
+* 1.60
+  - Added an initial, automated altitude calibration upon startup,
+  based on the watch-provided altitude
+  - Added a new option to use GPS, GPS+GLONASS, or GPS+GALILEO in the app.
+  unfortunately at this stage the SDK doesn't give access to GNSS for
+  Fenix 7 or Epix Gen 2 watches (it still works, but what exact method is used
+  is unknown). The default value is GPS+GLONASS.
+
 * 1.51
   - Fixed layout issue in the Varioplot view with Epix Gen 2
 
