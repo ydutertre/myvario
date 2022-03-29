@@ -1,3 +1,7 @@
+* 1.61
+  - Removed watches that don't support setting the GPS constellations. Those
+  watches can use My Vario Lite instead.
+  
 * 1.60
   - Added an initial, automated altitude calibration upon startup,
   based on the watch-provided altitude
