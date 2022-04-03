@@ -260,6 +260,23 @@ class MyPickerGenericSettings extends Ui.Picker {
       }
 
     }
+    else if (_context == :contextLivetrack) {
+      if(_item == :itemFrequency) {
+        var iLivetrackFrequency = $.oMySettings.loadLivetrackFrequency();
+        $.oMySettings.load();  // ... reload potentially modified settings
+        var asValues = ["Off", "5s", "15s", "30s", "60s", "120s", "180s", "300s"];
+        var oFactory = new PickerFactoryDictionary([0, 1, 2, 3, 4, 5, 6, 7], asValues, null);
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => Ui.loadResource(Rez.Strings.titleLivetrackFrequency) as String,
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
+                :color => Gfx.COLOR_BLUE}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iLivetrackFrequency)]});
+      }
+    }
   }
 
 }
@@ -334,6 +351,11 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
       }
       $.oMySettings.load();  // ... use proper units in settings
 
+    }
+    else if(self.context == :contextLivetrack) {
+      if(self.item == :itemFrequency) {
+        $.oMySettings.saveLivetrackFrequency(_amValues[0] as Number);
+      }
     }
     Ui.popView(Ui.SLIDE_IMMEDIATE);
     return true;

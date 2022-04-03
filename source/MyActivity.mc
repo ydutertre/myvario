@@ -196,7 +196,7 @@ class MyActivity {
 
     self.resetLog(true);
     self.oSession.start();
-    self.oTimeStart = Time.now();
+    self.oTimeStart = Time.now();  
     if(Toybox.Attention has :playTone) {
       Attn.playTone(Attn.TONE_START);
     }
@@ -251,6 +251,11 @@ class MyActivity {
       if(Toybox.Attention has :playTone) {
         Attn.playTone(Attn.TONE_RESET);
       }
+    }
+    //Stop and reset livetrack session
+    if($.oMyLivetrack.bLivetrackStateful) {
+      $.oMyLivetrack.stopSession();
+      $.oMyLivetrack.reset();
     }
     self.oTimeStart = null;
     self.oTimeStop = null;

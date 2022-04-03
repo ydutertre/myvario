@@ -1,5 +1,13 @@
-<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
 <settings>
   <!-- User preferences -->
+  <setting propertyKey="@Properties.userLivetrackUserName" title="@Strings.titleLivetrackUserName">
+    <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
+  </setting>
+  <setting propertyKey="@Properties.userLivetrackPassword" title="@Strings.titleLivetrackPassword">
+    <settingConfig type="password" errorMessage="@Strings.titleInputError" />
+  </setting>
+  <setting propertyKey="@Properties.userLivetrackEquipmentName" title="@Strings.titleLivetrackEquipmentName">
+    <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
+  </setting>
   <!-- ... storage -->
 </settings>

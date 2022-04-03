@@ -1,4 +1,3 @@
-<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
 <properties>
   <!-- User preferences -->
   <!-- ... altimeter -->
@@ -19,7 +18,7 @@
   <property id="userMinimumSink" type="number">1</property> 
   <!-- ... activity -->
   <property id="userActivityAutoStart" type="boolean">true</property>
-  <property id="userActivityAutoSpeedStart" type="float">3.0</property>
+  <property id="userActivityAutoSpeedStart" type="float">4.0</property>
   <!-- ... general -->
   <property id="userGeneralBackgroundColor" type="number">0</property>
   <property id="userGeneralPositioning" type="number">1</property>
@@ -29,5 +28,9 @@
   <property id="userUnitPressure" type="number">-1</property>
   <property id="userUnitDirection" type="number">1</property>
   <property id="userUnitTimeUTC" type="boolean">false</property>
-  <!-- ... storage -->
+  <!-- ... livetrack -->
+  <property id="userLivetrackUserName" type="string"></property>
+  <property id="userLivetrackPassword" type="string"></property>
+  <property id="userLivetrackEquipmentName" type="string">AdvancePi3</property>
+  <property id="userLivetrackFrequency" type="number">2</property>
 </properties>

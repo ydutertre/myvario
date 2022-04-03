@@ -93,6 +93,58 @@ module LangUtils {
     return aiIndices;
   }
 
+  function readKeyString(_sKey, _sDefault) {
+    var value = _sKey;
+    if(value == null || !(value instanceof Lang.String)) {
+      if(value != null) {
+        value = value.toString();
+      } else {
+        value = _sDefault;
+      }
+    }
+    return value;
+  }
+
+  function readKeyNumber(_sKey, _sDefault) {
+    var value = _sKey;
+    if(value == null || !(value instanceof Lang.Number)) {
+      if(value != null) {
+        value = value.toNumber();
+      } else {
+        value = _sDefault;
+      }
+    }
+    return value;
+  }
+
+  function readKeyFloat(_sKey, _sDefault) {
+    var value = _sKey;
+    if(value == null || !(value instanceof Lang.Float)) {
+      if(value != null) {
+        value = value.toFloat();
+      } else {
+        value = _sDefault;
+      }
+    }
+    return value;
+  }
+
+  function readKeyBoolean(_sKey, _sDefault) {
+    var value = _sKey;
+    if(value == null || !(value instanceof Lang.Boolean)) {
+      if(value != null) {
+        if(value) {
+          return true;
+          } else {
+          return false;
+          }
+        } else {
+          value = _sDefault;
+        }
+      }
+    return value;
+  }
+
 
   //
   // FUNCTIONS: geographical primitives

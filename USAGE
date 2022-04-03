@@ -48,9 +48,17 @@ See the rest of this doc to learn more). You can navigate the menu and its vario
 settings with the Up, Down, Select (top right button) and Back (bottom right)
 buttons. Swipes and taps also work. Check the settings and set them to what you like!
 
+When changing settings, make sure to use the Select button to validate the change.
+Pressing the back button doesn't save the setting.
+
 The Select button can be used to start and stop the activity recording, and Back can
 be used to exit the app (except in the log view, so check further down this usage
 guide for details).
+
+To enable Livetrack24 tracking, you need to set your username, password, and equipment
+name within the settings page of the My Vario app in the Garmin Connect IQ application.
+In addition you can change the frequency of the livetracking updates in the My Vario
+app settings.
 
 Foreword
 --------
@@ -264,10 +272,33 @@ Note: absolute and relative corrections shouldn't be needed in most cases. Check
   - Timezone:
     display Local Time (LT) or Universal Time Coordinates (UTC/Z)
 
+* Livetrack
+  - Frequency:
+    The frequency (in seconds) at which My Vario will send a position update
+    to the Livetracking server. Livetracking can also be disabled completely
+    by setting this to Off.
+
 * Storage
   - Clear logs:
     delete logs
 
+Livetrack24 integration
+-----------------------
+
+If you wish to use Livetrack24 integration, you will need to create a login at their
+website https://www.livetrack24.com/ . Once done, you will need to go to the app settings
+within the Connect IQ app to set your login, password, and equipment name (please don't use
+spaces, so something like ADVivo or AdvancePi3). As long as those values are blank, Livetrack24
+won't be connected to and no livetracking will occur.
+
+This feature requires that the watch be paired to a phone via bluetooth, and it will rely on the 
+phone's Internet connection to send its position packets to Livetrack24. This is a win-win for the
+batteries involved: flight data and GPS info is done on the watch, while connectivity is done on the
+phone, helping save the battery of the phone in particular.
+
+Once done, tracking will automatically start once activity recording starts. It will then provide
+position updates to Livetrack24 every X seconds, X being a number set in the My Vario settings on the
+watch (please see the Settings session). It will automatically stop once activity recording is stopped.
 
 About Data Filtering
 --------------------

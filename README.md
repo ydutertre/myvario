@@ -6,10 +6,11 @@
 ## Overview
 
 This free and open-source application provides Variometer functions adapted
-to free flight activities. It is based on the excellent open-source Garmin IQ
-GliderSK application by Cedric Dufour (licensed under GPL v3.0, just like My
-Vario is), dropping a lot of features for a simpler/leaner experience, while
-adding many improvements for free flight activities.
+to free flight activities, as well as an interface with Livetrack24. It is
+based on the excellent open-source Garmin IQ GliderSK application by Cedric
+Dufour (licensed under GPL v3.0, just like My Vario is), dropping a lot of
+features for a simpler/leaner experience, while adding many improvements for
+free flight activities.
 
 My Vario is a BACKUP source of information and should ALWAYS be paired with
 specialized variometer equipment! Watch sensors are simply not precise enough
@@ -51,7 +52,12 @@ be triggered
 - a sink rate threshold setting is available, for warning of strong sink via a long,
 low frequency tone
 
-3. Under the hood
+3. Live tracking
+
+- An integration with Livetrack24 is available, to share your activities with others
+in real time
+
+4. Under the hood
 
 - The application uses a Kalman filter for fast and accurate filtering of altitude
 and vertical speed (compared to the SMA filter used by GliderSK originally)

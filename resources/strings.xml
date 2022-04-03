@@ -1,7 +1,6 @@
-<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
 <strings>
   <string id="AppName">My Vario</string>
-  <string id="AppVersion">1.62</string>
+  <string id="AppVersion">2.00</string>
   <!-- Properties -->
   <string id="titleVersion">Version</string>
   <string id="titleLicense">License</string>
@@ -111,4 +110,12 @@
   <string id="titleAltitudeMin">Mininum Altitude</string>
   <string id="titleAltitudeMax">Maxinum Altitude</string>
   <string id="unitTime">hh:mm:ss</string>
+  <!-- Livetrack -->
+  <string id="titleSettingsLivetrack">Livetrack</string>
+  <string id="titleLivetrackUserName">Livetrack Username</string>
+  <string id="titleLivetrackPassword">Livetrack Password</string>
+  <string id="titleLivetrackEquipmentName">Equipment Name</string>
+  <string id="titleLivetrackFrequency">Frequency</string>
+  <!-- Error display -->
+  <string id="titleInputError">Wrong input</string>
 </strings>

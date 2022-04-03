@@ -1,3 +1,9 @@
+* 2.00
+  - Added integration with Livetrack24. To enable this integration, the user
+  will need to set their Livetrack24 login, password, and equipment name within
+  the Connect IQ app. Setting the login to blank (default value) will disable the
+  Livetrack24 function.
+
 * 1.62
   - Added D2 Mach 1 to supported watches
 

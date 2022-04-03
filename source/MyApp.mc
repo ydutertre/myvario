@@ -72,6 +72,9 @@ var iMyLogIndex as Number = -1;
 // Activity session (recording)
 var oMyActivity as MyActivity?;
 
+// Livetrack
+var oMyLivetrack as MyLivetrack = new MyLivetrack();
+
 // Current view
 var oMyView as MyView?;
 
@@ -232,16 +235,25 @@ class MyApp extends App.AppBase {
   function loadSettings() as Void {
     //Sys.println("DEBUG: MyApp.loadSettings()");
 
-    // Load settings
-    $.oMySettings.load();
+    //... Intialize and reset livetrack
+    var sUserName = LangUtils.readKeyString(App.Properties.getValue("userLivetrackUserName"), "");
+    var sPassword = LangUtils.readKeyString(App.Properties.getValue("userLivetrackPassword"), "");
+    var sEquipment = LangUtils.readKeyString(App.Properties.getValue("userLivetrackEquipmentName"), "");
+    if(!sUserName.equals($.oMyLivetrack.sLoginName) || !sPassword.equals($.oMyLivetrack.sPassword) || !sEquipment.equals($.oMyLivetrack.sEquipment)) {
+      $.oMyLivetrack.init(sUserName, sPassword, sEquipment);
+      $.oMyLivetrack.reset();
+    } else {
+      // Load settings
+      $.oMySettings.load();
 
-    // Apply settings
+      // Apply settings
 
-    $.oMyAltimeter.importSettings();
-    self.enablePositioning();
+      $.oMyAltimeter.importSettings();
+      self.enablePositioning();
 
-    // ... tones
-    self.muteTones();
+      // ... tones
+      self.muteTones();
+    }
   }
 
   function onSensorEvent(_oInfo as Sensor.Info) as Void {

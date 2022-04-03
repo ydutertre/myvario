@@ -53,6 +53,7 @@ class MyMenuGeneric extends Ui.Menu {
       Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsActivity) as String, :menuSettingsActivity);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsGeneral) as String, :menuSettingsGeneral);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsUnits) as String, :menuSettingsUnits);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsLivetrack) as String, :menuSettingsLivetrack);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleStorage) as String, :menuStorage);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleAbout) as String, :menuAbout);
     }
@@ -111,6 +112,11 @@ class MyMenuGeneric extends Ui.Menu {
       Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitPressure) as String, :menuUnitPressure);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitDirection) as String, :menuUnitDirection);      
       Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitTimeUTC) as String, :menuUnitTimeUTC);
+    }
+
+    else if(_menu == :menuSettingsLivetrack) {
+      Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsLivetrack) as String);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleLivetrackFrequency) as String, :menuLivetrackFrequency);
     }
 
     else if(_menu == :menuStorage) {
@@ -194,6 +200,11 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       else if(_item == :menuSettingsUnits) {
         Ui.pushView(new MyMenuGeneric(:menuSettingsUnits),
                     new MyMenuGenericDelegate(:menuSettingsUnits),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if(_item == :menuSettingsLivetrack) {
+        Ui.pushView(new MyMenuGeneric(:menuSettingsLivetrack),
+                    new MyMenuGenericDelegate(:menuSettingsLivetrack),
                     Ui.SLIDE_IMMEDIATE);
       }
       else if(_item == :menuStorage) {
@@ -345,6 +356,14 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       else if(_item == :menuUnitTimeUTC) {
         Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemTimeUTC),
                     new MyPickerGenericSettingsDelegate(:contextUnit, :itemTimeUTC),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+    }
+
+    else if(self.menu == :menuSettingsLivetrack) {
+      if(_item == :menuLivetrackFrequency) {
+        Ui.pushView(new MyPickerGenericSettings(:contextLivetrack, :itemFrequency),
+                    new MyPickerGenericSettingsDelegate(:contextLivetrack, :itemFrequency),
                     Ui.SLIDE_IMMEDIATE);
       }
     }

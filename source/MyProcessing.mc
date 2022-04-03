@@ -91,6 +91,7 @@ class MyProcessing {
   public var oLocation as Pos.Location?;
   public var fGroundSpeed as Float = NaN;
   public var fHeading as Float = NaN;
+  public var iGpsTime as Number = NaN;
   // ... finesse
   public var bAscent as Boolean = true;
   public var fFinesse as Float = NaN;
@@ -255,7 +256,7 @@ class MyProcessing {
     // WARNING: the value of the position (GPS) timestamp is NOT the UTC epoch but the GPS timestamp (NOT translated to the proper year quadrant... BUG?)
     //          https://en.wikipedia.org/wiki/Global_Positioning_System#Timekeeping
     if(_oInfo has :when and _oInfo.when != null) {
-
+      self.iGpsTime = _oInfo.when.value();
     }
     else {
       //Sys.println("WARNING: Position data have no timestamp information (:when)");
@@ -331,6 +332,26 @@ class MyProcessing {
         // ... vertical speed as (integer) millimeter-per-second
         self.aiPlotVariometer[self.iPlotIndex] = (self.fVariometer_filtered*1000.0f).toNumber();
         self.aiPointAltitude[self.iPlotIndex] = self.fAltitude.toNumber();
+
+        //Livetracking
+        if ($.oMyActivity != null && $.oMySettings.iLivetrackFrequencySeconds != 0) {
+          //Attempt to get User Id and generate Session ID if not existent
+          if($.oMyLivetrack.sLoginName.length() > 0 && $.oMyLivetrack.iUserId == 0 && $.oMyLivetrack.iSessionId == 1 && !$.oMyLivetrack.bWebRequestPending && !$.oMyLivetrack.bWrongCredentials) {
+            $.oMyLivetrack.getUserId();
+          }
+
+          //Attempt to start the livetrack session
+          if($.oMyLivetrack.iSessionId != 1 && !$.oMyLivetrack.bWebRequestPending && !$.oMyLivetrack.bWrongCredentials && !$.oMyLivetrack.bLivetrackStateful) {
+            $.oMyLivetrack.startSession();
+          }
+
+          //Attempt to update position
+          if($.oMyLivetrack.bLivetrackStateful && ($.oMyLivetrack.iCounter % $.oMySettings.iLivetrackFrequencySeconds) == 0) {
+            var iLivetrackHeading = LangUtils.notNaN(fHeading) ? ((self.fHeading * 57.2957795131f).toNumber()) % 360 : 0;
+            $.oMyLivetrack.updateSession(adPositionDegrees[0], adPositionDegrees[1], self.fAltitude.toNumber(), (self.fGroundSpeed * 3.6f).toNumber(), iLivetrackHeading, self.iGpsTime);
+          }
+          $.oMyLivetrack.iCounter++;
+        }
 
         if($.oMySettings.bVariometerThermalDetect) {
           // Thermal core detector
