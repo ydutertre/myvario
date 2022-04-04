@@ -16,9 +16,6 @@
 // SPDX-License-Identifier: GPL-3.0
 // License-Filename: LICENSE/GPL-3.0.txt
 // My Vario is based on Glider's Swiss Knife (GliderSK) by Cedric Dufour
-// This Kalman filter is based on the implementation for Arduino Variometer
-// by Baptiste PELLEGRIN
-// https://github.com/prunkdump/arduino-variometer/blob/master/libraries/kalmanvert/kalmanvert.cpp
 
 import Toybox.Lang;
 using Toybox.Cryptography as Crypt;
