@@ -24,6 +24,7 @@ import Toybox.Lang;
 using Toybox.Cryptography as Crypt;
 using Toybox.Math;
 using Toybox.Time;
+using Toybox.Timer;
 using Toybox.System as Sys;
 using Toybox.Communications as Comms;
 using Toybox.WatchUi as Ui;
@@ -53,6 +54,7 @@ class MyLivetrack {
   private var iPacketNumber as Number = 0;
   public var iCounter as Number = 0;
   public var bWrongCredentials = false;
+  private var oTimeoutTimer = new Timer.Timer();
 
   //
   // FUNCTIONS: self
@@ -74,6 +76,11 @@ class MyLivetrack {
     self.bLivetrackStateful = false;
   }
 
+  function timeout() {
+    //After 60 seconds both requests (User ID and start track) should have completed, if not give another opportunity
+    self.bWebRequestPending = false;
+  }
+
   function getUserId() {
     var url = "https://t2.livetrack24.com/client.php";
     
@@ -89,6 +96,7 @@ class MyLivetrack {
     };
 
     self.bWebRequestPending = true;
+    self.oTimeoutTimer.start(method(:timeout), 60000, false);
     Comms.makeWebRequest(url, params, options, method(:onReceiveUserId));
   }
 
@@ -115,8 +123,8 @@ class MyLivetrack {
       :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
     };
     self.iPacketNumber++;
-    Sys.println(self.iPacketNumber.toString());
     self.bWebRequestPending = true;
+    self.oTimeoutTimer.start(method(:timeout), 60000, false);
     Comms.makeWebRequest(url, params, options, method(:onReceiveStartTrack));
   }
 

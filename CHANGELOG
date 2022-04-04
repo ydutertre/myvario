@@ -1,3 +1,7 @@
+* 2.01
+  - Added a timeout timer to the Livetrack24 login and track start requests
+    so they can be attempted once a minute in case of issues
+
 * 2.00
   - Added integration with Livetrack24. To enable this integration, the user
   will need to set their Livetrack24 login, password, and equipment name within
