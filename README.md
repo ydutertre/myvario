@@ -80,16 +80,17 @@ Please refer to the USAGE file.
 
 ## Supported watches
 
-I have reduced the number of watches supported compared to GliderSK (removed
-descent mk1 and charlie d2). This is because I am using variable frequency
-tones for the vario, which are only supported for SDK 3.1.0 and above. I am
+I have reduced the number of watches supported compared to GliderSK. This is
+because I am using variable frequency tones for the vario, which are only
+supported for SDK 3.1.0 and above, AND I have added explicit GPS/GLONASS/GALILEO
+Constellation control, which is only supported in SDK 3.2.0 and above. I am
 testing this application on my Garmin Fenix 7X.
 
 ## Not a programmer
 
 I am not a programmer nor developer besides some small experience
 contributing to N.I.N.A., an open-source astrophotography software suite.
-Monkey C, Github, Garming SDK, etc are all new to me. I am a mere tinkerer
+Monkey C, Github, Garmin SDK, etc are all new to me. I am a mere tinkerer
 playing with and monkeying Cedric's work. It's likely I have introduced
 errors, bugs, or code that could be extremely painful to the eyes of
 experienced developers. I apologize for the pain caused!
