@@ -75,7 +75,7 @@ class MySettings {
   public var iUnitDirection as Number = 1;
   public var bUnitTimeUTC as Boolean = false;
   // ... livetrack
-  public var iLivetrackFrequency = 2;
+  public var iLivetrackFrequency = 3;
 
   // Units
   // ... symbols
@@ -565,14 +565,14 @@ class MySettings {
   }
 
   function loadLivetrackFrequency() as Number { 
-    return LangUtils.readKeyNumber(App.Properties.getValue("userLivetrackFrequency"), 2);
+    return LangUtils.readKeyNumber(App.Properties.getValue("userLivetrackFrequency"), 3);
   }
   function saveLivetrackFrequency(_iValue as Number) as Void { 
     App.Properties.setValue("userLivetrackFrequency", _iValue as App.PropertyValueType);
   }
   function setLivetrackFrequency(_iValue as Number) as Void {
-    if(_iValue > 7) {
-      _iValue = 7;
+    if(_iValue > 8) {
+      _iValue = 8;
     }
     else if(_iValue < 0) {
       _iValue = 0;
@@ -580,13 +580,14 @@ class MySettings {
     self.iLivetrackFrequency = _iValue;
     switch(self.iLivetrackFrequency) {
     case 0: self.iLivetrackFrequencySeconds = 0; break;
-    case 1: self.iLivetrackFrequencySeconds = 5; break;
-    case 2: self.iLivetrackFrequencySeconds = 15; break;
-    case 3: self.iLivetrackFrequencySeconds = 30; break;
-    case 4: self.iLivetrackFrequencySeconds = 60; break;
-    case 5: self.iLivetrackFrequencySeconds = 120; break;
-    case 6: self.iLivetrackFrequencySeconds = 180; break;
-    case 7: self.iLivetrackFrequencySeconds = 300; break;
+    case 1: self.iLivetrackFrequencySeconds = 2; break;
+    case 2: self.iLivetrackFrequencySeconds = 5; break;
+    case 3: self.iLivetrackFrequencySeconds = 15; break;
+    case 4: self.iLivetrackFrequencySeconds = 30; break;
+    case 5: self.iLivetrackFrequencySeconds = 60; break;
+    case 6: self.iLivetrackFrequencySeconds = 120; break;
+    case 7: self.iLivetrackFrequencySeconds = 180; break;
+    case 8: self.iLivetrackFrequencySeconds = 300; break;
     }
   }
 

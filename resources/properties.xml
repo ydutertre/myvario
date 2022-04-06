@@ -32,5 +32,5 @@
   <property id="userLivetrackUserName" type="string"></property>
   <property id="userLivetrackPassword" type="string"></property>
   <property id="userLivetrackEquipmentName" type="string">AdvancePi3</property>
-  <property id="userLivetrackFrequency" type="number">2</property>
+  <property id="userLivetrackFrequency" type="number">3</property>
 </properties>

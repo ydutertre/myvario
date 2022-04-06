@@ -264,8 +264,8 @@ class MyPickerGenericSettings extends Ui.Picker {
       if(_item == :itemFrequency) {
         var iLivetrackFrequency = $.oMySettings.loadLivetrackFrequency();
         $.oMySettings.load();  // ... reload potentially modified settings
-        var asValues = ["Off", "5s", "15s", "30s", "60s", "120s", "180s", "300s"];
-        var oFactory = new PickerFactoryDictionary([0, 1, 2, 3, 4, 5, 6, 7], asValues, null);
+        var asValues = ["Off", "2s", "5s", "15s", "30s", "60s", "120s", "180s", "300s"];
+        var oFactory = new PickerFactoryDictionary([0, 1, 2, 3, 4, 5, 6, 7, 8], asValues, null);
         Picker.initialize({
             :title => new Ui.Text({
                 :text => Ui.loadResource(Rez.Strings.titleLivetrackFrequency) as String,
