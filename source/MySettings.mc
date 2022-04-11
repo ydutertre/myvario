@@ -96,6 +96,7 @@ class MySettings {
   // Other
   public var fVariometerRange as Float = 3.0f;
   public var fVariometerPlotZoom as Float = 0.0308666666667f;
+  public var fVariometerPlotScale as Number = 1.0f;
   public var fMinimumClimb as Float = 0.2;
   public var fMinimumSink as Float = 2.0;
   public var fVariometerSmoothing as Float = 0.5; //Standard deviation of altitude measurement at fixed altitude
@@ -282,18 +283,18 @@ class MySettings {
     }
     self.iVariometerPlotZoom = _iValue;
     switch(self.iVariometerPlotZoom) {
-    case 0: self.fVariometerPlotZoom = 0.0000308666667f; break;  // 1000m/px
-    case 1: self.fVariometerPlotZoom = 0.0000617333333f; break;  // 500m/px
-    case 2: self.fVariometerPlotZoom = 0.0001543333333f; break;  // 200m/px
-    case 3: self.fVariometerPlotZoom = 0.0003086666667f; break;  // 100m/px
-    case 4: self.fVariometerPlotZoom = 0.0006173333333f; break;  // 50m/px
-    case 5: self.fVariometerPlotZoom = 0.0015433333333f; break;  // 20m/px
-    case 6: self.fVariometerPlotZoom = 0.0030866666667f; break;  // 10m/px
-    case 7: self.fVariometerPlotZoom = 0.0061733333333f; break;  // 5m/px
-    case 8: self.fVariometerPlotZoom = 0.0154333333333f; break;  // 2m/px
-    case 9: self.fVariometerPlotZoom = 0.0308666666667f; break;  // 1m/px
-    case 10: self.fVariometerPlotZoom = 0.0617333333334f; break;  // 0.5m/px
-    case 11: self.fVariometerPlotZoom = 0.1234666666668f; break;  // 0.25m/px
+    case 0: self.fVariometerPlotZoom = 0.0000308666667f; self.fVariometerPlotScale = 1000.0f; break;  // 1000m/px
+    case 1: self.fVariometerPlotZoom = 0.0000617333333f; self.fVariometerPlotScale = 500.0f; break;  // 500m/px
+    case 2: self.fVariometerPlotZoom = 0.0001543333333f; self.fVariometerPlotScale = 200.0f; break;  // 200m/px
+    case 3: self.fVariometerPlotZoom = 0.0003086666667f; self.fVariometerPlotScale = 100.0f; break;  // 100m/px
+    case 4: self.fVariometerPlotZoom = 0.0006173333333f; self.fVariometerPlotScale = 50.0f; break;  // 50m/px
+    case 5: self.fVariometerPlotZoom = 0.0015433333333f; self.fVariometerPlotScale = 20.0f; break;  // 20m/px
+    case 6: self.fVariometerPlotZoom = 0.0030866666667f; self.fVariometerPlotScale = 10.0f; break;  // 10m/px
+    case 7: self.fVariometerPlotZoom = 0.0061733333333f; self.fVariometerPlotScale = 5.0f; break;  // 5m/px
+    case 8: self.fVariometerPlotZoom = 0.0154333333333f; self.fVariometerPlotScale = 2.0f; break;  // 2m/px
+    case 9: self.fVariometerPlotZoom = 0.0308666666667f; self.fVariometerPlotScale = 1.0f; break;  // 1m/px
+    case 10: self.fVariometerPlotZoom = 0.0617333333334f; self.fVariometerPlotScale = 0.5f; break;  // 0.5m/px
+    case 11: self.fVariometerPlotZoom = 0.1234666666668f; self.fVariometerPlotScale = 0.25f; break;  // 0.25m/px
     }
   }
 

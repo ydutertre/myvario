@@ -113,6 +113,8 @@ class MyProcessing {
   // Thermal core calculation
   public var iCenterLongitude as Number = 0;
   public var iCenterLatitude as Number = 0;
+  public var fCenterWindOffsetLongitude as Number = 0;
+  public var fCenterWindOffsetLatitude as Number = 0;
   public var iStandardDev as Number = 0;
   public var aiPointAltitude as Array<Number>;
 
@@ -364,7 +366,12 @@ class MyProcessing {
           var fWeightedMeanLatitude = 0.0f as Float;
           var fWeightedMeanLatitudeOld = 0.0f as Float;
           var fWeightedSLatitude = 0.0f as Float;
-          var iCountClimb = 0 as Number; 
+          var fWeightedSumAltitude = 0.0f as Float;
+          var fWeightedMeanAltitude = 0.0f as Float;
+          var fWeightedMeanAltitudeOld = 0.0f as Float;
+          var fWeightedSumClimb = 0.0f as Float;
+          var fWeightedMeanClimb = 0.0f as Float;
+          var fWeightedMeanClimbOld = 0.0f as Float;
 
           // Thermal detector uses 1 minute of data
           for(var i = 0; i<60; i++){
@@ -381,13 +388,19 @@ class MyProcessing {
               iWeightedSum += weight;
               fWeightedMeanLongitudeOld = fWeightedMeanLongitude;
               fWeightedMeanLatitudeOld = fWeightedMeanLatitude;
+              fWeightedMeanAltitudeOld = fWeightedMeanAltitude;
+              fWeightedMeanClimbOld = fWeightedMeanClimb;
               if(iWeightedSum != 0) {
                 fWeightedMeanLongitude = fWeightedMeanLongitudeOld + (weight.toFloat() / iWeightedSum.toFloat()) * (self.aiPlotLongitude[index].toFloat() - fWeightedMeanLongitudeOld);
                 fWeightedMeanLatitude = fWeightedMeanLatitudeOld + (weight.toFloat() / iWeightedSum.toFloat()) * (self.aiPlotLatitude[index].toFloat() - fWeightedMeanLatitudeOld);
+                fWeightedMeanAltitude = fWeightedMeanAltitudeOld + (weight.toFloat() / iWeightedSum.toFloat()) * (self.aiPointAltitude[index].toFloat() - fWeightedMeanAltitudeOld);
+                fWeightedMeanClimb = fWeightedMeanClimbOld + (weight.toFloat() / iWeightedSum.toFloat()) * (self.aiPlotVariometer[index].toFloat() - fWeightedMeanClimbOld);
               }
               else {
                 fWeightedMeanLongitude = fWeightedMeanLongitudeOld;
                 fWeightedMeanLatitude = fWeightedMeanLatitudeOld;
+                fWeightedMeanAltitude = fWeightedMeanAltitudeOld;
+                fWeightedMeanClimb = fWeightedMeanClimbOld;
               }
               fWeightedSLongitude += weight * (self.aiPlotLongitude[index] - fWeightedMeanLongitudeOld) * (self.aiPlotLongitude[index] - fWeightedMeanLongitude);
               fWeightedSLatitude += weight * (self.aiPlotLatitude[index] - fWeightedMeanLatitudeOld) * (self.aiPlotLatitude[index] - fWeightedMeanLatitude);
@@ -398,6 +411,12 @@ class MyProcessing {
             self.iCenterLongitude = fWeightedMeanLongitude.toNumber();
             self.iCenterLatitude = fWeightedMeanLatitude.toNumber();
             self.iStandardDev = Math.sqrt((fWeightedSLongitude + fWeightedSLatitude) / (2 * iWeightedSum - 2)).toNumber();
+            if(self.bWindValid && self.fWindSpeed > 0 && self.iWindDirection != null && fWeightedMeanAltitude != 0 && fWeightedMeanClimb != 0 && self.fAltitude != 0) {
+              var fThermalDrift =  (self.fAltitude - fWeightedMeanAltitude) * (self.fWindSpeed / (fWeightedMeanClimb / 1000.0)); // thermal drift in meters (positive with wind, negative against wind)
+              var iDriftAngle = fThermalDrift >= 0 ? (self.iWindDirection + 180) % 360 : self.iWindDirection; //push away from wind origin if drift positive, towards it if negative
+              self.fCenterWindOffsetLatitude = fThermalDrift.abs() * Math.sin( iDriftAngle / 57.2957795131f); //North-South drift in meters (North positive)
+              self.fCenterWindOffsetLongitude = fThermalDrift.abs() * Math.cos( iDriftAngle / 57.2957795131f); //West-East drift in meters (East positive)
+            }
           }
         }
       }

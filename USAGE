@@ -335,6 +335,9 @@ following across the last 60 seconds of location and variometer data:
   altitude. The older the data point, the lower its weight as well.
 - Locations with a climb rate of less than the Min. Climb setting are ignored
 - It computes the weighted average of the coordinates and uses that as the thermal center
+- It computes average altitude of thermal measurement as well as average thermal climb rate.
+  Based on those and current altitude, it computes a wind offset for the thermal center and adds
+  it to the thermal center computed in the previous step
 - It computes at the same time the weighted standard deviation of the coordinates and uses
   that as the radius of the thermal
 - It then draws the thermal as a circle in blue on the varioplot

@@ -251,8 +251,8 @@ class MyViewVarioplot extends MyViewHeader {
       var iCurrentEpoch = $.oMyProcessing.aiPlotEpoch[iCurrentIndex];
       if(iCurrentEpoch >= 0 and iCurrentEpoch >= iStartEpoch) {
         if(iCurrentEpoch-iLastEpoch <= iMaxDeltaEpoch) {
-          var iCurrentX = self.iLayoutCenter+$.iMyViewVarioplotOffsetX+(($.oMyProcessing.aiPlotLongitude[iCurrentIndex]-iEndLongitude)*fZoomX).toNumber();
-          var iCurrentY = self.iLayoutCenter+$.iMyViewVarioplotOffsetY-(($.oMyProcessing.aiPlotLatitude[iCurrentIndex]-iEndLatitude)*fZoomY).toNumber();
+          var iCurrentX = self.iLayoutCenter+$.iMyViewVarioplotOffsetX + (($.oMyProcessing.aiPlotLongitude[iCurrentIndex]-iEndLongitude)*fZoomX).toNumber();
+          var iCurrentY = self.iLayoutCenter+$.iMyViewVarioplotOffsetY - (($.oMyProcessing.aiPlotLatitude[iCurrentIndex]-iEndLatitude)*fZoomY).toNumber();
           var iCurrentVariometer = $.oMyProcessing.aiPlotVariometer[iCurrentIndex];
           if(bDraw) {
             var iCurrentColor;
@@ -310,8 +310,8 @@ class MyViewVarioplot extends MyViewHeader {
       iCurrentIndex = (iCurrentIndex+1) % MyProcessing.PLOTBUFFER_SIZE;
     }
     if($.oMyProcessing.iCenterLongitude != 0 && $.oMyProcessing.iCenterLatitude != 0 && $.oMyProcessing.iStandardDev != 0) {
-      var myX = self.iLayoutCenter + $.iMyViewVarioplotOffsetX+(($.oMyProcessing.iCenterLongitude-iEndLongitude)*fZoomX).toNumber();
-      var myY = self.iLayoutCenter + $.iMyViewVarioplotOffsetY-(($.oMyProcessing.iCenterLatitude-iEndLatitude)*fZoomY).toNumber();
+      var myX = self.iLayoutCenter + $.iMyViewVarioplotOffsetX + (($.oMyProcessing.iCenterLongitude-iEndLongitude)*fZoomX).toNumber() + ($.oMyProcessing.fCenterWindOffsetLongitude / $.oMySettings.fVariometerPlotScale).toNumber();
+      var myY = self.iLayoutCenter + $.iMyViewVarioplotOffsetY - (($.oMyProcessing.iCenterLatitude-iEndLatitude)*fZoomY).toNumber() - ($.oMyProcessing.fCenterWindOffsetLatitude / $.oMySettings.fVariometerPlotScale).toNumber();
       _oDC.setColor(Gfx.COLOR_BLUE, Gfx.COLOR_TRANSPARENT);
       _oDC.drawCircle(myX, myY, ($.oMyProcessing.iStandardDev*fZoomY).toNumber());
     }
