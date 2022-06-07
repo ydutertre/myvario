@@ -16,10 +16,13 @@
             <iq:product id="fenix7"/>
             <iq:product id="fenix7s"/>
             <iq:product id="fenix7x"/>
+            <iq:product id="fr255"/>
+            <iq:product id="fr255m"/>
             <iq:product id="fr645m"/>
             <iq:product id="fr745"/>
             <iq:product id="fr945"/>
             <iq:product id="fr945lte"/>
+            <iq:product id="fr955"/>
             <iq:product id="marqadventurer"/>
             <iq:product id="marqathlete"/>
             <iq:product id="marqaviator"/>
