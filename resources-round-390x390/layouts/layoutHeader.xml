@@ -1,0 +1,12 @@
+<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
+<layouts>
+  <layout id="layoutHeader">
+    <drawable class="MyDrawableHeader" />
+    <drawable id="drawContentBorders" />
+    <!-- Header -->
+    <label id="valueBatteryLevel" x="140" y="17" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontStatus" />
+    <label id="valueActivityStatus" x="250" y="17" color="Gfx.COLOR_LT_GRAY" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontStatus" />
+    <!-- Footer -->
+    <label id="valueFooter" x="195" y="340" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_TINY" />
+  </layout>
+</layouts>

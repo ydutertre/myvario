@@ -1,0 +1,8 @@
+<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
+<fonts>
+  <font id="fontMeter" filename="../resources/fonts/ArialBold-DIGIT-111.fnt" />
+  <font id="fontPlot" filename="../resources/fonts/ArialBold-NEHE-36.fnt" />
+  <font id="fontStatus" filename="../resources/fonts/ArialBold-NEHE-24.fnt" />
+  <font id="fontLabel" filename="../resources/fonts/Arial-NEHE-23.fnt" />
+  <font id="fontUnit" filename="../resources/fonts/Arial-NEHE-23.fnt" />
+</fonts>

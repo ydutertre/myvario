@@ -3,6 +3,8 @@
 <iq:manifest xmlns:iq="http://www.garmin.com/xml/connectiq" version="0">
     <iq:application entry="MyApp" id="17fe8a7e-a8e8-40de-8fdd-8208342996c4" launcherIcon="@Drawables.AppIcon" minSdkVersion="3.2.0" name="@Strings.AppName" type="watch-app">
         <iq:products>
+            <iq:product id="d2air"/>
+            <iq:product id="d2airx10"/>
             <iq:product id="d2mach1"/>
             <iq:product id="descentmk2"/>
             <iq:product id="descentmk2s"/>
@@ -31,6 +33,9 @@
             <iq:product id="marqdriver"/>
             <iq:product id="marqexpedition"/>
             <iq:product id="marqgolfer"/>
+            <iq:product id="venu2"/>
+            <iq:product id="venu2plus"/>
+            <iq:product id="vivoactive4"/>
         </iq:products>
         <iq:permissions>
             <iq:uses-permission id="Communications"/>

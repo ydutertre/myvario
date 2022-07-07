@@ -20,6 +20,24 @@ Usage instructions
 
    !!! WARNING !!! DISCLAIMER !!! WARNING !!! DISCLAIMER !!! WARNING !!!
 
+About touchscreen models  (no 5 button control)
+-----------------------------------------------
+
+As of version 2.20, this application has been made to support some touchscreen
+models. However, use of those models can be confusing, and the watches don't
+provide alert tones (so there are no vario tones, only vibrations!).
+The below guide still applies, however the controls are different
+- The Back button is unchanged (bottom right) and can be used to change settings
+- The UP and DOWN buttons (middle left and bottom left on 5 button watches) are
+replaced by SWIPE UP and SWIPE DOWN gestures on the screen
+- The START button (top right on 5 button watches) is replaced by a tap on the
+screen, so can be used to validate settings changes, start/stop and activity, etc.
+
+This can become particularly counterintuitive when changing zoom and pan in the
+thermal assisitant/varioplot view, but it works. Log view is a bit weird as well
+since to scroll through the logs, the back button and tap on screen commands are
+used, while swipe up/swipe down bring to the other watch screens.
+
 
 Getting Started
 ---------
@@ -38,7 +56,9 @@ data, don't fret! You just need to get a GPS fix :) Go to a window or go outside
 and all will become clear.
 
 Next is navigation. The app is geared towards watches that can be used without
-a touch interface, such as Forerunner or Fenix series.
+a touch interface, such as Forerunner or Fenix series, although as of 2.20, best
+effort support of touchscreen only models has been added (see relevant section
+above in this guide).
 
 Up button (middle left) and Down button (bottom left) can be used to go from one
 view to another. Swiping up and down on a touchscreen also does the trick.
@@ -52,8 +72,10 @@ When changing settings, make sure to use the Select button to validate the chang
 Pressing the back button doesn't save the setting.
 
 The Select button can be used to start and stop the activity recording, and Back can
-be used to exit the app (except in the log view, so check further down this usage
-guide for details).
+be used to exit the app, except during recording or in the log view.
+If in log view, you want to exit the log view using UP/DOWN buttons first before you
+can close the app using the back button. If the activity is recording, you want to
+stop the activity first and then exit the app.
 
 To enable Livetrack24 tracking, you need to set your username, password, and equipment
 name within the settings page of the My Vario app in the Garmin Connect IQ application.

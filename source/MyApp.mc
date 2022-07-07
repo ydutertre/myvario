@@ -454,6 +454,7 @@ class MyApp extends App.AppBase {
       }
     }
     Pos.enableLocationEvents({
+      :mode => Pos.POSITIONING_MODE_AVIATION,
       :acquisitionType => Pos.LOCATION_CONTINUOUS,
       :constellations => aPositioning},
       method(:onLocationEvent)

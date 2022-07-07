@@ -1,3 +1,13 @@
+* 2.20
+  - Added support for some touchscreen models:
+    Vivoactive 4
+    Venu 2
+    Venu 2 Plus
+    D2 Air
+    D2 Air X10
+  Special considerations apply (no tones for instance), see USAGE
+- Optimized position mode for aviation
+
 * 2.11
   - Added support for Forerunner 255 and 955
 
