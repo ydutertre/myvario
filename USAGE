@@ -34,7 +34,7 @@ replaced by SWIPE UP and SWIPE DOWN gestures on the screen
 screen, so can be used to validate settings changes, start/stop and activity, etc.
 
 This can become particularly counterintuitive when changing zoom and pan in the
-thermal assisitant/varioplot view, but it works. Log view is a bit weird as well
+thermal assistant/varioplot view, but it works. Log view is a bit weird as well
 since to scroll through the logs, the back button and tap on screen commands are
 used, while swipe up/swipe down bring to the other watch screens.
 

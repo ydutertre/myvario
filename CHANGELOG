@@ -1,3 +1,11 @@
+* 2.30
+- Added support for small-wrist watches:
+    Vivoactive 4S
+    Forerunner 255S
+    Venu 2S
+  Note that the screen is really small and I don't think the indicators
+  will be easily seen in flight
+
 * 2.20
   - Added support for some touchscreen models:
     Vivoactive 4
