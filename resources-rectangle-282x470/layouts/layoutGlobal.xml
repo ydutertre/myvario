@@ -1,0 +1,35 @@
+<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
+<layouts>
+  <layout id="layoutGlobal">
+    <drawable class="MyDrawableHeader" />
+    <drawable class="MyDrawableGlobal" />
+    <drawable id="drawContentBorders" />
+    <drawable id="drawFieldsBorders" />
+    <!-- Header -->
+    <label id="valueBatteryLevel" x="100" y="12" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontStatus" />
+    <label id="valueActivityStatus" x="180" y="12" color="Gfx.COLOR_LT_GRAY" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontStatus" />
+    <!-- Fields -->
+    <label id="labelTopLeft" x="46" y="36" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitTopLeft" x="134" y="36" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueTopLeft" x="78" y="53" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelTopRight" x="143" y="36" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitTopRight" x="233" y="36" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueTopRight" x="201" y="53" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelLeft" x="7" y="106" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitLeft" x="101" y="106" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueLeft" x="52" y="123" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelCenter" x="140" y="106" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontLabel" />
+    <label id="valueCenter" x="140" y="123" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelRight" x="179" y="106" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitRight" x="273" y="106" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueRight" x="228" y="123" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelBottomLeft" x="12" y="176" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitBottomLeft" x="136" y="176" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueBottomLeft" x="85" y="193" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelBottomRight" x="144" y="176" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitBottomRight" x="266" y="176" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueBottomRight" x="195" y="193" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <!-- Footer -->
+    <label id="valueFooter" x="140" y="244" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_TINY" />
+  </layout>
+</layouts>

@@ -97,6 +97,19 @@ class MyViewVarioplot extends MyViewHeader {
     self.iDotRadius = 3;
   }
 
+  (:layout_246x322)
+  function initLayout() as Void {
+    self.iLayoutCenter = 120;
+    self.iLayoutClipY = 31;
+    self.iLayoutClipW = 240;
+    self.iLayoutClipH = 178;
+    self.iLayoutValueXleft = 40;
+    self.iLayoutValueXright = 200;
+    self.iLayoutValueYtop = 30;
+    self.iLayoutValueYbottom = 190;
+    self.iDotRadius = 3;
+  }
+
   (:layout_240x240)
   function initLayout() as Void {
     self.iLayoutCenter = 120;
@@ -124,6 +137,19 @@ class MyViewVarioplot extends MyViewHeader {
   }
 
   (:layout_280x280)
+  function initLayout() as Void {
+    self.iLayoutCenter = 140;
+    self.iLayoutClipY = 36;
+    self.iLayoutClipW = 280;
+    self.iLayoutClipH = 208;
+    self.iLayoutValueXleft = 47;
+    self.iLayoutValueXright = 233;
+    self.iLayoutValueYtop = 35;
+    self.iLayoutValueYbottom = 221;
+    self.iDotRadius = 5;
+  }
+
+  (:layout_282x470)
   function initLayout() as Void {
     self.iLayoutCenter = 140;
     self.iLayoutClipY = 36;

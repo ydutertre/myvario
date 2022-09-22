@@ -101,6 +101,21 @@ class MyViewVariometer extends MyView {
     self.iLayoutUnitY = 105;
   }
 
+  (:layout_246x322)
+  function initLayout() as Void {
+    self.iLayoutCenter = 120;
+    self.iLayoutValueR = 60;
+    self.iLayoutCacheX = 100;
+    self.iLayoutCacheR = 90;
+    self.iLayoutBatteryY = 148;
+    self.iLayoutActivityY = 75;
+    self.iLayoutTimeY = 162;
+    self.iLayoutAltitudeY = 42;
+    self.iLayoutValueY = 83;
+    self.iLayoutUnitX = 212;
+    self.iLayoutUnitY = 105;
+  }
+
   (:layout_260x260)
   function initLayout() as Void {
     self.iLayoutCenter = 130;
@@ -117,6 +132,21 @@ class MyViewVariometer extends MyView {
   }
 
   (:layout_280x280)
+  function initLayout() as Void {
+    self.iLayoutCenter = 140;
+    self.iLayoutValueR = 70;
+    self.iLayoutCacheX = 120;
+    self.iLayoutCacheR = 105;
+    self.iLayoutBatteryY = 173;
+    self.iLayoutActivityY = 88;
+    self.iLayoutTimeY = 189;
+    self.iLayoutAltitudeY = 49;
+    self.iLayoutValueY = 97;
+    self.iLayoutUnitX = 247;
+    self.iLayoutUnitY = 123;
+  }
+
+  (:layout_282x470)
   function initLayout() as Void {
     self.iLayoutCenter = 140;
     self.iLayoutValueR = 70;
