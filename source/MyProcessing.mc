@@ -382,7 +382,7 @@ class MyProcessing {
               // Point weight decreases as measurement altitude is farther from current altitude
               weight -= ((self.fAltitude.toNumber() - self.aiPointAltitude[index]) * 40).abs();
               // Point weight decreases with age of point
-              weight -= i * 10;
+              weight -= i * 20;
               weight = (weight < 0) ? 0 : weight;
               // One pass weighted mean and weighted variance calculation
               iWeightedSum += weight;
@@ -413,7 +413,7 @@ class MyProcessing {
             self.iStandardDev = Math.sqrt((fWeightedSLongitude + fWeightedSLatitude) / (2 * iWeightedSum - 2)).toNumber();
             if(self.bWindValid && self.fWindSpeed > 0 && self.iWindDirection != null && fWeightedMeanAltitude != 0 && fWeightedMeanClimb != 0 && self.fAltitude != 0) {
               var fThermalDrift =  (self.fAltitude - fWeightedMeanAltitude) * (self.fWindSpeed / (fWeightedMeanClimb / 1000.0)); // thermal drift in meters (positive with wind, negative against wind)
-              var iDriftAngle = fThermalDrift >= 0 ? (self.iWindDirection + 180) % 360 : self.iWindDirection; //push away from wind origin if drift positive, towards it if negative
+              var iDriftAngle = fThermalDrift >= 0 ? 90 - ((self.iWindDirection + 180) % 360) : (90 - self.iWindDirection); //push away from wind origin if drift positive, towards it if negative. Redirect angle so sin/cos operations can be used for lat/long
               self.fCenterWindOffsetLatitude = fThermalDrift.abs() * Math.sin( iDriftAngle / 57.2957795131f); //North-South drift in meters (North positive)
               self.fCenterWindOffsetLongitude = fThermalDrift.abs() * Math.cos( iDriftAngle / 57.2957795131f); //West-East drift in meters (East positive)
             }
@@ -553,7 +553,7 @@ class MyProcessing {
       }
     }
     else {
-      if(self.bNotCirclingCount >= 25) { self.bCirclingCount = 0; } //No longer circling
+      if(self.bNotCirclingCount >= 10) { self.bCirclingCount = 0; } //No longer circling
       bNotCirclingCount += 1;
     }
   }
