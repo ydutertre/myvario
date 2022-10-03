@@ -96,3 +96,9 @@ errors, bugs, or code that could be extremely painful to the eyes of
 experienced developers. I apologize for the pain caused!
 You have been warned!
 
+## Contributing
+
+To contribute, you will need to go through the setup of Visual Studio Code
+as well as the Garmin plug-in and related instructions, as detailed here:
+https://developer.garmin.com/connect-iq/overview/
+
