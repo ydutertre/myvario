@@ -116,7 +116,8 @@ class MyMenuGeneric extends Ui.Menu {
 
     else if(_menu == :menuSettingsLivetrack) {
       Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsLivetrack) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleLivetrackFrequency) as String, :menuLivetrackFrequency);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleLivetrack24Frequency) as String, :menuLivetrack24Frequency);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleSportsTrackLiveFrequency) as String, :menuSportsTrackLiveFrequency);
     }
 
     else if(_menu == :menuStorage) {
@@ -361,9 +362,14 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
     }
 
     else if(self.menu == :menuSettingsLivetrack) {
-      if(_item == :menuLivetrackFrequency) {
-        Ui.pushView(new MyPickerGenericSettings(:contextLivetrack, :itemFrequency),
-                    new MyPickerGenericSettingsDelegate(:contextLivetrack, :itemFrequency),
+      if(_item == :menuLivetrack24Frequency) {
+        Ui.pushView(new MyPickerGenericSettings(:contextLivetrack, :itemLivetrack24Frequency),
+                    new MyPickerGenericSettingsDelegate(:contextLivetrack, :itemLivetrack24Frequency),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      if(_item == :menuSportsTrackLiveFrequency) {
+        Ui.pushView(new MyPickerGenericSettings(:contextLivetrack, :itemSportsTrackLiveFrequency),
+                    new MyPickerGenericSettingsDelegate(:contextLivetrack, :itemSportsTrackLiveFrequency),
                     Ui.SLIDE_IMMEDIATE);
       }
     }

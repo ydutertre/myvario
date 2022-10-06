@@ -295,32 +295,69 @@ Note: absolute and relative corrections shouldn't be needed in most cases. Check
     display Local Time (LT) or Universal Time Coordinates (UTC/Z)
 
 * Livetrack
-  - Frequency:
-    The frequency (in seconds) at which My Vario will send a position update
-    to the Livetracking server. Livetracking can also be disabled completely
+  - LT24 Frequency:
+    The frequency (in seconds) at which My Vario will send a position update to Livetrack24. 
+    The higher the frequency the smoother the track (one data point sent with each update).
+    to the Livetrack24 server. Livetracking via Livetrack24 can also be disabled completely
     by setting this to Off.
+  - STL Frequency 
+    The frequency (in seconds) at which My Vario will send a position update to SportsTrackLive. 
+    The frequency doesn't impact the smoothness of the track as position data points taken
+    once per second are sent in batch with each update. However, because updates can be lost in
+    areas with poor connectivity, I recommend a setting of 15s (so only 15 seconds worth of data
+    points are lost in case of update failure). Livetracking via SportsTrackLive can also be
+    disabled completely by setting this to Off.
 
 * Storage
   - Clear logs:
     delete logs
 
-Livetrack24 integration
+Live Tracking
 -----------------------
 
-If you wish to use Livetrack24 integration, you will need to create a login at their
-website https://www.livetrack24.com/ . Once done, you will need to go to the app settings
-within the Connect IQ app to set your login, password, and equipment name (please don't use
-spaces, so something like ADVivo or AdvancePi3). As long as those values are blank, Livetrack24
-won't be connected to and no livetracking will occur.
+The application currently supports two Live Tracking services: Livetrack24 and SportsTrackLive.
+They can be used at the same time for live tracking in both platforms simultaneously.
 
 This feature requires that the watch be paired to a phone via bluetooth, and it will rely on the 
-phone's Internet connection to send its position packets to Livetrack24. This is a win-win for the
-batteries involved: flight data and GPS info is done on the watch, while connectivity is done on the
-phone, helping save the battery of the phone in particular.
+phone's Internet connection to send its position packets to the live tracking servce. This is a
+win-win for the batteries involved: flight data and GPS info is done on the watch, while
+connectivity is done on the phone, helping save the battery of the phone in particular.
 
-Once done, tracking will automatically start once activity recording starts. It will then provide
-position updates to Livetrack24 every X seconds, X being a number set in the My Vario settings on the
-watch (please see the Settings session). It will automatically stop once activity recording is stopped.
+* SportsTrackLive
+
+If you wish to use the SportsTrackLive integration, you will need to create an account at their
+website https://www.sportstracklive.com/ . Once done, you will need to go to the app settings
+within the Connect IQ app to set your login email and password. You will then need to set an
+update frequency within the settings of the My Vario app (default is off).
+
+Once email, password and frequency are set, Livetracking with SportsLiveTrack will start as
+soon as Activity Recording is started (either manually or via auto-start).
+
+SportsTrackLive provides several advantages over Livetrack24:
+- Modern, responsive interface
+- Ayvri-like 3D visualization, both live and once flight is over
+- More precise and more power efficient: while the Livetrack24 integration will only send one
+GPS data point every x seconds (based on frequency setting), the SportsTrackLive integration
+queues GPS points (one per second), and sends them to SportsTrackLive in batch every x seconds
+(based on frequency setting). Thus, smooth tracks can be achieved with low update frequencies,
+compared to Livetrack24, where high update frequency is required for smooth tracks.
+
+* Livetrack24
+
+If you wish to use Livetrack24 integration, you will need to create an account at their
+website https://www.livetrack24.com/ . Once done, you will need to go to the app settings
+within the Connect IQ app to set your login, password, and equipment name (please don't use
+spaces, so something like ADVivo or AdvanceXi). You will then need to set an update frequency
+within the settings of the My Vario app (default is off).
+
+Once email, password and frequency are set, Livetracking with Livetrack24 will start as
+soon as Activity Recording is started (either manually or via auto-start).
+
+Once started, live tracking will provide position updates to Livetrack24 every X seconds, X
+being a number set in the My Vario settings on the watch (please see the Settings session).
+The live tracking frequency will determine the smoothness of the track (for Livetrack24).
+
+Live tracking will automatically stop once activity recording is stopped.
 
 About Data Filtering
 --------------------

@@ -335,24 +335,72 @@ class MyProcessing {
         self.aiPlotVariometer[self.iPlotIndex] = (self.fVariometer_filtered*1000.0f).toNumber();
         self.aiPointAltitude[self.iPlotIndex] = self.fAltitude.toNumber();
 
-        //Livetracking
-        if ($.oMyActivity != null && $.oMySettings.iLivetrackFrequencySeconds != 0) {
+
+        //Live tracking
+        var iLivetrackHeading = LangUtils.notNaN(fHeading) ? ((self.fHeading * 57.2957795131f).toNumber()) % 360 : 0;
+
+        //Livetrack24
+        if ($.oMyActivity != null && $.oMySettings.iLivetrack24FrequencySeconds != 0) {
+          
+          //Timeout logic: web request is allowed 60 seconds for a reply (to get session token and start track ID)
+          //If no reply, make it try again
+          if($.oMyLivetrack24.bWebRequestPending) {
+            $.oMyLivetrack24.timeout++;
+            if($.oMyLivetrack24.timeout > 60) {
+              $.oMyLivetrack24.timeout = 0;
+              $.oMyLivetrack24.bWebRequestPending = false;
+            }
+          }
+          
           //Attempt to get User Id and generate Session ID if not existent
-          if($.oMyLivetrack.sLoginName.length() > 0 && $.oMyLivetrack.iUserId == 0 && $.oMyLivetrack.iSessionId == 1 && !$.oMyLivetrack.bWebRequestPending && !$.oMyLivetrack.bWrongCredentials) {
-            $.oMyLivetrack.getUserId();
+          if($.oMyLivetrack24.sLoginName.length() > 0 && $.oMyLivetrack24.iUserId == 0 && $.oMyLivetrack24.iSessionId == 1 && !$.oMyLivetrack24.bWebRequestPending && !$.oMyLivetrack24.bWrongCredentials) {
+            $.oMyLivetrack24.getUserId();
           }
 
           //Attempt to start the livetrack session
-          if($.oMyLivetrack.iSessionId != 1 && !$.oMyLivetrack.bWebRequestPending && !$.oMyLivetrack.bWrongCredentials && !$.oMyLivetrack.bLivetrackStateful) {
-            $.oMyLivetrack.startSession();
+          if($.oMyLivetrack24.iSessionId != 1 && !$.oMyLivetrack24.bWebRequestPending && !$.oMyLivetrack24.bWrongCredentials && !$.oMyLivetrack24.bLivetrackStateful) {
+            $.oMyLivetrack24.startSession();
           }
 
           //Attempt to update position
-          if($.oMyLivetrack.bLivetrackStateful && ($.oMyLivetrack.iCounter % $.oMySettings.iLivetrackFrequencySeconds) == 0) {
-            var iLivetrackHeading = LangUtils.notNaN(fHeading) ? ((self.fHeading * 57.2957795131f).toNumber()) % 360 : 0;
-            $.oMyLivetrack.updateSession(adPositionDegrees[0], adPositionDegrees[1], self.fAltitude.toNumber(), (self.fGroundSpeed * 3.6f).toNumber(), iLivetrackHeading, self.iGpsTime);
+          if($.oMyLivetrack24.bLivetrackStateful && ($.oMyLivetrack24.iCounter % $.oMySettings.iLivetrack24FrequencySeconds) == 0) {
+            $.oMyLivetrack24.updateSession(adPositionDegrees[0], adPositionDegrees[1], self.fAltitude.toNumber(), (self.fGroundSpeed * 3.6f).toNumber(), iLivetrackHeading, self.iGpsTime);
           }
-          $.oMyLivetrack.iCounter++;
+          $.oMyLivetrack24.iCounter++;
+        }
+
+        //SportsTrackLive
+        if ($.oMyActivity != null && $.oMySettings.iSportsTrackLiveFrequencySeconds != 0) {
+          
+          //Timeout logic: web request is allowed 60 seconds for a reply (to get session token and start track ID)
+          //If no reply, make it try again
+          if($.oMySportsTrackLive.bWebRequestPending) {
+            $.oMySportsTrackLive.timeout++;
+            if($.oMySportsTrackLive.timeout > 60) {
+              $.oMySportsTrackLive.timeout = 0;
+              $.oMySportsTrackLive.bWebRequestPending = false;
+            }
+          }
+          
+          //Attempt to get Session Token
+          if($.oMySportsTrackLive.sLoginEmail.length() > 0 && $.oMySportsTrackLive.sSessionToken.equals("") && $.oMySportsTrackLive.iTrackId == 0 && !$.oMySportsTrackLive.bWebRequestPending && !$.oMySportsTrackLive.bWrongCredentials) {
+            $.oMySportsTrackLive.getUserToken();
+          }
+
+          //Attempt to start the livetrack session and get Track Id
+          if(!$.oMySportsTrackLive.sSessionToken.equals("") && !$.oMySportsTrackLive.bWebRequestPending && !$.oMySportsTrackLive.bWrongCredentials && !$.oMySportsTrackLive.bLivetrackStateful) {
+            $.oMySportsTrackLive.startSession(adPositionDegrees[0], adPositionDegrees[1], self.fAltitude.toNumber(), self.fGroundSpeed.toNumber(), iLivetrackHeading);
+          }
+
+          //Attempt to update position
+          if($.oMySportsTrackLive.bLivetrackStateful) {
+            $.oMySportsTrackLive.addPoint(adPositionDegrees[0], adPositionDegrees[1], self.fAltitude.toNumber(), self.fGroundSpeed.toNumber(), iLivetrackHeading);
+            if(($.oMySportsTrackLive.iCounter % $.oMySettings.iSportsTrackLiveFrequencySeconds) == 0) {
+              $.oMySportsTrackLive.updateSession();
+              $.oMySportsTrackLive.adPoints = new Array<Dictionary>[$.oMySettings.iSportsTrackLiveFrequencySeconds];
+            }
+          }
+          $.oMySportsTrackLive.iCounter++;
         }
 
         if($.oMySettings.bVariometerThermalDetect) {

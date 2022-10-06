@@ -31,7 +31,7 @@ using Toybox.StringUtil as Su;
 // CLASS
 //
 
-class MyLivetrack {
+class MyLivetrack24 {
 
   //
   // CONSTANTS
@@ -51,7 +51,7 @@ class MyLivetrack {
   private var iPacketNumber as Number = 0;
   public var iCounter as Number = 0;
   public var bWrongCredentials = false;
-  private var oTimeoutTimer = new Timer.Timer();
+  public var timeout as Number = 0;
 
   //
   // FUNCTIONS: self
@@ -71,11 +71,7 @@ class MyLivetrack {
     self.iUserId = 0;
     self.bWebRequestPending = false;
     self.bLivetrackStateful = false;
-  }
-
-  function timeout() {
-    //After 60 seconds both requests (User ID and start track) should have completed, if not give another opportunity
-    self.bWebRequestPending = false;
+    self.timeout = 0;
   }
 
   function getUserId() {
@@ -93,7 +89,6 @@ class MyLivetrack {
     };
 
     self.bWebRequestPending = true;
-    self.oTimeoutTimer.start(method(:timeout), 60000, false);
     Comms.makeWebRequest(url, params, options, method(:onReceiveUserId));
   }
 
@@ -108,7 +103,7 @@ class MyLivetrack {
       "user" => self.sLoginName,
       "pass" => self.sPassword,
       "v" => "1",
-      "trk1" => $.oMySettings.iLivetrackFrequencySeconds.toString(),
+      "trk1" => $.oMySettings.iLivetrack24FrequencySeconds.toString(),
       "phone" => "GarminWatch",
       "gps" => "GarminGPS",
       "vname" => self.sEquipment,
@@ -121,7 +116,6 @@ class MyLivetrack {
     };
     self.iPacketNumber++;
     self.bWebRequestPending = true;
-    self.oTimeoutTimer.start(method(:timeout), 60000, false);
     Comms.makeWebRequest(url, params, options, method(:onReceiveStartTrack));
   }
 
@@ -145,7 +139,6 @@ class MyLivetrack {
       :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
     };
     self.iPacketNumber++;
-    Sys.println(self.iPacketNumber.toString());
     Comms.makeWebRequest(url, params, options, method(:onReceiveDoNothing));
   }
 
@@ -180,11 +173,13 @@ class MyLivetrack {
       }
     }
     self.bWebRequestPending = false;
+    self.timeout = 0;
   }
 
   function onReceiveStartTrack(_responseCode, _data) {
     self.bLivetrackStateful = true;
     self.bWebRequestPending = false;
+    self.timeout = 0;
   }
 
   function onReceiveDoNothing(_responseCode, _data) {

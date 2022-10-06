@@ -54,8 +54,8 @@ low frequency tone
 
 3. Live tracking
 
-- An integration with Livetrack24 is available, to share your activities with others
-in real time
+- Live tracking is possible with Livetrack24, as well as with SportsTrackLive to share
+free flight activities in real-time, and enjoy 3D visualizations.
 
 4. Under the hood
 

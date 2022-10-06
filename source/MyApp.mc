@@ -73,7 +73,8 @@ var iMyLogIndex as Number = -1;
 var oMyActivity as MyActivity?;
 
 // Livetrack
-var oMyLivetrack as MyLivetrack = new MyLivetrack();
+var oMyLivetrack24 as MyLivetrack24 = new MyLivetrack24();
+var oMySportsTrackLive as MySportsTrackLive = new MySportsTrackLive();
 
 // Current view
 var oMyView as MyView?;
@@ -236,24 +237,35 @@ class MyApp extends App.AppBase {
     //Sys.println("DEBUG: MyApp.loadSettings()");
 
     //... Intialize and reset livetrack
-    var sUserName = LangUtils.readKeyString(App.Properties.getValue("userLivetrackUserName"), "");
-    var sPassword = LangUtils.readKeyString(App.Properties.getValue("userLivetrackPassword"), "");
-    var sEquipment = LangUtils.readKeyString(App.Properties.getValue("userLivetrackEquipmentName"), "");
-    if(!sUserName.equals($.oMyLivetrack.sLoginName) || !sPassword.equals($.oMyLivetrack.sPassword) || !sEquipment.equals($.oMyLivetrack.sEquipment)) {
-      $.oMyLivetrack.init(sUserName, sPassword, sEquipment);
-      $.oMyLivetrack.reset();
-    } else {
-      // Load settings
-      $.oMySettings.load();
 
-      // Apply settings
-
-      $.oMyAltimeter.importSettings();
-      self.enablePositioning();
-
-      // ... tones
-      self.muteTones();
+    //Livetrack24
+    var sLivetrack24UserName = LangUtils.readKeyString(App.Properties.getValue("userLivetrack24UserName"), "");
+    var sLivetrack24Password = LangUtils.readKeyString(App.Properties.getValue("userLivetrack24Password"), "");
+    var sLivetrack24Equipment = LangUtils.readKeyString(App.Properties.getValue("userLivetrack24EquipmentName"), "");
+    if(!sLivetrack24UserName.equals($.oMyLivetrack24.sLoginName) || !sLivetrack24Password.equals($.oMyLivetrack24.sPassword) || !sLivetrack24Equipment.equals($.oMyLivetrack24.sEquipment)) {
+      $.oMyLivetrack24.init(sLivetrack24UserName, sLivetrack24Password, sLivetrack24Equipment);
+      $.oMyLivetrack24.reset();
     }
+
+    //SportsTrackLive
+
+    var sSportsTrackLiveEmail = LangUtils.readKeyString(App.Properties.getValue("userSportsTrackLiveEmail"), "");
+    var sSportsTrackLivePassword = LangUtils.readKeyString(App.Properties.getValue("userSportsTrackLivePassword"), "");
+    if(!sSportsTrackLiveEmail.equals($.oMySportsTrackLive.sLoginEmail) || !sSportsTrackLivePassword.equals($.oMySportsTrackLive.sPassword)) {
+      $.oMySportsTrackLive.init(sSportsTrackLiveEmail, sSportsTrackLivePassword);
+      $.oMySportsTrackLive.reset();
+    }
+
+    // Load settings
+    $.oMySettings.load();
+
+    // Apply settings
+
+    $.oMyAltimeter.importSettings();
+    self.enablePositioning();
+
+    // ... tones
+    self.muteTones();
   }
 
   function onSensorEvent(_oInfo as Sensor.Info) as Void {

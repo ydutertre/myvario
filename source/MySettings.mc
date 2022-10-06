@@ -75,7 +75,8 @@ class MySettings {
   public var iUnitDirection as Number = 1;
   public var bUnitTimeUTC as Boolean = false;
   // ... livetrack
-  public var iLivetrackFrequency = 3;
+  public var iLivetrack24Frequency = 0;
+  public var iSportsTrackLiveFrequency = 0;
 
   // Units
   // ... symbols
@@ -100,7 +101,8 @@ class MySettings {
   public var fMinimumClimb as Float = 0.2;
   public var fMinimumSink as Float = 2.0;
   public var fVariometerSmoothing as Float = 0.5; //Standard deviation of altitude measurement at fixed altitude
-  public var iLivetrackFrequencySeconds as Number = 15;
+  public var iLivetrack24FrequencySeconds as Number = 0;
+  public var iSportsTrackLiveFrequencySeconds as Number = 0;
 
   //
   // FUNCTIONS: self
@@ -137,7 +139,8 @@ class MySettings {
     self.setUnitDirection(self.loadUnitDirection());
     self.setUnitTimeUTC(self.loadUnitTimeUTC());
     // ... livetrack
-    self.setLivetrackFrequency(self.loadLivetrackFrequency());
+    self.setLivetrack24Frequency(self.loadLivetrack24Frequency());
+    self.setSportsTrackLiveFrequency(self.loadSportsTrackLiveFrequency());
   }
 
   function loadAltimeterCalibrationQNH() as Float {  // [Pa]
@@ -565,30 +568,57 @@ class MySettings {
     }
   }
 
-  function loadLivetrackFrequency() as Number { 
-    return LangUtils.readKeyNumber(App.Properties.getValue("userLivetrackFrequency"), 3);
+  function loadLivetrack24Frequency() as Number { 
+    return LangUtils.readKeyNumber(App.Properties.getValue("userLivetrack24Frequency"), 0);
   }
-  function saveLivetrackFrequency(_iValue as Number) as Void { 
-    App.Properties.setValue("userLivetrackFrequency", _iValue as App.PropertyValueType);
+  function saveLivetrack24Frequency(_iValue as Number) as Void { 
+    App.Properties.setValue("userLivetrack24Frequency", _iValue as App.PropertyValueType);
   }
-  function setLivetrackFrequency(_iValue as Number) as Void {
+  function setLivetrack24Frequency(_iValue as Number) as Void {
     if(_iValue > 8) {
       _iValue = 8;
     }
     else if(_iValue < 0) {
       _iValue = 0;
     }
-    self.iLivetrackFrequency = _iValue;
-    switch(self.iLivetrackFrequency) {
-    case 0: self.iLivetrackFrequencySeconds = 0; break;
-    case 1: self.iLivetrackFrequencySeconds = 2; break;
-    case 2: self.iLivetrackFrequencySeconds = 5; break;
-    case 3: self.iLivetrackFrequencySeconds = 15; break;
-    case 4: self.iLivetrackFrequencySeconds = 30; break;
-    case 5: self.iLivetrackFrequencySeconds = 60; break;
-    case 6: self.iLivetrackFrequencySeconds = 120; break;
-    case 7: self.iLivetrackFrequencySeconds = 180; break;
-    case 8: self.iLivetrackFrequencySeconds = 300; break;
+    self.iLivetrack24Frequency = _iValue;
+    switch(self.iLivetrack24Frequency) {
+    case 0: self.iLivetrack24FrequencySeconds = 0; break;
+    case 1: self.iLivetrack24FrequencySeconds = 2; break;
+    case 2: self.iLivetrack24FrequencySeconds = 5; break;
+    case 3: self.iLivetrack24FrequencySeconds = 15; break;
+    case 4: self.iLivetrack24FrequencySeconds = 30; break;
+    case 5: self.iLivetrack24FrequencySeconds = 60; break;
+    case 6: self.iLivetrack24FrequencySeconds = 120; break;
+    case 7: self.iLivetrack24FrequencySeconds = 180; break;
+    case 8: self.iLivetrack24FrequencySeconds = 300; break;
+    }
+  }
+
+  function loadSportsTrackLiveFrequency() as Number { 
+    return LangUtils.readKeyNumber(App.Properties.getValue("userSportsTrackLiveFrequency"), 0);
+  }
+  function saveSportsTrackLiveFrequency(_iValue as Number) as Void { 
+    App.Properties.setValue("userSportsTrackLiveFrequency", _iValue as App.PropertyValueType);
+  }
+  function setSportsTrackLiveFrequency(_iValue as Number) as Void {
+    if(_iValue > 8) {
+      _iValue = 8;
+    }
+    else if(_iValue < 0) {
+      _iValue = 0;
+    }
+    self.iSportsTrackLiveFrequency = _iValue;
+    switch(self.iSportsTrackLiveFrequency) {
+    case 0: self.iSportsTrackLiveFrequencySeconds = 0; break;
+    case 1: self.iSportsTrackLiveFrequencySeconds = 2; break;
+    case 2: self.iSportsTrackLiveFrequencySeconds = 5; break;
+    case 3: self.iSportsTrackLiveFrequencySeconds = 15; break;
+    case 4: self.iSportsTrackLiveFrequencySeconds = 30; break;
+    case 5: self.iSportsTrackLiveFrequencySeconds = 60; break;
+    case 6: self.iSportsTrackLiveFrequencySeconds = 120; break;
+    case 7: self.iSportsTrackLiveFrequencySeconds = 180; break;
+    case 8: self.iSportsTrackLiveFrequencySeconds = 300; break;
     }
   }
 

@@ -1,13 +1,19 @@
 <settings>
   <!-- User preferences -->
-  <setting propertyKey="@Properties.userLivetrackUserName" title="@Strings.titleLivetrackUserName">
+  <setting propertyKey="@Properties.userLivetrack24UserName" title="@Strings.titleLivetrack24UserName">
     <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
   </setting>
-  <setting propertyKey="@Properties.userLivetrackPassword" title="@Strings.titleLivetrackPassword">
+  <setting propertyKey="@Properties.userLivetrack24Password" title="@Strings.titleLivetrack24Password">
     <settingConfig type="password" errorMessage="@Strings.titleInputError" />
   </setting>
-  <setting propertyKey="@Properties.userLivetrackEquipmentName" title="@Strings.titleLivetrackEquipmentName">
+  <setting propertyKey="@Properties.userLivetrack24EquipmentName" title="@Strings.titleLivetrack24EquipmentName">
     <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
+  </setting>
+  <setting propertyKey="@Properties.userSportsTrackLiveEmail" title="@Strings.titleSportsTrackLiveEmail">
+    <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
+  </setting>
+  <setting propertyKey="@Properties.userSportsTrackLivePassword" title="@Strings.titleSportsTrackLivePassword">
+    <settingConfig type="password" errorMessage="@Strings.titleInputError" />
   </setting>
   <!-- ... storage -->
 </settings>

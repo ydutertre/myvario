@@ -1,3 +1,10 @@
+* 2.40
+- Added Live tracking integration with SportsTrackLive. To enable this
+integration, the user will need to set up the SportsTrackLive login email
+and passord within the Connect IQ App (in the Settings section of My Vario).
+Setting the update frequency (default off) is required for livetracking to
+become effective.
+
 * 2.32
 - Fixed bug with thermal assistance wind correction (was applied 90 degrees off)
 - Adjusted the non-circling detection for faster auto screen switch
@@ -111,7 +118,7 @@
   Changes from GliderSK:
   - Removed Safety features and tones (App should NOT be used for safety)
   - Added vibration Vario for quiet flying
-  - Added computation of wind direction speed
+  - Added computation of wind direction and speed
   - Changed general view to have wind direction and speed (acceleration and rate of turn removed)
   - Restricted views to General -> Vario -> Vario Plot/Thermal Assistant -> Log (removed other views)
   - Log view is skipped while the activity is recording (e.g. no need to check logs while in flight!)

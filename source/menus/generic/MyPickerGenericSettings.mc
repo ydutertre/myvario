@@ -261,20 +261,35 @@ class MyPickerGenericSettings extends Ui.Picker {
 
     }
     else if (_context == :contextLivetrack) {
-      if(_item == :itemFrequency) {
-        var iLivetrackFrequency = $.oMySettings.loadLivetrackFrequency();
+      if(_item == :itemLivetrack24Frequency) {
+        var iLivetrack24Frequency = $.oMySettings.loadLivetrack24Frequency();
         $.oMySettings.load();  // ... reload potentially modified settings
         var asValues = ["Off", "2s", "5s", "15s", "30s", "60s", "120s", "180s", "300s"];
         var oFactory = new PickerFactoryDictionary([0, 1, 2, 3, 4, 5, 6, 7, 8], asValues, null);
         Picker.initialize({
             :title => new Ui.Text({
-                :text => Ui.loadResource(Rez.Strings.titleLivetrackFrequency) as String,
+                :text => Ui.loadResource(Rez.Strings.titleLivetrack24Frequency) as String,
                 :font => Gfx.FONT_TINY,
                 :locX=>Ui.LAYOUT_HALIGN_CENTER,
                 :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
                 :color => Gfx.COLOR_BLUE}),
             :pattern => [oFactory],
-            :defaults => [oFactory.indexOfKey(iLivetrackFrequency)]});
+            :defaults => [oFactory.indexOfKey(iLivetrack24Frequency)]});
+      }
+      if(_item == :itemSportsTrackLiveFrequency) {
+        var iSportsTrackLiveFrequency = $.oMySettings.loadSportsTrackLiveFrequency();
+        $.oMySettings.load();  // ... reload potentially modified settings
+        var asValues = ["Off", "2s", "5s", "15s", "30s", "60s", "120s", "180s", "300s"];
+        var oFactory = new PickerFactoryDictionary([0, 1, 2, 3, 4, 5, 6, 7, 8], asValues, null);
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => Ui.loadResource(Rez.Strings.titleSportsTrackLiveFrequency) as String,
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
+                :color => Gfx.COLOR_BLUE}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iSportsTrackLiveFrequency)]});
       }
     }
   }
@@ -353,8 +368,11 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
 
     }
     else if(self.context == :contextLivetrack) {
-      if(self.item == :itemFrequency) {
-        $.oMySettings.saveLivetrackFrequency(_amValues[0] as Number);
+      if(self.item == :itemLivetrack24Frequency) {
+        $.oMySettings.saveLivetrack24Frequency(_amValues[0] as Number);
+      }
+      if(self.item == :itemSportsTrackLiveFrequency) {
+        $.oMySettings.saveSportsTrackLiveFrequency(_amValues[0] as Number);
       }
     }
     Ui.popView(Ui.SLIDE_IMMEDIATE);

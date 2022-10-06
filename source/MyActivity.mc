@@ -253,9 +253,13 @@ class MyActivity {
       }
     }
     //Stop and reset livetrack session
-    if($.oMyLivetrack.bLivetrackStateful) {
-      $.oMyLivetrack.stopSession();
-      $.oMyLivetrack.reset();
+    if($.oMyLivetrack24.bLivetrackStateful) {
+      $.oMyLivetrack24.stopSession();
+      $.oMyLivetrack24.reset();
+    }
+    if($.oMySportsTrackLive.bLivetrackStateful) {
+      $.oMySportsTrackLive.stopSession();
+      $.oMySportsTrackLive.reset();
     }
     self.oTimeStart = null;
     self.oTimeStop = null;
