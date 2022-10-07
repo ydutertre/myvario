@@ -320,34 +320,7 @@ class MyViewVarioplot extends MyViewHeader {
           var iCurrentY = self.iLayoutCenter+$.iMyViewVarioplotOffsetY - (($.oMyProcessing.aiPlotLatitude[iCurrentIndex]-iEndLatitude)*fZoomY).toNumber();
           var iCurrentVariometer = $.oMyProcessing.aiPlotVariometer[iCurrentIndex];
           if(bDraw) {
-            var iCurrentColor;
-            if(iCurrentVariometer > self.aiScale[7]) {
-              iCurrentColor = 0xAAFFAA;
-            }
-            else if(iCurrentVariometer > self.aiScale[6]) {
-              iCurrentColor = 0x00FF00;
-            }
-            else if(iCurrentVariometer > self.aiScale[5]) {
-              iCurrentColor = 0x00AA00;
-            }
-            else if(iCurrentVariometer > self.aiScale[4]) {
-              iCurrentColor = 0x55AA55;
-            }
-            else if(iCurrentVariometer < self.aiScale[0]) {
-              iCurrentColor = 0xFFAAAA;
-            }
-            else if(iCurrentVariometer < self.aiScale[1]) {
-              iCurrentColor = 0xFF0000;
-            }
-            else if(iCurrentVariometer < self.aiScale[2]) {
-              iCurrentColor = 0xAA0000;
-            }
-            else if(iCurrentVariometer < self.aiScale[3]) {
-              iCurrentColor = 0xAA5555;
-            }
-            else {
-              iCurrentColor = 0xAAAAAA;
-            }
+            var iCurrentColor = self.getDrawColor(iCurrentVariometer);
             if(iCurrentX != iLastX or iCurrentY != iLastY or iCurrentColor != iLastColor) {  // ... better a few comparison than drawLine() for nothing
               _oDC.setColor(iCurrentColor, Gfx.COLOR_TRANSPARENT);
               _oDC.drawLine(iLastX, iLastY, iCurrentX, iCurrentY);
@@ -374,6 +347,8 @@ class MyViewVarioplot extends MyViewHeader {
       }
       iCurrentIndex = (iCurrentIndex+1) % MyProcessing.PLOTBUFFER_SIZE;
     }
+
+    // Draw detected thermal if enabled
     if($.oMyProcessing.iCenterLongitude != 0 && $.oMyProcessing.iCenterLatitude != 0 && $.oMyProcessing.iStandardDev != 0) {
       var myX = self.iLayoutCenter + $.iMyViewVarioplotOffsetX + (($.oMyProcessing.iCenterLongitude-iEndLongitude)*fZoomX).toNumber() + ($.oMyProcessing.fCenterWindOffsetLongitude / $.oMySettings.fVariometerPlotScale).toNumber();
       var myY = self.iLayoutCenter + $.iMyViewVarioplotOffsetY - (($.oMyProcessing.iCenterLatitude-iEndLatitude)*fZoomY).toNumber() - ($.oMyProcessing.fCenterWindOffsetLatitude / $.oMySettings.fVariometerPlotScale).toNumber();
@@ -384,12 +359,43 @@ class MyViewVarioplot extends MyViewHeader {
     _oDC.clearClip();
   }
 
+  function getDrawColor(_iGain) as Number {
+    if(_iGain > self.aiScale[7]) {
+      return 0xAAFFAA;
+    }
+    else if(_iGain > self.aiScale[6]) {
+      return 0x00FF00;
+    }
+    else if(_iGain > self.aiScale[5]) {
+      return 0x00AA00;
+    }
+    else if(_iGain > self.aiScale[4]) {
+      return 0x55AA55;
+    }
+    else if(_iGain < self.aiScale[0]) {
+      return 0xFFAAAA;
+    }
+    else if(_iGain < self.aiScale[1]) {
+      return 0xFF0000;
+    }
+    else if(_iGain < self.aiScale[2]) {
+      return 0xAA0000;
+    }
+    else if(_iGain < self.aiScale[3]) {
+      return 0xAA5555;
+    }
+    else {
+      return 0xAAAAAA;
+    }
+  }
+
   function drawValues(_oDC as Gfx.Dc) as Void {
     //Sys.println("DEBUG: MyViewVarioplot.drawValues()");
 
     // Draw values
     var fValue;
     var sValue;
+
     _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
 
     // ... altitude
@@ -400,7 +406,17 @@ class MyViewVarioplot extends MyViewHeader {
     else {
       sValue = $.MY_NOVALUE_LEN3;
     }
+
+    // Get average elevation change per second over last 20 seconds (in mm)
+    var elevationChange = 1000 * ($.oMyProcessing.aiPointAltitude[$.oMyProcessing.iPlotIndex] - $.oMyProcessing.aiPointAltitude[($.oMyProcessing.iPlotIndex + $.oMyProcessing.PLOTBUFFER_SIZE - 20) % $.oMyProcessing.PLOTBUFFER_SIZE]) / 20;
+    
+    if(elevationChange.abs() < self.aiScale[7]) { //Only apply color changes for "weaker" thermals, when checking gain at a glance makes sense
+      var altitudeTextColor = self.getDrawColor(elevationChange);
+      _oDC.setColor(altitudeTextColor, Gfx.COLOR_TRANSPARENT);
+    }
+
     _oDC.drawText(self.iLayoutValueXleft, self.iLayoutValueYtop, self.oRezFontPlot as Ui.FontResource, Lang.format("$1$ $2$", [sValue, $.oMySettings.sUnitElevation]), Gfx.TEXT_JUSTIFY_LEFT);
+    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
 
     // ... variometer
     if($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE and LangUtils.notNaN($.oMyProcessing.fVariometer)) {

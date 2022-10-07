@@ -149,7 +149,10 @@ longer detected.
 
 In addition, the following values will be displayed in the corner of the plot:
  - Top-Left:
-   your current altitude
+   your current altitude. The color of this number indicates how much altitude
+   has been gained (or lost) within the last 20 seconds: green for gains, red
+   for loss, grey for (relatively) unchanged. This can be very useful in weak
+   thermals.
  - Top-Right:
    your current vertical speed
  - Bottom-Left:
