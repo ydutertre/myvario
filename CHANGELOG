@@ -12,7 +12,7 @@ doing in a weak thermal.
 * 2.40
 - Added Live tracking integration with SportsTrackLive. To enable this
 integration, the user will need to set up the SportsTrackLive login email
-and passord within the Connect IQ App (in the Settings section of My Vario).
+and password within the Connect IQ App (in the Settings section of My Vario).
 Setting the update frequency (default off) is required for livetracking to
 become effective.
 
