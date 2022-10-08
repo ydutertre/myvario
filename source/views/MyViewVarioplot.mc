@@ -406,13 +406,15 @@ class MyViewVarioplot extends MyViewHeader {
     else {
       sValue = $.MY_NOVALUE_LEN3;
     }
-
-    // Get average elevation change per second over last 20 seconds (in mm)
-    var elevationChange = 1000 * ($.oMyProcessing.aiPointAltitude[$.oMyProcessing.iPlotIndex] - $.oMyProcessing.aiPointAltitude[($.oMyProcessing.iPlotIndex + $.oMyProcessing.PLOTBUFFER_SIZE - 20) % $.oMyProcessing.PLOTBUFFER_SIZE]) / 20;
     
-    if(elevationChange.abs() < self.aiScale[7]) { //Only apply color changes for "weaker" thermals, when checking gain at a glance makes sense
-      var altitudeTextColor = self.getDrawColor(elevationChange);
-      _oDC.setColor(altitudeTextColor, Gfx.COLOR_TRANSPARENT);
+    if($.oMyProcessing.aiPointAltitude.size() >= $.oMyProcessing.PLOTBUFFER_SIZE && $.oMyProcessing.iPlotIndex >=0) {
+      // Get average elevation change per second over last 20 seconds (in mm)
+      var elevationChange = 1000 * ($.oMyProcessing.aiPointAltitude[$.oMyProcessing.iPlotIndex] - $.oMyProcessing.aiPointAltitude[($.oMyProcessing.iPlotIndex + $.oMyProcessing.PLOTBUFFER_SIZE - 20) % $.oMyProcessing.PLOTBUFFER_SIZE]) / 20;
+      
+      if(elevationChange.abs() < self.aiScale[7]) { //Only apply color changes for "weaker" thermals, when checking gain at a glance makes sense
+        var altitudeTextColor = self.getDrawColor(elevationChange);
+        _oDC.setColor(altitudeTextColor, Gfx.COLOR_TRANSPARENT);
+      } 
     }
 
     _oDC.drawText(self.iLayoutValueXleft, self.iLayoutValueYtop, self.oRezFontPlot as Ui.FontResource, Lang.format("$1$ $2$", [sValue, $.oMySettings.sUnitElevation]), Gfx.TEXT_JUSTIFY_LEFT);

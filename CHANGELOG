@@ -1,3 +1,7 @@
+* 2.42
+- Fixed a bug that caused the app to crash if the varioplot view was accessed
+before a GPS fix was obtained.
+
 * 2.41
 - The Altitude in the thermal assistant now changes colors depending on how
 much altitude has been gained (or lost) within the last 20 seconds. Red tones
