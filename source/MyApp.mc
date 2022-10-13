@@ -455,7 +455,7 @@ class MyApp extends App.AppBase {
   }
 
   function enablePositioning() as Void {
-    var aPositioning as Array = [Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS];
+    var aPositioning = [Pos.CONSTELLATION_GPS];
     if($.oMySettings.iGeneralPositioning != null && LangUtils.notNaN($.oMySettings.iGeneralPositioning)) {
       if($.oMySettings.iGeneralPositioning == 0) {
         aPositioning = [Pos.CONSTELLATION_GPS];

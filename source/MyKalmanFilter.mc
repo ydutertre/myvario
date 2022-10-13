@@ -77,8 +77,8 @@ class MyKalmanFilter {
   function update(_fPosition as Float, _fAcceleration as Float, _fTimestamp as Number) as Void {
     
     // Delta time
-    var deltaTime as Number = _fTimestamp - fTimestamp;
-    var dt as Float = deltaTime.toFloat();
+    var deltaTime = _fTimestamp - fTimestamp;
+    var dt = deltaTime.toFloat();
     self.fTimestamp = _fTimestamp;
 
     // Variance
@@ -88,12 +88,12 @@ class MyKalmanFilter {
 
     //values
     self.fAcceleration = _fAcceleration;
-    var dtPower as Float = dt * dt;
+    var dtPower = dt * dt;
     self.fPosition += dt * self.fVelocity + dtPower * self.fAcceleration/2;
     self.fVelocity += dt * self.fAcceleration;
 
     //covariance
-    var inc as Float;
+    var inc;
     dtPower *= dt;
     inc = dt * self.p22 + dtPower * self.ACCELERATION_VARIANCE/2;
     dtPower *= dt;
@@ -105,10 +105,10 @@ class MyKalmanFilter {
     //Gaussian Product
 
     //kalman gain
-    var s as Float = self.p11 + fAltitudeVariance;
-    var k11 as Float = self.p11 / s;
-    var k12 as Float = self.p12 / s;
-    var y as Float = _fPosition - self.fPosition;
+    var s = self.p11 + fAltitudeVariance;
+    var k11 = self.p11 / s;
+    var k12 = self.p12 / s;
+    var y = _fPosition - self.fPosition;
 
     //update
     self.fPosition += k11 * y;

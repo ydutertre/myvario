@@ -582,8 +582,8 @@ class MyProcessing {
     }
     self.iWindOldSector = self.iWindSector;
 
-    var iMin as Number = 0;
-    var iMax as Number = 0;
+    var iMin = 0;
+    var iMax = 0;
     // Sys.println(format("DEBUG: Number of wind sectors ~ $1$", [self.iWindSectorCount]));
     if(self.iWindSectorCount.abs() >= self.DIRECTION_NUM_OF_SECTORS) {
       if(self.bCirclingCount >= 10) { self.bNotCirclingCount = 0; } //Definitely circling
@@ -593,7 +593,7 @@ class MyProcessing {
         if(self.afSpeed[i] < self.afSpeed[iMin]) { iMin = i; }
       }
 
-      var iSectorDiff as Number = (iMax - iMin).abs();
+      var iSectorDiff = (iMax - iMin).abs();
       if((iSectorDiff >= ( self.DIRECTION_NUM_OF_SECTORS / 2 - 1)) and (iSectorDiff <= ( self.DIRECTION_NUM_OF_SECTORS / 2 + 1))) {
         self.fWindSpeed = (self.afSpeed[iMax] - self.afSpeed[iMin]) / 2;
         self.iWindDirection = self.aiAngle[iMin];
