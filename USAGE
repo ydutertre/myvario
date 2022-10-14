@@ -282,8 +282,7 @@ Note: absolute and relative corrections shouldn't be needed in most cases. Check
     the background color (black or white)
   - Positioning:
     the positioning constellations to use: GPS, GPS+GLONASS (Gon),
-    GPS+GALILEO (Gali). Note that the Garmin SDK doesn't provide access
-    to the Fenix 7 / Epix Gen 2 GNSS systems.
+    GPS+GALILEO (Gali)
 
 * Units
   - Distance:

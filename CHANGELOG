@@ -1,3 +1,6 @@
+* 2.44
+- Improved under the hood setting handling
+
 * 2.43
 - Working around Garmin bugs in Alpha firmware 10.33. Garmin Firmware has a bug
 that apps can't set GPS constellations. As a workaround, the default value for

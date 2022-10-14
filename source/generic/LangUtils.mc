@@ -105,44 +105,40 @@ module LangUtils {
     return value;
   }
 
-  function readKeyNumber(_sKey, _sDefault) {
-    var value = _sKey;
-    if(value == null || !(value instanceof Lang.Number)) {
-      if(value != null) {
-        value = value.toNumber();
-      } else {
-        value = _sDefault;
+  function readKeyNumber(_oValue as Object or App.PropertyValueType, _nDefault as Number) as Number {
+    if(_oValue != null && !(_oValue instanceof Lang.Number)) {
+      try {
+        _oValue = (_oValue as String or Integer or Decimal).toNumber();
+      }
+      catch(e) {
+        _oValue = null;
       }
     }
-    return value;
+    return _oValue != null ? _oValue : _nDefault;
   }
 
-  function readKeyFloat(_sKey, _sDefault) {
-    var value = _sKey;
-    if(value == null || !(value instanceof Lang.Float)) {
-      if(value != null) {
-        value = value.toFloat();
-      } else {
-        value = _sDefault;
+  function readKeyFloat(_oValue as Object or App.PropertyValueType, _fDefault as Float) as Float {
+    if(_oValue != null && !(_oValue instanceof Lang.Float)) {
+      try {
+        _oValue = (_oValue as String or Integer or Decimal).toFloat();
+      }
+      catch(e) {
+        _oValue = null;
       }
     }
-    return value;
+    return _oValue != null ? _oValue : _fDefault;
   }
 
-  function readKeyBoolean(_sKey, _sDefault) {
-    var value = _sKey;
-    if(value == null || !(value instanceof Lang.Boolean)) {
-      if(value != null) {
-        if(value) {
-          return true;
-          } else {
-          return false;
-          }
-        } else {
-          value = _sDefault;
-        }
+  function readKeyBoolean(_oValue as Object or App.PropertyValueType, _bDefault as Boolean) as Boolean {
+    if(_oValue != null && !(_oValue instanceof Lang.Boolean)) {
+      try {
+        _oValue = (_oValue as String or Integer or Decimal).toNumber() != 0;
       }
-    return value;
+      catch(e) {
+        _oValue = null;
+      }
+    }
+    return _oValue != null ? _oValue : _bDefault;
   }
 
 
