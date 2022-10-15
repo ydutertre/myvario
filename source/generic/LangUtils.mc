@@ -132,6 +132,7 @@ module LangUtils {
   function readKeyBoolean(_oValue as Object or App.PropertyValueType, _bDefault as Boolean) as Boolean {
     if(_oValue != null && !(_oValue instanceof Lang.Boolean)) {
       try {
+        return _oValue.toString().equals("true");
         _oValue = (_oValue as String or Integer or Decimal).toNumber() != 0;
       }
       catch(e) {

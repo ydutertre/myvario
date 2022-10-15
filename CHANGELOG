@@ -1,3 +1,6 @@
+* 2.45
+- Work around incorrect Garmin behavior with Boolean settings
+
 * 2.44
 - Improved under the hood setting handling
 
