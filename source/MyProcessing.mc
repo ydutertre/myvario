@@ -601,7 +601,7 @@ class MyProcessing {
       }
     }
     else {
-      if(self.bNotCirclingCount >= 10) { self.bCirclingCount = 0; } //No longer circling
+      if(self.bNotCirclingCount >= 25) { self.bCirclingCount = 0; } //No longer circling
       bNotCirclingCount += 1;
     }
   }
