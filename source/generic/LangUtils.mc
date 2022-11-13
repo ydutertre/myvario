@@ -105,7 +105,7 @@ module LangUtils {
     return value;
   }
 
-  function readKeyNumber(_oValue as Object or App.PropertyValueType, _nDefault as Number) as Number {
+  function readKeyNumber(_oValue as Object, _nDefault as Number) as Number {
     if(_oValue != null && !(_oValue instanceof Lang.Number)) {
       try {
         _oValue = (_oValue as String or Integer or Decimal).toNumber();
@@ -117,7 +117,7 @@ module LangUtils {
     return _oValue != null ? _oValue : _nDefault;
   }
 
-  function readKeyFloat(_oValue as Object or App.PropertyValueType, _fDefault as Float) as Float {
+  function readKeyFloat(_oValue as Object, _fDefault as Float) as Float {
     if(_oValue != null && !(_oValue instanceof Lang.Float)) {
       try {
         _oValue = (_oValue as String or Integer or Decimal).toFloat();
@@ -129,7 +129,7 @@ module LangUtils {
     return _oValue != null ? _oValue : _fDefault;
   }
 
-  function readKeyBoolean(_oValue as Object or App.PropertyValueType, _bDefault as Boolean) as Boolean {
+  function readKeyBoolean(_oValue as Object, _bDefault as Boolean) as Boolean {
     if(_oValue != null && !(_oValue instanceof Lang.Boolean)) {
       try {
         return _oValue.toString().equals("true");

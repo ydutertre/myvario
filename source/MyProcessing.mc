@@ -477,13 +477,13 @@ class MyProcessing {
     self.windStep();
     
     // ... circling Auto Switch
-    if($.oMySettings.bVariometerAutoThermal && !self.bAutoThermalTriggered && self.bCirclingCount >=10) {
+    if($.oMySettings.bVariometerAutoThermal && !self.bAutoThermalTriggered && self.bCirclingCount >=5) {
       self.bAutoThermalTriggered = true;
       Ui.switchToView(new MyViewVarioplot(),
                 new MyViewVarioplotDelegate(),
                 Ui.SLIDE_IMMEDIATE);
     }
-    if($.oMySettings.bVariometerAutoThermal && self.bAutoThermalTriggered && self.bNotCirclingCount >=25) {
+    if($.oMySettings.bVariometerAutoThermal && self.bAutoThermalTriggered && self.bNotCirclingCount >=20) {
       self.bAutoThermalTriggered = false;
       if(self.bIsPreviousGeneral) {
         Ui.switchToView(new MyViewGeneral(),
@@ -586,7 +586,7 @@ class MyProcessing {
     var iMax = 0;
     // Sys.println(format("DEBUG: Number of wind sectors ~ $1$", [self.iWindSectorCount]));
     if(self.iWindSectorCount.abs() >= self.DIRECTION_NUM_OF_SECTORS) {
-      if(self.bCirclingCount >= 10) { self.bNotCirclingCount = 0; } //Definitely circling
+      if(self.bCirclingCount >= 5) { self.bNotCirclingCount = 0; } //Definitely circling
       self.bCirclingCount += 1;
       for(var i = 1; i < self.DIRECTION_NUM_OF_SECTORS; i++) {
         if(self.afSpeed[i] > self.afSpeed[iMax]) { iMax = i; }
@@ -601,7 +601,7 @@ class MyProcessing {
       }
     }
     else {
-      if(self.bNotCirclingCount >= 25) { self.bCirclingCount = 0; } //No longer circling
+      if(self.bNotCirclingCount >= 20) { self.bCirclingCount = 0; } //No longer circling
       bNotCirclingCount += 1;
     }
   }
