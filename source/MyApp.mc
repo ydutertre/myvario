@@ -455,22 +455,33 @@ class MyApp extends App.AppBase {
   }
 
   function enablePositioning() as Void {
-    var aPositioning = [Pos.CONSTELLATION_GPS];
-    if($.oMySettings.iGeneralPositioning != null && LangUtils.notNaN($.oMySettings.iGeneralPositioning)) {
-      if($.oMySettings.iGeneralPositioning == 0) {
-        aPositioning = [Pos.CONSTELLATION_GPS];
-      } else if($.oMySettings.iGeneralPositioning == 2) {
-        aPositioning = [Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GALILEO];
-      } else {
-        aPositioning = [Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS];
-      }
+    // var aPositioning = [Pos.CONSTELLATION_GPS];
+    // if($.oMySettings.iGeneralPositioning != null && LangUtils.notNaN($.oMySettings.iGeneralPositioning)) {
+    //   if($.oMySettings.iGeneralPositioning == 0) {
+    //     aPositioning = [Pos.CONSTELLATION_GPS];
+    //   } else if($.oMySettings.iGeneralPositioning == 2) {
+    //     aPositioning = [Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GALILEO];
+    //   } else {
+    //     aPositioning = [Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS];
+    //   }
+    // }
+
+    var options = {
+      :acquisitionType => Pos.LOCATION_CONTINUOUS
+    };
+
+    if (Pos has :POSITIONING_MODE_AVIATION) {
+      options[:mode] = Pos.POSITIONING_MODE_AVIATION;
     }
-    Pos.enableLocationEvents({
-      :mode => Pos.POSITIONING_MODE_AVIATION,
-      :acquisitionType => Pos.LOCATION_CONTINUOUS,
-      :constellations => aPositioning},
-      method(:onLocationEvent)
-    );
+
+    Pos.enableLocationEvents(options, method(:onLocationEvent));
+
+    // Pos.enableLocationEvents({
+    //   :mode => Pos.POSITIONING_MODE_AVIATION,
+    //   :acquisitionType => Pos.LOCATION_CONTINUOUS,
+    //   :constellations => aPositioning},
+    //   method(:onLocationEvent)
+    // );
   }
 
 }
