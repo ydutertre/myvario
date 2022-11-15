@@ -466,15 +466,15 @@ class MyApp extends App.AppBase {
     //   }
     // }
 
-    var options = {
-      :acquisitionType => Pos.LOCATION_CONTINUOUS
-    };
+    // var options = {
+    //   :acquisitionType => Pos.LOCATION_CONTINUOUS
+    // };
 
-    if (Pos has :POSITIONING_MODE_AVIATION) {
-      options[:mode] = Pos.POSITIONING_MODE_AVIATION;
-    }
+    // if (Pos has :POSITIONING_MODE_AVIATION) {
+    //   options[:mode] = Pos.POSITIONING_MODE_AVIATION;
+    // }
 
-    Pos.enableLocationEvents(options, method(:onLocationEvent));
+    Pos.enableLocationEvents(Position.LOCATION_CONTINUOUS, method(:onLocationEvent));
 
     // Pos.enableLocationEvents({
     //   :mode => Pos.POSITIONING_MODE_AVIATION,

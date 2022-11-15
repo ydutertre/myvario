@@ -1,3 +1,7 @@
+* 2.48 & 2.49
+- Restricted application to GPS only (regardless of settings) until I can test
+crash-causing changes in Garmin's latest firmware
+
 * 2.47
 - SDK 4.1.6
 
