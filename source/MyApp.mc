@@ -502,6 +502,10 @@ class MyApp extends App.AppBase {
             :acquisitionType => Pos.LOCATION_CONTINUOUS
         };
 
+        if (Pos has :POSITIONING_MODE_AVIATION) {
+           options[:mode] = Pos.POSITIONING_MODE_AVIATION;
+        }
+
         var constellations = [
             [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS, Pos.CONSTELLATION_GALILEO ],
             [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS ],

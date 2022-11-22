@@ -1,3 +1,6 @@
+* 2.61
+- Use GPS aviation mode when possible
+
 * 2.60
 - Updated Positioning settings to be automated for best compromise between
 precision and battery life (GNSS watches will use SatIQ if available)
