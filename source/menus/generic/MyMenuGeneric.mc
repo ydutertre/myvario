@@ -102,7 +102,6 @@ class MyMenuGeneric extends Ui.Menu {
     else if(_menu == :menuSettingsGeneral) {
       Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsGeneral) as String);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleGeneralBackgroundColor) as String, :menuGeneralBackgroundColor);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleGeneralPositioning) as String, :menuGeneralPositioning);
     }
 
     else if(_menu == :menuSettingsUnits) {
@@ -325,10 +324,6 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       if(_item == :menuGeneralBackgroundColor) {
         Ui.pushView(new MyPickerGenericSettings(:contextGeneral, :itemBackgroundColor),
                     new MyPickerGenericSettingsDelegate(:contextGeneral, :itemBackgroundColor),
-                    Ui.SLIDE_IMMEDIATE);
-      } else if(_item == :menuGeneralPositioning) {
-        Ui.pushView(new MyPickerGenericSettings(:contextGeneral, :itemPositioning),
-                    new MyPickerGenericSettingsDelegate(:contextGeneral, :itemPositioning),
                     Ui.SLIDE_IMMEDIATE);
       }
     }

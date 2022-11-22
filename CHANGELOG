@@ -1,4 +1,10 @@
-* 2.48 & 2.49
+* 2.60
+- Updated Positioning settings to be automated for best compromise between
+precision and battery life (GNSS watches will use SatIQ if available)
+- Removed Positioning setting, as this is now automated
+- Added support for D2 Delta, D2 Delta PX, and D2 Delta S watches
+
+* 2.50
 - Restricted application to GPS only (regardless of settings) until I can test
 crash-causing changes in Garmin's latest firmware
 

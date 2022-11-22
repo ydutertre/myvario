@@ -161,24 +161,7 @@ class MyPickerGenericSettings extends Ui.Picker {
                 :color => Gfx.COLOR_BLUE}),
             :pattern => [oFactory],
             :defaults => [oFactory.indexOfKey(iColor)]});
-      } else if(_item == :itemPositioning) {
-        var iColor = $.oMySettings.loadGeneralPositioning();
-        var oFactory = new PickerFactoryDictionary([0, 1, 2],
-                                                   [Ui.loadResource(Rez.Strings.valueGPS),
-                                                    Ui.loadResource(Rez.Strings.valueGPSGlonass),
-                                                    Ui.loadResource(Rez.Strings.valueGPSGalileo)],
-                                                   null);
-        Picker.initialize({
-            :title => new Ui.Text({
-                :text => Ui.loadResource(Rez.Strings.titleGeneralPositioning) as String,
-                :font => Gfx.FONT_TINY,
-                :locX=>Ui.LAYOUT_HALIGN_CENTER,
-                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
-                :color => Gfx.COLOR_BLUE}),
-            :pattern => [oFactory],
-            :defaults => [oFactory.indexOfKey(iColor)]});
       }
-
     }
     else if(_context == :contextUnit) {
 
@@ -342,10 +325,7 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
 
       if(self.item == :itemBackgroundColor) {
         $.oMySettings.saveGeneralBackgroundColor(_amValues[0] as Number);
-      } else if(self.item == :itemPositioning) {
-        $.oMySettings.saveGeneralPositioning(_amValues[0] as Number);
       }
-
     }
     else if(self.context == :contextUnit) {
 
