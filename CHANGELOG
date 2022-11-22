@@ -25,14 +25,8 @@ crash-causing changes in Garmin's latest firmware
 - Improved under the hood setting handling
 
 * 2.43
-- Working around Garmin bugs in Alpha firmware 10.33. Garmin Firmware has a bug
-that apps can't set GPS constellations. As a workaround, the default value for
-constellations has been set to GPS only. If you are an unfortunate soul that
-installed the Garmin Alpha 10.33 firmware, please uninstall and reinstall the
-My Vario app (simple upgrading won't work! It needs to reset to default parameters).
-You may want to also not install Alpha firmwares in general!
-Once re-installed, the app will launch. However, please do not change Positioning
-setting or the app will crash again.
+- Reverting to GPS only positioning due to change in behavior in Garmin
+Alpha/Beta 10.xx firmwares
 - Compatibility with new SDK 4.2.0
 
 * 2.42
