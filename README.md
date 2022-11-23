@@ -82,9 +82,8 @@ Please refer to the USAGE file.
 
 I have reduced the number of watches supported compared to GliderSK. This is
 because I am using variable frequency tones for the vario, which are only
-supported for SDK 3.1.0 and above, AND I have added explicit GPS/GLONASS/GALILEO
-Constellation control, which is only supported in SDK 3.2.0 and above. I am
-testing this application on my Garmin Fenix 7X.
+supported for SDK 3.1.0 and above. I am testing this application on my Garmin
+Fenix 7X.
 
 ## Not a programmer
 

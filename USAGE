@@ -280,9 +280,6 @@ Note: absolute and relative corrections shouldn't be needed in most cases. Check
 * General
   - Background Color:
     the background color (black or white)
-  - Positioning:
-    the positioning constellations to use: GPS, GPS+GLONASS (Gon),
-    GPS+GALILEO (Gali)
 
 * Units
   - Distance:
