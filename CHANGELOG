@@ -1,3 +1,6 @@
+* 2.62
+- Add support for Forerunner 265, 265s, 965
+
 * 2.61
 - Fix: Use GPS aviation mode when possible
 
