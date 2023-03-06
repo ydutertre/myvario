@@ -127,7 +127,6 @@ class MyViewGeneral extends MyViewGlobal {
     var fValue;
     var iValue;
     var sValue;
-    var oTimeNow = Time.now();
     var bRecording = ($.oMyActivity != null);
 
     // ... Wind Direction

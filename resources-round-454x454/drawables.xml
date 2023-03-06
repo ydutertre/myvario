@@ -1,0 +1,89 @@
+<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
+<drawables>
+  <bitmap id="AppIcon" filename="../resources/drawables/launcher-60x60.png" />
+  <drawable-list id="drawHeaderAccuracy1" x="209" y="33" width="7" height="13" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
+  </drawable-list>
+  <drawable-list id="drawHeaderAccuracy2" x="218" y="26" width="7" height="20" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
+  </drawable-list>
+  <drawable-list id="drawHeaderAccuracy3" x="227" y="20" width="7" height="26" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
+  </drawable-list>
+  <drawable-list id="drawHeaderAccuracy4" x="236" y="13" width="7" height="33" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
+  </drawable-list>
+  <drawable-list id="drawContentBorders" x="0" y="56" width="fill" height="344" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="0" y="341" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  <drawable-list id="drawFieldsBackground" x="0" y="58" width="fill" height="337" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
+  </drawable-list>
+  <drawable-list id="drawFieldsBorders" x="0" y="56" width="fill" height="344" >
+    <shape type="rectangle" x="0" y="114" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="0" y="227" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="226" y="2" width="2" height="110" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="169" y="117" width="2" height="110" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="283" y="117" width="2" height="110" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="226" y="230" width="2" height="110" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  <drawable-list id="drawGlobalAlertLeft" x="0" y="171" width="169" height="110" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
+  </drawable-list>
+  <drawable-list id="drawGlobalAlertCenter" x="171" y="171" width="110" height="110" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
+  </drawable-list>
+  <drawable-list id="drawGlobalAlertRight" x="286" y="171" width="169" height="110" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
+  </drawable-list>
+  <drawable-list id="drawButtonPlus" x="17" y="210" width="22" height="22" >
+    <shape type="rectangle" x="9" y="0" width="4" height="fill" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="0" y="9" width="fill" height="4" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  <drawable-list id="drawButtonMinus" x="52" y="314" width="22" height="22" >
+    <shape type="rectangle" x="0" y="9" width="fill" height="4" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  <drawable-list id="drawButtonUp" x="11" y="210" width="22" height="22" >
+    <shape type="rectangle" x="9" y="2" width="4" height="20" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="10" y="0" width="2" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="8" y="4" width="7" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="7" y="7" width="9" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="5" y="9" width="11" height="2" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  <drawable-list id="drawButtonDown" x="33" y="314" width="22" height="22" >
+    <shape type="rectangle" x="9" y="0" width="4" height="20" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="5" y="11" width="11" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="7" y="13" width="9" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="8" y="15" width="7" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="10" y="20" width="2" height="2" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  <drawable-list id="drawButtonLeft" x="11" y="210" width="22" height="22" >
+    <shape type="rectangle" x="2" y="9" width="20" height="4" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="0" y="10" width="2" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="4" y="8" width="2" height="7" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="7" y="7" width="2" height="9" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="9" y="5" width="2" height="11" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  <drawable-list id="drawButtonRight" x="33" y="314" width="22" height="22" >
+    <shape type="rectangle" x="0" y="9" width="20" height="4" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="11" y="5" width="2" height="11" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="13" y="7" width="2" height="9" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="15" y="8" width="2" height="7" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="20" y="10" width="2" height="2" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  <drawable-list id="drawButtonTopLeft" x="11" y="210" width="22" height="22" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="0" y="0" width="2" height="fill" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="0" y="21" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="21" y="0" width="2" height="fill" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="0" y="0" width="11" height="11" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  <drawable-list id="drawButtonBottomRight" x="33" y="314" width="22" height="22" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="0" y="0" width="2" height="fill" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="0" y="21" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="21" y="0" width="2" height="fill" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="11" y="11" width="11" height="11" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+</drawables>

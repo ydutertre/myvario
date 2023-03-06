@@ -406,18 +406,14 @@ class MyProcessing {
         if($.oMySettings.bVariometerThermalDetect) {
           // Thermal core detector
           var iWeightedSum= 0 as Number;
-          var fWeightedSumLongitude = 0.0f as Float;
-          var fWeightedSumLatitude = 0.0f as Float;
           var fWeightedMeanLongitude = 0.0f as Float;
           var fWeightedMeanLongitudeOld = 0.0f as Float;
           var fWeightedSLongitude = 0.0f as Float;
           var fWeightedMeanLatitude = 0.0f as Float;
           var fWeightedMeanLatitudeOld = 0.0f as Float;
           var fWeightedSLatitude = 0.0f as Float;
-          var fWeightedSumAltitude = 0.0f as Float;
           var fWeightedMeanAltitude = 0.0f as Float;
           var fWeightedMeanAltitudeOld = 0.0f as Float;
-          var fWeightedSumClimb = 0.0f as Float;
           var fWeightedMeanClimb = 0.0f as Float;
           var fWeightedMeanClimbOld = 0.0f as Float;
 

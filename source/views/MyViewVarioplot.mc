@@ -201,6 +201,18 @@ class MyViewVarioplot extends MyViewHeader {
     self.iDotRadius = 7;
   }
 
+  (:layout_454x454)
+  function initLayout() as Void {
+    self.iLayoutCenter = 227;
+    self.iLayoutClipY = 58;
+    self.iLayoutClipW = 454;
+    self.iLayoutClipH = 337;
+    self.iLayoutValueXleft = 76;
+    self.iLayoutValueXright = 378;
+    self.iLayoutValueYtop = 57;
+    self.iLayoutValueYbottom = 358;
+    self.iDotRadius = 8;
+  }
 
   //
   // FUNCTIONS: MyViewHeader (override/implement)
