@@ -57,7 +57,7 @@ free flight activities in real-time, and enjoy 3D visualizations.
 time throughout the flight: Altitude MSL, vertical speed, glide ratio, groundspeed, and
 heading
 
-4. Under the hood
+5. Under the hood
 
 - The application uses a Kalman filter for fast and accurate filtering of altitude
 and vertical speed (compared to the SMA filter used by GliderSK originally)
