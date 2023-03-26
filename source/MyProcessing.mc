@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/>
+// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -75,7 +75,6 @@ class MyProcessing {
   private var iWindOldSector as Number = 0;
   private var iWindSector as Number = 0;
 
-
   // Public objects
   // ... sensor values (fed by Toybox.Sensor)
   public var iSensorEpoch as Number = -1;
@@ -117,7 +116,8 @@ class MyProcessing {
   public var fCenterWindOffsetLatitude as Number = 0;
   public var iStandardDev as Number = 0;
   public var aiPointAltitude as Array<Number>;
-
+  // ActiveLook
+  public var timeElapsed as Number = 0;
 
   //
   // FUNCTIONS: self
@@ -335,7 +335,6 @@ class MyProcessing {
         self.aiPlotVariometer[self.iPlotIndex] = (self.fVariometer_filtered*1000.0f).toNumber();
         self.aiPointAltitude[self.iPlotIndex] = self.fAltitude.toNumber();
 
-
         //Live tracking
         var iLivetrackHeading = LangUtils.notNaN(fHeading) ? ((self.fHeading * 57.2957795131f).toNumber()) % 360 : 0;
 
@@ -402,7 +401,7 @@ class MyProcessing {
           }
           $.oMySportsTrackLive.iCounter++;
         }
-
+        
         if($.oMySettings.bVariometerThermalDetect) {
           // Thermal core detector
           var iWeightedSum= 0 as Number;
@@ -471,6 +470,11 @@ class MyProcessing {
     
     // ... wind
     self.windStep();
+
+    //ActiveLook
+    if($.oMySettings.bActiveLook){
+      self.processActiveLook();
+    }
     
     // ... circling Auto Switch
     if($.oMySettings.bVariometerAutoThermal && !self.bAutoThermalTriggered && self.bCirclingCount >=5) {
@@ -489,6 +493,53 @@ class MyProcessing {
         Ui.switchToView(new MyViewVariometer(),
                       new MyViewVariometerDelegate(),
                       Ui.SLIDE_IMMEDIATE);
+      }
+    }
+  }
+
+  function processActiveLook() as Void {
+    if(LangUtils.notNaN(self.fAltitude)) {
+      $.oMyActiveLook.sAltitude = Math.round(self.fAltitude).toFloat().format("%5d");
+    } else {
+      $.oMyActiveLook.sAltitude = "--";
+    }
+
+    if(LangUtils.notNaN(self.fVariometer_filtered)) {
+      $.oMyActiveLook.sVerticalSpeed = (Math.round(10*self.fVariometer_filtered)/10f).format("%+2.1f");
+    } else {
+      $.oMyActiveLook.sVerticalSpeed = "--";
+    }
+
+    if(LangUtils.notNaN(self.fFinesse) && !self.bAscent) {
+      $.oMyActiveLook.sFinesse = (Math.round(10*self.fFinesse)/10f).format("%3.1f");
+    } else {
+      $.oMyActiveLook.sFinesse = "--";
+    }
+
+    if(LangUtils.notNaN(self.fGroundSpeed)) {
+      $.oMyActiveLook.sGroundSpeed = (Math.round(10*self.fGroundSpeed)/10f).format("%3.1f");
+    } else {
+      $.oMyActiveLook.sGroundSpeed = "--";
+    }
+
+    if(LangUtils.notNaN(self.fHeading)) {
+      var fActiveLookHeading = ((fHeading * 57.2957795131f).toNumber()) % 360;
+      if($.oMySettings.iUnitDirection == 1) {
+        $.oMyActiveLook.sHeading = $.oMyProcessing.convertDirection(fActiveLookHeading);
+      }
+      else {
+        $.oMyActiveLook.sHeading = fActiveLookHeading.format("%5d");
+      }
+    } else {
+      $.oMyActiveLook.sHeading = "--";
+    }
+
+    $.oMyActiveLook.writeUpdate();
+
+    if(!$.oMyActiveLook.bBleConnected && $.oMyActiveLook.isScanning()){
+      timeElapsed++;
+      if(timeElapsed > 120) {
+        $.oMyActiveLook.stopScanning(); //Stop scanning for ActiveLook glasses after 120 seconds
       }
     }
   }

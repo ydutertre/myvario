@@ -5,16 +5,10 @@
 
 ## Overview
 
-This free and open-source application provides Variometer functions adapted
-to free flight activities, as well as an interface with Livetrack24. It is
-based on the excellent open-source Garmin IQ GliderSK application by Cedric
-Dufour (licensed under GPL v3.0, just like My Vario is), dropping a lot of
-features for a simpler/leaner experience, while adding many improvements for
-free flight activities.
-
-My Vario is a BACKUP source of information and should ALWAYS be paired with
-specialized variometer equipment! Watch sensors are simply not precise enough
-and THIS APP SHOULD NOT BE USED AS A PRIMARY FLIGHT INSTRUMENT!
+This free and open-source application provides all the information you need for
+free flight, tracking/logging, as well as Live Tracking via SportsTrackLive and
+Livetrack24, and even HUD integration with ActiveLook! A true free flight one-
+stop-shop, on your watch.
 
 1. Dashboards
 
@@ -28,8 +22,8 @@ when circling)
 - a Variometer view, where the vertical speed can be visually seen
 
 - a Varioplot/thermal assistant view, allowing to keep track of your ascent/descent
-rate along your flight path. This view can optionally include a detected thermal
-core to help keep within the thermal
+rate along your flight path. This view optionally includes a detected wind-corrected
+thermal core visualization to help keep within the thermal.
 
 - a Log view, allowing to keep track of your last activities (unavailable during
 flight) including flight start and end times, maximum and minimum altitudes, etc.
@@ -56,6 +50,12 @@ low frequency tone
 
 - Live tracking is possible with Livetrack24, as well as with SportsTrackLive to share
 free flight activities in real-time, and enjoy 3D visualizations.
+
+4. HUD with ActiveLook
+
+- The App will pair to ActiveLook glasses and stream the following information in real
+time throughout the flight: Altitude MSL, vertical speed, glide ratio, groundspeed, and
+heading
 
 4. Under the hood
 

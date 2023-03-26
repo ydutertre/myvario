@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/>
+// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -102,6 +102,7 @@ class MyMenuGeneric extends Ui.Menu {
     else if(_menu == :menuSettingsGeneral) {
       Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsGeneral) as String);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleGeneralBackgroundColor) as String, :menuGeneralBackgroundColor);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleActiveLook) as String, :menuActiveLook);
     }
 
     else if(_menu == :menuSettingsUnits) {
@@ -324,6 +325,10 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       if(_item == :menuGeneralBackgroundColor) {
         Ui.pushView(new MyPickerGenericSettings(:contextGeneral, :itemBackgroundColor),
                     new MyPickerGenericSettingsDelegate(:contextGeneral, :itemBackgroundColor),
+                    Ui.SLIDE_IMMEDIATE);
+      } else if (_item == :menuActiveLook) {
+                Ui.pushView(new MyPickerGenericOnOff(:contextGeneral, :itemActiveLook),
+                    new MyPickerGenericOnOffDelegate(:contextGeneral, :itemActiveLook),
                     Ui.SLIDE_IMMEDIATE);
       }
     }

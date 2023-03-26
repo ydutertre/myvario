@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/>
+// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -70,6 +70,12 @@ class MyPickerGenericOnOff extends PickerGenericOnOff {
                                       $.oMySettings.loadVariometerThermalDetect());
       }
     }
+    else if(_context == :contextGeneral) {
+      if(_item == :itemActiveLook) {
+        PickerGenericOnOff.initialize(Ui.loadResource(Rez.Strings.titleActiveLook) as String,
+                                      $.oMySettings.loadActiveLook());
+      }
+    }
   }
 
 }
@@ -115,6 +121,11 @@ class MyPickerGenericOnOffDelegate extends Ui.PickerDelegate {
       }
       else if(self.item == :itemThermalDetect) {
         $.oMySettings.saveVariometerThermalDetect(bValue);
+      }
+    }
+    else if(self.context == :contextGeneral) {
+      if(self.item == :itemActiveLook) {
+        $.oMySettings.saveActiveLook(bValue);
       }
     }
     Ui.popView(Ui.SLIDE_IMMEDIATE);

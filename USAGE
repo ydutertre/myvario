@@ -280,6 +280,9 @@ Note: absolute and relative corrections shouldn't be needed in most cases. Check
 * General
   - Background Color:
     the background color (black or white)
+  - ActiveLook:
+    Set to "On" to enable HUD via ActiveLook glasses such as Engo 2. This requires an app
+    restart
 
 * Units
   - Distance:

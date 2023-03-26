@@ -1,3 +1,16 @@
+* 3.00
+- Initial support for ActiveLook - add an HUD using ActiveLook
+glasses such as Engo or Engo 2! For this feature to work, the ActiveLook
+setting must be set to "On" under general (requires application restart).
+Once enabled and connected, the ActiveLook display will provide the following
+information:
+  First line: Altitude MSL
+  Second Line: Vertical Speed and Glide ratio/finesse
+  Third Line: Ground Speed and Heading
+The watch will automatically find and connect to the ActiveLook glasses upon
+startup, and within a 2 minutes window of finding GPS. If the glasses aren't
+found by then, it stops searching to save battery.
+
 * 2.62
 - Add support for Forerunner 265, 265s, 965
 

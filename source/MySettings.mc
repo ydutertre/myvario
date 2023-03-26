@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/>
+// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -67,6 +67,7 @@ class MySettings {
   public var fActivityAutoSpeedStart as Float = 3.0f;
   // ... general
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
+  public var bActiveLook as Boolean = false;
   // ... units
   public var iUnitDistance as Number = -1;
   public var iUnitElevation as Number = -1;
@@ -130,6 +131,7 @@ class MySettings {
     self.setActivityAutoSpeedStart(self.loadActivityAutoSpeedStart());
     // ... general
     self.setGeneralBackgroundColor(self.loadGeneralBackgroundColor());
+    self.setActiveLook(self.loadActiveLook());
     // ... units
     self.setUnitDistance(self.loadUnitDistance());
     self.setUnitElevation(self.loadUnitElevation());
@@ -402,7 +404,18 @@ class MySettings {
   function setGeneralBackgroundColor(_iValue as Number) as Void {
     self.iGeneralBackgroundColor = _iValue;
   }
+
+  function loadActiveLook() as Boolean {
+    return LangUtils.readKeyBoolean(App.Properties.getValue("userActiveLook"), false);
+  }
+  function saveActiveLook(_bValue as Boolean) as Void {
+    App.Properties.setValue("userActiveLook", _bValue as App.PropertyValueType);
+  }
+  function setActiveLook(_bValue as Boolean) as Void {
+    self.bActiveLook = _bValue;
+  }
   
+
   function loadUnitDistance() as Number {
     return LangUtils.readKeyNumber(App.Properties.getValue("userUnitDistance"), -1);
   }

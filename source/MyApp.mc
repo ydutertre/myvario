@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/>
+// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -75,6 +75,9 @@ var oMyActivity as MyActivity?;
 // Livetrack
 var oMyLivetrack24 as MyLivetrack24 = new MyLivetrack24();
 var oMySportsTrackLive as MySportsTrackLive = new MySportsTrackLive();
+
+//ActiveLook
+var oMyActiveLook as MyActiveLook = new MyActiveLook();
 
 // Current view
 var oMyView as MyView?;
@@ -192,6 +195,12 @@ class MyApp extends App.AppBase {
     else {
       (self.oUpdateTimer as Timer.Timer).start(method(:onUpdateTimer), 5000, true);
     }
+
+    //Initialize and search for ActiveLook glasses
+    $.oMyActiveLook.init();
+    if($.oMySettings.bActiveLook){
+      $.oMyActiveLook.findAndPair();
+    }
   }
 
   function onStop(state) {
@@ -214,6 +223,12 @@ class MyApp extends App.AppBase {
 
     // Disable sensor events
     Sensor.enableSensorEvents(null);
+
+    // Disconnect ActiveLook
+    if($.oMySettings.bActiveLook){
+      $.oMyActiveLook.shutDown();
+    }
+
   }
 
   function getInitialView() {
