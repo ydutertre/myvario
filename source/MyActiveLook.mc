@@ -47,6 +47,10 @@ class MyActiveLook
     public var sGroundSpeed as String = "--";
     public var sOldHeading as String = "";
     public var sHeading as String = "--";
+    public var sOldTime as String = "  :  ";
+    public var sTime as String = "--:--";
+    public var sOldFlightTime as String = "  :  ";
+    public var sFlightTime as String = "--:--";
 
     function init() {
         oBleOperations = new BleOperations();
@@ -65,6 +69,10 @@ class MyActiveLook
         sGroundSpeed = "--";
         sOldHeading = "";
         sHeading = "--";
+        sOldTime = "  :   ";
+        sTime = "--:--";
+        sOldFlightTime = "  :  ";
+        sFlightTime = "--:--";
     }
 
     function onStart() {
@@ -98,13 +106,32 @@ class MyActiveLook
         setFinesse(self.sFinesse);
         setGroundSpeed(self.sGroundSpeed);
         setHeading(self.sHeading);
+        self.sTime = getTime();
+        setTime(self.sTime);
+        self.sFlightTime = getFlightTime();
+        setFlightTime(self.sFlightTime);
         flush();
         processQueue(Ble.WRITE_TYPE_DEFAULT);
+    }
+    
+    public function getFlightTime() as String {
+        if($.oMyActivity != null && $.oMyActivity.oTimeStart != null) {
+            var iDurationSeconds = (Time.now().subtract($.oMyActivity.oTimeStart)).value();
+            var iDurationHours = iDurationSeconds / 3600;
+            var iDurationMinutes = (iDurationSeconds % 3600) / 60;
+            return iDurationHours.format("%02d") + ":" + iDurationMinutes.format("%02d");
+        }
+        return "--:--";
+    }
+
+    public function getTime() as String {
+        var oTimeInfo = Gregorian.info(Time.now(), Time.FORMAT_SHORT);
+        return format("$1$$2$$3$", [oTimeInfo.hour.format("%02d"), ":", oTimeInfo.min.format("%02d")]);
     }
 
     public function setFinesse(_finesse as String) {
         if(!self.sOldFinesse.equals(self.sFinesse)) {
-            var baCommandArray = [0xFF,0x6A,0x00,0x0E,0x38,0x00,0x1E,0x5F]b;
+            var baCommandArray = [0xFF,0x6A,0x00,0x0E,0x38,0x00,0x1E,0x53]b;
             baCommandArray.addAll(stringToByteArray(_finesse));
             baCommandArray.add(0xAA);
             self.abaCommandQueue.add(baCommandArray);
@@ -148,11 +175,31 @@ class MyActiveLook
 
     public function setVerticalSpeed(_verticalSpeed as String) {
         if(!self.sOldVerticalSpeed.equals(self.sVerticalSpeed)) {
-            var baCommandArray = [0xFF,0x6A,0x00,0x0E,0x2F,0x00,0x9D,0x5F]b;
+            var baCommandArray = [0xFF,0x6A,0x00,0x0E,0x2F,0x00,0x9D,0x53]b;
             baCommandArray.addAll(stringToByteArray(_verticalSpeed));
             baCommandArray.add(0xAA);
             self.abaCommandQueue.add(baCommandArray);
             self.sOldVerticalSpeed = self.sVerticalSpeed;
+        }
+    }
+
+    public function setTime(_time as String) {
+        if(!self.sOldTime.equals(self.sTime)) {
+            var baCommandArray = [0xFF,0x62,0x00,0x0B,0x0A]b;
+            baCommandArray.addAll(stringToByteArray(_time));
+            baCommandArray.add(0xAA);
+            self.abaCommandQueue.add(baCommandArray);
+            self.sOldTime = self.sTime;
+        }
+    }
+
+    public function setFlightTime(_time as String) {
+        if(!self.sOldFlightTime.equals(self.sFlightTime)) {
+            var baCommandArray = [0xFF,0x6A,0x00,0x0E,0x0A,0x00,0xCD,0xCD]b;
+            baCommandArray.addAll(stringToByteArray(_time));
+            baCommandArray.add(0xAA);
+            self.abaCommandQueue.add(baCommandArray);
+            self.sOldFlightTime = self.sFlightTime;
         }
     }
 

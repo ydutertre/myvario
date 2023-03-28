@@ -1,3 +1,7 @@
+* 3.02
+- Add flight time and current time to ActiveLook
+- Adjust ActiveLook layout
+
 * 3.01
 - ActiveLook HUD now follows the unit settings of the app
 - Reduced flickering and optimized usage of ActiveLook HUD
