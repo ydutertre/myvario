@@ -1,3 +1,7 @@
+* 3.01
+- ActiveLook HUD now follows the unit settings of the app
+- Reduced flickering and optimized usage of ActiveLook HUD
+
 * 3.00
 - Initial support for ActiveLook - add an HUD using ActiveLook
 glasses such as Engo or Engo 2! For this feature to work, the ActiveLook

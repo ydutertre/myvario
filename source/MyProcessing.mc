@@ -499,13 +499,17 @@ class MyProcessing {
 
   function processActiveLook() as Void {
     if(LangUtils.notNaN(self.fAltitude)) {
-      $.oMyActiveLook.sAltitude = Math.round(self.fAltitude).toFloat().format("%5d");
+      $.oMyActiveLook.sAltitude = Math.round(self.fAltitude*$.oMySettings.fUnitElevationCoefficient).toFloat().format("%5d");
     } else {
       $.oMyActiveLook.sAltitude = "--";
     }
 
     if(LangUtils.notNaN(self.fVariometer_filtered)) {
-      $.oMyActiveLook.sVerticalSpeed = (Math.round(10*self.fVariometer_filtered)/10f).format("%+2.1f");
+      if($.oMySettings.fUnitVerticalSpeedCoefficient < 100) {
+        $.oMyActiveLook.sVerticalSpeed = (Math.round(10*self.fVariometer_filtered*$.oMySettings.fUnitVerticalSpeedCoefficient)/10f).format("%+2.1f");
+      } else {
+        $.oMyActiveLook.sVerticalSpeed = (Math.round(10*self.fVariometer_filtered*$.oMySettings.fUnitVerticalSpeedCoefficient)/10f).format("%+2.0f");
+      }
     } else {
       $.oMyActiveLook.sVerticalSpeed = "--";
     }
@@ -517,7 +521,7 @@ class MyProcessing {
     }
 
     if(LangUtils.notNaN(self.fGroundSpeed)) {
-      $.oMyActiveLook.sGroundSpeed = (Math.round(10*self.fGroundSpeed)/10f).format("%3.1f");
+      $.oMyActiveLook.sGroundSpeed = (Math.round(10*self.fGroundSpeed*$.oMySettings.fUnitHorizontalSpeedCoefficient)/10f).format("%3.1f");
     } else {
       $.oMyActiveLook.sGroundSpeed = "--";
     }

@@ -28,10 +28,15 @@ using Toybox.BluetoothLowEnergy as Ble;
 
 class MyActiveLook
 {
+    //BLE and ActiveLook related variables
     var oBleOperations as BleOperations;
+    public var abaCommandQueue = []; //Queue for write commands, as only one can be sent at a time
     public var bBleIsWriting as Boolean;
     public var bBleConnected as Boolean;
     public var bBleBufferWarning as Boolean;
+    public var sActiveLookFirmware = "0.0.0";
+
+    //Display Data variables
     public var sOldAltitude as String = "";
     public var sAltitude as String = "--";
     public var sOldVerticalSpeed as String = "";
@@ -49,6 +54,7 @@ class MyActiveLook
         bBleIsWriting = false;
         bBleConnected = false;
         bBleBufferWarning = false;
+        sActiveLookFirmware = "0.0.0";
         sOldAltitude = "";
         sAltitude = "--";
         sOldVerticalSpeed = "";
@@ -64,6 +70,15 @@ class MyActiveLook
     function onStart() {
     }
 
+    public function processQueue(writeType as Number) {
+        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning && abaCommandQueue.size() > 0 && abaCommandQueue != null) {
+            var baCommandArray = abaCommandQueue[0];
+            abaCommandQueue.remove(baCommandArray);
+            bBleIsWriting = true;
+            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => writeType});
+        }
+    }
+
     public function findAndPair() {
         Ble.setScanState(Ble.SCAN_STATE_SCANNING);
     }
@@ -77,47 +92,38 @@ class MyActiveLook
     }
 
     public function writeUpdate() {
-        if(!self.sOldAltitude.equals(self.sAltitude)) {
-            setAltitude(self.sAltitude);
-        }
-        if(!self.sOldVerticalSpeed.equals(self.sVerticalSpeed)) {
-            setVerticalSpeed(self.sVerticalSpeed);
-        }
-        if(!self.sOldFinesse.equals(self.sFinesse)) {
-            setFinesse(self.sFinesse);
-        }
-        if(!self.sOldGroundSpeed.equals(self.sGroundSpeed)) {
-            setGroundSpeed(self.sGroundSpeed);
-        }
-        if(!self.sOldHeading.equals(self.sHeading)) {
-            setHeading(self.sHeading);
-        }
+        hold();
+        setAltitude(self.sAltitude);
+        setVerticalSpeed(self.sVerticalSpeed);
+        setFinesse(self.sFinesse);
+        setGroundSpeed(self.sGroundSpeed);
+        setHeading(self.sHeading);
+        flush();
+        processQueue(Ble.WRITE_TYPE_DEFAULT);
     }
 
     public function setFinesse(_finesse as String) {
-        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning){
+        if(!self.sOldFinesse.equals(self.sFinesse)) {
             var baCommandArray = [0xFF,0x6A,0x00,0x0E,0x38,0x00,0x1E,0x5F]b;
             baCommandArray.addAll(stringToByteArray(_finesse));
             baCommandArray.add(0xAA);
-            bBleIsWriting = true;
-            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => Ble.WRITE_TYPE_DEFAULT});
+            self.abaCommandQueue.add(baCommandArray);
             self.sOldFinesse = self.sFinesse;
         }
     }
 
     public function setGroundSpeed(_groundSpeed as String) {
-        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning){
+        if(!self.sOldGroundSpeed.equals(self.sGroundSpeed)){
             var baCommandArray = [0xFF,0x6A,0x00,0x0E,0x30,0x00,0x9D,0x21]b;
             baCommandArray.addAll(stringToByteArray(_groundSpeed));
             baCommandArray.add(0xAA);
-            bBleIsWriting = true;
-            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => Ble.WRITE_TYPE_DEFAULT});
+            self.abaCommandQueue.add(baCommandArray);
             self.sOldGroundSpeed = self.sGroundSpeed;
         }
     }
 
     public function setHeading(_heading as String) {
-        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning){
+        if(!self.sOldHeading.equals(self.sHeading)){
             var baCommandArray = [0xFF,0x6A,0x00,0x0E,0x2E,0x00,0x1E,0x21]b;
             if($.oMySettings.iUnitDirection == 1){
                 baCommandArray.addAll(headingToByteArray(_heading)); //remove one space for alignment
@@ -125,64 +131,50 @@ class MyActiveLook
                 baCommandArray.addAll(stringToByteArray(_heading));
             }
             baCommandArray.add(0xAA);
-            bBleIsWriting = true;
-            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => Ble.WRITE_TYPE_DEFAULT});
+            self.abaCommandQueue.add(baCommandArray);
             self.sOldHeading = self.sHeading;
         }
     }
 
     public function setAltitude(_altitude as String) {
-        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning){
+        if(!self.sOldAltitude.equals(self.sAltitude)) {
             var baCommandArray = [0xFF,0x69,0x00,0x0B,0x7C]b;
             baCommandArray.addAll(stringToByteArray(_altitude)); 
             baCommandArray.add(0xAA);
-            bBleIsWriting = true;
-            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => Ble.WRITE_TYPE_DEFAULT});
+            self.abaCommandQueue.add(baCommandArray);
             self.sOldAltitude = self.sAltitude;
         }
     }
 
     public function setVerticalSpeed(_verticalSpeed as String) {
-        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning){
+        if(!self.sOldVerticalSpeed.equals(self.sVerticalSpeed)) {
             var baCommandArray = [0xFF,0x6A,0x00,0x0E,0x2F,0x00,0x9D,0x5F]b;
             baCommandArray.addAll(stringToByteArray(_verticalSpeed));
             baCommandArray.add(0xAA);
-            bBleIsWriting = true;
-            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => Ble.WRITE_TYPE_DEFAULT});
+            self.abaCommandQueue.add(baCommandArray);
             self.sOldVerticalSpeed = self.sVerticalSpeed;
         }
     }
 
     public function hold() {
-        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning){
-            var baCommandArray = [0xFF,0x39,0x00,0x06,0x00,0xAA]b;
-            bBleIsWriting = true;
-            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => Ble.WRITE_TYPE_DEFAULT});
-        }
+        var baCommandArray = [0xFF,0x39,0x00,0x06,0x00,0xAA]b;
+        self.abaCommandQueue.add(baCommandArray);
     }
 
     public function flush() {
-        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning){
-            var baCommandArray = [0xFF,0x39,0x00,0x06,0x00,0xAA]b;
-            bBleIsWriting = true;
-            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => Ble.WRITE_TYPE_DEFAULT});
-        }
+        var baCommandArray = [0xFF,0x39,0x00,0x06,0x01,0xAA]b;
+        self.abaCommandQueue.add(baCommandArray);
     }
 
     public function shutDown() {
-        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning){
-            var baCommandArray = [0xFF,0xE0,0x00,0x09,0x6F,0x7F,0xC4,0xEE,0xAA]b;
-            bBleIsWriting = true;
-            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => Ble.WRITE_TYPE_DEFAULT});
-        }
+        var baCommandArray = [0xFF,0xE0,0x00,0x09,0x6F,0x7F,0xC4,0xEE,0xAA]b;
+        self.abaCommandQueue.add(baCommandArray);
+        self.processQueue(Ble.WRITE_TYPE_DEFAULT); //shut down should take effect asap
     }
 
     public function clearScreen() {
-        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning){
-            var baCommandArray = [0xFF,0x01,0x00,0x05,0xAA]b;
-            bBleIsWriting = true;
-            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => Ble.WRITE_TYPE_DEFAULT});
-        }
+        var baCommandArray = [0xFF,0x01,0x00,0x05,0xAA]b;
+        self.abaCommandQueue.add(baCommandArray);  
     }
 
     function stringToByteArray(_text as String) as ByteArray {
@@ -253,6 +245,8 @@ class BleOperations extends Ble.BleDelegate
     public var oBleService;
     public var oBleCharacteristic;
     public var oNotificationCharacteristic;
+    public var oDeviceInformationService;
+    public var oFirmwareVersionCharacteristic;
  
     function initialize() {
         BleDelegate.initialize();
@@ -268,15 +262,32 @@ class BleOperations extends Ble.BleDelegate
     public function onConnectedStateChanged(device as Ble.Device, state as Ble.ConnectionState) as Void {
         if(state == Ble.CONNECTION_STATE_CONNECTED && device != null){
             oBleDevice = device;
+            // Device information service to get firmware
+            oDeviceInformationService = oBleDevice.getService(Ble.stringToUuid("0000180A-0000-1000-8000-00805F9B34FB"));
+            if(oDeviceInformationService != null) {
+                oFirmwareVersionCharacteristic = oDeviceInformationService.getCharacteristic(Ble.stringToUuid("00002A26-0000-1000-8000-00805F9B34FB"));
+                if(oFirmwareVersionCharacteristic != null) {
+                    oFirmwareVersionCharacteristic.requestRead();
+                }
+            }
+
+            // Custom ActiveLook service
             oBleService = oBleDevice.getService(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb7"));
             if(oBleService != null) {
-                oBleCharacteristic = oBleService.getCharacteristic(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cbA")); //Rx Server characteristic
                 oNotificationCharacteristic = oBleService.getCharacteristic(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb9")); //Control characteristic
-                var oCccd = oNotificationCharacteristic.getDescriptor(BluetoothLowEnergy.cccdUuid()); // Control descriptor
-                $.oMyActiveLook.bBleIsWriting = true;
-                oCccd.requestWrite([0x01,0x00]b); //Turn notifications on
-                $.oMyActiveLook.bBleConnected = true;
-                $.oMyActiveLook.clearScreen();
+                if (oNotificationCharacteristic != null) {
+                    var oCccd = oNotificationCharacteristic.getDescriptor(BluetoothLowEnergy.cccdUuid()); // Control descriptor
+                    if (oCccd != null) {
+                        $.oMyActiveLook.bBleIsWriting = true;
+                        oCccd.requestWrite([0x01,0x00]b); //Turn notifications on to get flow control messages
+                    }
+                }
+                oBleCharacteristic = oBleService.getCharacteristic(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cbA")); //Rx Server characteristic
+                if (oBleCharacteristic != null) {
+                    $.oMyActiveLook.bBleConnected = true;
+                    $.oMyActiveLook.clearScreen();          //Queueing the initial startup commands
+                    $.oMyActiveLook.writeUpdate();
+                }
             }
         }
         if(state == Ble.CONNECTION_STATE_DISCONNECTED) {
@@ -288,12 +299,12 @@ class BleOperations extends Ble.BleDelegate
 
     function onCharacteristicWrite(characteristic, status) {
         $.oMyActiveLook.bBleIsWriting = false;
-        $.oMyActiveLook.writeUpdate();
+        $.oMyActiveLook.processQueue(Ble.WRITE_TYPE_DEFAULT); //Will keep processing command queue until nothing left in
     }
 
     function onDescriptorWrite(descriptor, status) {
         $.oMyActiveLook.bBleIsWriting = false;
-        $.oMyActiveLook.clearScreen();
+        $.oMyActiveLook.processQueue(Ble.WRITE_TYPE_DEFAULT); //This will do the initial queue processing (Clear screen)
     }
  
     function onScanResults(scanResults) { 
@@ -318,25 +329,48 @@ class BleOperations extends Ble.BleDelegate
         var profile = {                                                  
            :uuid => Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb7"), //Activelook Custom Service UUID
            :characteristics => [ {                                     
-                   :uuid => Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cbA"),     //Activelook RX writable characteristic
-                   :descriptors => [                                    
-                       Ble.stringToUuid("00002902-0000-1000-8000-00805F9B34FB"),       //Configuration descriptor
-                       Ble.stringToUuid("00002901-0000-1000-8000-00805F9B34FB") ] },
-                    {                                     
-                   :uuid => Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb9"),     //Activelook Control Notification characteristic
-                   :descriptors => [                                    
-                       Ble.stringToUuid("00002902-0000-1000-8000-00805F9B34FB"),       //Configuration descriptor
-                       Ble.stringToUuid("00002901-0000-1000-8000-00805F9B34FB") ] }]   //Server Rx Data descriptor
+                :uuid => Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cbA"),     //Activelook RX writable characteristic
+                :descriptors => [                                    
+                    Ble.stringToUuid("00002902-0000-1000-8000-00805F9B34FB"),       //Configuration descriptor
+                    Ble.stringToUuid("00002901-0000-1000-8000-00805F9B34FB") ] },
+                {                                     
+                :uuid => Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb9"),     //Activelook Control Notification characteristic
+                :descriptors => [                                    
+                    Ble.stringToUuid("00002902-0000-1000-8000-00805F9B34FB"),       //Configuration descriptor
+                    Ble.stringToUuid("00002901-0000-1000-8000-00805F9B34FB") ] }]   //Server Rx Data descriptor
        };
-       // Make the registerProfile call
+       Ble.registerProfile( profile );
+
+       profile =  {                                                  
+           :uuid => Ble.stringToUuid("0000180A-0000-1000-8000-00805F9B34FB"), //Readable device info UUID
+           :characteristics => [ {                                     
+                :uuid => Ble.stringToUuid("00002A26-0000-1000-8000-00805F9B34FB"),     //Firmware version characteristic
+                :descriptors => [] }]
+       };
        Ble.registerProfile( profile );
     }
  
     function onCharacteristicChanged(characteristic, value) {
         if(value != null && value.size() > 0) {
-            if(value[0] == 0x01) { $.oMyActiveLook.bBleBufferWarning = false; }
-            if(value[0] == 0x02) { $.oMyActiveLook.bBleBufferWarning = true; }
+            if(value[0] == 0x01) { $.oMyActiveLook.bBleBufferWarning = false; } 
+            if(value[0] == 0x02) { $.oMyActiveLook.bBleBufferWarning = true; } //Flow control! Stop sending commands
         }
+    }
+
+    function onCharacteristicRead(characteristic, status, value) {
+        if(value != null) {
+            $.oMyActiveLook.sActiveLookFirmware = byteArrayToString(value);
+        }
+    }
+
+    function byteArrayToString(byte_array) {
+        var options = {
+            :fromRepresentation => StringUtil.REPRESENTATION_BYTE_ARRAY,
+            :toRepresentation => StringUtil.REPRESENTATION_STRING_PLAIN_TEXT,
+            :encoding => StringUtil.CHAR_ENCODING_UTF8
+        };
+        var result = StringUtil.convertEncodedString(byte_array, options);
+        return result; 
     }
 
     function onScanStateChange(scanState, status) {
