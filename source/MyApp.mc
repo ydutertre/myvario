@@ -226,7 +226,7 @@ class MyApp extends App.AppBase {
 
     // Disconnect ActiveLook
     if($.oMySettings.bActiveLook){
-      $.oMyActiveLook.shutDown();
+      $.oMyActiveLook.unPair();
     }
 
   }

@@ -261,6 +261,7 @@ class MyActivity {
       $.oMySportsTrackLive.stopSession();
       $.oMySportsTrackLive.reset();
     }
+
     self.oTimeStart = null;
     self.oTimeStop = null;
   }

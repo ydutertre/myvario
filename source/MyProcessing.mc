@@ -112,8 +112,8 @@ class MyProcessing {
   // Thermal core calculation
   public var iCenterLongitude as Number = 0;
   public var iCenterLatitude as Number = 0;
-  public var fCenterWindOffsetLongitude as Number = 0;
-  public var fCenterWindOffsetLatitude as Number = 0;
+  public var fCenterWindOffsetLongitude as Float = 0;
+  public var fCenterWindOffsetLatitude as Float = 0;
   public var iStandardDev as Number = 0;
   public var aiPointAltitude as Array<Number>;
   // ActiveLook
@@ -316,6 +316,37 @@ class MyProcessing {
       self.fHeading = NaN;
     }
 
+    // ... finesse
+    self.processFinesse();
+    
+    // ActiveLook
+    if($.oMySettings.bActiveLook && !$.oMyActiveLook.bReconnecting){
+      self.processActiveLook();
+    }
+
+    // ... wind
+    self.windStep();
+    
+    // ... circling Auto Switch
+    if($.oMySettings.bVariometerAutoThermal && !self.bAutoThermalTriggered && self.bCirclingCount >=5) {
+      self.bAutoThermalTriggered = true;
+      Ui.switchToView(new MyViewVarioplot(),
+                new MyViewVarioplotDelegate(),
+                Ui.SLIDE_IMMEDIATE);
+    }
+    if($.oMySettings.bVariometerAutoThermal && self.bAutoThermalTriggered && self.bNotCirclingCount >=20) {
+      self.bAutoThermalTriggered = false;
+      if(self.bIsPreviousGeneral) {
+        Ui.switchToView(new MyViewGeneral(),
+                  new MyViewGeneralDelegate(),
+                  Ui.SLIDE_IMMEDIATE);
+      } else {
+        Ui.switchToView(new MyViewVariometer(),
+                      new MyViewVariometerDelegate(),
+                      Ui.SLIDE_IMMEDIATE);
+      }
+    }
+
     // NOTE: heading and rate-of-turn data are not required for processing finalization
 
     // Finalize
@@ -464,40 +495,10 @@ class MyProcessing {
         }
       }
     }
-
-    // ... finesse
-    self.processFinesse();
-    
-    // ... wind
-    self.windStep();
-
-    //ActiveLook
-    if($.oMySettings.bActiveLook){
-      self.processActiveLook();
-    }
-    
-    // ... circling Auto Switch
-    if($.oMySettings.bVariometerAutoThermal && !self.bAutoThermalTriggered && self.bCirclingCount >=5) {
-      self.bAutoThermalTriggered = true;
-      Ui.switchToView(new MyViewVarioplot(),
-                new MyViewVarioplotDelegate(),
-                Ui.SLIDE_IMMEDIATE);
-    }
-    if($.oMySettings.bVariometerAutoThermal && self.bAutoThermalTriggered && self.bNotCirclingCount >=20) {
-      self.bAutoThermalTriggered = false;
-      if(self.bIsPreviousGeneral) {
-        Ui.switchToView(new MyViewGeneral(),
-                  new MyViewGeneralDelegate(),
-                  Ui.SLIDE_IMMEDIATE);
-      } else {
-        Ui.switchToView(new MyViewVariometer(),
-                      new MyViewVariometerDelegate(),
-                      Ui.SLIDE_IMMEDIATE);
-      }
-    }
   }
 
   function processActiveLook() as Void {
+
     if(LangUtils.notNaN(self.fAltitude)) {
       $.oMyActiveLook.sAltitude = Math.round(self.fAltitude*$.oMySettings.fUnitElevationCoefficient).toFloat().format("%5d");
     } else {
@@ -537,7 +538,7 @@ class MyProcessing {
     } else {
       $.oMyActiveLook.sHeading = "--";
     }
-
+    
     $.oMyActiveLook.writeUpdate();
 
     if(!$.oMyActiveLook.bBleConnected && $.oMyActiveLook.isScanning()){
@@ -545,6 +546,11 @@ class MyProcessing {
       if(timeElapsed > 120) {
         $.oMyActiveLook.stopScanning(); //Stop scanning for ActiveLook glasses after 120 seconds
       }
+    }
+
+    $.oMyActiveLook.iTimer--;
+    if($.oMyActiveLook.iTimer <= 0) {
+      $.oMyActiveLook.resetConnection();
     }
   }
 

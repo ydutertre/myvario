@@ -51,7 +51,7 @@ class MySportsTrackLive {
   public var iTrackId as Number = 0;
   public var iCounter as Number = 0;
   public var timeout as Number = 0;
-  private var secretKey as String = "censored"; //REMOVE BEFORE GITHUB!!
+  private var secretKey as String = "75d5f988-8d17-43a3-895b-aacdc4fce135"; //REMOVE BEFORE GITHUB!!
 
   //
   // FUNCTIONS: self
@@ -60,7 +60,7 @@ class MySportsTrackLive {
   function init(_sLoginEmail as String, _sPassword as String) as Void {
     self.sLoginEmail = _sLoginEmail;
     self.sPassword = _sPassword;
-    self.adPoints = new Array<Dictionary>[$.oMySettings.iSportsTrackLiveFrequencySeconds];
+    self.adPoints = [];
   }
 
   function reset() {
@@ -71,7 +71,7 @@ class MySportsTrackLive {
     self.bLivetrackStateful = false;
     self.iCounter = 0;
     self.timeout = 0;
-    self.adPoints = new Array<Dictionary>[$.oMySettings.iSportsTrackLiveFrequencySeconds];
+    self.adPoints = [];
   }
 
   function getUserToken() {

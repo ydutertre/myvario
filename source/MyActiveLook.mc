@@ -25,6 +25,8 @@ using Toybox.Time;
 using Toybox.Time.Gregorian;
 using Toybox.WatchUi;
 using Toybox.BluetoothLowEnergy as Ble;
+using Toybox.System as Sys;
+using Toybox.Timer;
 
 class MyActiveLook
 {
@@ -34,7 +36,10 @@ class MyActiveLook
     public var bBleIsWriting as Boolean;
     public var bBleConnected as Boolean;
     public var bBleBufferWarning as Boolean;
-    public var sActiveLookFirmware = "0.0.0";
+    public var bReconnecting as Boolean;
+    public var iTimer as Number = 100000;
+    public var bExpectedDisconnect = false;
+    public var iCommandCounter as Number = 0;
 
     //Display Data variables
     public var sOldAltitude as String = "";
@@ -58,7 +63,17 @@ class MyActiveLook
         bBleIsWriting = false;
         bBleConnected = false;
         bBleBufferWarning = false;
-        sActiveLookFirmware = "0.0.0";
+        bReconnecting = false;
+        bExpectedDisconnect = false;
+        iTimer = 100000;
+        iCommandCounter = 0;
+        setDefaults();
+    }
+
+    function onStart() {
+    }
+
+    public function setDefaults() {
         sOldAltitude = "";
         sAltitude = "--";
         sOldVerticalSpeed = "";
@@ -75,16 +90,23 @@ class MyActiveLook
         sFlightTime = "--:--";
     }
 
-    function onStart() {
-    }
-
     public function processQueue(writeType as Number) {
-        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning && abaCommandQueue.size() > 0 && abaCommandQueue != null) {
+        if(!bBleIsWriting && bBleConnected && !bBleBufferWarning && abaCommandQueue.size() > 0 && !bReconnecting) {
             var baCommandArray = abaCommandQueue[0];
             abaCommandQueue.remove(baCommandArray);
             bBleIsWriting = true;
-            oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => writeType});
+            iTimer = 5;
+            iCommandCounter++;
+            try { oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => writeType}); }
+            catch(ex) {
+                iTimer = 100000;
+                iCommandCounter--;
+            }
         }
+    }
+
+    public function clearQueue() {
+        abaCommandQueue = [];
     }
 
     public function findAndPair() {
@@ -99,8 +121,8 @@ class MyActiveLook
         Ble.setScanState(Ble.SCAN_STATE_OFF);
     }
 
-    public function writeUpdate() {
-        hold();
+    
+    public function storeUpdate() {
         setAltitude(self.sAltitude);
         setVerticalSpeed(self.sVerticalSpeed);
         setFinesse(self.sFinesse);
@@ -110,8 +132,13 @@ class MyActiveLook
         setTime(self.sTime);
         self.sFlightTime = getFlightTime();
         setFlightTime(self.sFlightTime);
-        flush();
-        processQueue(Ble.WRITE_TYPE_DEFAULT);
+    }
+
+    public function writeUpdate() {
+        if (!bBleBufferWarning && !bReconnecting && iCommandCounter >=8) {
+            self.storeUpdate();
+            processQueue(Ble.WRITE_TYPE_DEFAULT);
+        }
     }
     
     public function getFlightTime() as String {
@@ -213,15 +240,33 @@ class MyActiveLook
         self.abaCommandQueue.add(baCommandArray);
     }
 
-    public function shutDown() {
-        var baCommandArray = [0xFF,0xE0,0x00,0x09,0x6F,0x7F,0xC4,0xEE,0xAA]b;
-        self.abaCommandQueue.add(baCommandArray);
-        self.processQueue(Ble.WRITE_TYPE_DEFAULT); //shut down should take effect asap
-    }
-
     public function clearScreen() {
         var baCommandArray = [0xFF,0x01,0x00,0x05,0xAA]b;
-        self.abaCommandQueue.add(baCommandArray);  
+        self.abaCommandQueue.add(baCommandArray);
+    }
+
+    public function powerScreen() {
+        var baCommandArray = [0xFF,0x00,0x00,0x06,0x01,0xAA]b;
+        self.abaCommandQueue.add(baCommandArray);
+    }
+
+    public function resetConnection() {
+        if(!bReconnecting) {
+            bReconnecting = true;
+            if(isScanning()) {
+                Ble.setScanState(Ble.SCAN_STATE_OFF);
+            }
+            bExpectedDisconnect = true;   
+            unPair();
+            iTimer = 100000;
+            bBleConnected = false;
+            bBleIsWriting = false;
+            bBleBufferWarning = false;
+            iCommandCounter = 0;
+            clearQueue();
+            $.oMyProcessing.timeElapsed = 0;    //Reset scanning timeout to attempt to reconnect to device
+            findAndPair();
+        }
     }
 
     function stringToByteArray(_text as String) as ByteArray {
@@ -286,14 +331,13 @@ class MyActiveLook
  
 class BleOperations extends Ble.BleDelegate
 {
-    hidden var _scanState as Number;
-    hidden var _profileRegistered = false;
+    public var _scanState as Number;
+    public var _profileRegistered = false;
     public var oBleDevice;
     public var oBleService;
     public var oBleCharacteristic;
-    public var oNotificationCharacteristic;
+    public var oControlNotificationCharacteristic;
     public var oDeviceInformationService;
-    public var oFirmwareVersionCharacteristic;
  
     function initialize() {
         BleDelegate.initialize();
@@ -309,49 +353,46 @@ class BleOperations extends Ble.BleDelegate
     public function onConnectedStateChanged(device as Ble.Device, state as Ble.ConnectionState) as Void {
         if(state == Ble.CONNECTION_STATE_CONNECTED && device != null){
             oBleDevice = device;
-            // Device information service to get firmware
-            oDeviceInformationService = oBleDevice.getService(Ble.stringToUuid("0000180A-0000-1000-8000-00805F9B34FB"));
-            if(oDeviceInformationService != null) {
-                oFirmwareVersionCharacteristic = oDeviceInformationService.getCharacteristic(Ble.stringToUuid("00002A26-0000-1000-8000-00805F9B34FB"));
-                if(oFirmwareVersionCharacteristic != null) {
-                    oFirmwareVersionCharacteristic.requestRead();
-                }
-            }
 
             // Custom ActiveLook service
             oBleService = oBleDevice.getService(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb7"));
             if(oBleService != null) {
-                oNotificationCharacteristic = oBleService.getCharacteristic(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb9")); //Control characteristic
-                if (oNotificationCharacteristic != null) {
-                    var oCccd = oNotificationCharacteristic.getDescriptor(BluetoothLowEnergy.cccdUuid()); // Control descriptor
+                oBleCharacteristic = oBleService.getCharacteristic(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cbA")); //Rx Server characteristic
+                if (oBleCharacteristic != null) {
+                    $.oMyActiveLook.bBleConnected = true;
+                    $.oMyActiveLook.clearQueue();
+                    $.oMyActiveLook.clearScreen(); //Queueing the initial startup commands
+                    $.oMyActiveLook.setDefaults();
+                    $.oMyActiveLook.storeUpdate();
+                }
+                oControlNotificationCharacteristic = oBleService.getCharacteristic(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb9")); //Control characteristic
+                if (oControlNotificationCharacteristic != null) {
+                    var oCccd = oControlNotificationCharacteristic.getDescriptor(BluetoothLowEnergy.cccdUuid()); // Control descriptor
                     if (oCccd != null) {
                         $.oMyActiveLook.bBleIsWriting = true;
                         oCccd.requestWrite([0x01,0x00]b); //Turn notifications on to get flow control messages
                     }
                 }
-                oBleCharacteristic = oBleService.getCharacteristic(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cbA")); //Rx Server characteristic
-                if (oBleCharacteristic != null) {
-                    $.oMyActiveLook.bBleConnected = true;
-                    $.oMyActiveLook.clearScreen();          //Queueing the initial startup commands
-                    $.oMyActiveLook.writeUpdate();
-                }
             }
-        }
-        if(state == Ble.CONNECTION_STATE_DISCONNECTED) {
-            $.oMyActiveLook.bBleConnected = false;
-            $.oMyProcessing.timeElapsed = 0;    //Reset scanning timeout to attempt to reconnect to device
-            $.oMyActiveLook.findAndPair();
+        } else if (state == Ble.CONNECTION_STATE_DISCONNECTED) {
+            if($.oMyActiveLook.bExpectedDisconnect) {
+                $.oMyActiveLook.bExpectedDisconnect = false;
+            } else {
+                $.oMyActiveLook.resetConnection();
+            }
         }
     }
 
     function onCharacteristicWrite(characteristic, status) {
+        $.oMyActiveLook.iTimer = 100000;
         $.oMyActiveLook.bBleIsWriting = false;
         $.oMyActiveLook.processQueue(Ble.WRITE_TYPE_DEFAULT); //Will keep processing command queue until nothing left in
     }
 
     function onDescriptorWrite(descriptor, status) {
         $.oMyActiveLook.bBleIsWriting = false;
-        $.oMyActiveLook.processQueue(Ble.WRITE_TYPE_DEFAULT); //This will do the initial queue processing (Clear screen)
+        $.oMyActiveLook.bReconnecting = false;
+        $.oMyActiveLook.processQueue(Ble.WRITE_TYPE_DEFAULT); //This will do the initial queue processing (Clear screen, initial values)
     }
  
     function onScanResults(scanResults) { 
@@ -366,11 +407,14 @@ class BleOperations extends Ble.BleDelegate
                     _profileRegistered = true;
                 }
                 Ble.setScanState(Ble.SCAN_STATE_OFF);
-                Ble.pairDevice(scanResult);
+                try {
+                    Ble.pairDevice(scanResult);
+                } catch (ex){
+                }
             }
             scanResult = scanResults.next();
         }
-     }
+    }
  
     function registerProfiles() {
         var profile = {                                                  
@@ -384,30 +428,24 @@ class BleOperations extends Ble.BleDelegate
                 :uuid => Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb9"),     //Activelook Control Notification characteristic
                 :descriptors => [                                    
                     Ble.stringToUuid("00002902-0000-1000-8000-00805F9B34FB"),       //Configuration descriptor
-                    Ble.stringToUuid("00002901-0000-1000-8000-00805F9B34FB") ] }]   //Server Rx Data descriptor
-       };
-       Ble.registerProfile( profile );
-
-       profile =  {                                                  
-           :uuid => Ble.stringToUuid("0000180A-0000-1000-8000-00805F9B34FB"), //Readable device info UUID
-           :characteristics => [ {                                     
-                :uuid => Ble.stringToUuid("00002A26-0000-1000-8000-00805F9B34FB"),     //Firmware version characteristic
-                :descriptors => [] }]
+                    Ble.stringToUuid("00002901-0000-1000-8000-00805F9B34FB") ] }]  
        };
        Ble.registerProfile( profile );
     }
  
     function onCharacteristicChanged(characteristic, value) {
-        if(value != null && value.size() > 0) {
-            if(value[0] == 0x01) { $.oMyActiveLook.bBleBufferWarning = false; } 
-            if(value[0] == 0x02) { $.oMyActiveLook.bBleBufferWarning = true; } //Flow control! Stop sending commands
+        if(characteristic.getUuid().equals(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb9")) && value != null && value.size() > 0) { // Flow control characteristic
+            if(value[0] == 0x01) {
+                $.oMyActiveLook.bBleBufferWarning = false;
+            } 
+            if(value[0] == 0x02 || value[0] == 0x04) {  //Flow control! Stop sending commands
+                $.oMyActiveLook.clearQueue();
+                $.oMyActiveLook.bBleBufferWarning = true;
+            } 
         }
     }
 
     function onCharacteristicRead(characteristic, status, value) {
-        if(value != null) {
-            $.oMyActiveLook.sActiveLookFirmware = byteArrayToString(value);
-        }
     }
 
     function byteArrayToString(byte_array) {

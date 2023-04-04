@@ -1,3 +1,16 @@
+* 3.24
+- Detect Garmin BLE queue overwhelmed and reconnect
+
+* 3.06
+- Better handling of ActiveLook reconnection
+
+* 3.04
+- Remove ActiveLook firmware check
+
+* 3.03
+- Add firmware update notification for ActiveLook
+- Optimize SportsTrackLive
+
 * 3.02
 - Add flight time and current time to ActiveLook
 - Adjust ActiveLook layout
