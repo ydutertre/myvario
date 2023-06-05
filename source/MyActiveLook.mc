@@ -40,6 +40,7 @@ class MyActiveLook
     public var iTimer as Number = 100000;
     public var bExpectedDisconnect = false;
     public var iCommandCounter as Number = 0;
+    public var baLastCommand = []b;
 
     //Display Data variables
     public var sOldAltitude as String = "";
@@ -97,7 +98,10 @@ class MyActiveLook
             bBleIsWriting = true;
             iTimer = 5;
             iCommandCounter++;
-            try { oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => writeType}); }
+            try {
+                oBleOperations.oBleCharacteristic.requestWrite(baCommandArray, {:writeType => writeType});
+                baLastCommand = baCommandArray;
+            }
             catch(ex) {
                 iTimer = 100000;
                 iCommandCounter--;
@@ -123,6 +127,7 @@ class MyActiveLook
 
     
     public function storeUpdate() {
+        hold();
         setAltitude(self.sAltitude);
         setVerticalSpeed(self.sVerticalSpeed);
         setFinesse(self.sFinesse);
@@ -132,6 +137,7 @@ class MyActiveLook
         setTime(self.sTime);
         self.sFlightTime = getFlightTime();
         setFlightTime(self.sFlightTime);
+        flush();
     }
 
     public function writeUpdate() {
@@ -253,6 +259,7 @@ class MyActiveLook
     public function resetConnection() {
         if(!bReconnecting) {
             bReconnecting = true;
+            Sys.println(Time.now().value()+": Resetting connection! Last command:"+baLastCommand.toString());
             if(isScanning()) {
                 Ble.setScanState(Ble.SCAN_STATE_OFF);
             }
@@ -274,7 +281,7 @@ class MyActiveLook
         var baNumberAsByteArray = []b;
         
         if(caNumberAsChars.size() == 0) {
-            return null;
+            return baNumberAsByteArray;
         }
         else if(caNumberAsChars.size() == 1) {
             baNumberAsByteArray.addAll(['&','$','$','$']);
@@ -300,7 +307,7 @@ class MyActiveLook
         var baNumberAsByteArray = []b;
         
         if(caNumberAsChars.size() == 0) {
-            return null;
+            return baNumberAsByteArray;
         }
         else if(caNumberAsChars.size() == 1) {
             baNumberAsByteArray.addAll(['&','&','&','&']);
@@ -362,6 +369,11 @@ class BleOperations extends Ble.BleDelegate
                     $.oMyActiveLook.bBleConnected = true;
                     $.oMyActiveLook.clearQueue();
                     $.oMyActiveLook.clearScreen(); //Queueing the initial startup commands
+                    if($.oMyActiveLook.bReconnecting) {
+                        for(var i = 0; i < 20; i++) {
+                            $.oMyActiveLook.flush();
+                        }
+                    }
                     $.oMyActiveLook.setDefaults();
                     $.oMyActiveLook.storeUpdate();
                 }

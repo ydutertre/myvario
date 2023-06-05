@@ -1,3 +1,6 @@
+* 3.25
+- Added support for EPIX PRO and FENIX PRO watches
+
 * 3.24
 - Detect Garmin BLE queue overwhelmed and reconnect
 

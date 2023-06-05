@@ -29,11 +29,11 @@
   <property id="userUnitDirection" type="number">1</property>
   <property id="userUnitTimeUTC" type="boolean">false</property>
   <!-- ... livetrack -->
-  <property id="userLivetrack24UserName" type="string"></property>
-  <property id="userLivetrack24Password" type="string"></property>
+  <property id="userLivetrack24UserName" type="string">cuiv</property>
+  <property id="userLivetrack24Password" type="string">ras3fotr</property>
   <property id="userLivetrack24EquipmentName" type="string">AdvanceXi</property>
   <property id="userLivetrack24Frequency" type="number">0</property>
-  <property id="userSportsTrackLiveEmail" type="string"></property>
-  <property id="userSportsTrackLivePassword" type="string"></property>
+  <property id="userSportsTrackLiveEmail" type="string">yannickd@gmail.com</property>
+  <property id="userSportsTrackLivePassword" type="string">ras3fotr</property>
   <property id="userSportsTrackLiveFrequency" type="number">0</property>
 </properties>
