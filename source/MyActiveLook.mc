@@ -27,6 +27,7 @@ using Toybox.WatchUi;
 using Toybox.BluetoothLowEnergy as Ble;
 using Toybox.System as Sys;
 using Toybox.Timer;
+using Toybox.WatchUi as Ui;
 
 class MyActiveLook
 {
@@ -41,6 +42,8 @@ class MyActiveLook
     public var bExpectedDisconnect = false;
     public var iCommandCounter as Number = 0;
     public var baLastCommand = []b;
+    public var iCurrentFirmwareMajor as Number = 5;
+    public var iCurrentFirmwareMinor as Number = 6;
 
     //Display Data variables
     public var sOldAltitude as String = "";
@@ -68,6 +71,8 @@ class MyActiveLook
         bExpectedDisconnect = false;
         iTimer = 100000;
         iCommandCounter = 0;
+        iCurrentFirmwareMajor = 5;
+        iCurrentFirmwareMinor = 6;
         setDefaults();
     }
 
@@ -246,6 +251,11 @@ class MyActiveLook
         self.abaCommandQueue.add(baCommandArray);
     }
 
+    public function resetFlush() {
+        var baCommandArray = [0xFF,0x39,0x00,0x06,0xFF,0xAA]b;
+        self.abaCommandQueue.add(baCommandArray);
+    }
+
     public function clearScreen() {
         var baCommandArray = [0xFF,0x01,0x00,0x05,0xAA]b;
         self.abaCommandQueue.add(baCommandArray);
@@ -333,6 +343,33 @@ class MyActiveLook
             Ble.unpairDevice(oBleOperations.oBleDevice);
         }
     }
+
+    public function firmwareCheck(_version as String) {
+        var major = 0;
+        var minor = 0;
+        //var patch = 0;
+        var offset = _version.find("v");
+        if (offset == null) { offset = -1; }
+        var subStr = _version.substring(offset + 1, _version.length());
+        major = subStr.toNumber();
+        offset = subStr.find(".");
+        if (offset != null) {
+            subStr = subStr.substring(offset + 1, subStr.length());
+            minor = subStr.toNumber();
+            offset = subStr.find(".");
+            if (offset != null) {
+                subStr = subStr.substring(offset + 1, subStr.length());
+                //patch = subStr.toNumber();
+            }
+        }
+        major -= self.iCurrentFirmwareMajor;
+        minor -= self.iCurrentFirmwareMinor;
+        if(major < 0 || (major == 0 && minor < 0)) {
+            Ui.switchToView(new MyViewFwUpdate(),
+                    new MyViewFwUpdateDelegate(),
+                    Ui.SLIDE_IMMEDIATE);
+        }
+    }
 }
 
  
@@ -345,7 +382,20 @@ class BleOperations extends Ble.BleDelegate
     public var oBleCharacteristic;
     public var oControlNotificationCharacteristic;
     public var oDeviceInformationService;
- 
+    public var oFirmwareVersionCharacteristic;
+
+    //! Custom Service (ActiveLook® Commands Interface)
+    private static const BLE_SERV_ACTIVELOOK               as Ble.Uuid = Ble.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CB7l);
+    //! Custom Service (ActiveLook® Commands Interface) Characteristics
+    private static const BLE_CHAR_ACTIVELOOK_TX            as Ble.Uuid = Ble.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CB8l);
+    private static const BLE_CHAR_ACTIVELOOK_RX            as Ble.Uuid = Ble.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CBAl);
+    private static const BLE_CHAR_ACTIVELOOK_FLOW_CONTROL  as Ble.Uuid = Ble.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CB9l);
+
+    //! Device Information Service
+    private static const BLE_SERV_DEVICE_INFORMATION       as Ble.Uuid = Ble.longToUuid(0x0000180A00001000l, 0x800000805F9B34FBl);
+    //! Device Information Service Characteristics
+    private static const BLE_CHAR_FIRMWARE_VERSION         as Ble.Uuid = Ble.longToUuid(0x00002A2600001000l, 0x800000805F9B34FBl);
+
     function initialize() {
         BleDelegate.initialize();
         _scanState = Ble.SCAN_STATE_OFF;
@@ -360,24 +410,31 @@ class BleOperations extends Ble.BleDelegate
     public function onConnectedStateChanged(device as Ble.Device, state as Ble.ConnectionState) as Void {
         if(state == Ble.CONNECTION_STATE_CONNECTED && device != null){
             oBleDevice = device;
+            oBleDevice = device;
+            // Device information service to get firmware
+            oDeviceInformationService = oBleDevice.getService(BLE_SERV_DEVICE_INFORMATION);
+            if(oDeviceInformationService != null) {
+                oFirmwareVersionCharacteristic = oDeviceInformationService.getCharacteristic(BLE_CHAR_FIRMWARE_VERSION);
+                if(oFirmwareVersionCharacteristic != null) {
+                    oFirmwareVersionCharacteristic.requestRead();
+                }
+            }
 
             // Custom ActiveLook service
-            oBleService = oBleDevice.getService(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb7"));
+            oBleService = oBleDevice.getService(BLE_SERV_ACTIVELOOK );
             if(oBleService != null) {
-                oBleCharacteristic = oBleService.getCharacteristic(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cbA")); //Rx Server characteristic
+                oBleCharacteristic = oBleService.getCharacteristic(BLE_CHAR_ACTIVELOOK_RX ); //Rx Server characteristic
                 if (oBleCharacteristic != null) {
                     $.oMyActiveLook.bBleConnected = true;
                     $.oMyActiveLook.clearQueue();
                     $.oMyActiveLook.clearScreen(); //Queueing the initial startup commands
                     if($.oMyActiveLook.bReconnecting) {
-                        for(var i = 0; i < 20; i++) {
-                            $.oMyActiveLook.flush();
-                        }
+                        $.oMyActiveLook.resetFlush();
                     }
                     $.oMyActiveLook.setDefaults();
                     $.oMyActiveLook.storeUpdate();
                 }
-                oControlNotificationCharacteristic = oBleService.getCharacteristic(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb9")); //Control characteristic
+                oControlNotificationCharacteristic = oBleService.getCharacteristic(BLE_CHAR_ACTIVELOOK_FLOW_CONTROL); //Control characteristic
                 if (oControlNotificationCharacteristic != null) {
                     var oCccd = oControlNotificationCharacteristic.getDescriptor(BluetoothLowEnergy.cccdUuid()); // Control descriptor
                     if (oCccd != null) {
@@ -429,24 +486,26 @@ class BleOperations extends Ble.BleDelegate
     }
  
     function registerProfiles() {
-        var profile = {                                                  
-           :uuid => Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb7"), //Activelook Custom Service UUID
-           :characteristics => [ {                                     
-                :uuid => Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cbA"),     //Activelook RX writable characteristic
-                :descriptors => [                                    
-                    Ble.stringToUuid("00002902-0000-1000-8000-00805F9B34FB"),       //Configuration descriptor
-                    Ble.stringToUuid("00002901-0000-1000-8000-00805F9B34FB") ] },
-                {                                     
-                :uuid => Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb9"),     //Activelook Control Notification characteristic
-                :descriptors => [                                    
-                    Ble.stringToUuid("00002902-0000-1000-8000-00805F9B34FB"),       //Configuration descriptor
-                    Ble.stringToUuid("00002901-0000-1000-8000-00805F9B34FB") ] }]  
-       };
-       Ble.registerProfile( profile );
+        var profileActiveLook = ({
+            :uuid => BLE_SERV_ACTIVELOOK,
+            :characteristics => [
+                { :uuid => BLE_CHAR_ACTIVELOOK_RX },
+                { :uuid => BLE_CHAR_ACTIVELOOK_TX, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
+                { :uuid => BLE_CHAR_ACTIVELOOK_FLOW_CONTROL, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
+            ]
+        });
+        Ble.registerProfile(profileActiveLook);
+        var profileDeviceInfo = ({
+            :uuid => BLE_SERV_DEVICE_INFORMATION,
+            :characteristics => [
+                { :uuid => BLE_CHAR_FIRMWARE_VERSION }
+            ]
+        });
+        Ble.registerProfile(profileDeviceInfo);
     }
  
     function onCharacteristicChanged(characteristic, value) {
-        if(characteristic.getUuid().equals(Ble.stringToUuid("0783b03e-8535-b5a0-7140-a304d2495cb9")) && value != null && value.size() > 0) { // Flow control characteristic
+        if(characteristic.getUuid().equals(BLE_CHAR_ACTIVELOOK_FLOW_CONTROL) && value != null && value.size() > 0) { // Flow control characteristic
             if(value[0] == 0x01) {
                 $.oMyActiveLook.bBleBufferWarning = false;
             } 
@@ -458,6 +517,9 @@ class BleOperations extends Ble.BleDelegate
     }
 
     function onCharacteristicRead(characteristic, status, value) {
+        if(value != null && characteristic.getUuid().equals(BLE_CHAR_FIRMWARE_VERSION)) {
+            $.oMyActiveLook.firmwareCheck(byteArrayToString(value));            
+        }
     }
 
     function byteArrayToString(byte_array) {
