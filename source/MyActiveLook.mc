@@ -42,7 +42,7 @@ class MyActiveLook
     public var bExpectedDisconnect = false;
     public var iCommandCounter as Number = 0;
     public var baLastCommand = []b;
-    public var iCurrentFirmwareMajor as Number = 5;
+    public var iCurrentFirmwareMajor as Number = 4;
     public var iCurrentFirmwareMinor as Number = 6;
 
     //Display Data variables
@@ -71,7 +71,7 @@ class MyActiveLook
         bExpectedDisconnect = false;
         iTimer = 100000;
         iCommandCounter = 0;
-        iCurrentFirmwareMajor = 5;
+        iCurrentFirmwareMajor = 4;
         iCurrentFirmwareMinor = 6;
         setDefaults();
     }
