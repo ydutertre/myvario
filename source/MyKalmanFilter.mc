@@ -35,23 +35,22 @@ class MyKalmanFilter {
   //
 
   private const ACCELERATION_VARIANCE = 0.36; //Value 0.36 taken from Arduino-vario, when no accelerometer present (as of now, because gyro data isn't accessible, the watch accelerometer can't be used)
-  
 
   //
   // VARIABLES
   //
 
   // Covariance matrix (as floats)
-  private var p11 as Float = 0;
-  private var p12 as Float = 0;
-  private var p21 as Float = 0;
-  private var p22 as Float = 0;
+  private var p11 as Float = 0.0f;
+  private var p12 as Float = 0.0f;
+  private var p21 as Float = 0.0f;
+  private var p22 as Float = 0.0f;
 
   // Position, velocity, acceleration, timestamp
-  public var fPosition as Float = 0;
-  public var fVelocity as Float = 0;
-  public var fAcceleration as Float = 0;
-  public var fTimestamp as Float = 0;
+  public var fPosition as Float = 0.0f;
+  public var fVelocity as Float = 0.0f;
+  public var fAcceleration as Float = 0.0f;
+  public var iTimestamp as Number = 0;
 
   // Filter ready?
   public var bFilterReady as Boolean = false;
@@ -60,26 +59,26 @@ class MyKalmanFilter {
   // FUNCTIONS: self
   //
 
-  function init(_fStartP as Float, _fStartA as Float, _fTimestamp as Number) as Void {
+  function init(_fStartP as Float, _fStartA as Float, _iTimestamp as Number) as Void {
     self.fPosition = _fStartP;
-    self.fVelocity = 0;
+    self.fVelocity = 0.0f;
     self.fAcceleration = _fStartA;
-    self.fTimestamp = _fTimestamp;
+    self.iTimestamp = _iTimestamp;
 
-    self.p11 = 0;
-    self.p12 = 0;
-    self.p21 = 0;
-    self.p22 = 0;
+    self.p11 = 0.0f;
+    self.p12 = 0.0f;
+    self.p21 = 0.0f;
+    self.p22 = 0.0f;
 
     self.bFilterReady = true;
   }
 
-  function update(_fPosition as Float, _fAcceleration as Float, _fTimestamp as Number) as Void {
+  function update(_fPosition as Float, _fAcceleration as Float, _iTimestamp as Number) as Void {
     
     // Delta time
-    var deltaTime = _fTimestamp - fTimestamp;
+    var deltaTime = _iTimestamp - iTimestamp;
     var dt = deltaTime.toFloat();
-    self.fTimestamp = _fTimestamp;
+    self.iTimestamp = _iTimestamp;
 
     // Variance
     var fAltitudeVariance = $.oMySettings.fVariometerSmoothing * $.oMySettings.fVariometerSmoothing;

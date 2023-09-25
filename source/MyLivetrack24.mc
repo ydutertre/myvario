@@ -85,6 +85,7 @@ class MyLivetrack24 {
 
     var options = {
       :method => Communications.HTTP_REQUEST_METHOD_GET,
+      :headers => {"Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED},
       :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
     };
 
@@ -112,6 +113,7 @@ class MyLivetrack24 {
 
     var options = {
       :method => Communications.HTTP_REQUEST_METHOD_GET,
+      :headers => {"Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED},
       :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
     };
     self.iPacketNumber++;
@@ -136,6 +138,7 @@ class MyLivetrack24 {
 
     var options = {
       :method => Communications.HTTP_REQUEST_METHOD_GET,
+      :headers => {"Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED},
       :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
     };
     self.iPacketNumber++;
@@ -154,6 +157,7 @@ class MyLivetrack24 {
 
     var options = {
       :method => Communications.HTTP_REQUEST_METHOD_GET,
+      :headers => {"Content-Type" => Communications.REQUEST_CONTENT_TYPE_URL_ENCODED},
       :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
     };
     self.iPacketNumber++;

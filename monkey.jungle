@@ -1,5 +1,6 @@
 # Manifest
 project.manifest = manifest.xml
+project.typecheck = 0
 
 # Annotations
 # ... exclude all by default
