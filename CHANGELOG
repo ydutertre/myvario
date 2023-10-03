@@ -1,3 +1,7 @@
+* 3.30
+- Added support for Venu 3/Venu 3S (with the usual caveats for
+non-5-button watches, make sure to check USAGE to learn more)
+
 * 3.29
 - Updated Activity Recording type (using Activity.SPORT_FLYING)
 
