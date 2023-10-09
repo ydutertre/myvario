@@ -1,3 +1,7 @@
+* 3.31
+- Added the ability to set Activity Type to Hiking (under Settings
+-> Activity -> Type), allowing for automatic syncing with Strava
+
 * 3.30
 - Added support for Venu 3/Venu 3S (with the usual caveats for
 non-5-button watches, make sure to check USAGE to learn more)

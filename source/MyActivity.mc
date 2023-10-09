@@ -122,9 +122,16 @@ class MyActivity {
 
     // Session (recording)
     // SPORT_FLYING = 20 (since API 3.0.10)
+    var iActivityType = 0;
+    if($.oMySettings.iActivityType == 0) {
+      iActivityType = Activity.SPORT_FLYING;
+    } else {
+      iActivityType = Activity.SPORT_HIKING;
+    }
+
     oSession = AR.createSession({
         :name => "My Vario",
-        :sport => Activity.SPORT_FLYING,
+        :sport => iActivityType,
         :subSport => Activity.SUB_SPORT_GENERIC});
 
     // FIT fields

@@ -97,6 +97,7 @@ class MyMenuGeneric extends Ui.Menu {
       Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsActivity) as String);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityAutoStart) as String, :menuActivityAutoStart);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityAutoSpeedStart) as String, :menuActivityAutoSpeedStart);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityType) as String, :menuActivityType);
     }
 
     else if(_menu == :menuSettingsGeneral) {
@@ -317,6 +318,11 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       else if(_item == :menuActivityAutoSpeedStart) {
         Ui.pushView(new MyPickerGenericSpeed(:contextSettings, :itemActivityAutoSpeedStart),
                     new MyPickerGenericSpeedDelegate(:contextSettings, :itemActivityAutoSpeedStart),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if(_item == :menuActivityType) {
+        Ui.pushView(new MyPickerGenericSettings(:contextSettings, :itemActivityType),
+                    new MyPickerGenericSettingsDelegate(:contextSettings, :itemActivityType),
                     Ui.SLIDE_IMMEDIATE);
       }
     }

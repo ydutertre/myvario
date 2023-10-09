@@ -71,16 +71,29 @@ buttons. Swipes and taps also work. Check the settings and set them to what you 
 When changing settings, make sure to use the Select button to validate the change.
 Pressing the back button doesn't save the setting.
 
+With numerical settings, you are asked to set one digit at a time - going once through
+all the digits without modiying anything makes it easier to understand the amplitude
+of the numerical setting.
+
 The Select button can be used to start and stop the activity recording, and Back can
 be used to exit the app, except during recording or in the log view.
 If in log view, you want to exit the log view using UP/DOWN buttons first before you
 can close the app using the back button. If the activity is recording, you want to
 stop the activity first and then exit the app.
 
-To enable Livetrack24 tracking, you need to set your username, password, and equipment
-name within the settings page of the My Vario app in the Garmin Connect IQ application.
-In addition you can change the frequency of the livetracking updates in the My Vario
-app settings.
+To enable Livetrack24 or SportsTrackLive tracking, you need to set your username,
+password, and equipment name within the settings page of the My Vario app in the
+Garmin Connect IQ application. In addition you can change the frequency of the
+livetracking updates in the My Vario app settings. For more details check the relevant
+section below (there are some differences between SportsTrackLive and LiveTrack24)
+
+For automatic activity syncing with Strava, we need to pretend the activity was not
+a flying activity but a hiking activity. This setting can be done within the Settings
+-> Activity -> Type menu.
+
+To enable ActiveLook smart glasses integration, turn the relevant setting on. You then
+need to restart the app for the setting to become effective - on app start, the app
+will search for and connect to any nearby ActiveLook glasses waiting for connection.
 
 Foreword
 --------
@@ -276,6 +289,9 @@ Note: absolute and relative corrections shouldn't be needed in most cases. Check
   - Start Speed
     speed above which the activity automatically starts/resumes
     (must be greater than the Stop Speed; ignored if set to zero)
+  - Type
+    lets you set whether the Activity will be recorded as a Flight activity or as a Hike
+    activity. To allow sync in Strava, you should set it as a Hike Activity.
 
 * General
   - Background Color:

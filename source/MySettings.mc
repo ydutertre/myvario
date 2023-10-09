@@ -65,6 +65,7 @@ class MySettings {
   // ... activity
   public var bActivityAutoStart as Boolean = true; //Auto-start recording after launch
   public var fActivityAutoSpeedStart as Float = 3.0f;
+  public var iActivityType as Number = 0; // Activity type (hike or flight, hike to support Strava)
   // ... general
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
   public var bActiveLook as Boolean = false;
@@ -129,6 +130,7 @@ class MySettings {
     // ... activity
     self.setActivityAutoStart(self.loadActivityAutoStart());
     self.setActivityAutoSpeedStart(self.loadActivityAutoSpeedStart());
+    self.setActivityType(self.loadActivityType());
     // ... general
     self.setGeneralBackgroundColor(self.loadGeneralBackgroundColor());
     self.setActiveLook(self.loadActiveLook());
@@ -393,6 +395,16 @@ class MySettings {
       _fValue = 0.0f;
     }
     self.fActivityAutoSpeedStart = _fValue;
+  }
+
+  function loadActivityType() as Number {
+    return LangUtils.readKeyNumber(App.Properties.getValue("userActivityType"), 0);
+  }
+  function saveActivityType(_iValue as Number) as Void {
+    App.Properties.setValue("userActivityType", _iValue as App.PropertyValueType);
+  }
+  function setActivityType(_iValue as Number) as Void {
+    self.iActivityType = _iValue;
   }
 
   function loadGeneralBackgroundColor() as Number {

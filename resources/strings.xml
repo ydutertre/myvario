@@ -1,6 +1,6 @@
 <strings>
   <string id="AppName">My Vario</string>
-  <string id="AppVersion">3.30</string>
+  <string id="AppVersion">3.31</string>
   <!-- Properties -->
   <string id="titleVersion">Version</string>
   <string id="titleLicense">License</string>
@@ -36,6 +36,9 @@
   <string id="titleSettingsActivity">Activity</string>
   <string id="titleActivityAutoStart">Auto Start</string>
   <string id="titleActivityAutoSpeedStart">Start Speed</string>
+  <string id="titleActivityType">Type</string>
+  <string id="valueActivityTypeFlight">Flight</string>
+  <string id="valueActivityTypeHike">Hike</string>
   <!-- Menu (settings:general) -->
   <string id="titleSettingsGeneral">General</string>
   <string id="titleGeneralBackgroundColor">Background Color</string>

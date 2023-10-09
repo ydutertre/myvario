@@ -143,6 +143,21 @@ class MyPickerGenericSettings extends Ui.Picker {
             :pattern => [oFactory],
             :defaults => [oFactory.indexOfKey(iMinimumSink)]});
       }
+      else if(_item == :itemActivityType) {
+        var iActivityType = $.oMySettings.loadActivityType();
+        $.oMySettings.load();  // ... reload potentially modified settings
+        var asValues = [Ui.loadResource(Rez.Strings.valueActivityTypeFlight),Ui.loadResource(Rez.Strings.valueActivityTypeHike)];
+        var oFactory = new PickerFactoryDictionary([0, 1], asValues, {:font => Gfx.FONT_TINY});
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => Ui.loadResource(Rez.Strings.titleActivityType) as String,
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
+                :color => Gfx.COLOR_BLUE}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iActivityType)]});
+      }
     }
     else if(_context == :contextGeneral) {
 
@@ -319,6 +334,9 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
       }
       else if(self.item == :itemMinimumSink) {
         $.oMySettings.saveMinimumSink(_amValues[0] as Number);
+      }
+      else if(self.item == :itemActivityType) {
+        $.oMySettings.saveActivityType(_amValues[0] as Number);
       }
     }
     else if(self.context == :contextGeneral) {
