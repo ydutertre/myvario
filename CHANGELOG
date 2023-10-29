@@ -1,3 +1,6 @@
+* 3.32
+- Fix for SportsTrackLive
+
 * 3.31
 - Added the ability to set Activity Type to Hiking (under Settings
 -> Activity -> Type), allowing for automatic syncing with Strava
