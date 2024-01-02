@@ -97,29 +97,11 @@ class MyViewGeneral extends MyViewGlobal {
     MyViewGlobal.updateLayout(true);
 
     // Colors
-    if($.oMyProcessing.iAccuracy == Pos.QUALITY_NOT_AVAILABLE) {
-      (self.oRezDrawableGlobal as MyDrawableGlobal).setColorFieldsBackground(Gfx.COLOR_DK_RED);
-      (self.oRezValueTopLeft as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueTopLeft as Ui.Text).setText($.MY_NOVALUE_LEN3);
-      (self.oRezValueTopRight as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueTopRight as Ui.Text).setText($.MY_NOVALUE_LEN3);
-      (self.oRezValueLeft as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueLeft as Ui.Text).setText($.MY_NOVALUE_LEN3);
-      (self.oRezValueCenter as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueCenter as Ui.Text).setText($.MY_NOVALUE_LEN2);
-      (self.oRezValueRight as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueRight as Ui.Text).setText($.MY_NOVALUE_LEN3);
-      (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueBottomLeft as Ui.Text).setText($.MY_NOVALUE_LEN3);
-      (self.oRezValueBottomRight as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueBottomRight as Ui.Text).setText($.MY_NOVALUE_LEN3);
-      return;
-    }
-    else if($.oMyProcessing.iAccuracy == Pos.QUALITY_LAST_KNOWN) {
+    if($.oMyProcessing.iAccuracy == Pos.QUALITY_LAST_KNOWN) {
       (self.oRezDrawableGlobal as MyDrawableGlobal).setColorFieldsBackground(Gfx.COLOR_DK_RED);
       self.iColorText = Gfx.COLOR_LT_GRAY;
     }
-    else {
+    else if($.oMyProcessing.iAccuracy != Pos.QUALITY_NOT_AVAILABLE) {
       (self.oRezDrawableGlobal as MyDrawableGlobal).setColorFieldsBackground(Gfx.COLOR_TRANSPARENT);
     }
 
@@ -128,6 +110,64 @@ class MyViewGeneral extends MyViewGlobal {
     var iValue;
     var sValue;
     var bRecording = ($.oMyActivity != null);
+
+    // ... altitude
+    (self.oRezValueLeft as Ui.Text).setColor(self.iColorText);
+    fValue = $.oMyProcessing.fAltitude;
+    if(LangUtils.notNaN(fValue)) {
+      fValue *= $.oMySettings.fUnitElevationCoefficient;
+      sValue = fValue.format("%.0f");
+    }
+    else {
+      (self.oRezValueLeft as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
+      sValue = $.MY_NOVALUE_LEN3;
+    }
+    (self.oRezValueLeft as Ui.Text).setText(sValue);
+
+    // ... variometer
+    (self.oRezValueBottomLeft as Ui.Text).setColor(self.iColorText);
+    fValue = $.oMyProcessing.fVariometer_filtered;
+    if(LangUtils.notNaN(fValue)) {
+      fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
+      if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
+        sValue = fValue.format("%+.1f");
+        if(fValue >= 0.05f) {
+          (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_DK_GREEN);
+        }
+        else if(fValue <= -0.05f) {
+          (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_RED);
+        }
+      }
+      else {
+        sValue = fValue.format("%+.0f");
+        if(fValue >= 0.5f) {
+          (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_DK_GREEN);
+        }
+        else if(fValue <= -0.5f) {
+          (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_RED);
+        }
+      }
+    }
+    else {
+      (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
+      sValue = $.MY_NOVALUE_LEN3;
+    }
+    (self.oRezValueBottomLeft as Ui.Text).setText(sValue);
+
+    if($.oMyProcessing.iAccuracy == Pos.QUALITY_NOT_AVAILABLE) {
+      (self.oRezDrawableGlobal as MyDrawableGlobal).setColorFieldsBackground(Gfx.COLOR_DK_RED);
+      (self.oRezValueTopLeft as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
+      (self.oRezValueTopLeft as Ui.Text).setText($.MY_NOVALUE_LEN3);
+      (self.oRezValueTopRight as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
+      (self.oRezValueTopRight as Ui.Text).setText($.MY_NOVALUE_LEN3);
+      (self.oRezValueCenter as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
+      (self.oRezValueCenter as Ui.Text).setText($.MY_NOVALUE_LEN2);
+      (self.oRezValueRight as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
+      (self.oRezValueRight as Ui.Text).setText($.MY_NOVALUE_LEN3);
+      (self.oRezValueBottomRight as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
+      (self.oRezValueBottomRight as Ui.Text).setText($.MY_NOVALUE_LEN3);
+      return;
+    }
 
     // ... Wind Direction
     (self.oRezValueTopLeft as Ui.Text).setColor(self.iColorText);
@@ -156,18 +196,6 @@ class MyViewGeneral extends MyViewGlobal {
       sValue = $.MY_NOVALUE_LEN3;
     }
     (self.oRezValueTopRight as Ui.Text).setText(sValue);
-
-    // ... altitude
-    (self.oRezValueLeft as Ui.Text).setColor(self.iColorText);
-    fValue = $.oMyProcessing.fAltitude;
-    if(LangUtils.notNaN(fValue)) {
-      fValue *= $.oMySettings.fUnitElevationCoefficient;
-      sValue = fValue.format("%.0f");
-    }
-    else {
-      sValue = $.MY_NOVALUE_LEN3;
-    }
-    (self.oRezValueLeft as Ui.Text).setText(sValue);
 
     // ... finesse
     (self.oRezValueCenter as Ui.Text).setColor(self.iColorText);
@@ -198,39 +226,6 @@ class MyViewGeneral extends MyViewGlobal {
       sValue = $.MY_NOVALUE_LEN3;
     }
     (self.oRezValueRight as Ui.Text).setText(sValue);
-
-    // ... variometer
-    (self.oRezValueBottomLeft as Ui.Text).setColor(self.iColorText);
-    fValue = $.oMyProcessing.fVariometer_filtered;
-    if(LangUtils.notNaN(fValue)) {
-      fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
-      if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
-        sValue = fValue.format("%+.1f");
-        if($.oMyProcessing.iAccuracy > Pos.QUALITY_LAST_KNOWN) {
-          if(fValue >= 0.05f) {
-            (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_DK_GREEN);
-          }
-          else if(fValue <= -0.05f) {
-            (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_RED);
-          }
-        }
-      }
-      else {
-        sValue = fValue.format("%+.0f");
-        if($.oMyProcessing.iAccuracy > Pos.QUALITY_LAST_KNOWN) {
-          if(fValue >= 0.5f) {
-            (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_DK_GREEN);
-          }
-          else if(fValue <= -0.5f) {
-            (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_RED);
-          }
-        }
-      }
-    }
-    else {
-      sValue = $.MY_NOVALUE_LEN3;
-    }
-    (self.oRezValueBottomLeft as Ui.Text).setText(sValue);
 
     // ... ground speed
     (self.oRezValueBottomRight as Ui.Text).setColor(self.iColorText);
