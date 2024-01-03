@@ -1,3 +1,6 @@
+* 3.33
+- Show altitude and vario even without GPS Fix (contributed by Lenart Kos)
+
 * 3.32
 - Fix for SportsTrackLive
 
