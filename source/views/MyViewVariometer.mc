@@ -290,7 +290,7 @@ class MyViewVariometer extends MyView {
     _oDC.setColor($.oMySettings.iGeneralBackgroundColor, $.oMySettings.iGeneralBackgroundColor);
     _oDC.drawArc(self.iLayoutCenter, self.iLayoutCenter, self.iLayoutValueR, Gfx.ARC_CLOCKWISE, 15, 345);
     fValue = $.oMyProcessing.fVariometer_filtered;
-    if($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE) {
+    if(LangUtils.notNaN(fValue)) {
       if(fValue > 0.0f) {
         iColor = Gfx.COLOR_DK_GREEN;
         var iAngle = (180.0f*fValue/$.oMySettings.fVariometerRange).toNumber();
@@ -349,7 +349,7 @@ class MyViewVariometer extends MyView {
 
     // ... altitude
     fValue = $.oMyProcessing.fAltitude;
-    if(LangUtils.notNaN(fValue) and $.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE) {
+    if(LangUtils.notNaN(fValue)) {
       fValue *= $.oMySettings.fUnitElevationCoefficient;
       sValue = fValue.format("%.0f");
     }
@@ -360,7 +360,7 @@ class MyViewVariometer extends MyView {
 
     // ... variometer
     fValue = $.oMyProcessing.fVariometer_filtered;
-    if(LangUtils.notNaN(fValue) and $.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE) {
+    if(LangUtils.notNaN(fValue)) {
       fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
       if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
         sValue = fValue.format("%+.1f");
