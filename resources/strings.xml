@@ -119,6 +119,8 @@
   <string id="titleSportsTrackLiveEmail">SportsTrackLive Email</string>
   <string id="titleSportsTrackLivePassword">SportsTrackLive Password</string>
   <string id="titleSportsTrackLiveFrequency">STL Frequency</string>
+  <string id="titleFlySafeUserId">FlySafe UserID</string>
+  <string id="titleFlySafeToken">FlySafe Token</string>
   <string id="titleFlySafeLivetrackFrequency">FS Frequency</string>
   <!-- Error display -->
   <string id="titleInputError">Wrong input</string>

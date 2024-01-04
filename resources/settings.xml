@@ -15,5 +15,11 @@
   <setting propertyKey="@Properties.userSportsTrackLivePassword" title="@Strings.titleSportsTrackLivePassword">
     <settingConfig type="password" errorMessage="@Strings.titleInputError" />
   </setting>
+  <setting propertyKey="@Properties.userFlySafeUserId" title="@Strings.titleFlySafeUserId">
+    <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
+  </setting>
+  <setting propertyKey="@Properties.userFlySafeToken" title="@Strings.titleFlySafeToken">
+    <settingConfig type="password" errorMessage="@Strings.titleInputError" />
+  </setting>
   <!-- ... storage -->
 </settings>
