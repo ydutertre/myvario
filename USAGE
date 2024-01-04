@@ -81,11 +81,11 @@ If in log view, you want to exit the log view using UP/DOWN buttons first before
 can close the app using the back button. If the activity is recording, you want to
 stop the activity first and then exit the app.
 
-To enable Livetrack24 or SportsTrackLive tracking, you need to set your username,
+To enable Livetrack24, SportsTrackLive or FlySafe tracking, you need to set your username,
 password, and equipment name within the settings page of the My Vario app in the
 Garmin Connect IQ application. In addition you can change the frequency of the
 livetracking updates in the My Vario app settings. For more details check the relevant
-section below (there are some differences between SportsTrackLive and LiveTrack24)
+section below (there are some differences between SportsTrackLive, LiveTrack24 and FlySafe)
 
 For automatic activity syncing with Strava, we need to pretend the activity was not
 a flying activity but a hiking activity. This setting can be done within the Settings
@@ -325,6 +325,11 @@ Note: absolute and relative corrections shouldn't be needed in most cases. Check
     areas with poor connectivity, I recommend a setting of 15s (so only 15 seconds worth of data
     points are lost in case of update failure). Livetracking via SportsTrackLive can also be
     disabled completely by setting this to Off.
+  - FS Frequency
+    The frequency (in seconds) at which My Vario will send a position update to FlySafe. 
+    The higher the frequency the smoother the track (one data point sent with each update).
+    to the FlySafe server. Livetracking via FlySafe can also be disabled completely
+    by setting this to Off.
 
 * Storage
   - Clear logs:
@@ -333,8 +338,8 @@ Note: absolute and relative corrections shouldn't be needed in most cases. Check
 Live Tracking
 -----------------------
 
-The application currently supports two Live Tracking services: Livetrack24 and SportsTrackLive.
-They can be used at the same time for live tracking in both platforms simultaneously.
+The application currently supports three Live Tracking services: Livetrack24, SportsTrackLive and FlySafe.
+They can be used at the same time for live tracking on all platforms simultaneously.
 
 This feature requires that the watch be paired to a phone via bluetooth, and it will rely on the 
 phone's Internet connection to send its position packets to the live tracking servce. This is a
@@ -374,6 +379,30 @@ soon as Activity Recording is started (either manually or via auto-start).
 Once started, live tracking will provide position updates to Livetrack24 every X seconds, X
 being a number set in the My Vario settings on the watch (please see the Settings session).
 The live tracking frequency will determine the smoothness of the track (for Livetrack24).
+
+Live tracking will automatically stop once activity recording is stopped.
+
+
+* FlySafe
+
+If you wish to use FlySafe integration, some technical skill is required as your public user
+id and token is not exposed and needs to be extracted from the website. To aquire said parameters
+you need to log in to the website (https://flysafe.pro) and copy them from your browsers local storage.
+Easiest way to do this is by opening developer tools console and paste the following line in to the prompt:
+
+console.log('%c'+Object.entries(JSON.parse(localStorage.state).user.data).filter(k=>['uid','mtoken'].includes(k[0])).map(kv=>kv.join(': ')).join('\n'), "font-size: x-large") 
+
+(This command extracts localStorage.state.user.data.{uid, mtoken} parameters and prints them into the console)
+
+Copy the following values you see displayed in the console and go to the app settings within the Connect IQ app, set each of the the respective
+parameters and save. You will then need to set an update frequency within the settings of the My Vario app (default is off).
+
+Once UserID and Token are set, Livetracking with FlySafe will start as
+soon as Activity Recording is started (either manually or via auto-start).
+
+Once started, live tracking will provide position updates to FlySafe every X seconds, X
+being a number set in the My Vario settings on the watch (please see the Settings session).
+The live tracking frequency will determine the smoothness of the track (for FlySafe).
 
 Live tracking will automatically stop once activity recording is stopped.
 
