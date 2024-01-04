@@ -119,6 +119,7 @@ class MyMenuGeneric extends Ui.Menu {
       Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsLivetrack) as String);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleLivetrack24Frequency) as String, :menuLivetrack24Frequency);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleSportsTrackLiveFrequency) as String, :menuSportsTrackLiveFrequency);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleFlySafeLivetrackFrequency) as String, :menuFlySafeLivetrackFrequency);
     }
 
     else if(_menu == :menuStorage) {
@@ -373,9 +374,14 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
                     new MyPickerGenericSettingsDelegate(:contextLivetrack, :itemLivetrack24Frequency),
                     Ui.SLIDE_IMMEDIATE);
       }
-      if(_item == :menuSportsTrackLiveFrequency) {
+      else if(_item == :menuSportsTrackLiveFrequency) {
         Ui.pushView(new MyPickerGenericSettings(:contextLivetrack, :itemSportsTrackLiveFrequency),
                     new MyPickerGenericSettingsDelegate(:contextLivetrack, :itemSportsTrackLiveFrequency),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if(_item == :menuFlySafeLivetrackFrequency) {
+        Ui.pushView(new MyPickerGenericSettings(:contextLivetrack, :itemFlySafeLivetrackFrequency),
+                    new MyPickerGenericSettingsDelegate(:contextLivetrack, :itemFlySafeLivetrackFrequency),
                     Ui.SLIDE_IMMEDIATE);
       }
     }
