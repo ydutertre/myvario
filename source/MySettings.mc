@@ -78,6 +78,7 @@ class MySettings {
   // ... livetrack
   public var iLivetrack24Frequency = 0;
   public var iSportsTrackLiveFrequency = 0;
+  public var iFlySafeLivetrackFrequency = 0;
 
   // Units
   // ... symbols
@@ -104,6 +105,7 @@ class MySettings {
   public var fVariometerSmoothing as Float = 0.5; //Standard deviation of altitude measurement at fixed altitude
   public var iLivetrack24FrequencySeconds as Number = 0;
   public var iSportsTrackLiveFrequencySeconds as Number = 0;
+  public var iFlySafeLivetrackFrequencySeconds as Number = 0;
 
   //
   // FUNCTIONS: self
@@ -143,6 +145,7 @@ class MySettings {
     // ... livetrack
     self.setLivetrack24Frequency(self.loadLivetrack24Frequency());
     self.setSportsTrackLiveFrequency(self.loadSportsTrackLiveFrequency());
+    self.setFlySafeLivetrackFrequency(self.loadFlySafeLivetrackFrequency());
   }
 
   function loadAltimeterCalibrationQNH() as Float {  // [Pa]
@@ -632,6 +635,33 @@ class MySettings {
     case 6: self.iSportsTrackLiveFrequencySeconds = 120; break;
     case 7: self.iSportsTrackLiveFrequencySeconds = 180; break;
     case 8: self.iSportsTrackLiveFrequencySeconds = 300; break;
+    }
+  }
+
+  function loadFlySafeLivetrackFrequency() as Number { 
+    return LangUtils.readKeyNumber(App.Properties.getValue("userFlySafeLivetrackFrequency"), 0);
+  }
+  function saveFlySafeLivetrackFrequency(_iValue as Number) as Void { 
+    App.Properties.setValue("userFlySafeLivetrackFrequency", _iValue as App.PropertyValueType);
+  }
+  function setFlySafeLivetrackFrequency(_iValue as Number) as Void {
+    if(_iValue > 8) {
+      _iValue = 8;
+    }
+    else if(_iValue < 0) {
+      _iValue = 0;
+    }
+    self.iFlySafeLivetrackFrequency = _iValue;
+    switch(self.iFlySafeLivetrackFrequency) {
+    case 0: self.iFlySafeLivetrackFrequencySeconds = 0; break;
+    case 1: self.iFlySafeLivetrackFrequencySeconds = 10; break;
+    case 2: self.iFlySafeLivetrackFrequencySeconds = 15; break;
+    case 3: self.iFlySafeLivetrackFrequencySeconds = 20; break;
+    case 4: self.iFlySafeLivetrackFrequencySeconds = 30; break;
+    case 5: self.iFlySafeLivetrackFrequencySeconds = 60; break;
+    case 6: self.iFlySafeLivetrackFrequencySeconds = 120; break;
+    case 7: self.iFlySafeLivetrackFrequencySeconds = 180; break;
+    case 8: self.iFlySafeLivetrackFrequencySeconds = 300; break;
     }
   }
 
