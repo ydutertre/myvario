@@ -433,6 +433,14 @@ class MyProcessing {
           $.oMySportsTrackLive.iCounter++;
         }
         
+        //FlySafe
+        if ($.oMyActivity != null && $.oMySettings.iFlySafeLivetrackFrequencySeconds != 0) {
+          if ($.oMyFlySafeLivetrack.iCounter % $.oMySettings.iFlySafeLivetrackFrequencySeconds == 0) {
+            $.oMyFlySafeLivetrack.updatePosition(_oInfo, oLocation);
+          }
+          $.oMyFlySafeLivetrack.iCounter++;
+        }
+        
         if($.oMySettings.bVariometerThermalDetect) {
           // Thermal core detector
           var iWeightedSum= 0 as Number;

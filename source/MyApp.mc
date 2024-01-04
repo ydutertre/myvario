@@ -75,6 +75,7 @@ var oMyActivity as MyActivity?;
 // Livetrack
 var oMyLivetrack24 as MyLivetrack24 = new MyLivetrack24();
 var oMySportsTrackLive as MySportsTrackLive = new MySportsTrackLive();
+var oMyFlySafeLivetrack as MyFlySafeLivetrack = new MyFlySafeLivetrack();
 
 //ActiveLook
 var oMyActiveLook as MyActiveLook = new MyActiveLook();
@@ -270,6 +271,11 @@ class MyApp extends App.AppBase {
       $.oMySportsTrackLive.init(sSportsTrackLiveEmail, sSportsTrackLivePassword);
       $.oMySportsTrackLive.reset();
     }
+
+    //FlySafeLivetrack
+    var sFlySafeUserId = LangUtils.readKeyString(App.Properties.getValue("userFlySafeUserId"), "");
+    var sFlySafeToken = LangUtils.readKeyString(App.Properties.getValue("userFlySafeToken"), "");
+    $.oMyFlySafeLivetrack.init(sFlySafeUserId, sFlySafeToken);
 
     // Load settings
     $.oMySettings.load();
