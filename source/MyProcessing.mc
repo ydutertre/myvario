@@ -436,7 +436,7 @@ class MyProcessing {
         //FlySafe
         if ($.oMyActivity != null && $.oMySettings.iFlySafeLivetrackFrequencySeconds != 0) {
           if ($.oMyFlySafeLivetrack.iCounter % $.oMySettings.iFlySafeLivetrackFrequencySeconds == 0) {
-            $.oMyFlySafeLivetrack.updatePosition(_oInfo, oLocation);
+            $.oMyFlySafeLivetrack.updatePosition(_oInfo, oLocation, self.fAltitude);
           }
           $.oMyFlySafeLivetrack.iCounter++;
         }

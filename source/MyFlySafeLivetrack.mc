@@ -71,7 +71,7 @@ class MyFlySafeLivetrack {
     iCounter = 0;
   }
 
-  function updatePosition(_info as Position.Info, _location as Position.Location) as Void {
+  function updatePosition(_info as Position.Info, _location as Position.Location, _fAltitude as Lang.Float) as Void {
     // Sys.println("DEBUG: FlySafe updating position");
     if (xAuthToken.equals("") || _info.accuracy == Position.QUALITY_NOT_AVAILABLE) {
       // Sys.println("DEBUG: No auth token or no GPS fix, not sending data");
@@ -103,7 +103,7 @@ class MyFlySafeLivetrack {
         Lang.format("\"lat\": $1$, ", [locDeg[0]])      +   // Latitude in degrees
         Lang.format("\"lon\": $1$, ", [locDeg[1]])      +   // Longitude in degrees
         Lang.format("\"accuracy\": $1$, ", [iAccuracy]) +   // Accuracy in meters
-        Lang.format("\"alt\": $1$, ", [_info.altitude]) +   // Altitude in meters
+        Lang.format("\"alt\": $1$, ", [_fAltitude])     +   // Altitude in meters
         Lang.format("\"speed\": $1$, ", [_info.speed])  +   // Speed in m/s
         Lang.format("\"heading\": $1$, ", [headingDeg]) +   // Heading in degrees
         Lang.format("\"time\": $1$000, ", [_info.when.value()]) + // Unix time in milliseconds (3 zeros added to the end),
