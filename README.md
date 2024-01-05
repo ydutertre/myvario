@@ -90,7 +90,9 @@ Fenix 7X and Forerunner 965.
 These are the watches where the My Vario app has been confirmed to be working
 well:
 - Forerunner 965, 955, 255, 265
-  The 255 and 955 however have easier to see screen in sunlight, in my opinion
+  The 255 and 955 however have easier to see screen in sunlight, in my opinion.
+  Vibration is stronger than Fenix/Epix series.
+  Tone volume seems similar to Fenix/Epix series (maybe slightly higher?)
 
 - Fenix 7 (all variants, 7S, 7, 7X, Pro, etc.)
   Note that Fenix watches seem to have a bug in the Garmin altitude calculation,
@@ -107,6 +109,9 @@ well:
 - Fenix 6 Pro series (used with MyVario by a former Red Bull X-Alps athlete). When
   testing with that athlete's watch, the baro seemed *slightly* better than Fenix 7X
   for whatever reason (purely feeling, not 100% sure and could be unit variability)
+
+Unless explicitly stated above, GPS accuracy, Baro sensitivity, tone volume and vibration
+seem to be roughly equivalent across watches. 
 
 ## Not a programmer
 
