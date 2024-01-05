@@ -11,6 +11,7 @@
   <property id="userVariometerSmoothing" type="number">1</property> 
   <property id="userVariometerPlotRange" type="number">2</property>
   <property id="userVariometerPlotZoom" type="number">9</property>
+  <property id="userVariometerPlotOrientation" type="number">0</property>
   <!-- ... sounds -->
   <property id="userSoundsVariometerTones" type="boolean">true</property>
   <property id="userVariometerVibrations" type="boolean">true</property>
