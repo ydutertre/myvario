@@ -45,6 +45,10 @@ using Toybox.WatchUi as Ui;
 var iMyViewVarioplotPanZoom as Number = 0;
 var iMyViewVarioplotOffsetX as Number = 0;
 var iMyViewVarioplotOffsetY as Number = 0;
+// Scale bar
+var iScaleBarSize as Number = 0;
+var sScaleBarUnit as Number = 0;
+var iPlotScaleBarSize = 40 as Number; // Maximum size of the plot scale bar in pixels
 
 class MyViewVarioplot extends MyViewHeader {
 
@@ -64,6 +68,7 @@ class MyViewVarioplot extends MyViewHeader {
   private var oRezButtonKeyDown as Ui.Drawable?;
   // ... fonts
   private var oRezFontPlot as Ui.FontResource?;
+  private var iFontPlotHeight as Number = 0;
 
   // Layout-specific
   private var iLayoutCenter as Number = 120;
@@ -95,6 +100,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 27;
     self.iLayoutValueYbottom = 173;
     self.iDotRadius = 3;
+    $.iPlotScaleBarSize = 44;
   }
 
   (:layout_246x322)
@@ -108,6 +114,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 30;
     self.iLayoutValueYbottom = 190;
     self.iDotRadius = 3;
+    $.iPlotScaleBarSize = 49;
   }
 
   (:layout_240x240)
@@ -121,6 +128,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 30;
     self.iLayoutValueYbottom = 190;
     self.iDotRadius = 3;
+    $.iPlotScaleBarSize = 48;
   }
 
   (:layout_260x260)
@@ -134,6 +142,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 33;
     self.iLayoutValueYbottom = 205;
     self.iDotRadius = 4;
+    $.iPlotScaleBarSize = 52;
   }
 
   (:layout_280x280)
@@ -147,6 +156,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 35;
     self.iLayoutValueYbottom = 221;
     self.iDotRadius = 5;
+    $.iPlotScaleBarSize = 56;
   }
 
   (:layout_282x470)
@@ -160,6 +170,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 35;
     self.iLayoutValueYbottom = 221;
     self.iDotRadius = 5;
+    $.iPlotScaleBarSize = 56;
   }
 
   (:layout_360x360)
@@ -173,6 +184,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 45;
     self.iLayoutValueYbottom = 281;
     self.iDotRadius = 6;
+    $.iPlotScaleBarSize = 72;
   }
 
   (:layout_390x390)
@@ -186,6 +198,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 49;
     self.iLayoutValueYbottom = 304;
     self.iDotRadius = 7;
+    $.iPlotScaleBarSize = 78;
   }
 
   (:layout_416x416)
@@ -199,6 +212,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 52;
     self.iLayoutValueYbottom = 328;
     self.iDotRadius = 7;
+    $.iPlotScaleBarSize = 83;
   }
 
   (:layout_454x454)
@@ -212,6 +226,7 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 57;
     self.iLayoutValueYbottom = 358;
     self.iDotRadius = 8;
+    $.iPlotScaleBarSize = 91;
   }
 
   //
@@ -232,6 +247,7 @@ class MyViewVarioplot extends MyViewHeader {
     // Load resources
     // ... fonts
     self.oRezFontPlot = Ui.loadResource(Rez.Fonts.fontPlot) as Ui.FontResource;
+    self.iFontPlotHeight = Gfx.getFontHeight(oRezFontPlot);
 
     // Color scale
     switch($.oMySettings.iVariometerRange) {
@@ -457,6 +473,19 @@ class MyViewVarioplot extends MyViewHeader {
     }
     _oDC.drawText(self.iLayoutValueXleft, self.iLayoutValueYbottom, self.oRezFontPlot as Ui.FontResource, Lang.format("$1$ $2$", [sValue, $.oMySettings.sUnitHorizontalSpeed]), Gfx.TEXT_JUSTIFY_LEFT);
 
+    // ... plot scale
+    fValue = $.iScaleBarSize;
+    sValue = $.sScaleBarUnit;
+    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
+    var iScaleBarHeight = self.iLayoutValueYbottom - self.iFontPlotHeight;
+    var iScaleBarStart = self.iLayoutValueXleft;
+    var iScaleBarEnd = iScaleBarStart + fValue.toNumber();
+    _oDC.drawLine(iScaleBarStart, iScaleBarHeight, iScaleBarEnd, iScaleBarHeight); // Horizontal line
+    _oDC.drawLine(iScaleBarStart, iScaleBarHeight, iScaleBarStart, iScaleBarHeight - 5); // Left vertical line
+    _oDC.drawLine(iScaleBarEnd, iScaleBarHeight, iScaleBarEnd, iScaleBarHeight - 5); // Right vertical line
+    _oDC.drawText(iScaleBarStart, iScaleBarHeight, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_LEFT);
+    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+
     // ... finesse
     if($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE and !$.oMyProcessing.bAscent and LangUtils.notNaN($.oMyProcessing.fFinesse)) {
       fValue = $.oMyProcessing.fFinesse;
@@ -491,6 +520,9 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
 
   function initialize() {
     BehaviorDelegate.initialize();
+    var scaleBar = calculateScaleBar($.iPlotScaleBarSize, $.oMySettings.fVariometerPlotScale, $.oMySettings.sUnitDistance, $.oMySettings.fUnitDistanceCoefficient);
+    $.iScaleBarSize = scaleBar[0];
+    $.sScaleBarUnit = scaleBar[1];
   }
 
   function onMenu() {
@@ -562,6 +594,9 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
       $.iMyViewVarioplotOffsetY = ($.iMyViewVarioplotOffsetY*fPlotZoom_ratio).toNumber();
       $.iMyViewVarioplotOffsetX = ($.iMyViewVarioplotOffsetX*fPlotZoom_ratio).toNumber();
       App.Properties.setValue("userVariometerPlotZoom", $.oMySettings.iVariometerPlotZoom);
+      var scaleBar = calculateScaleBar($.iPlotScaleBarSize, $.oMySettings.fVariometerPlotScale, $.oMySettings.sUnitDistance, $.oMySettings.fUnitDistanceCoefficient);
+      $.iScaleBarSize = scaleBar[0];
+      $.sScaleBarUnit = scaleBar[1];
       Ui.requestUpdate();
     }
     else if($.iMyViewVarioplotPanZoom == 2) {  // ... pan up
@@ -596,6 +631,9 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
       $.iMyViewVarioplotOffsetY = ($.iMyViewVarioplotOffsetY*fPlotZoom_ratio).toNumber();
       $.iMyViewVarioplotOffsetX = ($.iMyViewVarioplotOffsetX*fPlotZoom_ratio).toNumber();
       App.Properties.setValue("userVariometerPlotZoom", $.oMySettings.iVariometerPlotZoom);
+      var scaleBar = calculateScaleBar($.iPlotScaleBarSize, $.oMySettings.fVariometerPlotScale, $.oMySettings.sUnitDistance, $.oMySettings.fUnitDistanceCoefficient);
+      $.iScaleBarSize = scaleBar[0];
+      $.sScaleBarUnit = scaleBar[1];
       Ui.requestUpdate();
     }
     else if($.iMyViewVarioplotPanZoom == 2) {  // ... pan down
@@ -607,6 +645,53 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
       Ui.requestUpdate();
     }
     return true;
+  }
+
+  function calculateScaleBar(iMaxBarSize as Lang.Number, fPlotScale as Lang.Float, sUnit as Lang.String, fUnitCoefficient as Lang.Float) as Array<Lang.Number or Lang.String> {
+    var iMinBarSize = 10;
+    var fMinBarScale = iMinBarSize * fUnitCoefficient * fPlotScale;
+    var fMaxBarScale = iMaxBarSize * fUnitCoefficient * fPlotScale;
+  
+    var aiSizeSnap = [10, 5, 2, 1];
+
+    // Try to find a nice size
+    for (var i = 0; i < aiSizeSnap.size(); i++) {
+      var iSize = aiSizeSnap[i];
+      var iSizeSnap = (fMaxBarScale / iSize).toNumber() * iSize;
+      if (iSizeSnap >= fMinBarScale && iSizeSnap <= fMaxBarScale) {
+        var iBarSize = iMaxBarSize * iSizeSnap / fMaxBarScale;
+        return [iBarSize, iSizeSnap + sUnit];
+      }
+    }
+
+    // Failed, try smaller unit
+    if ($.oMySettings.sUnitDistance.equals("nm") || $.oMySettings.sUnitDistance.equals("sm")) {
+      sUnit = "ft";
+      fUnitCoefficient = 3.280839895f;
+    } else if ($.oMySettings.sUnitDistance.equals("km")) {
+      sUnit = "m";
+      fUnitCoefficient = 1.0f;
+    } else {
+      // "Unreachable" Unknown unit...
+      return [0, "ERR"];
+    }
+
+    aiSizeSnap = [1000, 500, 200, 100, 50, 10];
+    fMinBarScale = iMinBarSize * fUnitCoefficient * fPlotScale;
+    fMaxBarScale = iMaxBarSize * fUnitCoefficient * fPlotScale;
+
+    // Try to find a nice size with the smaller unit
+    for (var i = 0; i < aiSizeSnap.size(); i++) {
+      var iSize = aiSizeSnap[i];
+      var iSizeSnap = (fMaxBarScale / iSize).toNumber() * iSize;
+      if (iSizeSnap >= fMinBarScale && iSizeSnap <= fMaxBarScale) {
+        var iBarSize = iMaxBarSize * iSizeSnap / fMaxBarScale;
+        return [iBarSize, iSizeSnap + sUnit];
+      }
+    }
+
+    // Failed again, do not try snapping
+    return [iMaxBarSize, fMaxBarScale.format("%.0f") + sUnit];
   }
 
 }
