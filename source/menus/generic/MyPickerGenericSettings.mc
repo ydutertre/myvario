@@ -274,7 +274,7 @@ class MyPickerGenericSettings extends Ui.Picker {
             :pattern => [oFactory],
             :defaults => [oFactory.indexOfKey(iLivetrack24Frequency)]});
       }
-      if(_item == :itemSportsTrackLiveFrequency) {
+      else if(_item == :itemSportsTrackLiveFrequency) {
         var iSportsTrackLiveFrequency = $.oMySettings.loadSportsTrackLiveFrequency();
         $.oMySettings.load();  // ... reload potentially modified settings
         var asValues = ["Off", "2s", "5s", "15s", "30s", "60s", "120s", "180s", "300s"];
@@ -288,6 +288,21 @@ class MyPickerGenericSettings extends Ui.Picker {
                 :color => Gfx.COLOR_BLUE}),
             :pattern => [oFactory],
             :defaults => [oFactory.indexOfKey(iSportsTrackLiveFrequency)]});
+      }
+      else if(_item == :itemFlySafeLivetrackFrequency) {
+        var iFlySafeLivetrackFrequency = $.oMySettings.loadFlySafeLivetrackFrequency();
+        $.oMySettings.load();  // ... reload potentially modified settings
+        var asValues = ["Off", "10s", "15s", "20s", "30s", "60s", "120s", "180s", "300s"];
+        var oFactory = new PickerFactoryDictionary([0, 1, 2, 3, 4, 5, 6, 7, 8], asValues, null);
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => Ui.loadResource(Rez.Strings.titleFlySafeLivetrackFrequency) as String,
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
+                :color => Gfx.COLOR_BLUE}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iFlySafeLivetrackFrequency)]});
       }
     }
   }
@@ -369,8 +384,11 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
       if(self.item == :itemLivetrack24Frequency) {
         $.oMySettings.saveLivetrack24Frequency(_amValues[0] as Number);
       }
-      if(self.item == :itemSportsTrackLiveFrequency) {
+      else if(self.item == :itemSportsTrackLiveFrequency) {
         $.oMySettings.saveSportsTrackLiveFrequency(_amValues[0] as Number);
+      }
+      else if(self.item == :itemFlySafeLivetrackFrequency) {
+        $.oMySettings.saveFlySafeLivetrackFrequency(_amValues[0] as Number);
       }
     }
     Ui.popView(Ui.SLIDE_IMMEDIATE);

@@ -6,8 +6,8 @@
 ## Overview
 
 This free and open-source application provides all the information you need for
-free flight, tracking/logging, as well as Live Tracking via SportsTrackLive and
-Livetrack24, and even HUD integration with ActiveLook! A true free flight one-
+free flight, tracking/logging, as well as Live Tracking via SportsTrackLive,
+Livetrack24 and FlySafe, and even HUD integration with ActiveLook! A true free flight one-
 stop-shop, on your watch.
 
 1. Dashboards
@@ -48,7 +48,7 @@ low frequency tone
 
 3. Live tracking
 
-- Live tracking is possible with Livetrack24, as well as with SportsTrackLive to share
+- Live tracking is possible with Livetrack24, SportsTrackLive, as well as with FlySafe to share
 free flight activities in real-time, and enjoy 3D visualizations.
 
 4. HUD with ActiveLook

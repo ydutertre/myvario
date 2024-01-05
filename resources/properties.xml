@@ -37,4 +37,7 @@
   <property id="userSportsTrackLiveEmail" type="string">youremail@email.com</property>
   <property id="userSportsTrackLivePassword" type="string">password</property>
   <property id="userSportsTrackLiveFrequency" type="number">0</property>
+  <property id="userFlySafeUserId" type="string">UserID</property>
+  <property id="userFlySafeToken" type="string">Token</property>
+  <property id="userFlySafeLivetrackFrequency" type="number">0</property>
 </properties>
