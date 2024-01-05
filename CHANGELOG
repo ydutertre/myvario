@@ -1,3 +1,7 @@
+* 3.50
+- Added Live Tracking interface with FlySafe (contributed by Lenart Kos)
+  Please check USAGE to set it up!
+
 * 3.33
 - Show altitude and vario even without GPS Fix (contributed by Lenart Kos)
 
