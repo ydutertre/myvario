@@ -98,6 +98,7 @@ class MyProcessing {
   public var fWindSpeed as Float = 0.0f;
   public var iWindDirection as Number = 0;
   public var bWindValid as Boolean = false;
+  public var cWindSpeedColor as Number = 0;
   // ... circling
   public var bCirclingCount as Number = 0;
   public var bNotCirclingCount as Number = 0;
@@ -651,7 +652,11 @@ class MyProcessing {
 
       var iSectorDiff = (iMax - iMin).abs();
       if((iSectorDiff >= ( self.DIRECTION_NUM_OF_SECTORS / 2 - 1)) and (iSectorDiff <= ( self.DIRECTION_NUM_OF_SECTORS / 2 + 1))) {
-        self.fWindSpeed = (self.afSpeed[iMax] - self.afSpeed[iMin]) / 2;
+        var fNewSpeed = (self.afSpeed[iMax] - self.afSpeed[iMin]) / 2;
+        if (self.cWindSpeedColor == 0 || (fNewSpeed - self.fWindSpeed).abs() > 1) {
+          self.cWindSpeedColor = getWindColor(fNewSpeed);
+        }
+        self.fWindSpeed = fNewSpeed;
         self.iWindDirection = (self.aiAngle[iMax] + 180) % 360;
         self.bWindValid = true;
       }
@@ -660,6 +665,18 @@ class MyProcessing {
       if(self.bNotCirclingCount >= 20) { self.bCirclingCount = 0; } //No longer circling
       bNotCirclingCount += 1;
     }
+  }
+
+  function getWindColor(_fSpeed as Float) as Number {
+    // Blue to green to yellow to to orange red
+    if (_fSpeed < 0.0f) { return 0xff0000; }
+    if (_fSpeed < 1.0f) { return 0x0047ff; }
+    if (_fSpeed < 2.0f) { return 0x00ff69; }
+    if (_fSpeed < 3.0f) { return 0x03ff00; }
+    if (_fSpeed < 4.0f) { return 0xe6ff00; }
+    if (_fSpeed < 5.0f) { return 0xffd800; }
+    if (_fSpeed < 6.0f) { return 0xff7900; }
+    return 0xff0000;
   }
 
 }

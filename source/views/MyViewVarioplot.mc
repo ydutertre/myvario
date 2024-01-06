@@ -573,6 +573,31 @@ class MyViewVarioplot extends MyViewHeader {
     _oDC.drawText(iScaleBarStart, iScaleBarHeight, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_LEFT);
     _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
 
+
+    // ... wind
+    var iFinesseXOffset = 0;
+    var iFinesseYOffset = 0;
+    if ($.oMyProcessing.bWindValid) {
+      // Draw wind text
+      var fSpeed = $.oMyProcessing.fWindSpeed * $.oMySettings.fUnitWindSpeedCoefficient;
+      var iDirection = $.oMyProcessing.iWindDirection;
+      sValue = Lang.format("$1$/$2$", [$.oMySettings.iUnitDirection == 0 ? iDirection : $.oMyProcessing.convertDirection(iDirection), fSpeed.format("%02.0f")]);
+      _oDC.drawText(self.iLayoutValueXright, self.iLayoutValueYbottom, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_RIGHT);
+
+      // Draw wind arrow
+      var iWindX = self.iLayoutValueXright - iCompassRadius;
+      var iWindY = self.iLayoutValueYbottom - iCompassRadius;
+      var iWindBg = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY;
+      drawArrow(_oDC, iWindX, iWindY, iCompassRadius, Math.toRadians(iDirection + 180) - fMapRotation, 0.1f, $.oMyProcessing.cWindSpeedColor, iWindBg);
+
+      // Restore color
+      _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+      
+      // Offset for finesse
+      iFinesseXOffset = -iCompassRadius * 2 - 5;
+      iFinesseYOffset = -self.iFontPlotHeight;
+    }
+
     // ... finesse
     if($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE and !$.oMyProcessing.bAscent and LangUtils.notNaN($.oMyProcessing.fFinesse)) {
       fValue = $.oMyProcessing.fFinesse;
@@ -581,7 +606,7 @@ class MyViewVarioplot extends MyViewHeader {
     else {
       sValue = $.MY_NOVALUE_LEN2;
     }
-    _oDC.drawText(self.iLayoutValueXright, self.iLayoutValueYbottom, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_RIGHT);
+    _oDC.drawText(self.iLayoutValueXright + iFinesseXOffset, self.iLayoutValueYbottom + iFinesseYOffset, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_RIGHT);
   }
 
   function onHide() {
