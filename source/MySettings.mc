@@ -74,6 +74,7 @@ class MySettings {
   public var iUnitElevation as Number = -1;
   public var iUnitPressure as Number = -1;
   public var iUnitDirection as Number = 1;
+  public var iUnitWindSpeed as Number = -1;
   public var bUnitTimeUTC as Boolean = false;
   // ... livetrack
   public var iLivetrack24Frequency = 0;
@@ -88,6 +89,7 @@ class MySettings {
   public var sUnitVerticalSpeed as String = "m/s";
   public var sUnitPressure as String = "mb";
   public var sUnitDirection as String = "txt";
+  public var sUnitWindSpeed as String = "km/h";
   public var sUnitTime as String = "LT";
   // ... conversion coefficients
   public var fUnitDistanceCoefficient as Float = 0.001f;
@@ -95,6 +97,7 @@ class MySettings {
   public var fUnitElevationCoefficient as Float = 1.0f;
   public var fUnitVerticalSpeedCoefficient as Float = 1.0f;
   public var fUnitPressureCoefficient as Float = 0.01f;
+  public var fUnitWindSpeedCoefficient as Float = 3.6f;
 
   // Other
   public var fVariometerRange as Float = 3.0f;
@@ -143,6 +146,7 @@ class MySettings {
     self.setUnitElevation(self.loadUnitElevation());
     self.setUnitPressure(self.loadUnitPressure());
     self.setUnitDirection(self.loadUnitDirection());
+    self.setUnitWindSpeed(self.loadUnitWindSpeed());
     self.setUnitTimeUTC(self.loadUnitTimeUTC());
     // ... livetrack
     self.setLivetrack24Frequency(self.loadLivetrack24Frequency());
@@ -586,6 +590,41 @@ class MySettings {
     }
   }
 
+  function loadUnitWindSpeed() as Number {
+    return LangUtils.readKeyNumber(App.Properties.getValue("userUnitWindSpeed"), 1);
+  }
+  function saveUnitWindSpeed(_iValue as Number) as Void {
+    App.Properties.setValue("userUnitWindSpeed", _iValue as App.PropertyValueType);
+  }
+  function setUnitWindSpeed(_iValue as Number) as Void {
+    if(_iValue < 0 or _iValue > 3) {
+      _iValue = -1;
+    }
+    self.iUnitDistance = _iValue;
+    if(self.iUnitDistance < 0) {  // ... auto
+      var oDeviceSettings = Sys.getDeviceSettings();
+      if(oDeviceSettings has :distanceUnits and oDeviceSettings.distanceUnits != null) {
+        _iValue = oDeviceSettings.distanceUnits;
+      }
+      else {
+        _iValue = Sys.UNIT_METRIC;
+      }
+    }
+
+    if (_iValue == Sys.UNIT_METRIC) {
+      self.sUnitWindSpeed = "km/h";
+      self.fUnitWindSpeedCoefficient = 3.6f;  // ... m/s -> km/h
+    } else if (_iValue == Sys.UNIT_STATUTE) {
+      self.sUnitWindSpeed = "mph";
+      self.fUnitWindSpeedCoefficient = 2.23693629205f;  // ... m/s -> mph
+    } else if (_iValue == 2) {
+      self.sUnitWindSpeed = "kt";
+      self.fUnitWindSpeedCoefficient = 1.94384449244f;  // ... m/s -> kt
+    } else {
+      self.sUnitWindSpeed = "m/s";
+      self.fUnitWindSpeedCoefficient = 1.0f;  // ... m/s -> m/s
+    }
+  }
   function loadUnitTimeUTC() as Boolean {
     return LangUtils.readKeyBoolean(App.Properties.getValue("userUnitTimeUTC"), false);
   }
