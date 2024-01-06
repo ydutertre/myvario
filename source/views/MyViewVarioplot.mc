@@ -510,8 +510,9 @@ class MyViewVarioplot extends MyViewHeader {
     // Draw values
     var fValue;
     var sValue;
+    var cTextColor = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE;
 
-    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+    _oDC.setColor(cTextColor, Gfx.COLOR_TRANSPARENT);
 
     // ... altitude
     if(LangUtils.notNaN($.oMyProcessing.fAltitude)) {
@@ -533,7 +534,31 @@ class MyViewVarioplot extends MyViewHeader {
     }
 
     _oDC.drawText(self.iLayoutValueXleft, self.iLayoutValueYtop, self.oRezFontPlot as Ui.FontResource, Lang.format("$1$ $2$", [sValue, $.oMySettings.sUnitElevation]), Gfx.TEXT_JUSTIFY_LEFT);
-    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+    _oDC.setColor(cTextColor, Gfx.COLOR_TRANSPARENT);
+
+    // ... thermal info
+    if ($.oMyProcessing.bCirclingCount >= 5) {
+      // Draw thermal time
+      var iThermalTime = Time.now().value() - $.oMyProcessing.iCirclingStartEpoch;
+      var iThermalTimeMinutes = iThermalTime / 60;
+      var iThermalTimeSeconds = iThermalTime % 60;
+      sValue = Lang.format("$1$:$2$", [iThermalTimeMinutes.format("%02d"), iThermalTimeSeconds.format("%02d")]);
+      _oDC.drawText(self.iLayoutValueXleft, self.iLayoutValueYtop + self.iFontPlotHeight, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_LEFT);
+
+      // Draw thermal altitude gain
+      var iThermalGain = $.oMyProcessing.fAltitude - $.oMyProcessing.fCirclingStartAltitude;
+      fValue = iThermalGain * $.oMySettings.fUnitElevationCoefficient;
+      var cThermalGainColor = self.getDrawColor(1000 * iThermalGain);
+      if (fValue < 0) {
+        sValue = fValue.format("%.0f");
+      } else {
+        sValue = "+" + fValue.format("%.0f");
+      }
+      sValue += $.oMySettings.sUnitElevation;
+      _oDC.setColor(cThermalGainColor, Gfx.COLOR_TRANSPARENT);
+      _oDC.drawText(self.iLayoutValueXleft, self.iLayoutValueYtop + self.iFontPlotHeight * 2, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_LEFT);
+      _oDC.setColor(cTextColor, Gfx.COLOR_TRANSPARENT);
+    }
 
     // ... variometer
     if(LangUtils.notNaN($.oMyProcessing.fVariometer)) {
@@ -571,7 +596,7 @@ class MyViewVarioplot extends MyViewHeader {
     _oDC.drawLine(iScaleBarStart, iScaleBarHeight, iScaleBarStart, iScaleBarHeight - 5); // Left vertical line
     _oDC.drawLine(iScaleBarEnd, iScaleBarHeight, iScaleBarEnd, iScaleBarHeight - 5); // Right vertical line
     _oDC.drawText(iScaleBarStart, iScaleBarHeight, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_LEFT);
-    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+    _oDC.setColor(cTextColor, Gfx.COLOR_TRANSPARENT);
 
 
     // ... wind
@@ -591,7 +616,7 @@ class MyViewVarioplot extends MyViewHeader {
       drawArrow(_oDC, iWindX, iWindY, iCompassRadius, Math.toRadians(iDirection + 180) - fMapRotation, 0.1f, $.oMyProcessing.cWindSpeedColor, iWindBg);
 
       // Restore color
-      _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+      _oDC.setColor(cTextColor, Gfx.COLOR_TRANSPARENT);
       
       // Offset for finesse
       iFinesseXOffset = -iCompassRadius * 2 - 5;
@@ -607,7 +632,7 @@ class MyViewVarioplot extends MyViewHeader {
       sValue = $.MY_NOVALUE_LEN2;
     }
     _oDC.drawText(self.iLayoutValueXright + iFinesseXOffset, self.iLayoutValueYbottom + iFinesseYOffset, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_RIGHT);
-  }
+}
 
   function onHide() {
     MyViewHeader.onHide();

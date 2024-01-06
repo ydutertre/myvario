@@ -104,6 +104,8 @@ class MyProcessing {
   public var bNotCirclingCount as Number = 0;
   public var bIsPreviousGeneral as Boolean = true;
   public var bAutoThermalTriggered as Boolean = false;
+  public var iCirclingStartEpoch as Number = 0;
+  public var fCirclingStartAltitude as Float = 0;
   // ... plot buffer (using integer-only operations!)
   public var iPlotIndex as Number = -1;
   public var aiPlotEpoch as Array<Number>;
@@ -636,6 +638,8 @@ class MyProcessing {
     } else {
         // Turning in new direction or more than 360/num of sectors, discard data
         self.iWindSectorCount = 0;
+        self.iCirclingStartEpoch = $.oMyProcessing.iPositionEpoch;
+        self.fCirclingStartAltitude = $.oMyProcessing.fAltitude;
     }
     self.iWindOldSector = self.iWindSector;
 
