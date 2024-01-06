@@ -61,7 +61,7 @@ class MyViewVarioplot extends MyViewHeader {
 
   // Display mode (internal)
   private var iPanZoom as Number = 0;
-
+  private var fMapRotation as Float = 0;
   // Resources
   // ... buttons
   private var oRezButtonKeyUp as Ui.Drawable?;
@@ -322,6 +322,29 @@ class MyViewVarioplot extends MyViewHeader {
     return [fLongDiffRot + _fOriginLong, fLatDiffRot + _fOriginLat];
   }
 
+  function drawArrow(_oDC as Gfx.Dc, _iCenterX, _iCenterY, _iRadius, _fAngle, _fThickness,  _iColorFg, _iColorBg) as Void {
+    // Draw background
+    if (_iColorBg != Gfx.COLOR_TRANSPARENT) {
+      _oDC.setColor(_iColorBg, Gfx.COLOR_TRANSPARENT);
+      _oDC.fillCircle(_iCenterX, _iCenterY, _iRadius + 1);
+    }
+
+    // Draw arrow
+    if (_iColorFg == Gfx.COLOR_TRANSPARENT) { return; }
+    var fArrowWidth = Math.PI * (1 - _fThickness);
+    var fArrowBackLeft = _fAngle - fArrowWidth;
+    var fArrowBackRight = _fAngle + fArrowWidth;
+
+    var aiiArrow = [
+      [_iCenterX + _iRadius * Math.sin(_fAngle),         _iCenterY - _iRadius * Math.cos(_fAngle)],
+      [_iCenterX + _iRadius * Math.sin(fArrowBackLeft),  _iCenterY - _iRadius * Math.cos(fArrowBackLeft)],
+      [_iCenterX + _iRadius * Math.sin(fArrowBackRight), _iCenterY - _iRadius * Math.cos(fArrowBackRight)]
+    ];
+
+    _oDC.setColor(_iColorFg, Gfx.COLOR_TRANSPARENT);
+    _oDC.fillPolygon(aiiArrow);
+  }
+
   function drawPlot(_oDC as Gfx.Dc) as Void {
     //Sys.println("DEBUG: MyViewVarioplot.drawPlot()");
     var iNowEpoch = Time.now().value();
@@ -360,8 +383,15 @@ class MyViewVarioplot extends MyViewHeader {
     var iLastColor = 0;
     var bDraw = false;
     var bHeadingUp = LangUtils.notNaN($.oMyProcessing.fHeading) && $.oMySettings.iVariometerPlotOrientation == 1;
-    var fHeadingSin = Math.sin($.oMyProcessing.fHeading);
-    var fHeadingCos = Math.cos($.oMyProcessing.fHeading);
+    var fHeadingSin = 0;
+    var fHeadingCos = 1;
+    if (bHeadingUp) {
+      fHeadingSin = Math.sin($.oMyProcessing.fHeading);
+      fHeadingCos = Math.cos($.oMyProcessing.fHeading);
+      fMapRotation = $.oMyProcessing.fHeading;
+    } else {
+      fMapRotation = 0;
+    }
     for(var i=iVariometerPlotRange; i>0; i--) {
       var iCurrentEpoch = $.oMyProcessing.aiPlotEpoch[iCurrentIndex];
       if(iCurrentEpoch >= 0 and iCurrentEpoch >= iStartEpoch) {
@@ -430,25 +460,12 @@ class MyViewVarioplot extends MyViewHeader {
       var iCompassX = self.iLayoutValueXright - iCompassRadius;
       var iCompassY = self.iLayoutValueYtop + iCompassRadius + self.iFontPlotHeight;
 
-      // Draw compass background
-      _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
-      _oDC.fillCircle(iCompassX, iCompassY, iCompassRadius + 1);
-
       // Draw compass arrow
-      var fCompassDir = -$.oMyProcessing.fHeading;
-      var fArrowWidth = Math.PI * 0.9f;
-      var fCompassBackLeft = fCompassDir - fArrowWidth;
-      var fCompassBackRight = fCompassDir + fArrowWidth;
+      var fCompassDir = -fMapRotation;
+      var iCompassBg = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY;
+      drawArrow(_oDC, iCompassX, iCompassY, iCompassRadius, fCompassDir, 0.1f, Gfx.COLOR_RED, iCompassBg);
 
-      var aiiCompassArrow = [
-        [iCompassX + iCompassRadius * Math.sin(fCompassDir),       iCompassY - iCompassRadius * Math.cos(fCompassDir)],
-        [iCompassX + iCompassRadius * Math.sin(fCompassBackLeft),  iCompassY - iCompassRadius * Math.cos(fCompassBackLeft)],
-        [iCompassX + iCompassRadius * Math.sin(fCompassBackRight), iCompassY - iCompassRadius * Math.cos(fCompassBackRight)]
-      ];
-
-      _oDC.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
-      _oDC.fillPolygon(aiiCompassArrow);
-
+      // Draw compass text
       _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
       _oDC.drawText(iCompassX, iCompassY, self.oRezFontPlot as Ui.FontResource, "N", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
     }
