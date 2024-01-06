@@ -53,6 +53,7 @@
   <string id="titleUnitTimeUTC">Timezone</string>
   <string id="valueUnitTimeLT">LT</string>
   <string id="valueUnitTimeUTC">UTC</string>
+  <string id="titleUnitWindSpeed">Wind Speed</string>
   <!-- Menu (storage) -->
   <string id="titleStorage">Storage</string>
   <string id="titleStorageLoad">Load</string>
