@@ -165,13 +165,14 @@ In addition, the following values will be displayed in the corner of the plot:
    your current altitude. The color of this number indicates how much altitude
    has been gained (or lost) within the last 20 seconds: green for gains, red
    for loss, grey for (relatively) unchanged. This can be very useful in weak
-   thermals.
+   thermals. If circling is detected, it will show current circling duration
+   and height gain (or loss).
  - Top-Right:
    your current vertical speed (and compass in heading up orientation)
  - Bottom-Left:
    your current ground speed and plot scale
  - Bottom-Right:
-   your current finesse
+   your current finesse and wind direction/speed if available
 
 If turned on, the current thermal detected core will be displayed as a blue circle.
 See "About Thermal Detection" for more details.
@@ -315,6 +316,8 @@ Note: absolute and relative corrections shouldn't be needed in most cases. Check
     whether to show directions as an angle (247, 62, etc.) or as text (NW, SE, N, etc.)
   - Timezone:
     display Local Time (LT) or Universal Time Coordinates (UTC/Z)
+  - Wind speed:
+    show estimated wind speed as km/h, mph, knots or m/s
 
 * Livetrack
   - LT24 Frequency:
