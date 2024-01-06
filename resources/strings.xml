@@ -26,6 +26,7 @@
   <string id="valueVariometerSmoothingHigh">High</string>
   <string id="valueVariometerSmoothingUltra">Ultra</string>
   <string id="titleVariometerPlotRange">Plot Range</string>
+  <string id="titleVariometerPlotOrientation">Plot Orientation</string>
   <!-- Menu (settings:sounds) -->
   <string id="titleSettingsSounds">Sounds</string>
   <string id="titleSoundsVariometerTones">Variometer Tones</string>

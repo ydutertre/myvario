@@ -98,6 +98,7 @@ class MySettings {
 
   // Other
   public var fVariometerRange as Float = 3.0f;
+  public var iVariometerPlotOrientation as Number = 0;
   public var fVariometerPlotZoom as Float = 0.0308666666667f;
   public var fVariometerPlotScale as Number = 1.0f;
   public var fMinimumClimb as Float = 0.2;
@@ -119,6 +120,7 @@ class MySettings {
     self.setAltimeterCorrectionRelative(self.loadAltimeterCorrectionRelative());
     // ... variometer
     self.setVariometerRange(self.loadVariometerRange());
+    self.setVariometerPlotOrientation(self.loadVariometerPlotOrientation());
     self.setVariometerAutoThermal(self.loadVariometerAutoThermal());
     self.setVariometerThermalDetect(self.loadVariometerThermalDetect());
     self.setVariometerSmoothing(self.loadVariometerSmoothing());
@@ -216,6 +218,22 @@ class MySettings {
     case 1: self.fVariometerRange = 6.0f; break;
     case 2: self.fVariometerRange = 9.0f; break;
     }
+  }
+
+  function loadVariometerPlotOrientation () as Number {
+    return LangUtils.readKeyNumber(App.Properties.getValue("userVariometerPlotOrientation"), 0);
+  }
+  function saveVariometerPlotOrientation (_iValue as Number) as Void {
+    App.Properties.setValue("userVariometerPlotOrientation", _iValue as App.PropertyValueType);
+  }
+  function setVariometerPlotOrientation (_iValue as Number) as Void {
+    if(_iValue > 1) {
+      _iValue = 1;
+    }
+    else if(_iValue < 0) {
+      _iValue = 0;
+    }
+    self.iVariometerPlotOrientation = _iValue;
   }
 
   function loadVariometerPlotRange() as Number {

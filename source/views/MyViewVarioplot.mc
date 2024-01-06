@@ -45,6 +45,10 @@ using Toybox.WatchUi as Ui;
 var iMyViewVarioplotPanZoom as Number = 0;
 var iMyViewVarioplotOffsetX as Number = 0;
 var iMyViewVarioplotOffsetY as Number = 0;
+// Scale bar
+var iScaleBarSize as Number = 0;
+var sScaleBarUnit as Number = 0;
+var iPlotScaleBarSize = 40 as Number; // Maximum size of the plot scale bar in pixels
 
 class MyViewVarioplot extends MyViewHeader {
 
@@ -64,6 +68,7 @@ class MyViewVarioplot extends MyViewHeader {
   private var oRezButtonKeyDown as Ui.Drawable?;
   // ... fonts
   private var oRezFontPlot as Ui.FontResource?;
+  private var iFontPlotHeight as Number = 0;
 
   // Layout-specific
   private var iLayoutCenter as Number = 120;
@@ -75,6 +80,7 @@ class MyViewVarioplot extends MyViewHeader {
   private var iLayoutValueYtop as Number = 30;
   private var iLayoutValueYbottom as Number = 193;
   private var iDotRadius = 5 as Number;
+  private var iCompassRadius = 20 as Number;
 
   // Color scale
   private var aiScale as Array<Number> = [-3000, -2000, -1000, -50, 50, 1000, 2000, 3000] as Array<Number>;
@@ -95,6 +101,8 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 27;
     self.iLayoutValueYbottom = 173;
     self.iDotRadius = 3;
+    self.iCompassRadius = 10;
+    $.iPlotScaleBarSize = 44;
   }
 
   (:layout_246x322)
@@ -108,6 +116,8 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 30;
     self.iLayoutValueYbottom = 190;
     self.iDotRadius = 3;
+    self.iCompassRadius = 10;
+    $.iPlotScaleBarSize = 49;
   }
 
   (:layout_240x240)
@@ -121,6 +131,8 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 30;
     self.iLayoutValueYbottom = 190;
     self.iDotRadius = 3;
+    self.iCompassRadius = 10;
+    $.iPlotScaleBarSize = 48;
   }
 
   (:layout_260x260)
@@ -134,6 +146,8 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 33;
     self.iLayoutValueYbottom = 205;
     self.iDotRadius = 4;
+    self.iCompassRadius = 12;
+    $.iPlotScaleBarSize = 52;
   }
 
   (:layout_280x280)
@@ -147,6 +161,8 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 35;
     self.iLayoutValueYbottom = 221;
     self.iDotRadius = 5;
+    self.iCompassRadius = 14;
+    $.iPlotScaleBarSize = 56;
   }
 
   (:layout_282x470)
@@ -160,6 +176,8 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 35;
     self.iLayoutValueYbottom = 221;
     self.iDotRadius = 5;
+    self.iCompassRadius = 14;
+    $.iPlotScaleBarSize = 56;
   }
 
   (:layout_360x360)
@@ -173,6 +191,8 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 45;
     self.iLayoutValueYbottom = 281;
     self.iDotRadius = 6;
+    self.iCompassRadius = 18;
+    $.iPlotScaleBarSize = 72;
   }
 
   (:layout_390x390)
@@ -186,6 +206,8 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 49;
     self.iLayoutValueYbottom = 304;
     self.iDotRadius = 7;
+    self.iCompassRadius = 20;
+    $.iPlotScaleBarSize = 78;
   }
 
   (:layout_416x416)
@@ -199,6 +221,8 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 52;
     self.iLayoutValueYbottom = 328;
     self.iDotRadius = 7;
+    self.iCompassRadius = 20;
+    $.iPlotScaleBarSize = 83;
   }
 
   (:layout_454x454)
@@ -212,6 +236,8 @@ class MyViewVarioplot extends MyViewHeader {
     self.iLayoutValueYtop = 57;
     self.iLayoutValueYbottom = 358;
     self.iDotRadius = 8;
+    self.iCompassRadius = 22;
+    $.iPlotScaleBarSize = 91;
   }
 
   //
@@ -232,6 +258,7 @@ class MyViewVarioplot extends MyViewHeader {
     // Load resources
     // ... fonts
     self.oRezFontPlot = Ui.loadResource(Rez.Fonts.fontPlot) as Ui.FontResource;
+    self.iFontPlotHeight = Gfx.getFontHeight(oRezFontPlot);
 
     // Color scale
     switch($.oMySettings.iVariometerRange) {
@@ -287,6 +314,14 @@ class MyViewVarioplot extends MyViewHeader {
     }
   }
 
+  function rotateCoordinate(_fOriginLong, _fOriginLat, _fLong, _fLat, _fThetaSin, _fThetaCos) {
+    var fLongDiff = _fLong - _fOriginLong;
+    var fLatDiff = _fLat - _fOriginLat;
+    var fLongDiffRot = fLongDiff * _fThetaCos - fLatDiff * _fThetaSin;
+    var fLatDiffRot = fLongDiff * _fThetaSin + fLatDiff * _fThetaCos;
+    return [fLongDiffRot + _fOriginLong, fLatDiffRot + _fOriginLat];
+  }
+
   function drawPlot(_oDC as Gfx.Dc) as Void {
     //Sys.println("DEBUG: MyViewVarioplot.drawPlot()");
     var iNowEpoch = Time.now().value();
@@ -324,12 +359,22 @@ class MyViewVarioplot extends MyViewHeader {
     var iLastY = 0;
     var iLastColor = 0;
     var bDraw = false;
+    var bHeadingUp = LangUtils.notNaN($.oMyProcessing.fHeading) && $.oMySettings.iVariometerPlotOrientation == 1;
+    var fHeadingSin = Math.sin($.oMyProcessing.fHeading);
+    var fHeadingCos = Math.cos($.oMyProcessing.fHeading);
     for(var i=iVariometerPlotRange; i>0; i--) {
       var iCurrentEpoch = $.oMyProcessing.aiPlotEpoch[iCurrentIndex];
       if(iCurrentEpoch >= 0 and iCurrentEpoch >= iStartEpoch) {
         if(iCurrentEpoch-iLastEpoch <= iMaxDeltaEpoch) {
-          var iCurrentX = self.iLayoutCenter+$.iMyViewVarioplotOffsetX + (($.oMyProcessing.aiPlotLongitude[iCurrentIndex]-iEndLongitude)*fZoomX).toNumber();
-          var iCurrentY = self.iLayoutCenter+$.iMyViewVarioplotOffsetY - (($.oMyProcessing.aiPlotLatitude[iCurrentIndex]-iEndLatitude)*fZoomY).toNumber();
+          var fLong = $.oMyProcessing.aiPlotLongitude[iCurrentIndex];
+          var fLat = $.oMyProcessing.aiPlotLatitude[iCurrentIndex];
+          if (bHeadingUp) {
+            var rotated = rotateCoordinate(iEndLongitude, iEndLatitude, fLong, fLat, fHeadingSin, fHeadingCos);
+            fLong = rotated[0];
+            fLat = rotated[1];
+          }
+          var iCurrentX = self.iLayoutCenter+$.iMyViewVarioplotOffsetX + ((fLong-iEndLongitude)*fZoomX).toNumber();
+          var iCurrentY = self.iLayoutCenter+$.iMyViewVarioplotOffsetY - ((fLat-iEndLatitude)*fZoomY).toNumber();
           var iCurrentVariometer = $.oMyProcessing.aiPlotVariometer[iCurrentIndex];
           if(bDraw) {
             var iCurrentColor = self.getDrawColor(iCurrentVariometer);
@@ -362,11 +407,52 @@ class MyViewVarioplot extends MyViewHeader {
 
     // Draw detected thermal if enabled
     if($.oMyProcessing.iCenterLongitude != 0 && $.oMyProcessing.iCenterLatitude != 0 && $.oMyProcessing.iStandardDev != 0) {
-      var myX = self.iLayoutCenter + $.iMyViewVarioplotOffsetX + (($.oMyProcessing.iCenterLongitude-iEndLongitude)*fZoomX).toNumber() + ($.oMyProcessing.fCenterWindOffsetLongitude / $.oMySettings.fVariometerPlotScale).toNumber();
-      var myY = self.iLayoutCenter + $.iMyViewVarioplotOffsetY - (($.oMyProcessing.iCenterLatitude-iEndLatitude)*fZoomY).toNumber() - ($.oMyProcessing.fCenterWindOffsetLatitude / $.oMySettings.fVariometerPlotScale).toNumber();
+      var fCenterLong = $.oMyProcessing.iCenterLongitude;
+      var fCenterLat = $.oMyProcessing.iCenterLatitude;
+      var fWindLong = $.oMyProcessing.fCenterWindOffsetLongitude;
+      var fWindLat = $.oMyProcessing.fCenterWindOffsetLatitude;
+      if (bHeadingUp) {
+        var rotated = rotateCoordinate(iEndLongitude, iEndLatitude, fCenterLong, fCenterLat, fHeadingSin, fHeadingCos);
+        fCenterLong = rotated[0];
+        fCenterLat = rotated[1];
+        rotated = rotateCoordinate(0, 0, fWindLong, fWindLat, fHeadingSin, fHeadingCos);
+        fWindLong = rotated[0];
+        fWindLat = rotated[1];
+      }
+      var myX = self.iLayoutCenter + $.iMyViewVarioplotOffsetX + ((fCenterLong-iEndLongitude)*fZoomX).toNumber() + (fWindLong / $.oMySettings.fVariometerPlotScale).toNumber();
+      var myY = self.iLayoutCenter + $.iMyViewVarioplotOffsetY - ((fCenterLat-iEndLatitude)*fZoomY).toNumber() - (fWindLat / $.oMySettings.fVariometerPlotScale).toNumber();
       _oDC.setColor(Gfx.COLOR_BLUE, Gfx.COLOR_TRANSPARENT);
       _oDC.drawCircle(myX, myY, ($.oMyProcessing.iStandardDev*fZoomY).toNumber());
     }
+
+    // Draw compass
+    if (bHeadingUp) {
+      var iCompassX = self.iLayoutValueXright - iCompassRadius;
+      var iCompassY = self.iLayoutValueYtop + iCompassRadius + self.iFontPlotHeight;
+
+      // Draw compass background
+      _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
+      _oDC.fillCircle(iCompassX, iCompassY, iCompassRadius + 1);
+
+      // Draw compass arrow
+      var fCompassDir = -$.oMyProcessing.fHeading;
+      var fArrowWidth = Math.PI * 0.9f;
+      var fCompassBackLeft = fCompassDir - fArrowWidth;
+      var fCompassBackRight = fCompassDir + fArrowWidth;
+
+      var aiiCompassArrow = [
+        [iCompassX + iCompassRadius * Math.sin(fCompassDir),       iCompassY - iCompassRadius * Math.cos(fCompassDir)],
+        [iCompassX + iCompassRadius * Math.sin(fCompassBackLeft),  iCompassY - iCompassRadius * Math.cos(fCompassBackLeft)],
+        [iCompassX + iCompassRadius * Math.sin(fCompassBackRight), iCompassY - iCompassRadius * Math.cos(fCompassBackRight)]
+      ];
+
+      _oDC.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
+      _oDC.fillPolygon(aiiCompassArrow);
+
+      _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+      _oDC.drawText(iCompassX, iCompassY, self.oRezFontPlot as Ui.FontResource, "N", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+    }
+
     //Sys.println(format("DEBUG: centerX, centerY, iEndLongitude, iEndLatitude = $1$, $2$, $3$, $4$", [$.oMyProcessing.iCenterLongitude, $.oMyProcessing.iCenterLatitude, iEndLongitude, iEndLatitude]));
     _oDC.clearClip();
   }
@@ -411,7 +497,7 @@ class MyViewVarioplot extends MyViewHeader {
     _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
 
     // ... altitude
-    if($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE and LangUtils.notNaN($.oMyProcessing.fAltitude)) {
+    if(LangUtils.notNaN($.oMyProcessing.fAltitude)) {
       fValue = $.oMyProcessing.fAltitude * $.oMySettings.fUnitElevationCoefficient;
       sValue = fValue.format("%.0f");
     }
@@ -433,7 +519,7 @@ class MyViewVarioplot extends MyViewHeader {
     _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
 
     // ... variometer
-    if($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE and LangUtils.notNaN($.oMyProcessing.fVariometer)) {
+    if(LangUtils.notNaN($.oMyProcessing.fVariometer)) {
       fValue = $.oMyProcessing.fVariometer_filtered * $.oMySettings.fUnitVerticalSpeedCoefficient;
       if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
         sValue = fValue.format("%+.1f");
@@ -456,6 +542,19 @@ class MyViewVarioplot extends MyViewHeader {
       sValue = $.MY_NOVALUE_LEN3;
     }
     _oDC.drawText(self.iLayoutValueXleft, self.iLayoutValueYbottom, self.oRezFontPlot as Ui.FontResource, Lang.format("$1$ $2$", [sValue, $.oMySettings.sUnitHorizontalSpeed]), Gfx.TEXT_JUSTIFY_LEFT);
+
+    // ... plot scale
+    fValue = $.iScaleBarSize;
+    sValue = $.sScaleBarUnit;
+    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
+    var iScaleBarHeight = self.iLayoutValueYbottom - self.iFontPlotHeight;
+    var iScaleBarStart = self.iLayoutValueXleft;
+    var iScaleBarEnd = iScaleBarStart + fValue.toNumber();
+    _oDC.drawLine(iScaleBarStart, iScaleBarHeight, iScaleBarEnd, iScaleBarHeight); // Horizontal line
+    _oDC.drawLine(iScaleBarStart, iScaleBarHeight, iScaleBarStart, iScaleBarHeight - 5); // Left vertical line
+    _oDC.drawLine(iScaleBarEnd, iScaleBarHeight, iScaleBarEnd, iScaleBarHeight - 5); // Right vertical line
+    _oDC.drawText(iScaleBarStart, iScaleBarHeight, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_LEFT);
+    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
 
     // ... finesse
     if($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE and !$.oMyProcessing.bAscent and LangUtils.notNaN($.oMyProcessing.fFinesse)) {
@@ -491,6 +590,9 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
 
   function initialize() {
     BehaviorDelegate.initialize();
+    var scaleBar = calculateScaleBar($.iPlotScaleBarSize, $.oMySettings.fVariometerPlotScale, $.oMySettings.sUnitDistance, $.oMySettings.fUnitDistanceCoefficient);
+    $.iScaleBarSize = scaleBar[0];
+    $.sScaleBarUnit = scaleBar[1];
   }
 
   function onMenu() {
@@ -562,6 +664,9 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
       $.iMyViewVarioplotOffsetY = ($.iMyViewVarioplotOffsetY*fPlotZoom_ratio).toNumber();
       $.iMyViewVarioplotOffsetX = ($.iMyViewVarioplotOffsetX*fPlotZoom_ratio).toNumber();
       App.Properties.setValue("userVariometerPlotZoom", $.oMySettings.iVariometerPlotZoom);
+      var scaleBar = calculateScaleBar($.iPlotScaleBarSize, $.oMySettings.fVariometerPlotScale, $.oMySettings.sUnitDistance, $.oMySettings.fUnitDistanceCoefficient);
+      $.iScaleBarSize = scaleBar[0];
+      $.sScaleBarUnit = scaleBar[1];
       Ui.requestUpdate();
     }
     else if($.iMyViewVarioplotPanZoom == 2) {  // ... pan up
@@ -596,6 +701,9 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
       $.iMyViewVarioplotOffsetY = ($.iMyViewVarioplotOffsetY*fPlotZoom_ratio).toNumber();
       $.iMyViewVarioplotOffsetX = ($.iMyViewVarioplotOffsetX*fPlotZoom_ratio).toNumber();
       App.Properties.setValue("userVariometerPlotZoom", $.oMySettings.iVariometerPlotZoom);
+      var scaleBar = calculateScaleBar($.iPlotScaleBarSize, $.oMySettings.fVariometerPlotScale, $.oMySettings.sUnitDistance, $.oMySettings.fUnitDistanceCoefficient);
+      $.iScaleBarSize = scaleBar[0];
+      $.sScaleBarUnit = scaleBar[1];
       Ui.requestUpdate();
     }
     else if($.iMyViewVarioplotPanZoom == 2) {  // ... pan down
@@ -607,6 +715,53 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
       Ui.requestUpdate();
     }
     return true;
+  }
+
+  function calculateScaleBar(iMaxBarSize as Lang.Number, fPlotScale as Lang.Float, sUnit as Lang.String, fUnitCoefficient as Lang.Float) as Array<Lang.Number or Lang.String> {
+    var iMinBarSize = 10;
+    var fMinBarScale = iMinBarSize * fUnitCoefficient * fPlotScale;
+    var fMaxBarScale = iMaxBarSize * fUnitCoefficient * fPlotScale;
+  
+    var aiSizeSnap = [10, 5, 2, 1];
+
+    // Try to find a nice size
+    for (var i = 0; i < aiSizeSnap.size(); i++) {
+      var iSize = aiSizeSnap[i];
+      var iSizeSnap = (fMaxBarScale / iSize).toNumber() * iSize;
+      if (iSizeSnap >= fMinBarScale && iSizeSnap <= fMaxBarScale) {
+        var iBarSize = iMaxBarSize * iSizeSnap / fMaxBarScale;
+        return [iBarSize, iSizeSnap + sUnit];
+      }
+    }
+
+    // Failed, try smaller unit
+    if ($.oMySettings.sUnitDistance.equals("nm") || $.oMySettings.sUnitDistance.equals("sm")) {
+      sUnit = "ft";
+      fUnitCoefficient = 3.280839895f;
+    } else if ($.oMySettings.sUnitDistance.equals("km")) {
+      sUnit = "m";
+      fUnitCoefficient = 1.0f;
+    } else {
+      // "Unreachable" Unknown unit...
+      return [0, "ERR"];
+    }
+
+    aiSizeSnap = [1000, 500, 200, 100, 50, 10];
+    fMinBarScale = iMinBarSize * fUnitCoefficient * fPlotScale;
+    fMaxBarScale = iMaxBarSize * fUnitCoefficient * fPlotScale;
+
+    // Try to find a nice size with the smaller unit
+    for (var i = 0; i < aiSizeSnap.size(); i++) {
+      var iSize = aiSizeSnap[i];
+      var iSizeSnap = (fMaxBarScale / iSize).toNumber() * iSize;
+      if (iSizeSnap >= fMinBarScale && iSizeSnap <= fMaxBarScale) {
+        var iBarSize = iMaxBarSize * iSizeSnap / fMaxBarScale;
+        return [iBarSize, iSizeSnap + sUnit];
+      }
+    }
+
+    // Failed again, do not try snapping
+    return [iMaxBarSize, fMaxBarScale.format("%.0f") + sUnit];
   }
 
 }

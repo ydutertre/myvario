@@ -83,6 +83,7 @@ class MyMenuGeneric extends Ui.Menu {
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerThermalDetect) as String, :menuVariometerThermalDetect);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerSmoothing) as String, :menuVariometerSmoothing);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerPlotRange) as String, :menuVariometerPlotRange);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerPlotOrientation) as String, :menuVariometerPlotOrientation);
     }
 
     else if(_menu == :menuSettingsSounds) {
@@ -278,6 +279,11 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       else if(_item == :menuVariometerPlotRange) {
         Ui.pushView(new MyPickerGenericSettings(:contextVariometer, :itemPlotRange),
                     new MyPickerGenericSettingsDelegate(:contextVariometer, :itemPlotRange),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if(_item == :menuVariometerPlotOrientation) {
+        Ui.pushView(new MyPickerGenericSettings(:contextVariometer, :itemPlotOrientation),
+                    new MyPickerGenericSettingsDelegate(:contextVariometer, :itemPlotOrientation),
                     Ui.SLIDE_IMMEDIATE);
       }
       else if(_item == :menuVariometerSmoothing) {

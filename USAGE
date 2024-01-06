@@ -167,14 +167,16 @@ In addition, the following values will be displayed in the corner of the plot:
    for loss, grey for (relatively) unchanged. This can be very useful in weak
    thermals.
  - Top-Right:
-   your current vertical speed
+   your current vertical speed (and compass in heading up orientation)
  - Bottom-Left:
-   your current ground speed
+   your current ground speed and plot scale
  - Bottom-Right:
    your current finesse
 
 If turned on, the current thermal detected core will be displayed as a blue circle.
 See "About Thermal Detection" for more details.
+
+Varioplot can be in configured in settings to be show as north up or heading up.
 
 By pressing the MENU button (long-pressing the UP button), you will enter the
 Pan/Zoom mode, where short pressing the following buttons will result in:
@@ -269,7 +271,9 @@ Note: absolute and relative corrections shouldn't be needed in most cases. Check
     deviation of altitude applied to the Kalman Filter: 0.2, 0.5, 0.7, or 1.0)
   - Plot Range:
     the time range (in minutes) for plotting the variometer-vs-location history
-
+  - Plot Orientation:
+    the orientation of the plot, either "North up" (default) or "Heading up"
+  
 * Sounds
   - Variometer Tones:
     whether to play variometer tones

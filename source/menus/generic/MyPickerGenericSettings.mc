@@ -97,6 +97,20 @@ class MyPickerGenericSettings extends Ui.Picker {
             :defaults => [oFactory.indexOf(iVariometerPlotRange)]});
       }
 
+      else if(_item == :itemPlotOrientation) {
+          var iVariometerPlotOrientation = $.oMySettings.loadVariometerPlotOrientation();
+          var oFactory = new PickerFactoryDictionary([0, 1], ["North up", "HDG up"], null);
+          Picker.initialize({
+              :title => new Ui.Text({
+                  :text => Ui.loadResource(Rez.Strings.titleVariometerPlotOrientation) as String,
+                  :font => Gfx.FONT_TINY,
+                  :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                  :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
+                  :color => Gfx.COLOR_BLUE}),
+              :pattern => [oFactory],
+              :defaults => [oFactory.indexOfKey(iVariometerPlotOrientation)]});
+      }
+
     }
     else if (_context == :contextSettings) {
       if(_item == :itemMinimumClimb) {
@@ -341,7 +355,9 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
       else if(self.item == :itemPlotRange) {
         $.oMySettings.saveVariometerPlotRange(_amValues[0] as Number);
       }
-
+      else if(self.item == :itemPlotOrientation) {
+        $.oMySettings.saveVariometerPlotOrientation(_amValues[0] as Number);
+      }
     }
     else if(self.context == :contextSettings) {
       if(self.item == :itemMinimumClimb) {
