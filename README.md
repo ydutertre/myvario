@@ -1,7 +1,10 @@
 # My Vario (Garmin ConnectIQ) App
-===============================
-### A Variometer and tracker application for Garmin ConnectIQ devices
 
+![icon](./resources/drawables/launcher-60x60.png)
+
+## A Variometer and tracker application for Garmin ConnectIQ devices
+
+![demo](./docs/demo.jpg)
 
 ## Overview
 
@@ -10,28 +13,28 @@ free flight, tracking/logging, as well as Live Tracking via SportsTrackLive,
 Livetrack24 and FlySafe, and even HUD integration with ActiveLook! A true free flight one-
 stop-shop, on your watch.
 
-1. Dashboards
+## Dashboards
 
 Multiple views/dashboards are available.
 
-- a Global view, displaying all flight data in a single pane: altitude, ground
+- [Global view](./USAGE.md#general-view), displaying all flight data in a single pane: altitude, ground
 and vertical speeds, finesse, heading, wind direction and speed estimate, if
 available (wind direction and speed are computed on the fly based on groundspeeds
 when circling)
 
-- a Variometer view, where the vertical speed can be visually seen
+- [Variometer view](./USAGE.md#variometer-view), where the vertical speed can be visually seen
 
-- a Varioplot/thermal assistant view, allowing to keep track of your ascent/descent
+- [Varioplot/thermal assistant view](./USAGE.md#varioplot--thermal-assistant-view), allowing to keep track of your ascent/descent
 rate along your flight path. This view optionally includes a detected wind-corrected
 thermal core visualization to help keep within the thermal.
 
-- a Log view, allowing to keep track of your last activities (unavailable during
+- [Log view](./USAGE.md#log-view), allowing to keep track of your last activities (unavailable during
 flight) including flight start and end times, maximum and minimum altitudes, etc.
 
-An option to auto-switch to and from the varioplot/thermal assistant view automa-
+> An option to [auto-switch](./USAGE.md#variometer) to and from the varioplot/thermal assistant view automa-
 tically (based on circling auto-detection) is available.
 
-2. Tone and vibration curves
+## Tone and vibration curves
 
 The application makes use of the watch beeps and vibrations (if available).
 
@@ -46,18 +49,18 @@ be triggered
 - a sink rate threshold setting is available, for warning of strong sink via a long,
 low frequency tone
 
-3. Live tracking
+## Live tracking
 
 - Live tracking is possible with Livetrack24, SportsTrackLive, as well as with FlySafe to share
-free flight activities in real-time, and enjoy 3D visualizations.
+free flight activities in real-time, and enjoy 3D visualizations. [Read more](./USAGE.md#live-tracking)
 
-4. HUD with ActiveLook
+## HUD with ActiveLook
 
 - The App will pair to ActiveLook glasses and stream the following information in real
 time throughout the flight: Altitude MSL, vertical speed, glide ratio, groundspeed, and
-heading
+heading. [Read more](./USAGE.md#activelook)
 
-5. Under the hood
+## Under the hood
 
 - The application uses a Kalman filter for fast and accurate filtering of altitude
 and vertical speed (compared to the SMA filter used by GliderSK originally)
@@ -66,17 +69,13 @@ and vertical speed (compared to the SMA filter used by GliderSK originally)
 
 - The default settings are optimized for a comfortable experience out of the box
 
-USAGE:
+# Usage:
 
-You really, really want to go through the Manual before first use, and test the
-application at home! See below USAGE manual.
+You **really**, **really** want to go through the Manual before first use, and test the
+application at home!
 
-https://github.com/ydutertre/myvario/blob/main/USAGE
+[Show manual](https://github.com/ydutertre/myvario/blob/main/USAGE.md)
 
-
-## Usage
-
-Please refer to the USAGE file.
 
 ## Supported watches
 
@@ -89,12 +88,12 @@ Fenix 7X and Forerunner 965.
 
 These are the watches where the My Vario app has been confirmed to be working
 well:
-- Forerunner 965, 955, 255, 265
+- `Forerunner 965, 955, 255, 265`:
   The 255 and 955 however have easier to see screen in sunlight, in my opinion.
   Vibration is stronger than Fenix/Epix series.
   Tone volume seems similar to Fenix/Epix series (maybe slightly higher?)
 
-- Fenix 7 (all variants, 7S, 7, 7X, Pro, etc.)
+- `Fenix 7` (*all variants, 7S, 7, 7X, Pro, etc.*)\:
   Note that Fenix watches seem to have a bug in the Garmin altitude calculation,
   although the barometric sensor works well and MyVario's altitude is accurate.
   The app doesn't rely on the Garmin altitude, so no direct impact.
@@ -102,15 +101,15 @@ well:
   (computed by the app) recorded on the activity may not agree, especially on long
   flights.
 
-- Epix Gen 2 (all variants)
+- `Epix Gen 2` (*all variants*)
   I personally think the Fenix 7 series are better for this application, due to
   better sunlight readability
 
-- Fenix 6 Pro series (used with MyVario by a former Red Bull X-Alps athlete). When
+- `Fenix 6 Pro series` (*used with MyVario by a former Red Bull X-Alps athlete*). When
   testing with that athlete's watch, the baro seemed *slightly* better than Fenix 7X
   for whatever reason (purely feeling, not 100% sure and could be unit variability)
 
-Unless explicitly stated above, GPS accuracy, Baro sensitivity, tone volume and vibration
+> Note: Unless explicitly stated above, GPS accuracy, Baro sensitivity, tone volume and vibration
 seem to be roughly equivalent across watches. 
 
 ## Not a programmer
