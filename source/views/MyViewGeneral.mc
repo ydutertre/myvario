@@ -70,7 +70,7 @@ class MyViewGeneral extends MyViewGlobal {
     }
     // ... activity: elapsed
     (View.findDrawableById("labelTopRight") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelWindSpeed) as String);
-    (View.findDrawableById("unitTopRight") as Ui.Text).setText(Lang.format("[$1$]", [$.oMySettings.sUnitHorizontalSpeed]));
+    (View.findDrawableById("unitTopRight") as Ui.Text).setText(Lang.format("[$1$]", [$.oMySettings.sUnitWindSpeed]));
     // ... altitude
     (View.findDrawableById("labelLeft") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelAltitude) as String);
     (View.findDrawableById("unitLeft") as Ui.Text).setText(Lang.format("[$1$]", [$.oMySettings.sUnitElevation]));
@@ -189,7 +189,7 @@ class MyViewGeneral extends MyViewGlobal {
     (self.oRezValueTopRight as Ui.Text).setColor(bRecording ? self.iColorText : Gfx.COLOR_LT_GRAY);
     fValue = $.oMyProcessing.fWindSpeed;
     if(LangUtils.notNaN(fValue) && $.oMyProcessing.bWindValid) {
-      fValue *= $.oMySettings.fUnitHorizontalSpeedCoefficient;
+      fValue *= $.oMySettings.fUnitWindSpeedCoefficient;
       sValue = fValue.format("%.0f");
     }
     else {
