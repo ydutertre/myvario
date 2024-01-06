@@ -323,9 +323,6 @@ class MyProcessing {
     if($.oMySettings.bActiveLook && !$.oMyActiveLook.bReconnecting){
       self.processActiveLook();
     }
-
-    // ... wind
-    self.windStep();
     
     // ... circling Auto Switch
     if($.oMySettings.bVariometerAutoThermal && !self.bAutoThermalTriggered && self.bCirclingCount >=5) {
@@ -354,6 +351,9 @@ class MyProcessing {
       self.bPositionStateful = true;
       if(self.iAccuracy > Pos.QUALITY_LAST_KNOWN) {
         self.iPositionEpoch = _iEpoch;
+
+        // ... wind
+        self.windStep();
 
         // Plot buffer
         self.iPlotIndex = (self.iPlotIndex+1) % self.PLOTBUFFER_SIZE;
@@ -606,44 +606,35 @@ class MyProcessing {
 
   function windStep() as Void {
     if(LangUtils.notNaN(self.fHeading) && LangUtils.notNaN(self.fGroundSpeed) && self.fHeading != null && self.fGroundSpeed != null) {
-      self.iAngle = ((self.fHeading * 57.2957795131f).toNumber()) % 360;
+      self.iAngle = Math.toDegrees(self.fHeading).toNumber() % 360;
       self.fSpeed = self.fGroundSpeed;      
     } else {
       return;
     }
 
-    self.iWindSector = (self.iAngle + (360 / self.DIRECTION_NUM_OF_SECTORS / 2)) % 360 / (360 / self.DIRECTION_NUM_OF_SECTORS);
-    self.aiAngle[self.iWindSector] = self.iAngle;
-    self.afSpeed[self.iWindSector] = self.fSpeed;
-    if(self.iWindSector == (self.iWindOldSector + 1) % self.DIRECTION_NUM_OF_SECTORS) {
-      //Clockwise move
-      if(self.iWindSectorCount >= 0) {
-        self.iWindSectorCount += 1;
-      }
-      else {
-        self.iWindSectorCount = 0;
+    self.iWindSector = (self.iAngle + (180 / self.DIRECTION_NUM_OF_SECTORS)) % 360 / (360 / self.DIRECTION_NUM_OF_SECTORS);
+    // Keep track of max wind speed and direction in each sector while staying in the same sector
+    if (self.iWindOldSector == self.iWindSector) {
+      if (self.afSpeed[self.iWindSector] > self.fSpeed) {
+        self.iAngle = self.aiAngle[self.iWindSector];
+        self.fSpeed = self.afSpeed[self.iWindSector];
       }
     }
-    else {
-      if(self.iWindOldSector == (self.iWindSector +1) % self.DIRECTION_NUM_OF_SECTORS) {
-        //Counterclockwise move
-        if(self.iWindSectorCount <= 0) {
-          self.iWindSectorCount -= 1;
-        }
-        else {
-          self.iWindSectorCount = 0;
-        }
-      }
-      else {
-        if(self.iWindOldSector == self.iWindSector) {
-          //Same sector
-          self.bNotCirclingCount += 1;
-        }
-        else {
-          //More than 360/num of sectors, discard data
-          self.iWindSectorCount = 0;
-        }
-      }
+    self.aiAngle[self.iWindSector] = self.iAngle;
+    self.afSpeed[self.iWindSector] = self.fSpeed;
+
+    if (self.iWindSector == (self.iWindOldSector + 1) % self.DIRECTION_NUM_OF_SECTORS && self.iWindSectorCount >= 0) {
+        // Clockwise move
+        self.iWindSectorCount += 1;
+    } else if (self.iWindOldSector == (self.iWindSector + 1) % self.DIRECTION_NUM_OF_SECTORS && self.iWindSectorCount <= 0) {
+        // Counterclockwise move
+        self.iWindSectorCount -= 1;
+    } else if (self.iWindOldSector == self.iWindSector) {
+        // Same sector
+        self.bNotCirclingCount += 1;
+    } else {
+        // Turning in new direction or more than 360/num of sectors, discard data
+        self.iWindSectorCount = 0;
     }
     self.iWindOldSector = self.iWindSector;
 
@@ -661,7 +652,7 @@ class MyProcessing {
       var iSectorDiff = (iMax - iMin).abs();
       if((iSectorDiff >= ( self.DIRECTION_NUM_OF_SECTORS / 2 - 1)) and (iSectorDiff <= ( self.DIRECTION_NUM_OF_SECTORS / 2 + 1))) {
         self.fWindSpeed = (self.afSpeed[iMax] - self.afSpeed[iMin]) / 2;
-        self.iWindDirection = self.aiAngle[iMin];
+        self.iWindDirection = (self.aiAngle[iMax] + 180) % 360;
         self.bWindValid = true;
       }
     }
