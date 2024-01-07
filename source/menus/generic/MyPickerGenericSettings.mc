@@ -269,8 +269,20 @@ class MyPickerGenericSettings extends Ui.Picker {
                 :color => Gfx.COLOR_BLUE}),
             :pattern => [oFactory],
             :defaults => [oFactory.indexOfKey(bUnitTimeUTC)]});
+      } else if (_item == :itemWindSpeed) {
+        var iUnitWindSpeed = $.oMySettings.loadUnitWindSpeed();
+        var oFactory = new PickerFactoryDictionary([-1, 0, 1, 2, 3],
+                                                   [Ui.loadResource(Rez.Strings.valueAuto), "km/h", "mph", "kt", "m/s"],
+                                                   null);
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => Ui.loadResource(Rez.Strings.titleUnitWindSpeed) as String,
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iUnitWindSpeed)]});
       }
-
     }
     else if (_context == :contextLivetrack) {
       if(_item == :itemLivetrack24Frequency) {
@@ -392,6 +404,9 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
       }
       else if(self.item == :itemTimeUTC) {
         $.oMySettings.saveUnitTimeUTC(_amValues[0] as Boolean);
+      }
+      else if(self.item == :itemWindSpeed) {
+        $.oMySettings.saveUnitWindSpeed(_amValues[0] as Number);
       }
       $.oMySettings.load();  // ... use proper units in settings
 

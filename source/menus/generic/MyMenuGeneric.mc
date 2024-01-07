@@ -114,6 +114,7 @@ class MyMenuGeneric extends Ui.Menu {
       Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitPressure) as String, :menuUnitPressure);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitDirection) as String, :menuUnitDirection);      
       Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitTimeUTC) as String, :menuUnitTimeUTC);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitWindSpeed) as String, :menuUnitWindSpeed);
     }
 
     else if(_menu == :menuSettingsLivetrack) {
@@ -370,6 +371,11 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       else if(_item == :menuUnitTimeUTC) {
         Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemTimeUTC),
                     new MyPickerGenericSettingsDelegate(:contextUnit, :itemTimeUTC),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if(_item == :menuUnitWindSpeed) {
+        Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemWindSpeed),
+                    new MyPickerGenericSettingsDelegate(:contextUnit, :itemWindSpeed),
                     Ui.SLIDE_IMMEDIATE);
       }
     }

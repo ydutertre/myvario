@@ -61,7 +61,7 @@ class MyViewVarioplot extends MyViewHeader {
 
   // Display mode (internal)
   private var iPanZoom as Number = 0;
-
+  private var fMapRotation as Float = 0;
   // Resources
   // ... buttons
   private var oRezButtonKeyUp as Ui.Drawable?;
@@ -322,6 +322,29 @@ class MyViewVarioplot extends MyViewHeader {
     return [fLongDiffRot + _fOriginLong, fLatDiffRot + _fOriginLat];
   }
 
+  function drawArrow(_oDC as Gfx.Dc, _iCenterX, _iCenterY, _iRadius, _fAngle, _fThickness,  _iColorFg, _iColorBg) as Void {
+    // Draw background
+    if (_iColorBg != Gfx.COLOR_TRANSPARENT) {
+      _oDC.setColor(_iColorBg, Gfx.COLOR_TRANSPARENT);
+      _oDC.fillCircle(_iCenterX, _iCenterY, _iRadius + 1);
+    }
+
+    // Draw arrow
+    if (_iColorFg == Gfx.COLOR_TRANSPARENT) { return; }
+    var fArrowWidth = Math.PI * (1 - _fThickness);
+    var fArrowBackLeft = _fAngle - fArrowWidth;
+    var fArrowBackRight = _fAngle + fArrowWidth;
+
+    var aiiArrow = [
+      [_iCenterX + _iRadius * Math.sin(_fAngle),         _iCenterY - _iRadius * Math.cos(_fAngle)],
+      [_iCenterX + _iRadius * Math.sin(fArrowBackLeft),  _iCenterY - _iRadius * Math.cos(fArrowBackLeft)],
+      [_iCenterX + _iRadius * Math.sin(fArrowBackRight), _iCenterY - _iRadius * Math.cos(fArrowBackRight)]
+    ];
+
+    _oDC.setColor(_iColorFg, Gfx.COLOR_TRANSPARENT);
+    _oDC.fillPolygon(aiiArrow);
+  }
+
   function drawPlot(_oDC as Gfx.Dc) as Void {
     //Sys.println("DEBUG: MyViewVarioplot.drawPlot()");
     var iNowEpoch = Time.now().value();
@@ -360,8 +383,15 @@ class MyViewVarioplot extends MyViewHeader {
     var iLastColor = 0;
     var bDraw = false;
     var bHeadingUp = LangUtils.notNaN($.oMyProcessing.fHeading) && $.oMySettings.iVariometerPlotOrientation == 1;
-    var fHeadingSin = Math.sin($.oMyProcessing.fHeading);
-    var fHeadingCos = Math.cos($.oMyProcessing.fHeading);
+    var fHeadingSin = 0;
+    var fHeadingCos = 1;
+    if (bHeadingUp) {
+      fHeadingSin = Math.sin($.oMyProcessing.fHeading);
+      fHeadingCos = Math.cos($.oMyProcessing.fHeading);
+      fMapRotation = $.oMyProcessing.fHeading;
+    } else {
+      fMapRotation = 0;
+    }
     for(var i=iVariometerPlotRange; i>0; i--) {
       var iCurrentEpoch = $.oMyProcessing.aiPlotEpoch[iCurrentIndex];
       if(iCurrentEpoch >= 0 and iCurrentEpoch >= iStartEpoch) {
@@ -430,25 +460,12 @@ class MyViewVarioplot extends MyViewHeader {
       var iCompassX = self.iLayoutValueXright - iCompassRadius;
       var iCompassY = self.iLayoutValueYtop + iCompassRadius + self.iFontPlotHeight;
 
-      // Draw compass background
-      _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY, Gfx.COLOR_TRANSPARENT);
-      _oDC.fillCircle(iCompassX, iCompassY, iCompassRadius + 1);
-
       // Draw compass arrow
-      var fCompassDir = -$.oMyProcessing.fHeading;
-      var fArrowWidth = Math.PI * 0.9f;
-      var fCompassBackLeft = fCompassDir - fArrowWidth;
-      var fCompassBackRight = fCompassDir + fArrowWidth;
+      var fCompassDir = -fMapRotation;
+      var iCompassBg = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY;
+      drawArrow(_oDC, iCompassX, iCompassY, iCompassRadius, fCompassDir, 0.1f, Gfx.COLOR_RED, iCompassBg);
 
-      var aiiCompassArrow = [
-        [iCompassX + iCompassRadius * Math.sin(fCompassDir),       iCompassY - iCompassRadius * Math.cos(fCompassDir)],
-        [iCompassX + iCompassRadius * Math.sin(fCompassBackLeft),  iCompassY - iCompassRadius * Math.cos(fCompassBackLeft)],
-        [iCompassX + iCompassRadius * Math.sin(fCompassBackRight), iCompassY - iCompassRadius * Math.cos(fCompassBackRight)]
-      ];
-
-      _oDC.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
-      _oDC.fillPolygon(aiiCompassArrow);
-
+      // Draw compass text
       _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
       _oDC.drawText(iCompassX, iCompassY, self.oRezFontPlot as Ui.FontResource, "N", Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
     }
@@ -493,8 +510,9 @@ class MyViewVarioplot extends MyViewHeader {
     // Draw values
     var fValue;
     var sValue;
+    var cTextColor = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE;
 
-    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+    _oDC.setColor(cTextColor, Gfx.COLOR_TRANSPARENT);
 
     // ... altitude
     if(LangUtils.notNaN($.oMyProcessing.fAltitude)) {
@@ -516,7 +534,31 @@ class MyViewVarioplot extends MyViewHeader {
     }
 
     _oDC.drawText(self.iLayoutValueXleft, self.iLayoutValueYtop, self.oRezFontPlot as Ui.FontResource, Lang.format("$1$ $2$", [sValue, $.oMySettings.sUnitElevation]), Gfx.TEXT_JUSTIFY_LEFT);
-    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+    _oDC.setColor(cTextColor, Gfx.COLOR_TRANSPARENT);
+
+    // ... thermal info
+    if ($.oMyProcessing.bCirclingCount >= 5) {
+      // Draw thermal time
+      var iThermalTime = Time.now().value() - $.oMyProcessing.iCirclingStartEpoch;
+      var iThermalTimeMinutes = iThermalTime / 60;
+      var iThermalTimeSeconds = iThermalTime % 60;
+      sValue = Lang.format("$1$:$2$", [iThermalTimeMinutes.format("%02d"), iThermalTimeSeconds.format("%02d")]);
+      _oDC.drawText(self.iLayoutValueXleft, self.iLayoutValueYtop + self.iFontPlotHeight, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_LEFT);
+
+      // Draw thermal altitude gain
+      var iThermalGain = $.oMyProcessing.fAltitude - $.oMyProcessing.fCirclingStartAltitude;
+      fValue = iThermalGain * $.oMySettings.fUnitElevationCoefficient;
+      var cThermalGainColor = self.getDrawColor(1000 * iThermalGain);
+      if (fValue < 0) {
+        sValue = fValue.format("%.0f");
+      } else {
+        sValue = "+" + fValue.format("%.0f");
+      }
+      sValue += $.oMySettings.sUnitElevation;
+      _oDC.setColor(cThermalGainColor, Gfx.COLOR_TRANSPARENT);
+      _oDC.drawText(self.iLayoutValueXleft, self.iLayoutValueYtop + self.iFontPlotHeight * 2, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_LEFT);
+      _oDC.setColor(cTextColor, Gfx.COLOR_TRANSPARENT);
+    }
 
     // ... variometer
     if(LangUtils.notNaN($.oMyProcessing.fVariometer)) {
@@ -554,7 +596,32 @@ class MyViewVarioplot extends MyViewHeader {
     _oDC.drawLine(iScaleBarStart, iScaleBarHeight, iScaleBarStart, iScaleBarHeight - 5); // Left vertical line
     _oDC.drawLine(iScaleBarEnd, iScaleBarHeight, iScaleBarEnd, iScaleBarHeight - 5); // Right vertical line
     _oDC.drawText(iScaleBarStart, iScaleBarHeight, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_LEFT);
-    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+    _oDC.setColor(cTextColor, Gfx.COLOR_TRANSPARENT);
+
+
+    // ... wind
+    var iFinesseXOffset = 0;
+    var iFinesseYOffset = 0;
+    if ($.oMyProcessing.bWindValid) {
+      // Draw wind text
+      var fSpeed = $.oMyProcessing.fWindSpeed * $.oMySettings.fUnitWindSpeedCoefficient;
+      var iDirection = $.oMyProcessing.iWindDirection;
+      sValue = Lang.format("$1$/$2$", [$.oMySettings.iUnitDirection == 0 ? iDirection : $.oMyProcessing.convertDirection(iDirection), fSpeed.format("%02.0f")]);
+      _oDC.drawText(self.iLayoutValueXright, self.iLayoutValueYbottom, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_RIGHT);
+
+      // Draw wind arrow
+      var iWindX = self.iLayoutValueXright - iCompassRadius;
+      var iWindY = self.iLayoutValueYbottom - iCompassRadius;
+      var iWindBg = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY;
+      drawArrow(_oDC, iWindX, iWindY, iCompassRadius, Math.toRadians(iDirection + 180) - fMapRotation, 0.1f, $.oMyProcessing.cWindSpeedColor, iWindBg);
+
+      // Restore color
+      _oDC.setColor(cTextColor, Gfx.COLOR_TRANSPARENT);
+      
+      // Offset for finesse
+      iFinesseXOffset = -iCompassRadius * 2 - 5;
+      iFinesseYOffset = -self.iFontPlotHeight;
+    }
 
     // ... finesse
     if($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE and !$.oMyProcessing.bAscent and LangUtils.notNaN($.oMyProcessing.fFinesse)) {
@@ -564,8 +631,8 @@ class MyViewVarioplot extends MyViewHeader {
     else {
       sValue = $.MY_NOVALUE_LEN2;
     }
-    _oDC.drawText(self.iLayoutValueXright, self.iLayoutValueYbottom, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_RIGHT);
-  }
+    _oDC.drawText(self.iLayoutValueXright + iFinesseXOffset, self.iLayoutValueYbottom + iFinesseYOffset, self.oRezFontPlot as Ui.FontResource, sValue, Gfx.TEXT_JUSTIFY_RIGHT);
+}
 
   function onHide() {
     MyViewHeader.onHide();

@@ -30,6 +30,7 @@
   <property id="userUnitPressure" type="number">-1</property>
   <property id="userUnitDirection" type="number">1</property>
   <property id="userUnitTimeUTC" type="boolean">false</property>
+  <property id="userUnitWindSpeed" type="number">-1</property>
   <!-- ... livetrack -->
   <property id="userLivetrack24UserName" type="string">yourusername</property>
   <property id="userLivetrack24Password" type="string">password</property>
