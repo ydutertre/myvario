@@ -1,3 +1,17 @@
+* 3.52
+- Further varioplot enhancements (contributed by Lenart Kos):
+  - Wind arrow with wind speed is displayed
+  - Thermalling statistics are computed and displayed (time in
+  thermal, altitude gain)
+- Wind speed unit can be set by user
+
+* 3.51
+- Varioplot enhancements (contributed by Lenart Kos):
+  - Ability to set heading up or north up (default behavior)
+  - Always display altitude and vario (even if no GPS fix)
+  - Display compass/direction of North if heading up
+  - Display scale indicator
+
 * 3.50
 - Added Live Tracking interface with FlySafe (contributed by Lenart Kos)
   Please check USAGE to set it up!
