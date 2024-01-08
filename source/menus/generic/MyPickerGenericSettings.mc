@@ -45,7 +45,21 @@ class MyPickerGenericSettings extends Ui.Picker {
   //
 
   function initialize(_context as Symbol, _item as Symbol) {
-    if(_context == :contextVariometer) {
+    if (_context == :contextSounds) {
+      if (_item == :itemSoundsToneDriver) {
+        var iSoundToneDriver = $.oMySettings.loadSoundsToneDriver();
+        var oFactory = new PickerFactoryDictionary([0, 1], ["Buzzer", "Speaker"], null);
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => Ui.loadResource(Rez.Strings.titleSoundsToneDriver) as String,
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iSoundToneDriver)]});
+      }
+    }
+    else if(_context == :contextVariometer) {
 
       if(_item == :itemRange) {
         var iVariometerRange = $.oMySettings.loadVariometerRange();
@@ -356,7 +370,12 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
   }
 
   function onAccept(_amValues) {
-    if(self.context == :contextVariometer) {
+    if (self.context == :contextSounds) {
+      if (self.item == :itemSoundsToneDriver) {
+        $.oMySettings.saveSoundsToneDriver(_amValues[0] as Number);
+      }
+    }
+    else if(self.context == :contextVariometer) {
 
       if(self.item == :itemRange) {
         $.oMySettings.saveVariometerRange(_amValues[0] as Number);

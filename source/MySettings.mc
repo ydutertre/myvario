@@ -60,6 +60,7 @@ class MySettings {
   // ... sounds
   public var bSoundsVariometerTones as Boolean = true;
   public var bVariometerVibrations as Boolean = true;
+  public var iSoundsToneDriver as Number = 0; // 0: buzzer, 1: speaker
   public var iMinimumClimb as Number = 2; // Default value of 0.2m/s climb threshold before sounds and vibrations are triggered
   public var iMinimumSink as Number = 1;
   // ... activity
@@ -132,6 +133,7 @@ class MySettings {
     // ... sounds and vibration
     self.setSoundsVariometerTones(self.loadSoundsVariometerTones());
     self.setVariometerVibrations(self.loadVariometerVibrations());
+    self.setSoundsToneDriver(self.loadSoundsToneDriver());
     self.setMinimumClimb(self.loadMinimumClimb());
     self.setMinimumSink(self.loadMinimumSink());
     // ... activity
@@ -346,6 +348,22 @@ class MySettings {
   }
   function setVariometerVibrations(_bValue as Boolean) as Void {
     self.bVariometerVibrations = _bValue;
+  }
+
+  function loadSoundsToneDriver() as Number {
+    return LangUtils.readKeyNumber(App.Properties.getValue("userSoundsToneDriver"), 0);
+  }
+  function saveSoundsToneDriver(_iValue as Number) as Void {
+    App.Properties.setValue("userSoundsToneDriver", _iValue as App.PropertyValueType);
+  }
+  function setSoundsToneDriver(_iValue as Number) as Void {
+    if(_iValue > 1) {
+      _iValue = 1;
+    }
+    else if(_iValue < 0) {
+      _iValue = 0;
+    }
+    self.iSoundsToneDriver = _iValue;
   }
 
   function loadMinimumClimb() as Number { 
