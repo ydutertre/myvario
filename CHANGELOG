@@ -1,3 +1,8 @@
+* 3.53
+- Workaround for Speaker watches like the Venu 3 (contributed by Lenart Kos)
+  - You can set tone as speaker or buzzer in Settings -> Sounds
+  - Workaround to what appears to be a Garmin API bug (or a hardware limitation)
+
 * 3.52
 - Further varioplot enhancements (contributed by Lenart Kos):
   - Wind arrow with wind speed is displayed
