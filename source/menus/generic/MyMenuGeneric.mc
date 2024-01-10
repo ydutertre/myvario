@@ -90,6 +90,7 @@ class MyMenuGeneric extends Ui.Menu {
       Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsSounds) as String);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleSoundsVariometerTones) as String, :menuSoundsVariometerTones);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerVibrations) as String, :menuVariometerVibrations);
+      Menu.addItem(Ui.loadResource(Rez.Strings.titleSoundsToneDriver) as String, :menuSoundsToneDriver);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleMinimumClimb) as String, :menuMinimumClimb);
       Menu.addItem(Ui.loadResource(Rez.Strings.titleMinimumSink) as String, :menuMinimumSink);
     }
@@ -303,6 +304,11 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
       else if(_item == :menuVariometerVibrations) {
         Ui.pushView(new MyPickerGenericOnOff(:contextSettings, :itemVariometerVibrations),
                     new MyPickerGenericOnOffDelegate(:contextSettings, :itemVariometerVibrations),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if (_item == :menuSoundsToneDriver) {
+        Ui.pushView(new MyPickerGenericSettings(:contextSounds, :itemSoundsToneDriver),
+                    new MyPickerGenericSettingsDelegate(:contextSounds, :itemSoundsToneDriver),
                     Ui.SLIDE_IMMEDIATE);
       }
       else if(_item == :menuMinimumClimb) {

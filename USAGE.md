@@ -298,6 +298,11 @@ The application allows you to specify the following settings:
   whether to play variometer tones
 - `Vario Vibrations`:
   whether to use variometer vibrations
+- `Sound Driver`
+  Setting this to `Buzzer` will use custom frequency curves played with a buzzer for variometer tones,
+  but some devices do not have a buzzer and can only play system sounds, for this use `Speaker` driver.
+  This will try to *poorly* emulate vario sounds using system sounds and the speaker. Only use this setting
+  if buzzer does not work. 
 - `Minimum Climb`:
   the minimum vertical speed required to play variometer tones and/or
   vibrations
@@ -482,8 +487,8 @@ If you have a better algo in mind, please let me know!!
 
 As of version 2.20, this application has been made to support some touchscreen
 models. However, use of those models can be confusing, and the watches don't
-provide alert tones (so there are no vario tones, only vibrations! ([bug tracker](https://forums.garmin.com/developer/connect-iq/i/bug-reports/attention-playtone-not-fully-suported-on-venu-3))).
-The below guide still applies, however the controls are different
+provide alert tones, so there are no vario tones, only vibrations. However some approximation of vario tones can be made using system sounds (check [Settings](#settings) -> [Sounds](#sounds) -> `Sound Driver`). ([bug tracker](https://forums.garmin.com/developer/connect-iq/i/bug-reports/attention-playtone-not-fully-suported-on-venu-3)).
+This guide still applies, however the controls are different
 - The Back button is unchanged (bottom right) and can be used to change settings
 - The UP and DOWN buttons (middle left and bottom left on 5 button watches) are
 replaced by SWIPE UP and SWIPE DOWN gestures on the screen

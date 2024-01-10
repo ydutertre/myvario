@@ -125,6 +125,7 @@ class MyApp extends App.AppBase {
   private var oTonesTimer as Timer.Timer?;
   private var iTonesTick as Number = 1000;
   private var iTonesLastTick as Number = 0;
+  private var iTonesSpeakerTick as Number = 0;
 
   // Tones
   private var iTones as Number = 0;
@@ -437,26 +438,47 @@ class MyApp extends App.AppBase {
     // properly map thermals (especially broken up thermals)
     if(self.iTones || self.iVibrations) {
       var fValue = $.oMyProcessing.fVariometer_filtered;
+      var bSpeaker = $.oMySettings.iSoundsToneDriver == 1;
       var iDeltaTick = (self.iTonesTick-self.iTonesLastTick) > 8 ? 8 : self.iTonesTick-self.iTonesLastTick;
-      if(fValue >= $.oMySettings.fMinimumClimb && iDeltaTick >= 8.0f - fValue) {
+      var bVarioDoTick = iDeltaTick >= 8.0f - fValue;
+      if(fValue >= $.oMySettings.fMinimumClimb) {
         //Sys.println(format("DEBUG: playTone: variometer @ $1$", [self.iTonesTick]));
         var iToneLength = (iDeltaTick > 2) ? iDeltaTick * 50 - 100: 50;
         if(self.iTones) {
-          var iToneFrequency = (400 + fValue * 100) > 1100 ? 1100 : (400 + fValue * 100).toNumber();
-          var toneProfile = [new Attn.ToneProfile(iToneFrequency, iToneLength)]; //contrary to Garmin API Doc, first parameter seems to be frequency, and second length
-          Attn.playTone({:toneProfile=>toneProfile});
+          if (!bSpeaker) { // Buzzer
+            if (bVarioDoTick) {
+              var iToneFrequency = (400 + fValue * 100) > 1100 ? 1100 : (400 + fValue * 100).toNumber();
+              var toneProfile = [new Attn.ToneProfile(iToneFrequency, iToneLength)]; //contrary to Garmin API Doc, first parameter seems to be frequency, and second length
+              Attn.playTone({:toneProfile=>toneProfile});
+            }
+          } else { // Speaker
+            if (fValue > 3.0f) { fValue = 3.0f; }
+            var iNextSound = 50 + (1.0f - (fValue / 3.0f)) * 1000;
+            var iToneTick = Sys.getTimer();
+            if (iToneTick - iNextSound  > self.iTonesSpeakerTick) {
+              var iTone = fValue >= 2.9f ? Attn.TONE_MSG : Attn.TONE_LOUD_BEEP;
+              Attn.playTone(iTone);
+              self.iTonesSpeakerTick = iToneTick;
+            }
+          }
         }
-        if(self.iVibrations) {
+        if(self.iVibrations && bVarioDoTick) {
           var vibeData = [new Attn.VibeProfile(100, (iToneLength > 200) ? iToneLength / 2 : 50)]; //Keeping vibration length shorter than tone for battery and wrist!
           Attn.vibrate(vibeData);
         }
-        self.iTonesLastTick = self.iTonesTick;
+        if (bVarioDoTick) {
+          self.iTonesLastTick = self.iTonesTick;
+        }
         return;
       }
       else if(fValue <= $.oMySettings.fMinimumSink && !self.bSinkToneTriggered && self.iTones) {
-        var toneProfile = [new Attn.ToneProfile(220, 2000)];
-        Attn.playTone({:toneProfile=>toneProfile});
-        self.bSinkToneTriggered = true;
+        if (!bSpeaker) { // Buzzer
+          var toneProfile = [new Attn.ToneProfile(220, 2000)];
+          Attn.playTone({:toneProfile=>toneProfile});
+          self.bSinkToneTriggered = true;
+        } else { // Speaker
+          Attn.playTone(Attn.TONE_CANARY);
+        }
       }
       //Reset minimum sink tone if we get significantly above it
       if(fValue >= $.oMySettings.fMinimumSink + 1.0f && self.bSinkToneTriggered) {
