@@ -34,7 +34,7 @@ class MyKalmanFilter {
   // CONSTANTS
   //
 
-  private const ACCELERATION_VARIANCE = 0.36; //Value 0.36 taken from Arduino-vario, when no accelerometer present (as of now, because gyro data isn't accessible, the watch accelerometer can't be used)
+  private const ACCELERATION_VARIANCE = 0.6; //Value 0.6 taken from Arduino-vario, when no accelerometer present (as of now, because gyro data isn't accessible, the watch accelerometer can't be used)
 
   //
   // VARIABLES
