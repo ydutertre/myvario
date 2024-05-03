@@ -1,3 +1,11 @@
+* 3.55
+- Updated for ActiveLook firmware 4.12
+
+* 3.54
+- Workaround for Garmin firmware bug in version 16.22
+  (Thanks to Patrik Niebur for notifying me and providing
+  the workaround!)
+
 * 3.53
 - Workaround for Speaker watches like the Venu 3 (contributed by Lenart Kos)
   - You can set tone as speaker or buzzer in Settings -> Sounds

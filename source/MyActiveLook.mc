@@ -43,7 +43,7 @@ class MyActiveLook
     public var iCommandCounter as Number = 0;
     public var baLastCommand = []b;
     public var iCurrentFirmwareMajor as Number = 4;
-    public var iCurrentFirmwareMinor as Number = 6;
+    public var iCurrentFirmwareMinor as Number = 12;
 
     //Display Data variables
     public var sOldAltitude as String = "";

@@ -50,21 +50,21 @@ using Toybox.WatchUi as Ui;
 //
 
 // Application settings
-var oMySettings as MySettings = new MySettings() ;
+var oMySettings as MySettings?;// = new MySettings() ;
 
 // (Last) position location/altitude
 var oMyPositionLocation as Pos.Location?;
 var fMyPositionAltitude as Float = NaN;
 
 // Sensors filter
-var oMyKalmanFilter as MyKalmanFilter = new MyKalmanFilter();
+var oMyKalmanFilter as MyKalmanFilter?;// = new MyKalmanFilter();
 
 // Internal altimeter
-var oMyAltimeter as MyAltimeter = new MyAltimeter();
+var oMyAltimeter as MyAltimeter?;// = new MyAltimeter();
 
 // Processing logic
-var oMyProcessing as MyProcessing = new MyProcessing();
-var oMyTimeStart as Time.Moment = Time.now();
+var oMyProcessing as MyProcessing?;// = new MyProcessing();
+var oMyTimeStart as Time.Moment?;// = Time.now();
 
 // Log
 var iMyLogIndex as Number = -1;
@@ -73,12 +73,12 @@ var iMyLogIndex as Number = -1;
 var oMyActivity as MyActivity?;
 
 // Livetrack
-var oMyLivetrack24 as MyLivetrack24 = new MyLivetrack24();
-var oMySportsTrackLive as MySportsTrackLive = new MySportsTrackLive();
-var oMyFlySafeLivetrack as MyFlySafeLivetrack = new MyFlySafeLivetrack();
+var oMyLivetrack24 as MyLivetrack24?;// = new MyLivetrack24();
+var oMySportsTrackLive as MySportsTrackLive?;// = new MySportsTrackLive();
+var oMyFlySafeLivetrack as MyFlySafeLivetrack?;// = new MyFlySafeLivetrack();
 
 //ActiveLook
-var oMyActiveLook as MyActiveLook = new MyActiveLook();
+var oMyActiveLook as MyActiveLook?;// = new MyActiveLook();
 
 // Current view
 var oMyView as MyView?;
@@ -139,6 +139,16 @@ class MyApp extends App.AppBase {
 
   function initialize() {
     AppBase.initialize();
+    oMySettings = new MySettings() ;
+    oMyKalmanFilter = new MyKalmanFilter();
+    oMyAltimeter = new MyAltimeter();
+    oMyProcessing = new MyProcessing();
+    oMyTimeStart = Time.now();
+    oMyLivetrack24 = new MyLivetrack24();
+    oMySportsTrackLive = new MySportsTrackLive();
+    oMyFlySafeLivetrack = new MyFlySafeLivetrack();
+    oMyActiveLook = new MyActiveLook();
+
 
     // Log
     // ... last entry index
