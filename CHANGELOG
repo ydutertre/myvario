@@ -1,3 +1,9 @@
+* 3.57
+- Added Hang Gliding as an activity type. This helps work around
+a Garmin bug, whereby "Flight" activity types cause the watch to
+crash when the "Last Activity" glance is displayed.
+- Fixed "Minunum/Maxinum" typo
+
 * 3.56
 - Updated for Enduro 3, Fenix E, Fenix 8 watches
 

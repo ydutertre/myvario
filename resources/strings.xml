@@ -111,8 +111,8 @@
   <string id="titleDistance">Distance (~FAI)</string>
   <string id="unitDistance">km|sm|nm</string>
   <string id="titleAscent">Ascent (cumulative)</string>
-  <string id="titleAltitudeMin">Mininum Altitude</string>
-  <string id="titleAltitudeMax">Maxinum Altitude</string>
+  <string id="titleAltitudeMin">Minimum Altitude</string>
+  <string id="titleAltitudeMax">Maximum Altitude</string>
   <string id="unitTime">hh:mm:ss</string>
   <!-- Livetrack -->
   <string id="titleSettingsLivetrack">Livetrack</string>

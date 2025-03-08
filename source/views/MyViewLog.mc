@@ -180,7 +180,7 @@ class MyViewLog extends MyViewGlobal {
     (self.oRezValueTopLeft as Ui.Text).setText((self.dictLog as Dictionary)["timeStart"] as String);
     // ... time: stop
     (self.oRezValueTopRight as Ui.Text).setText((self.dictLog as Dictionary)["timeStop"] as String);
-    // ... altitude: mininum
+    // ... altitude: minimum
     if(self.iFieldIndex == 0) {  // ... altitude
       (self.oRezUnitLeft as Ui.Text).setText(self.sUnitElevation_fmt);
       (self.oRezValueLeft as Ui.Text).setText((self.dictLog as Dictionary)["altitudeMin"] as String);
@@ -191,7 +191,7 @@ class MyViewLog extends MyViewGlobal {
     }
     // ... distance
     (self.oRezValueCenter as Ui.Text).setText((self.dictLog as Dictionary)["distance"] as String);
-    // ... altitude: maxinum
+    // ... altitude: maximum
     if(self.iFieldIndex == 0) {  // ... altitude
       (self.oRezUnitRight as Ui.Text).setText(self.sUnitElevation_fmt);
       (self.oRezValueRight as Ui.Text).setText((self.dictLog as Dictionary)["altitudeMax"] as String);
