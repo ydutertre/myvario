@@ -174,8 +174,8 @@ class MyPickerGenericSettings extends Ui.Picker {
       else if(_item == :itemActivityType) {
         var iActivityType = $.oMySettings.loadActivityType();
         $.oMySettings.load();  // ... reload potentially modified settings
-        var asValues = [Ui.loadResource(Rez.Strings.valueActivityTypeFlight),Ui.loadResource(Rez.Strings.valueActivityTypeHike)];
-        var oFactory = new PickerFactoryDictionary([0, 1], asValues, {:font => Gfx.FONT_TINY});
+        var asValues = [Ui.loadResource(Rez.Strings.valueActivityTypeFlight),Ui.loadResource(Rez.Strings.valueActivityTypeHike),Ui.loadResource(Rez.Strings.valueActivityTypeHG)];
+        var oFactory = new PickerFactoryDictionary([0, 1, 2], asValues, {:font => Gfx.FONT_TINY});
         Picker.initialize({
             :title => new Ui.Text({
                 :text => Ui.loadResource(Rez.Strings.titleActivityType) as String,

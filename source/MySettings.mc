@@ -66,7 +66,7 @@ class MySettings {
   // ... activity
   public var bActivityAutoStart as Boolean = true; //Auto-start recording after launch
   public var fActivityAutoSpeedStart as Float = 3.0f;
-  public var iActivityType as Number = 0; // Activity type (hike or flight, hike to support Strava)
+  public var iActivityType as Number = 2; // Activity type (hike or flight or hang glider, hike to support Strava, hang glider to avoid a bug on Garmin side, where the "Last Activity" glance crashes the whole watch if activity is of type "Flying")
   // ... general
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
   public var bActiveLook as Boolean = false;
@@ -104,7 +104,7 @@ class MySettings {
   public var fVariometerRange as Float = 3.0f;
   public var iVariometerPlotOrientation as Number = 0;
   public var fVariometerPlotZoom as Float = 0.0308666666667f;
-  public var fVariometerPlotScale as Number = 1.0f;
+  public var fVariometerPlotScale as Float = 1.0f;
   public var fMinimumClimb as Float = 0.2;
   public var fMinimumSink as Float = 2.0;
   public var fVariometerSmoothing as Float = 0.5; //Standard deviation of altitude measurement at fixed altitude
@@ -441,7 +441,7 @@ class MySettings {
   }
 
   function loadActivityType() as Number {
-    return LangUtils.readKeyNumber(App.Properties.getValue("userActivityType"), 0);
+    return LangUtils.readKeyNumber(App.Properties.getValue("userActivityType"), 2);
   }
   function saveActivityType(_iValue as Number) as Void {
     App.Properties.setValue("userActivityType", _iValue as App.PropertyValueType);

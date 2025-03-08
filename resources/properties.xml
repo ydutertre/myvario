@@ -21,7 +21,7 @@
   <!-- ... activity -->
   <property id="userActivityAutoStart" type="boolean">true</property>
   <property id="userActivityAutoSpeedStart" type="float">4.0</property>
-  <property id="userActivityType" type="number">0</property>
+  <property id="userActivityType" type="number">2</property>
   <!-- ... general -->
   <property id="userGeneralBackgroundColor" type="number">0</property>
   <property id="userActiveLook" type="boolean">false</property>

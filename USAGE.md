@@ -318,8 +318,10 @@ The application allows you to specify the following settings:
   speed above which the activity automatically starts/resumes
   (must be greater than the Stop Speed; ignored if set to zero)
 - `Type`
-  lets you set whether the Activity will be recorded as a Flight activity or as a Hike
-  activity. To allow sync in Strava, you should set it as a Hike Activity.
+  lets you set whether the Activity will be recorded as a Flight activity, as a Hike
+  activity, or as a Hang Glider activity. To allow sync in Strava, you should set it as a Hike Activity.
+  If you set the activity to "Flight", the "Last Activity" glance from Garmin may crash your watch.
+  This is a Garmin-side bug. As such, it is recommended to avoid the "Flight" setting.
 
 ### General
 - `Background Color`:

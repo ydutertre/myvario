@@ -41,6 +41,7 @@
   <string id="titleActivityType">Type</string>
   <string id="valueActivityTypeFlight">Flight</string>
   <string id="valueActivityTypeHike">Hike</string>
+  <string id="valueActivityTypeHG">HG</string>
   <!-- Menu (settings:general) -->
   <string id="titleSettingsGeneral">General</string>
   <string id="titleGeneralBackgroundColor">Background Color</string>
