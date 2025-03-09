@@ -522,15 +522,29 @@ class MyApp extends App.AppBase {
         }
 
         // pick a configuration that is supported
-        var configurations = [
-            Pos.CONFIGURATION_SAT_IQ,
+        var configurations = [];
+        
+        if($.oMySettings.iGPS == 0) {
+          configurations =
+          [ Pos.CONFIGURATION_SAT_IQ,
             Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1_L5,
             Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1,
             Pos.CONFIGURATION_GPS_GLONASS,
             Pos.CONFIGURATION_GPS_GALILEO,
             Pos.CONFIGURATION_GPS_BEIDOU,
-            Pos.CONFIGURATION_GPS,
-        ];
+            Pos.CONFIGURATION_GPS
+          ];
+        } else {
+          configurations =
+          [ Pos.CONFIGURATION_GPS,
+            Pos.CONFIGURATION_GPS_BEIDOU,
+            Pos.CONFIGURATION_GPS_GALILEO,
+            Pos.CONFIGURATION_GPS_GLONASS,
+            Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1,
+            Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1_L5,
+            Pos.CONFIGURATION_SAT_IQ
+          ];
+        }
 
         for (var i = 0; i < configurations.size(); ++i) {
             var configuration = configurations[i];
@@ -559,12 +573,22 @@ class MyApp extends App.AppBase {
            options[:mode] = Pos.POSITIONING_MODE_AVIATION;
         }
 
-        var constellations = [
+        var constellations = [];
+        if($.oMySettings.iGPS == 0) {
+           constellations = [ 
             [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS, Pos.CONSTELLATION_GALILEO ],
             [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS ],
             [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GALILEO ],
             [ Pos.CONSTELLATION_GPS ]
-        ];
+          ];
+        } else {
+          constellations = [ 
+            [ Pos.CONSTELLATION_GPS ],
+            [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GALILEO ],
+            [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS ],
+            [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS, Pos.CONSTELLATION_GALILEO ]
+          ];
+        }
 
         // enableLocationEvents can fail with an exception if configuration
         // is not supported, so we try a few and take the first one that works

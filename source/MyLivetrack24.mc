@@ -161,7 +161,7 @@ class MyLivetrack24 {
       :responseType => Communications.HTTP_RESPONSE_CONTENT_TYPE_TEXT_PLAIN
     };
     self.iPacketNumber++;
-    Sys.println(self.iPacketNumber.toString());
+    //Sys.println(self.iPacketNumber.toString());
     Comms.makeWebRequest(url, params, options, method(:onReceiveDoNothing));
     self.bLivetrackStateful = false;
     self.bWebRequestPending = true;

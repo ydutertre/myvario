@@ -269,7 +269,7 @@ class MyActiveLook
     public function resetConnection() {
         if(!bReconnecting) {
             bReconnecting = true;
-            Sys.println(Time.now().value()+": Resetting connection! Last command:"+baLastCommand.toString());
+            //Sys.println(Time.now().value()+": Resetting connection! Last command:"+baLastCommand.toString());
             if(isScanning()) {
                 Ble.setScanState(Ble.SCAN_STATE_OFF);
             }

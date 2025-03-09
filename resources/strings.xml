@@ -1,6 +1,6 @@
 <strings>
   <string id="AppName">My Vario</string>
-  <string id="AppVersion">3.57</string>
+  <string id="AppVersion">3.58</string>
   <!-- Properties -->
   <string id="titleVersion">Version</string>
   <string id="titleLicense">License</string>
@@ -46,6 +46,7 @@
   <string id="titleSettingsGeneral">General</string>
   <string id="titleGeneralBackgroundColor">Background Color</string>
   <string id="titleActiveLook">ActiveLook</string>
+  <string id="titleGPS">GPS Precision</string>
   <!-- Menu (settings:units) -->
   <string id="titleSettingsUnits">Units</string>
   <string id="titleUnitDistance">Distance</string>

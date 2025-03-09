@@ -1,3 +1,7 @@
+* 3.58
+- Added the ability to choose GPS Quality: Best (will use all constellations)
+or normal (will use GPS for energy efficiency)
+
 * 3.57
 - Added Hang Gliding as an activity type. This helps work around
 a Garmin bug, whereby "Flight" activity types cause the watch to

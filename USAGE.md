@@ -329,6 +329,8 @@ The application allows you to specify the following settings:
 - `ActiveLook`:
   Set to "On" to enable HUD via ActiveLook glasses such as Engo 2. This requires an app
   restart
+- `GPS Precision`:
+  Select "Best" to use all Constellations available, "Normal" to limit to GPS (for energy efficiency)
 
 ### Units
 - `Distance`:

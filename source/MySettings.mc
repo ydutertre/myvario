@@ -70,6 +70,7 @@ class MySettings {
   // ... general
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
   public var bActiveLook as Boolean = false;
+  public var iGPS as Number = 0; // 0: full, 1: GPS
   // ... units
   public var iUnitDistance as Number = -1;
   public var iUnitElevation as Number = -1;
@@ -143,6 +144,7 @@ class MySettings {
     // ... general
     self.setGeneralBackgroundColor(self.loadGeneralBackgroundColor());
     self.setActiveLook(self.loadActiveLook());
+    self.setGPS(self.loadGPS());
     // ... units
     self.setUnitDistance(self.loadUnitDistance());
     self.setUnitElevation(self.loadUnitElevation());
@@ -468,6 +470,22 @@ class MySettings {
   }
   function setActiveLook(_bValue as Boolean) as Void {
     self.bActiveLook = _bValue;
+  }
+
+  function loadGPS() as Number {
+    return LangUtils.readKeyNumber(App.Properties.getValue("userGPS"), 0);
+  }
+  function saveGPS(_iValue as Number) as Void {
+    App.Properties.setValue("userGPS", _iValue as App.PropertyValueType);
+  }
+  function setGPS(_iValue as Number) as Void {
+    if(_iValue > 1) {
+      _iValue = 1;
+    }
+    else if(_iValue < 0) {
+      _iValue = 0;
+    }
+    self.iGPS = _iValue;
   }
   
 
