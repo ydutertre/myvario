@@ -301,7 +301,7 @@ class MyActivity {
 
     // NOTE: We use Pos.Info.altitude to remain consistent with other (internal) Activity position/altitude data
     if(!self.oSession.isRecording()
-       or !(_oInfo has :accuracy) or _oInfo.accuracy < Pos.QUALITY_GOOD
+       or !(_oInfo has :accuracy) or _oInfo.accuracy < Pos.QUALITY_USABLE
        or !(_oInfo has :position) or _oInfo.position == null
        or !(_oInfo has :altitude) or _oInfo.altitude == null
        or _iEpoch - self.iEpochLast < self.TIME_CONSTANT) {

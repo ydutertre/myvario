@@ -1,3 +1,6 @@
+* 3.59
+- Trying to fix poor GPS signal on Fenix 8/Enduro 3 series
+
 * 3.58
 - Added the ability to choose GPS Quality: Best (will use all constellations)
 or normal (will use GPS for energy efficiency)

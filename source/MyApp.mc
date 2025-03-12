@@ -294,7 +294,7 @@ class MyApp extends App.AppBase {
     // Apply settings
 
     $.oMyAltimeter.importSettings();
-    self.enablePositioning();
+    //self.enablePositioning();
 
     // ... tones
     self.muteTones();
@@ -508,104 +508,28 @@ class MyApp extends App.AppBase {
   }
 
   function enablePositioning() as Void {
-    var callback = method(:onLocationEvent);
+    var options = {
+        :acquisitionType => Pos.LOCATION_CONTINUOUS
+    };
 
-    // use the ConnectIQ 3.3.6 :configuration option
+    if (Pos has :POSITIONING_MODE_AVIATION) {
+        options[:mode] = Pos.POSITIONING_MODE_AVIATION;
+    }
+
     if (Pos has :hasConfigurationSupport) {
-
-        var options = {
-            :acquisitionType => Pos.LOCATION_CONTINUOUS
-        };
-
-        if (Pos has :POSITIONING_MODE_AVIATION) {
-           options[:mode] = Pos.POSITIONING_MODE_AVIATION;
+        if ((Pos has :CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1_L5) && (Pos.hasConfigurationSupport(Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1_L5)) && ($.oMySettings.iGPS == 0)) {
+            options[:configuration] = Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1_L5;
+        } else if ((Pos has :CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1) && (Pos.hasConfigurationSupport(Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1)) && ($.oMySettings.iGPS == 0)) {
+            options[:configuration] = Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1;
+        } else if ((Pos has :CONFIGURATION_GPS) && (Pos.hasConfigurationSupport(Pos.CONFIGURATION_GPS))) {
+            options[:configuration] = Pos.CONFIGURATION_GPS;
         }
-
-        // pick a configuration that is supported
-        var configurations = [];
-        
-        if($.oMySettings.iGPS == 0) {
-          configurations =
-          [ Pos.CONFIGURATION_SAT_IQ,
-            Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1_L5,
-            Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1,
-            Pos.CONFIGURATION_GPS_GLONASS,
-            Pos.CONFIGURATION_GPS_GALILEO,
-            Pos.CONFIGURATION_GPS_BEIDOU,
-            Pos.CONFIGURATION_GPS
-          ];
-        } else {
-          configurations =
-          [ Pos.CONFIGURATION_GPS,
-            Pos.CONFIGURATION_GPS_BEIDOU,
-            Pos.CONFIGURATION_GPS_GALILEO,
-            Pos.CONFIGURATION_GPS_GLONASS,
-            Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1,
-            Pos.CONFIGURATION_GPS_GLONASS_GALILEO_BEIDOU_L1_L5,
-            Pos.CONFIGURATION_SAT_IQ
-          ];
-        }
-
-        for (var i = 0; i < configurations.size(); ++i) {
-            var configuration = configurations[i];
-
-            if (Pos.hasConfigurationSupport( configuration )) {
-                options[:configuration] = configuration;
-
-                try {
-                  Pos.enableLocationEvents(options, callback);
-                  return;                
-                } catch(e) {
-                  //Just keep going
-                }
-            }
-        }
+    } else {
+        options = Pos.LOCATION_CONTINUOUS;
     }
 
-    // use the ConnectIQ 3.2.0 :constellations option
-    if (Pos has :CONSTELLATION_GPS) {
-
-        var options = {
-            :acquisitionType => Pos.LOCATION_CONTINUOUS
-        };
-
-        if (Pos has :POSITIONING_MODE_AVIATION) {
-           options[:mode] = Pos.POSITIONING_MODE_AVIATION;
-        }
-
-        var constellations = [];
-        if($.oMySettings.iGPS == 0) {
-           constellations = [ 
-            [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS, Pos.CONSTELLATION_GALILEO ],
-            [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS ],
-            [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GALILEO ],
-            [ Pos.CONSTELLATION_GPS ]
-          ];
-        } else {
-          constellations = [ 
-            [ Pos.CONSTELLATION_GPS ],
-            [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GALILEO ],
-            [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS ],
-            [ Pos.CONSTELLATION_GPS, Pos.CONSTELLATION_GLONASS, Pos.CONSTELLATION_GALILEO ]
-          ];
-        }
-
-        // enableLocationEvents can fail with an exception if configuration
-        // is not supported, so we try a few and take the first one that works
-        for (var i = 0; i < constellations.size(); ++i) {
-            options[:constellations] = constellations[i];
-
-            try {
-                Pos.enableLocationEvents(options, callback);
-                return;
-            } catch(e) {
-                // just continue looping until we get one that works
-            }
-        }
-    }
-
-    // if we didn't successfully enable, do it the ConnectIQ 1.0.0 way. this should not throw
-    Pos.enableLocationEvents(Pos.LOCATION_CONTINUOUS, callback);
+    // Continuous location updates using selected options
+    Pos.enableLocationEvents(options, method(:onLocationEvent));
   }
 
 }
