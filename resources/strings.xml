@@ -12,9 +12,6 @@
   <string id="titleAltimeterCalibration">Calibrate</string>
   <string id="titleAltimeterCalibrationQNH">QNH</string>
   <string id="titleAltimeterCalibrationElevation">Elevation</string>
-  <string id="titleAltimeterCorrection">Correction</string>
-  <string id="titleAltimeterCorrectionAbsolute">Absolute</string>
-  <string id="titleAltimeterCorrectionRelative">Relative</string>
   <!-- Menu (settings:variometer) -->
   <string id="titleSettingsVariometer">Variometer</string>
   <string id="titleVariometerRange">Range</string>

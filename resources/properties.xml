@@ -2,8 +2,6 @@
   <!-- User preferences -->
   <!-- ... altimeter -->
   <property id="userAltimeterCalibrationQNH" type="float">101325.0</property>
-  <property id="userAltimeterCorrectionAbsolute" type="float">0.0</property>
-  <property id="userAltimeterCorrectionRelative" type="float">1.0</property>
   <!-- ... variometer -->
   <property id="userVariometerRange" type="number">0</property>
   <property id="userVariometerAutoThermal" type="boolean">true</property>

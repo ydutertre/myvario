@@ -102,17 +102,9 @@ class MyAltimeter {
   }
 
   function setQFE(_fQFE as Float) as Void {  // [Pa]
-    // Raw sensor value
-    self.fQFE_raw = _fQFE;
-    //Sys.println(format("DEBUG: QFE (raw) = $1$", [self.fQFE_raw]));
-
-    // Calibrated value
-    self.fQFE = self.fQFE_raw * $.oMySettings.fAltimeterCorrectionRelative + $.oMySettings.fAltimeterCorrectionAbsolute;
-    //Sys.println(format("DEBUG: QFE (calibrated) = $1$", [self.fQFE]));
-
     // Derive altitudes (ICAO formula)
     // ... ISA (QNH=QNE)
-    self.fAltitudeISA = self.ICAO_ALTITUDE_K1 + self.ICAO_ALTITUDE_K2 * Math.pow(self.fQFE/100.0f, self.ICAO_ALTITUDE_EXP).toFloat();
+    self.fAltitudeISA = self.ICAO_ALTITUDE_K1 + self.ICAO_ALTITUDE_K2 * Math.pow(_fQFE/100.0f, self.ICAO_ALTITUDE_EXP).toFloat();
     //Sys.println(format("DEBUG: Altitude (ISA) = $1$", [self.fAltitudeISA]));
     // ... actual
     self.fAltitudeActual = self.fAltitudeISA - (Math.pow(self.fQNH/self.ISA_PRESSURE_MSL, self.ICAO_ALTITUDE_EXP).toFloat() - 1.0f)*self.ISA_TEMPERATURE_MSL/self.ISA_TEMPERATURE_LRATE;

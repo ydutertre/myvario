@@ -52,12 +52,6 @@ class MyPickerGenericPressure extends PickerGenericPressure {
                                          $.oMySettings.iUnitPressure,
                                          false);
       }
-      else if(_item == :itemAltimeterCorrection) {
-        PickerGenericPressure.initialize(Ui.loadResource(Rez.Strings.titleAltimeterCorrectionAbsolute) as String,
-                                         $.oMySettings.loadAltimeterCorrectionAbsolute(),
-                                         $.oMySettings.iUnitPressure,
-                                         true);
-      }
 
     }
   }
@@ -91,9 +85,6 @@ class MyPickerGenericPressureDelegate extends Ui.PickerDelegate {
       if(self.item == :itemAltimeterCalibration) {
         $.oMyAltimeter.setQNH(fValue);
         $.oMySettings.saveAltimeterCalibrationQNH($.oMyAltimeter.fQNH);
-      }
-      else if(self.item == :itemAltimeterCorrection) {
-        $.oMySettings.saveAltimeterCorrectionAbsolute(fValue);
       }
 
     }

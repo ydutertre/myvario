@@ -48,8 +48,6 @@ class MySettings {
   // Settings
   // ... altimeter
   public var fAltimeterCalibrationQNH as Float = 101325.0f;
-  public var fAltimeterCorrectionAbsolute as Float = 0.0f;
-  public var fAltimeterCorrectionRelative as Float = 1.0f;
   // ... variometer
   public var iVariometerRange as Number = 0;
   public var bVariometerAutoThermal as Boolean = true;
@@ -121,8 +119,6 @@ class MySettings {
     // Settings
     // ... altimeter
     self.setAltimeterCalibrationQNH(self.loadAltimeterCalibrationQNH());
-    self.setAltimeterCorrectionAbsolute(self.loadAltimeterCorrectionAbsolute());
-    self.setAltimeterCorrectionRelative(self.loadAltimeterCorrectionRelative());
     // ... variometer
     self.setVariometerRange(self.loadVariometerRange());
     self.setVariometerPlotOrientation(self.loadVariometerPlotOrientation());
@@ -175,37 +171,6 @@ class MySettings {
     self.fAltimeterCalibrationQNH = _fValue;
   }
 
-  function loadAltimeterCorrectionAbsolute() as Float {  // [Pa]
-    return LangUtils.readKeyFloat(App.Properties.getValue("userAltimeterCorrectionAbsolute"), 0.0f);
-  }
-  function saveAltimeterCorrectionAbsolute(_fValue as Float) as Void {  // [Pa]
-    App.Properties.setValue("userAltimeterCorrectionAbsolute", _fValue as App.PropertyValueType);
-  }
-  function setAltimeterCorrectionAbsolute(_fValue as Float) as Void {  // [Pa]
-    if(_fValue > 9999.0f) {
-      _fValue = 9999.0f;
-    }
-    else if(_fValue < -9999.0f) {
-      _fValue = -9999.0f;
-    }
-    self.fAltimeterCorrectionAbsolute = _fValue;
-  }
-
-  function loadAltimeterCorrectionRelative() as Float {
-    return LangUtils.readKeyFloat(App.Properties.getValue("userAltimeterCorrectionRelative"), 1.0f);
-  }
-  function saveAltimeterCorrectionRelative(_fValue as Float) as Void {
-    App.Properties.setValue("userAltimeterCorrectionRelative", _fValue as App.PropertyValueType);
-  }
-  function setAltimeterCorrectionRelative(_fValue as Float) as Void {
-    if(_fValue > 1.9999f) {
-      _fValue = 1.9999f;
-    }
-    else if(_fValue < 0.0001f) {
-      _fValue = 0.0001f;
-    }
-    self.fAltimeterCorrectionRelative = _fValue;
-  }
 
   function loadVariometerRange() as Number {
     return LangUtils.readKeyNumber(App.Properties.getValue("userVariometerRange"), 0);
