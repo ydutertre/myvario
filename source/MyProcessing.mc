@@ -105,7 +105,7 @@ class MyProcessing {
   public var bIsPreviousGeneral as Boolean = true;
   public var bAutoThermalTriggered as Boolean = false;
   public var iCirclingStartEpoch as Number = 0;
-  public var fCirclingStartAltitude as Float = 0;
+  public var fCirclingStartAltitude as Float = 0.0f;
   // ... plot buffer (using integer-only operations!)
   public var iPlotIndex as Number = -1;
   public var aiPlotEpoch as Array<Number>;
@@ -115,8 +115,8 @@ class MyProcessing {
   // Thermal core calculation
   public var iCenterLongitude as Number = 0;
   public var iCenterLatitude as Number = 0;
-  public var fCenterWindOffsetLongitude as Float = 0;
-  public var fCenterWindOffsetLatitude as Float = 0;
+  public var fCenterWindOffsetLongitude as Float = 0.0f;
+  public var fCenterWindOffsetLatitude as Float = 0.0f;
   public var iStandardDev as Number = 0;
   public var aiPointAltitude as Array<Number>;
   // ActiveLook
