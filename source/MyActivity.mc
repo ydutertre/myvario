@@ -127,8 +127,10 @@ class MyActivity {
       iActivityType = Activity.SPORT_FLYING;
     } else if($.oMySettings.iActivityType == 1) {
       iActivityType = Activity.SPORT_HIKING;
-    } else {
+    } else if($.oMySettings.iActivityType == 2) {
       iActivityType = Activity.SPORT_HANG_GLIDING;
+    } else {
+      iActivityType = Activity.SPORT_KITESURFING;
     }
 
     oSession = AR.createSession({

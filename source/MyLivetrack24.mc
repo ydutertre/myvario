@@ -21,7 +21,6 @@ import Toybox.Lang;
 using Toybox.Cryptography as Crypt;
 using Toybox.Math;
 using Toybox.Time;
-using Toybox.Timer;
 using Toybox.System as Sys;
 using Toybox.Communications as Comms;
 using Toybox.WatchUi as Ui;

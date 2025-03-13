@@ -36,6 +36,7 @@
 import Toybox.Lang;
 using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
+using Toybox.System as Sys;
 
 class MyPickerGenericSpeed extends PickerGenericSpeed {
 
@@ -65,33 +66,67 @@ class MyPickerGenericSpeedDelegate extends Ui.PickerDelegate {
 
   private var context as Symbol = :contextNone;
   private var item as Symbol = :itemNone;
+  private var parent as Symbol = :parentNone;
+  private var focus as Number = 0;
 
 
   //
   // FUNCTIONS: Ui.PickerDelegate (override/implement)
   //
 
-  function initialize(_context as Symbol, _item as Symbol) {
+  function initialize(_context as Symbol, _item as Symbol, _parent as Symbol) {
     PickerDelegate.initialize();
     self.context = _context;
     self.item = _item;
+    self.parent = _parent;
   }
 
-  function onAccept(_amValues) {
-    var fValue = PickerGenericSpeed.getValue(_amValues, $.oMySettings.iUnitDistance);
+    function onAccept(_amValues) {
+    // Input validation
+    // ... unit
+    var iUnit = $.oMySettings.iUnitDistance != null ? $.oMySettings.iUnitDistance : -1;
+    if(iUnit < 0 or iUnit > 2) {
+      var oDeviceSettings = Sys.getDeviceSettings();
+      if(oDeviceSettings has :distanceUnits and oDeviceSettings.distanceUnits != null) {
+        iUnit = oDeviceSettings.distanceUnits;
+      }
+      else {
+        iUnit = Sys.UNIT_METRIC;
+      }
+    }
+
+    // Assemble components
+    var fValue = _amValues[1]*1000.0f + _amValues[2]*100.0f + _amValues[3]*10.0f + _amValues[4];
+    if(_amValues[0] != null) {
+      fValue *= _amValues[0];
+    }
+
+    // Use user-specified speed unit (NB: SI units are always used internally)
+    if(iUnit == 2) {
+      fValue /= 19.4384449244f;  // kt (* 10) -> m/s
+    }
+    else if(iUnit == Sys.UNIT_STATUTE) {
+      fValue /= 22.3693629205f;  // mph (* 10) -> m/s
+    }
+    else {
+      fValue /= 36.0f;  // km/h (* 10) -> m/s
+    }
+
     if(self.context == :contextSettings) {
 
       if(self.item == :itemActivityAutoSpeedStart) {
         $.oMySettings.saveActivityAutoSpeedStart(fValue);
+        focus = 1;
       }
     }
     Ui.popView(Ui.SLIDE_IMMEDIATE);
+    Ui.switchToView(new MyMenu2Generic(self.parent, focus), new MyMenu2GenericDelegate(self.parent), WatchUi.SLIDE_RIGHT);
     return true;
   }
 
   function onCancel() {
     // Exit
-    Ui.popView(Ui.SLIDE_IMMEDIATE);
+    Ui.popView(Ui.SLIDE_RIGHT);
     return true;
   }
 

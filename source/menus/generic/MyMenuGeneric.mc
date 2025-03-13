@@ -35,124 +35,125 @@
 
 import Toybox.Lang;
 using Toybox.WatchUi as Ui;
+using Toybox.Application as App;
+using Toybox.System as Sys;
+using Toybox.Graphics as Gfx;
 
-class MyMenuGeneric extends Ui.Menu {
-
+class MyMenu2Generic extends Ui.Menu2 {
+  private var menu as Symbol = :menuNone;
+  (:icon) var NoExclude as Symbol = :NoExclude;
   //
   // FUNCTIONS: Ui.Menu (override/implement)
   //
 
-  function initialize(_menu as Symbol) {
-    Menu.initialize();
-
-    if(_menu == :menuSettings) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettings) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsAltimeter) as String, :menuSettingsAltimeter);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsVariometer) as String, :menuSettingsVariometer);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsSounds) as String, :menuSettingsSounds);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsActivity) as String, :menuSettingsActivity);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsGeneral) as String, :menuSettingsGeneral);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsUnits) as String, :menuSettingsUnits);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleSettingsLivetrack) as String, :menuSettingsLivetrack);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleStorage) as String, :menuStorage);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleAbout) as String, :menuAbout);
+  function initialize(_menu as Symbol, _focus as Number) {
+    Menu2.initialize({:focus=>_focus});
+    menu = _menu;
+    $.oMySettings.load();
+    var sFormat = $.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f ? "%.1f" : "%.0f";
+    
+    if(menu == :menuSettings) {
+      Menu2.setTitle((self has :NoExclude)?(new $.DrawableMenu(:title)):Rez.Strings.titleSettings);
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsGeneral, null, :menuSettingsGeneral, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsAltimeter, null, :menuSettingsAltimeter, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsVariometer, null, :menuSettingsVariometer, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsSounds, null, :menuSettingsSounds, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsActivity, null, :menuSettingsActivity, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsLivetrack, null, :menuSettingsLivetrack, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsUnits, null, :menuSettingsUnits, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleAbout, null, :menuAbout, {}));
     }
 
-    else if(_menu == :menuSettingsAltimeter) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsAltimeter) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleAltimeterCalibration) as String, :menuAltimeterCalibration);
+    else if(menu == :menuSettingsGeneral) {
+      Menu2.setTitle(Rez.Strings.titleSettingsGeneral);
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleGeneralBackgroundColor, {:enabled=>Ui.loadResource(Rez.Strings.valueColorBlack), :disabled=>Ui.loadResource(Rez.Strings.valueColorWhite)}, :menuGeneralBackgroundColor, ($.oMySettings.iGeneralBackgroundColor?false:true), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleActiveLook, null, :menuActiveLook, $.oMySettings.bActiveLook, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleGPS, {:enabled=>Ui.loadResource(Rez.Strings.valueGPSBest), :disabled=>Ui.loadResource(Rez.Strings.valueGPSNormal)}, :menuGPS, ($.oMySettings.iGPS?false:true), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleStorageClearLogs, null, :menuStorageClearLogs, {}));
     }
-    else if(_menu == :menuAltimeterCalibration) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleAltimeterCalibration) as String);
+
+    else if(menu == :menuSettingsAltimeter) {
+      Menu2.setTitle(Rez.Strings.titleSettingsAltimeter);
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleAltimeterCalibration, null, :menuAltimeterCalibration, {}));
+    }
+    else if(menu == :menuAltimeterCalibration) {
+      Menu2.setTitle(Rez.Strings.titleAltimeterCalibration);
       if(LangUtils.notNaN($.oMyAltimeter.fAltitudeActual)) {
-        Menu.addItem(Ui.loadResource(Rez.Strings.titleAltimeterCalibrationElevation) as String, :menuAltimeterCalibrationElevation);
+        Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleAltimeterCalibrationElevation, format("baro: $1$ $2$", [($.oMyAltimeter.fAltitudeActual*$.oMySettings.fUnitElevationCoefficient).format("%.0f"), $.oMySettings.sUnitElevation]), :menuAltimeterCalibrationElevation, {}));
       }
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleAltimeterCalibrationQNH) as String, :menuAltimeterCalibrationQNH);
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleAltimeterCalibrationQNH, format("$1$ $2$", [($.oMySettings.fAltimeterCalibrationQNH*$.oMySettings.fUnitPressureCoefficient).format("%.2f"), $.oMySettings.sUnitPressure]), :menuAltimeterCalibrationQNH, {}));
     }
 
-    else if(_menu == :menuSettingsVariometer) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsVariometer) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerRange) as String, :menuVariometerRange);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerAutoThermal) as String, :menuVariometerAutoThermal);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerThermalDetect) as String, :menuVariometerThermalDetect);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerSmoothing) as String, :menuVariometerSmoothing);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerPlotRange) as String, :menuVariometerPlotRange);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerPlotOrientation) as String, :menuVariometerPlotOrientation);
+    else if(menu == :menuSettingsVariometer) {
+      Menu2.setTitle(Rez.Strings.titleSettingsVariometer);
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerRange, format("$1$ $2$", [($.oMySettings.fVariometerRange*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed]), :menuVariometerRange, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerSmoothing, $.oMySettings.sVariometerSmoothingName, :menuVariometerSmoothing, {}));
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleVariometerAutoThermal, null, :menuVariometerAutoThermal, $.oMySettings.bVariometerAutoThermal, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleVariometerThermalDetect, null, :menuVariometerThermalDetect, $.oMySettings.bVariometerThermalDetect, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleVariometerPlotOrientation, {:enabled=>Ui.loadResource(Rez.Strings.valueNorthUp), :disabled=>Ui.loadResource(Rez.Strings.valueHeadingUp)}, :menuVariometerPlotOrientation, ($.oMySettings.iVariometerPlotOrientation?false:true), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerPlotRange, format("$1$ $2$", [$.oMySettings.iVariometerPlotRange, Ui.loadResource(Rez.Strings.unitTimeMinute)]), :menuVariometerPlotRange, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerPlotZoom, format("$1$ $2$", [$.oMySettings.fVariometerPlotScale.format("%.2f"),Ui.loadResource(Rez.Strings.unitZoom)]), :menuVariometerPlotZoom, {}));
     }
 
-    else if(_menu == :menuSettingsSounds) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsSounds) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleSoundsVariometerTones) as String, :menuSoundsVariometerTones);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleVariometerVibrations) as String, :menuVariometerVibrations);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleSoundsToneDriver) as String, :menuSoundsToneDriver);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleMinimumClimb) as String, :menuMinimumClimb);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleMinimumSink) as String, :menuMinimumSink);
+    else if(menu == :menuSettingsSounds) {
+      Menu2.setTitle(Rez.Strings.titleSettingsSounds);
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleSoundsVariometerTones, null, :menuSoundsVariometerTones, $.oMySettings.bSoundsVariometerTones, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleVariometerVibrations, null, :menuVariometerVibrations, $.oMySettings.bVariometerVibrations, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleSoundsToneDriver, {:enabled=>Ui.loadResource(Rez.Strings.valueSpeaker), :disabled=>Ui.loadResource(Rez.Strings.valueBuzzer)}, :menuSoundsToneDriver, ($.oMySettings.iSoundsToneDriver?true:false), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleMinimumClimb, format("$1$ $2$", [($.oMySettings.fMinimumClimb*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed]), :menuMinimumClimb, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleMinimumSink, format("$1$ $2$", [($.oMySettings.fMinimumSink*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed]), :menuMinimumSink, {}));
     }
 
-    else if(_menu == :menuSettingsActivity) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsActivity) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityAutoStart) as String, :menuActivityAutoStart);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityAutoSpeedStart) as String, :menuActivityAutoSpeedStart);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityType) as String, :menuActivityType);
+    else if(menu == :menuSettingsActivity) {
+      Menu2.setTitle(Rez.Strings.titleSettingsActivity);
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleActivityAutoStart, null, :menuActivityAutoStart, $.oMySettings.bActivityAutoStart, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleActivityAutoSpeedStart, format("$1$ $2$", [($.oMySettings.fActivityAutoSpeedStart*$.oMySettings.fUnitHorizontalSpeedCoefficient).format("%.0f"), $.oMySettings.sUnitHorizontalSpeed]), :menuActivityAutoSpeedStart, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleActivityType, $.oMySettings.sActivityType, :menuActivityType, {}));
     }
 
-    else if(_menu == :menuSettingsGeneral) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsGeneral) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleGeneralBackgroundColor) as String, :menuGeneralBackgroundColor);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleActiveLook) as String, :menuActiveLook);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleGPS) as String, :menuGPS);
+    else if(menu == :menuSettingsUnits) {
+      Menu2.setTitle(Rez.Strings.titleSettingsUnits);
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleUnitDistance, $.oMySettings.sUnitDistance, :menuUnitDistance, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleUnitElevation, $.oMySettings.sUnitElevation, :menuUnitElevation, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleUnitPressure, $.oMySettings.sUnitPressure, :menuUnitPressure, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleUnitWindSpeed, $.oMySettings.sUnitWindSpeed, :menuUnitWindSpeed, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleUnitDirection, $.oMySettings.sUnitDirection, :menuUnitDirection, {}));   
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleUnitTimeUTC, $.oMySettings.sUnitTime, :menuUnitTimeUTC, {})); 
     }
 
-    else if(_menu == :menuSettingsUnits) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsUnits) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitDistance) as String, :menuUnitDistance);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitElevation) as String, :menuUnitElevation);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitPressure) as String, :menuUnitPressure);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitDirection) as String, :menuUnitDirection);      
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitTimeUTC) as String, :menuUnitTimeUTC);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleUnitWindSpeed) as String, :menuUnitWindSpeed);
+    else if(menu == :menuSettingsLivetrack) {
+      Menu2.setTitle(Rez.Strings.titleSettingsLivetrack);
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleLivetrack24Frequency, format("$1$$2$", [$.oMySettings.iLivetrack24Frequency, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuLivetrack24Frequency, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSportsTrackLiveFrequency, format("$1$$2$", [$.oMySettings.iSportsTrackLiveFrequency, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuSportsTrackLiveFrequency, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleFlySafeLivetrackFrequency, format("$1$$2$", [$.oMySettings.iFlySafeLivetrackFrequency, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuFlySafeLivetrackFrequency, {}));
     }
 
-    else if(_menu == :menuSettingsLivetrack) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleSettingsLivetrack) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleLivetrack24Frequency) as String, :menuLivetrack24Frequency);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleSportsTrackLiveFrequency) as String, :menuSportsTrackLiveFrequency);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleFlySafeLivetrackFrequency) as String, :menuFlySafeLivetrackFrequency);
+    else if(menu == :menuAbout) {
+      Menu2.setTitle(Rez.Strings.titleAbout);
+      Menu2.addItem(new Ui.MenuItem(format("$1$: $2$", [Ui.loadResource(Rez.Strings.titleVersion), Ui.loadResource(Rez.Strings.AppVersion)]), null, :aboutVersion, {}));
+      Menu2.addItem(new Ui.MenuItem(format("$1$: GPL 3.0", [Ui.loadResource(Rez.Strings.titleLicense)]), null, :aboutLicense, {}));
+      Menu2.addItem(new Ui.MenuItem(format("$1$: Yannick Dutertre", [Ui.loadResource(Rez.Strings.titleAuthor)]), null, :aboutAuthor, {}));
+      Menu2.addItem(new Ui.MenuItem("Originaly based on Glider SK", null, :aboutGliderSK, {}));
+      Menu2.addItem(new Ui.MenuItem(format("$1$: Cédric Dufour", [Ui.loadResource(Rez.Strings.titleAuthor)]), null, :aboutAuthor, {}));
     }
 
-    else if(_menu == :menuStorage) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleStorage) as String);
-      Menu.addItem(Ui.loadResource(Rez.Strings.titleStorageClearLogs) as String, :menuStorageClearLogs);
-    }
-
-    else if(_menu == :menuAbout) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleAbout) as String);
-      Menu.addItem(format("$1$: $2$", [Ui.loadResource(Rez.Strings.titleVersion), Ui.loadResource(Rez.Strings.AppVersion)]), :aboutVersion);
-      Menu.addItem(format("$1$: GPL 3.0", [Ui.loadResource(Rez.Strings.titleLicense)]), :aboutLicense);
-      Menu.addItem(format("$1$: Yannick Dutertre", [Ui.loadResource(Rez.Strings.titleAuthor)]), :aboutAuthor);
-      Menu.addItem("Based on Glider SK", :aboutGliderSK);
-      Menu.addItem(format("$1$: Cédric Dufour", [Ui.loadResource(Rez.Strings.titleAuthor)]), :aboutAuthor);
-    }
-
-    else if(_menu == :menuActivity) {
-      Menu.setTitle(Ui.loadResource(Rez.Strings.titleActivity) as String);
+    if(menu == :menuActivity) {
+      Menu2.setTitle(Rez.Strings.titleActivity);
       if($.oMyActivity != null) {
         if(($.oMyActivity as MyActivity).isRecording()) {
-          Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityPause) as String, :menuActivityPause);
+          Menu2.addItem(new Ui.IconMenuItem(Rez.Strings.titleActivityPause, null, :menuActivityPause, (new $.DrawableMenu(:pause)), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_LEFT}));
         }
         else {
-          Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityResume) as String, :menuActivityResume);
+          Menu2.addItem(new Ui.IconMenuItem(Rez.Strings.titleActivityResume, null, :menuActivityResume, (new $.DrawableMenu(:resume)), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_LEFT}));
         }
-        Menu.addItem(Ui.loadResource(Rez.Strings.titleActivitySave) as String, :menuActivitySave);
-        Menu.addItem(Ui.loadResource(Rez.Strings.titleActivityDiscard) as String, :menuActivityDiscard);
+        Menu2.addItem(new Ui.IconMenuItem(Rez.Strings.titleActivitySave, null, :menuActivitySave, (new $.DrawableMenu(:save)), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_LEFT}));
+        Menu2.addItem(new Ui.IconMenuItem(Rez.Strings.titleActivityDiscard, null, :menuActivityDiscard, (new $.DrawableMenu(:discard)), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_LEFT}));
       }
     }
-
   }
-
 }
 
-class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
+class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
 
   //
   // VARIABLES
@@ -165,262 +166,214 @@ class MyMenuGenericDelegate extends Ui.MenuInputDelegate {
   // FUNCTIONS: Ui.MenuInputDelegate (override/implement)
   //
 
-  function initialize(_menu as Symbol) {
-    MenuInputDelegate.initialize();
+ function initialize(_menu as Symbol) {
+    Menu2InputDelegate.initialize();
     self.menu = _menu;
   }
 
-  function onMenuItem(_item as Symbol) {
-
+  function onSelect(_item as Ui.MenuItem) {
+    var item = _item as Ui.ToggleMenuItem;
+    var itemId = _item.getId() as Symbol;
     if(self.menu == :menuSettings) {
-      if(_item == :menuSettingsAltimeter) {
-        Ui.pushView(new MyMenuGeneric(:menuSettingsAltimeter),
-                    new MyMenuGenericDelegate(:menuSettingsAltimeter),
+        Ui.pushView(new MyMenu2Generic(itemId, 0),
+                    new MyMenu2GenericDelegate(itemId),
                     Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuSettingsVariometer) {
-        Ui.pushView(new MyMenuGeneric(:menuSettingsVariometer),
-                    new MyMenuGenericDelegate(:menuSettingsVariometer),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuSettingsSounds) {
-        Ui.pushView(new MyMenuGeneric(:menuSettingsSounds),
-                    new MyMenuGenericDelegate(:menuSettingsSounds),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuSettingsActivity) {
-        Ui.pushView(new MyMenuGeneric(:menuSettingsActivity),
-                    new MyMenuGenericDelegate(:menuSettingsActivity),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuSettingsGeneral) {
-        Ui.pushView(new MyMenuGeneric(:menuSettingsGeneral),
-                    new MyMenuGenericDelegate(:menuSettingsGeneral),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuSettingsUnits) {
-        Ui.pushView(new MyMenuGeneric(:menuSettingsUnits),
-                    new MyMenuGenericDelegate(:menuSettingsUnits),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuSettingsLivetrack) {
-        Ui.pushView(new MyMenuGeneric(:menuSettingsLivetrack),
-                    new MyMenuGenericDelegate(:menuSettingsLivetrack),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuStorage) {
-        Ui.pushView(new MyMenuGeneric(:menuStorage),
-                    new MyMenuGenericDelegate(:menuStorage),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuAbout) {
-        Ui.pushView(new MyMenuGeneric(:menuAbout),
-                    new MyMenuGenericDelegate(:menuAbout),
-                    Ui.SLIDE_IMMEDIATE);
-      }
     }
 
+    else if(self.menu == :menuSettingsGeneral) {
+      if(itemId == :menuGeneralBackgroundColor) {
+        $.oMySettings.saveGeneralBackgroundColor(item.isEnabled()?0:1);
+        $.oMySettings.setGeneralBackgroundColor(item.isEnabled()?0:1);
+      }
+      else if(itemId == :menuActiveLook) {
+        $.oMySettings.saveActiveLook(item.isEnabled());
+        $.oMySettings.setActiveLook(item.isEnabled());
+      }
+      else if(itemId == :menuGPS) {
+        $.oMySettings.saveGPS(item.isEnabled()?0:1);
+        $.oMySettings.setGPS(item.isEnabled()?0:1);
+      }
+      else if(itemId == :menuStorageClearLogs) {
+        Ui.pushView((self has :NoExclude)?(new MyMenuConfirmDiscard()) : (new Ui.Confirmation(Ui.loadResource(Rez.Strings.titleActivityDiscard) + "?")),
+                    (self has :NoExclude)?(new MyMenuConfirmDiscardDelegate(:actionClearLogs, false)) : (new MyMenuGenericConfirmDelegate(:contextStorage, :actionClearLogs, false)),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+    }  
+  
     else if(self.menu == :menuSettingsAltimeter) {
-      if(_item == :menuAltimeterCalibration) {
-        Ui.pushView(new MyMenuGeneric(:menuAltimeterCalibration),
-                    new MyMenuGenericDelegate(:menuAltimeterCalibration),
+      if(itemId == :menuAltimeterCalibration) {
+        Ui.pushView(new MyMenu2Generic(:menuAltimeterCalibration, 0),
+                    new MyMenu2GenericDelegate(:menuAltimeterCalibration),
                     Ui.SLIDE_IMMEDIATE);
       }
     }
     else if(self.menu == :menuAltimeterCalibration) {
-      if(_item == :menuAltimeterCalibrationQNH) {
-        Ui.pushView(new MyPickerGenericPressure(:contextSettings, :itemAltimeterCalibration),
-                    new MyPickerGenericPressureDelegate(:contextSettings, :itemAltimeterCalibration),
-                    Ui.SLIDE_IMMEDIATE);
+      if(itemId == :menuAltimeterCalibrationQNH) {
+        Ui.pushView(new MyPickerGenericPressure(:contextSettings, :menuAltimeterCalibrationQNH),
+                    new MyPickerGenericPressureDelegate(:contextSettings, :menuAltimeterCalibrationQNH, self.menu),
+                    Ui.SLIDE_LEFT);
       }
-      else if(_item == :menuAltimeterCalibrationElevation) {
-        Ui.pushView(new MyPickerGenericElevation(:contextSettings, :itemAltimeterCalibration),
-                    new MyPickerGenericElevationDelegate(:contextSettings, :itemAltimeterCalibration),
-                    Ui.SLIDE_IMMEDIATE);
+      else if(itemId == :menuAltimeterCalibrationElevation) {
+        Ui.pushView(new MyPickerGenericElevation(:contextSettings, :menuAltimeterCalibrationElevation),
+                    new MyPickerGenericElevationDelegate(:contextSettings, :menuAltimeterCalibrationElevation, self.menu),
+                    Ui.SLIDE_LEFT);
       }
     }
-
+    
     else if(self.menu == :menuSettingsVariometer) {
-      if(_item == :menuVariometerRange) {
-        Ui.pushView(new MyPickerGenericSettings(:contextVariometer, :itemRange),
-                    new MyPickerGenericSettingsDelegate(:contextVariometer, :itemRange),
-                    Ui.SLIDE_IMMEDIATE);
+      if(itemId == :menuVariometerAutoThermal) {
+        $.oMySettings.saveVariometerAutoThermal(item.isEnabled());
+        $.oMySettings.setVariometerAutoThermal(item.isEnabled());
       }
-      else if(_item == :menuVariometerAutoThermal) {
-        Ui.pushView(new MyPickerGenericOnOff(:contextVariometer, :itemAutoThermal),
-                    new MyPickerGenericOnOffDelegate(:contextVariometer, :itemAutoThermal),
-                    Ui.SLIDE_IMMEDIATE);
+      else if(itemId == :menuVariometerThermalDetect) {
+        $.oMySettings.saveVariometerThermalDetect(item.isEnabled());
+        $.oMySettings.setVariometerThermalDetect(item.isEnabled());
       }
-      else if(_item == :menuVariometerThermalDetect) {
-        Ui.pushView(new MyPickerGenericOnOff(:contextVariometer, :itemThermalDetect),
-                    new MyPickerGenericOnOffDelegate(:contextVariometer, :itemThermalDetect),
-                    Ui.SLIDE_IMMEDIATE);
+      else if(itemId == :menuVariometerPlotOrientation) {
+        $.oMySettings.saveVariometerPlotOrientation(item.isEnabled()?0:1);
+        $.oMySettings.setVariometerPlotOrientation(item.isEnabled()?0:1);
       }
-      else if(_item == :menuVariometerPlotRange) {
-        Ui.pushView(new MyPickerGenericSettings(:contextVariometer, :itemPlotRange),
-                    new MyPickerGenericSettingsDelegate(:contextVariometer, :itemPlotRange),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuVariometerPlotOrientation) {
-        Ui.pushView(new MyPickerGenericSettings(:contextVariometer, :itemPlotOrientation),
-                    new MyPickerGenericSettingsDelegate(:contextVariometer, :itemPlotOrientation),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuVariometerSmoothing) {
-        Ui.pushView(new MyPickerGenericSettings(:contextVariometer, :itemSmoothing),
-                    new MyPickerGenericSettingsDelegate(:contextVariometer, :itemSmoothing),
-                    Ui.SLIDE_IMMEDIATE);
+      else {
+        Ui.pushView(new MyPickerGenericSettings(:contextVariometer, itemId),
+                    new MyPickerGenericSettingsDelegate(:contextVariometer, itemId, self.menu),
+                    Ui.SLIDE_LEFT);
       }
     }
-
+    
     else if(self.menu == :menuSettingsSounds) {
-      if(_item == :menuSoundsVariometerTones) {
-        Ui.pushView(new MyPickerGenericOnOff(:contextSettings, :itemSoundsVariometerTones),
-                    new MyPickerGenericOnOffDelegate(:contextSettings, :itemSoundsVariometerTones),
-                    Ui.SLIDE_IMMEDIATE);
+      if(itemId == :menuSoundsVariometerTones) {
+        $.oMySettings.saveSoundsVariometerTones(item.isEnabled());
+        $.oMySettings.setSoundsVariometerTones(item.isEnabled());
       }
-      else if(_item == :menuVariometerVibrations) {
-        Ui.pushView(new MyPickerGenericOnOff(:contextSettings, :itemVariometerVibrations),
-                    new MyPickerGenericOnOffDelegate(:contextSettings, :itemVariometerVibrations),
-                    Ui.SLIDE_IMMEDIATE);
+      else if(itemId == :menuVariometerVibrations) {
+        $.oMySettings.saveVariometerVibrations(item.isEnabled());
+        $.oMySettings.setVariometerVibrations(item.isEnabled());
       }
-      else if (_item == :menuSoundsToneDriver) {
-        Ui.pushView(new MyPickerGenericSettings(:contextSounds, :itemSoundsToneDriver),
-                    new MyPickerGenericSettingsDelegate(:contextSounds, :itemSoundsToneDriver),
-                    Ui.SLIDE_IMMEDIATE);
+      else if(itemId == :menuSoundsToneDriver) {
+        $.oMySettings.saveSoundsToneDriver(item.isEnabled()?1:0);
+        $.oMySettings.setSoundsToneDriver(item.isEnabled()?1:0);
       }
-      else if(_item == :menuMinimumClimb) {
-        Ui.pushView(new MyPickerGenericSettings(:contextSettings, :itemMinimumClimb),
-                    new MyPickerGenericSettingsDelegate(:contextSettings, :itemMinimumClimb),
-                    Ui.SLIDE_IMMEDIATE); 
-      }
-      else if(_item == :menuMinimumSink) {
-        Ui.pushView(new MyPickerGenericSettings(:contextSettings, :itemMinimumSink),
-                    new MyPickerGenericSettingsDelegate(:contextSettings, :itemMinimumSink),
-                    Ui.SLIDE_IMMEDIATE); 
+      else {
+        Ui.pushView(new MyPickerGenericSettings(:contextSounds, itemId),
+                    new MyPickerGenericSettingsDelegate(:contextSounds, itemId, self.menu),
+                    Ui.SLIDE_LEFT); 
       }
     }
 
     else if(self.menu == :menuSettingsActivity) {
-      if(_item == :menuActivityAutoStart) {
-        Ui.pushView(new MyPickerGenericOnOff(:contextSettings, :itemActivityAutoStart),
-                    new MyPickerGenericOnOffDelegate(:contextSettings, :itemActivityAutoStart),
-                    Ui.SLIDE_IMMEDIATE);
+      if(itemId == :menuActivityAutoStart) {
+        $.oMySettings.saveActivityAutoStart(item.isEnabled());
+        $.oMySettings.setActivityAutoStart(item.isEnabled());
       }
-      else if(_item == :menuActivityAutoSpeedStart) {
+      else if(itemId == :menuActivityAutoSpeedStart) {
         Ui.pushView(new MyPickerGenericSpeed(:contextSettings, :itemActivityAutoSpeedStart),
-                    new MyPickerGenericSpeedDelegate(:contextSettings, :itemActivityAutoSpeedStart),
-                    Ui.SLIDE_IMMEDIATE);
+                    new MyPickerGenericSpeedDelegate(:contextSettings, :itemActivityAutoSpeedStart, self.menu),
+                    Ui.SLIDE_LEFT);
       }
-      else if(_item == :menuActivityType) {
-        Ui.pushView(new MyPickerGenericSettings(:contextSettings, :itemActivityType),
-                    new MyPickerGenericSettingsDelegate(:contextSettings, :itemActivityType),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-    }
-
-    else if(self.menu == :menuSettingsGeneral) {
-      if(_item == :menuGeneralBackgroundColor) {
-        Ui.pushView(new MyPickerGenericSettings(:contextGeneral, :itemBackgroundColor),
-                    new MyPickerGenericSettingsDelegate(:contextGeneral, :itemBackgroundColor),
-                    Ui.SLIDE_IMMEDIATE);
-      } else if (_item == :menuActiveLook) {
-                Ui.pushView(new MyPickerGenericOnOff(:contextGeneral, :itemActiveLook),
-                    new MyPickerGenericOnOffDelegate(:contextGeneral, :itemActiveLook),
-                    Ui.SLIDE_IMMEDIATE);
-      } else if (_item == :menuGPS) {
-                Ui.pushView(new MyPickerGenericSettings(:contextGeneral, :itemGPS),
-                    new MyPickerGenericSettingsDelegate(:contextGeneral, :itemGPS),
-                    Ui.SLIDE_IMMEDIATE);
+      else {
+        Ui.pushView(new MyPickerGenericSettings(:contextActivitySettings, itemId),
+            new MyPickerGenericSettingsDelegate(:contextActivitySettings, itemId, self.menu),
+            Ui.SLIDE_LEFT); 
       }
     }
 
     else if(self.menu == :menuSettingsUnits) {
-      if(_item == :menuUnitDistance) {
-        Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemDistance),
-                    new MyPickerGenericSettingsDelegate(:contextUnit, :itemDistance),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuUnitElevation) {
-        Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemElevation),
-                    new MyPickerGenericSettingsDelegate(:contextUnit, :itemElevation),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuUnitPressure) {
-        Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemPressure),
-                    new MyPickerGenericSettingsDelegate(:contextUnit, :itemPressure),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuUnitDirection) {
-        Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemDirection),
-                    new MyPickerGenericSettingsDelegate(:contextUnit, :itemDirection),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuUnitTimeUTC) {
-        Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemTimeUTC),
-                    new MyPickerGenericSettingsDelegate(:contextUnit, :itemTimeUTC),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuUnitWindSpeed) {
-        Ui.pushView(new MyPickerGenericSettings(:contextUnit, :itemWindSpeed),
-                    new MyPickerGenericSettingsDelegate(:contextUnit, :itemWindSpeed),
-                    Ui.SLIDE_IMMEDIATE);
-      }
+        Ui.pushView(new MyPickerGenericSettings(:contextUnit, itemId),
+                    new MyPickerGenericSettingsDelegate(:contextUnit, itemId, self.menu),
+                    Ui.SLIDE_LEFT);
     }
 
     else if(self.menu == :menuSettingsLivetrack) {
-      if(_item == :menuLivetrack24Frequency) {
-        Ui.pushView(new MyPickerGenericSettings(:contextLivetrack, :itemLivetrack24Frequency),
-                    new MyPickerGenericSettingsDelegate(:contextLivetrack, :itemLivetrack24Frequency),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuSportsTrackLiveFrequency) {
-        Ui.pushView(new MyPickerGenericSettings(:contextLivetrack, :itemSportsTrackLiveFrequency),
-                    new MyPickerGenericSettingsDelegate(:contextLivetrack, :itemSportsTrackLiveFrequency),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-      else if(_item == :menuFlySafeLivetrackFrequency) {
-        Ui.pushView(new MyPickerGenericSettings(:contextLivetrack, :itemFlySafeLivetrackFrequency),
-                    new MyPickerGenericSettingsDelegate(:contextLivetrack, :itemFlySafeLivetrackFrequency),
-                    Ui.SLIDE_IMMEDIATE);
-      }
+        Ui.pushView(new MyPickerGenericSettings(:contextLivetrackSettings, itemId),
+                    new MyPickerGenericSettingsDelegate(:contextLivetrackSettings, itemId, self.menu),
+                    Ui.SLIDE_LEFT);      
     }
-
-    else if(self.menu == :menuStorage) {
-      if(_item == :menuStorageClearLogs) {
-        Ui.pushView(new MyMenuGenericConfirm(:contextStorage, :actionClearLogs),
-                    new MyMenuGenericConfirmDelegate(:contextStorage, :actionClearLogs, false),
-                    Ui.SLIDE_IMMEDIATE);
-      }
-    }
-
-    //else if(self.menu == :menuAbout) {
-    //  // Nothing to do here
-    //}
 
     else if(self.menu == :menuActivity) {
-      if(_item == :menuActivityResume) {
+      if(itemId == :menuActivityResume) {
         if($.oMyActivity != null) {
           ($.oMyActivity as MyActivity).resume();
+          Ui.popView(Ui.SLIDE_IMMEDIATE);
         }
       }
-      else if(_item == :menuActivityPause) {
+      else if(itemId == :menuActivityPause) {
         if($.oMyActivity != null) {
           ($.oMyActivity as MyActivity).pause();
+          Ui.popView(Ui.SLIDE_IMMEDIATE);
         }
       }
-      else if(_item == :menuActivitySave) {
-        Ui.pushView(new MyMenuGenericConfirm(:contextActivity, :actionSave),
+      else if(itemId == :menuActivitySave) {
+        Ui.pushView(new Ui.Confirmation(Ui.loadResource(Rez.Strings.titleActivitySave) + "?"),
                     new MyMenuGenericConfirmDelegate(:contextActivity, :actionSave, true),
                     Ui.SLIDE_IMMEDIATE);
       }
-      else if(_item == :menuActivityDiscard) {
-        Ui.pushView(new MyMenuGenericConfirm(:contextActivity, :actionDiscard),
-                    new MyMenuGenericConfirmDelegate(:contextActivity, :actionDiscard, true),
+      else if(itemId == :menuActivityDiscard) {
+        Ui.pushView((self has :NoExclude)?(new MyMenuConfirmDiscard()) : (new Ui.Confirmation(Ui.loadResource(Rez.Strings.titleActivityDiscard) + "?")),
+                    (self has :NoExclude)?(new MyMenuConfirmDiscardDelegate(:actionDiscard, true)) : (new MyMenuGenericConfirmDelegate(:contextActivity, :actionDiscard, false)),
                     Ui.SLIDE_IMMEDIATE);
       }
     }
+  }
+}
 
+class DrawableMenu extends Ui.Drawable {
+    
+  //
+  // VARIABLES
+  //
+
+  var menu as Symbol = :menuNone;
+
+  //! Constructor
+  public function initialize(_menu as Symbol) {
+      Drawable.initialize({});
+      self.menu = _menu;
   }
 
+  //! Draw the application icon and main menu title
+  //! @param dc Device Context
+  (:icon)
+  public function draw(_oDC) {
+
+    var appIcon = null;
+    var bitmapX = 0;
+    var bitmapY = 0;
+
+    if(menu==:title) {
+      var spacing = 5;
+      appIcon = Ui.loadResource($.Rez.Drawables.AppIcon);
+      var bitmapWidth = appIcon.getWidth();
+      var labelWidth = _oDC.getTextWidthInPixels(Ui.loadResource(Rez.Strings.titleSettings), Graphics.FONT_TINY);
+
+      bitmapX = (_oDC.getWidth() - (bitmapWidth + spacing + labelWidth)) / 2;
+      var labelX = bitmapX + bitmapWidth + spacing;
+      bitmapY = (_oDC.getHeight() - appIcon.getHeight()) / 2;
+      var labelY = _oDC.getHeight() / 2;
+
+      // _oDC.drawBitmap(bitmapX, bitmapY, appIcon);
+      _oDC.setColor(Graphics.COLOR_WHITE, Graphics.COLOR_TRANSPARENT);
+      _oDC.drawText(labelX, labelY, Graphics.FONT_TINY, Ui.loadResource(Rez.Strings.titleSettings), Graphics.TEXT_JUSTIFY_LEFT | Graphics.TEXT_JUSTIFY_VCENTER);
+    }
+    else if(menu==:pause) {
+      appIcon = Ui.loadResource($.Rez.Drawables.pauseIcon);
+      bitmapX = (_oDC.getWidth() - appIcon.getWidth()) / 2;
+      bitmapY = (_oDC.getHeight() - appIcon.getHeight()) / 2;
+    }
+    else if(menu==:resume) {
+      appIcon = Ui.loadResource($.Rez.Drawables.resumeIcon);
+      bitmapX = (_oDC.getWidth() - appIcon.getWidth()) / 2;
+      bitmapY = (_oDC.getHeight() - appIcon.getHeight()) / 2;
+    }
+    else if(menu==:save) {
+      appIcon = Ui.loadResource($.Rez.Drawables.saveIcon);
+      bitmapX = (_oDC.getWidth() - appIcon.getWidth()) / 2;
+      bitmapY = (_oDC.getHeight() - appIcon.getHeight()) / 2;
+    }
+    else if(menu==:discard) {
+      appIcon = Ui.loadResource($.Rez.Drawables.discardIcon);
+      bitmapX = (_oDC.getWidth() - appIcon.getWidth()) / 2;
+      bitmapY = (_oDC.getHeight() - appIcon.getHeight()) / 2;
+    }
+    _oDC.drawBitmap(bitmapX, bitmapY, appIcon);
+  }
 }

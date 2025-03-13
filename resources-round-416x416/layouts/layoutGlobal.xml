@@ -32,4 +32,9 @@
     <!-- Footer -->
     <label id="valueFooter" x="208" y="363" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_TINY" />
   </layout>
+  <layout id="DeleteConfirmationPage">
+    <bitmap id="confirmIcon" personality="confirmation_icon__hint_keep confirmation_loc__hint_keep" />
+    <bitmap id="deleteIcon" personality="confirmation_icon__hint_delete confirmation_loc__hint_delete" />
+    <text-area text="@Strings.titleConfirmDiscard" personality="confirmation_color_dark__body confirmation_size__body confirmation_loc__body confirmation_font__body" />
+  </layout>
 </layouts>

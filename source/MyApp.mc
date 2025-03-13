@@ -200,13 +200,13 @@ class MyApp extends App.AppBase {
     // Start UI update timer (every multiple of 5 seconds, to save energy)
     // NOTE: in normal circumstances, UI update will be triggered by position events (every ~1 second)
     self.oUpdateTimer = new Timer.Timer();
-    var iUpdateTimerDelay = (60-Sys.getClockTime().sec)%5;
-    if(iUpdateTimerDelay > 0) {
-      (self.oUpdateTimer as Timer.Timer).start(method(:onUpdateTimer_init), 1000*iUpdateTimerDelay, false);
-    }
-    else {
-      (self.oUpdateTimer as Timer.Timer).start(method(:onUpdateTimer), 5000, true);
-    }
+    // var iUpdateTimerDelay = (60-Sys.getClockTime().sec)%5;
+    // if(iUpdateTimerDelay > 0) {
+    //   (self.oUpdateTimer as Timer.Timer).start(method(:onUpdateTimer_init), 1000*iUpdateTimerDelay, false);
+    // }
+    // else {
+    (self.oUpdateTimer as Timer.Timer).start(method(:onUpdateTimer), 5000, true);
+    // }
 
     //Initialize and search for ActiveLook glasses
     $.oMyActiveLook.init();
@@ -364,12 +364,12 @@ class MyApp extends App.AppBase {
     self.updateUi(iEpoch);
   }
 
-  function onUpdateTimer_init() as Void {
-    //Sys.println("DEBUG: MyApp.onUpdateTimer_init()");
-    self.onUpdateTimer();
-    self.oUpdateTimer = new Timer.Timer();
-    (self.oUpdateTimer as Timer.Timer).start(method(:onUpdateTimer), 5000, true);
-  }
+  // function onUpdateTimer_init() as Void {
+  //   //Sys.println("DEBUG: MyApp.onUpdateTimer_init()");
+  //   self.onUpdateTimer();
+  //   self.oUpdateTimer = new Timer.Timer();
+  //   (self.oUpdateTimer as Timer.Timer).start(method(:onUpdateTimer), 5000, true);
+  // }
 
   function onUpdateTimer() as Void {
     //Sys.println("DEBUG: MyApp.onUpdateTimer()");

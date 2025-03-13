@@ -1,25 +1,190 @@
 <settings>
   <!-- User preferences -->
-  <setting propertyKey="@Properties.userLivetrack24UserName" title="@Strings.titleLivetrack24UserName">
-    <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
-  </setting>
-  <setting propertyKey="@Properties.userLivetrack24Password" title="@Strings.titleLivetrack24Password">
-    <settingConfig type="password" errorMessage="@Strings.titleInputError" />
-  </setting>
-  <setting propertyKey="@Properties.userLivetrack24EquipmentName" title="@Strings.titleLivetrack24EquipmentName">
-    <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
-  </setting>
-  <setting propertyKey="@Properties.userSportsTrackLiveEmail" title="@Strings.titleSportsTrackLiveEmail">
-    <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
-  </setting>
-  <setting propertyKey="@Properties.userSportsTrackLivePassword" title="@Strings.titleSportsTrackLivePassword">
-    <settingConfig type="password" errorMessage="@Strings.titleInputError" />
-  </setting>
-  <setting propertyKey="@Properties.userFlySafeUserId" title="@Strings.titleFlySafeUserId">
-    <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
-  </setting>
-  <setting propertyKey="@Properties.userFlySafeToken" title="@Strings.titleFlySafeToken">
-    <settingConfig type="password" errorMessage="@Strings.titleInputError" />
-  </setting>
+   <group id="General" title="@Strings.titleSettingsGeneral">
+    <setting propertyKey="@Properties.userGeneralBackgroundColor" title="@Strings.titleGeneralBackgroundColor">
+        <settingConfig type="list">
+            <listEntry value="0">BLACK</listEntry>
+            <listEntry value="1">WHITE</listEntry>
+        </settingConfig>
+    </setting>
+    <setting propertyKey="@Properties.userActiveLook" title="@Strings.titleActiveLook">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.userGPS" title="@Strings.titleGPS">
+        <settingConfig type="list">
+            <listEntry value="0">Best</listEntry>
+            <listEntry value="1">Normal</listEntry>
+        </settingConfig>
+    </setting>
+  </group>
+
+  <group id="Variometer" title="@Strings.titleSettingsVariometer">
+    <setting propertyKey="@Properties.userVariometerRange" title="@Strings.titleVariometerRange">
+        <settingConfig type="list">
+            <listEntry value="0">3.0 m/s</listEntry>
+            <listEntry value="1">6.0 m/s</listEntry>
+            <listEntry value="2">9.0 m/s</listEntry>
+        </settingConfig>
+    </setting>
+
+     <setting propertyKey="@Properties.userVariometerSmoothing" title="@Strings.titleVariometerSmoothing">
+        <settingConfig type="list">
+            <listEntry value="0">Low</listEntry>
+            <listEntry value="1">Medium</listEntry>
+            <listEntry value="2">High</listEntry>
+            <listEntry value="3">Ultra</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.userVariometerAutoThermal" title="@Strings.titleVariometerAutoThermal">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.userVariometerThermalDetect" title="@Strings.titleVariometerThermalDetect">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.userVariometerPlotOrientation" title="@Strings.titleVariometerPlotOrientation">
+        <settingConfig type="list">
+            <listEntry value="0">North Up</listEntry>
+            <listEntry value="1">Heading Up</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.userVariometerPlotRange" title="@Strings.titleVariometerPlotRange">
+        <settingConfig type="list">
+            <listEntry value="1">1 min</listEntry>
+            <listEntry value="2">2 min</listEntry>
+            <listEntry value="3">3 min</listEntry>
+            <listEntry value="4">4 min</listEntry>
+            <listEntry value="5">5 min</listEntry>
+        </settingConfig>
+    </setting>
+  </group>
+
+  <group id="Sounds" title="@Strings.titleSettingsSounds">
+    <setting propertyKey="@Properties.userSoundsVariometerTones" title="@Strings.titleSoundsVariometerTones">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.userVariometerVibrations" title="@Strings.titleVariometerVibrations">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.userSoundsToneDriver" title="@Strings.titleSoundsToneDriver">
+        <settingConfig type="list">
+            <listEntry value="0">Buzzer</listEntry>
+            <listEntry value="1">Speaker</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.userMinimumClimb" title="@Strings.titleMinimumClimb">
+        <settingConfig type="list">
+            <listEntry value="0">0.0 m/s</listEntry>
+            <listEntry value="1">0.1 m/s</listEntry>
+            <listEntry value="2">0.2 m/s</listEntry>
+            <listEntry value="3">0.3 m/s</listEntry>
+            <listEntry value="4">0.4 m/s</listEntry>
+            <listEntry value="5">0.5 m/s</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.userMinimumSink" title="@Strings.titleMinimumSink">
+        <settingConfig type="list">
+            <listEntry value="0">-1.0 m/s</listEntry>
+            <listEntry value="1">-2.0 m/s</listEntry>
+            <listEntry value="2">-3.0 m/s</listEntry>
+            <listEntry value="3">-4.0 m/s</listEntry>
+            <listEntry value="4">-6.0 m/s</listEntry>
+            <listEntry value="5">-10.0 m/s</listEntry>
+        </settingConfig>
+    </setting>
+  </group>
+
+  <group id="Activity" title="@Strings.titleSettingsActivity">
+    <setting propertyKey="@Properties.userActivityAutoStart" title="@Strings.titleActivityAutoStart">
+        <settingConfig type="boolean" />
+    </setting>
+
+    <setting propertyKey="@Properties.userActivityAutoSpeedStart" title="@Strings.titleActivityAutoSpeedStart">
+        <settingConfig type="numeric" errorMessage="error" />
+    </setting>
+    
+    <setting propertyKey="@Properties.userActivityType" title="@Strings.titleActivityType">
+        <settingConfig type="list">
+            <listEntry value="0">Flight</listEntry>
+            <listEntry value="1">Hike</listEntry>
+            <listEntry value="2">Hang-Gliding</listEntry>
+            <listEntry value="3">Kitesurfing</listEntry>
+        </settingConfig>
+    </setting>
+  </group>
+
+  <group id="Units" title="@Strings.titleSettingsUnits">
+    <setting propertyKey="@Properties.userUnitDistance" title="@Strings.titleUnitDistance">
+        <settingConfig type="list">
+            <listEntry value="-1">Auto</listEntry>
+            <listEntry value="0">km</listEntry>
+            <listEntry value="1">sm</listEntry>
+            <listEntry value="2">nm</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.userUnitElevation" title="@Strings.titleUnitElevation">
+        <settingConfig type="list">
+            <listEntry value="-1">Auto</listEntry>
+            <listEntry value="0">m</listEntry>
+            <listEntry value="1">ft</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.userUnitPressure" title="@Strings.titleUnitPressure">
+        <settingConfig type="list">
+            <listEntry value="-1">Auto</listEntry>
+            <listEntry value="0">mb</listEntry>
+            <listEntry value="1">inHg</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.userUnitWindSpeed" title="@Strings.titleUnitWindSpeed">
+        <settingConfig type="list">
+            <listEntry value="-1">Auto</listEntry>
+            <listEntry value="0">kph</listEntry>
+            <listEntry value="1">mph</listEntry>
+            <listEntry value="2">kt</listEntry>
+            <listEntry value="3">m/s</listEntry>
+        </settingConfig>
+    </setting>
+
+    <setting propertyKey="@Properties.userUnitDirection" title="@Strings.titleUnitDirection">
+        <settingConfig type="list">
+            <listEntry value="0">°</listEntry>
+            <listEntry value="1">txt</listEntry>
+        </settingConfig>
+    </setting>
+  </group>
+  <group id="Livetrack" title="@Strings.titleSettingsLivetrack">
+    <setting propertyKey="@Properties.userLivetrack24UserName" title="@Strings.titleLivetrack24UserName">
+      <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
+    </setting>
+    <setting propertyKey="@Properties.userLivetrack24Password" title="@Strings.titleLivetrack24Password">
+      <settingConfig type="password" errorMessage="@Strings.titleInputError" />
+    </setting>
+    <setting propertyKey="@Properties.userLivetrack24EquipmentName" title="@Strings.titleLivetrack24EquipmentName">
+      <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
+    </setting>
+    <setting propertyKey="@Properties.userSportsTrackLiveEmail" title="@Strings.titleSportsTrackLiveEmail">
+      <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
+    </setting>
+    <setting propertyKey="@Properties.userSportsTrackLivePassword" title="@Strings.titleSportsTrackLivePassword">
+      <settingConfig type="password" errorMessage="@Strings.titleInputError" />
+    </setting>
+    <setting propertyKey="@Properties.userFlySafeUserId" title="@Strings.titleFlySafeUserId">
+      <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
+    </setting>
+    <setting propertyKey="@Properties.userFlySafeToken" title="@Strings.titleFlySafeToken">
+      <settingConfig type="password" errorMessage="@Strings.titleInputError" />
+    </setting>
+  </group>
   <!-- ... storage -->
 </settings>

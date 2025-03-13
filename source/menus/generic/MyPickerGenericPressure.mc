@@ -36,6 +36,7 @@
 import Toybox.Lang;
 using Toybox.Application as App;
 using Toybox.WatchUi as Ui;
+using Toybox.System as Sys;
 
 class MyPickerGenericPressure extends PickerGenericPressure {
 
@@ -46,7 +47,7 @@ class MyPickerGenericPressure extends PickerGenericPressure {
   function initialize(_context as Symbol, _item as Symbol) {
     if(_context == :contextSettings) {
 
-      if(_item == :itemAltimeterCalibration) {
+      if(_item == :menuAltimeterCalibrationQNH) {
         PickerGenericPressure.initialize(Ui.loadResource(Rez.Strings.titleAltimeterCalibrationQNH) as String,
                                          $.oMyAltimeter.fQNH,
                                          $.oMySettings.iUnitPressure,
@@ -66,36 +67,68 @@ class MyPickerGenericPressureDelegate extends Ui.PickerDelegate {
 
   private var context as Symbol = :contextNone;
   private var item as Symbol = :itemNone;
+  private var parent as Symbol = :parentNone;
+  private var focus as Number = 0;
 
 
   //
   // FUNCTIONS: Ui.PickerDelegate (override/implement)
   //
 
-  function initialize(_context as Symbol, _item as Symbol) {
+  function initialize(_context as Symbol, _item as Symbol, _parent as Symbol) {
     PickerDelegate.initialize();
     self.context = _context;
     self.item = _item;
+    self.parent = _parent;
   }
 
   function onAccept(_amValues) {
-    var fValue = PickerGenericPressure.getValue(_amValues, $.oMySettings.iUnitPressure);
+    // Input validation
+    // ... unit
+    var iUnit = $.oMySettings.iUnitPressure != null ? $.oMySettings.iUnitPressure : -1;
+    if(iUnit < 0) {
+      var oDeviceSettings = Sys.getDeviceSettings();
+      if(oDeviceSettings has :distanceUnits and oDeviceSettings.distanceUnits != null) {
+        iUnit = oDeviceSettings.distanceUnits;
+      }
+      else {
+        iUnit = Sys.UNIT_METRIC;
+      }
+    }
+
+    // Assemble components
+    var fValue = _amValues[1]*1000.0f + _amValues[2]*100.0f + _amValues[3]*10.0f + _amValues[4];
+    if(_amValues[0] != null) {
+      fValue *= _amValues[0];
+    }
+
+    // Use user-specified pressure unit (NB: metric units are always used internally)
+    if(iUnit == Sys.UNIT_STATUTE) {
+      fValue /= 0.2953f;  // inHg (* 1000) -> Pa
+    }
+    else {
+      fValue *= 10.0f;  // mb (* 10) -> Pa
+    }
+
     if(self.context == :contextSettings) {
 
-      if(self.item == :itemAltimeterCalibration) {
+      if(self.item == :menuAltimeterCalibrationQNH) {
         $.oMyAltimeter.setQNH(fValue);
         $.oMySettings.saveAltimeterCalibrationQNH($.oMyAltimeter.fQNH);
+        focus = 1;
       }
 
     }
     Ui.popView(Ui.SLIDE_IMMEDIATE);
+    Ui.switchToView(new MyMenu2Generic(self.parent, focus), new MyMenu2GenericDelegate(self.parent), WatchUi.SLIDE_RIGHT);
     return true;
   }
 
   function onCancel() {
     // Exit
-    Ui.popView(Ui.SLIDE_IMMEDIATE);
+    Ui.popView(Ui.SLIDE_RIGHT);
     return true;
   }
+
 
 }

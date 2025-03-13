@@ -64,7 +64,7 @@ class MySettings {
   // ... activity
   public var bActivityAutoStart as Boolean = true; //Auto-start recording after launch
   public var fActivityAutoSpeedStart as Float = 3.0f;
-  public var iActivityType as Number = 2; // Activity type (hike or flight or hang glider, hike to support Strava, hang glider to avoid a bug on Garmin side, where the "Last Activity" glance crashes the whole watch if activity is of type "Flying")
+  public var iActivityType as Number = 2; // Activity type 0 flight, 1 hike, 2 hg, 3 kitesurfing
   // ... general
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
   public var bActiveLook as Boolean = false;
@@ -110,6 +110,8 @@ class MySettings {
   public var iLivetrack24FrequencySeconds as Number = 0;
   public var iSportsTrackLiveFrequencySeconds as Number = 0;
   public var iFlySafeLivetrackFrequencySeconds as Number = 0;
+  public var sVariometerSmoothingName as String = "";
+  public var sActivityType as String ="";
 
   //
   // FUNCTIONS: self
@@ -260,10 +262,10 @@ class MySettings {
     }
     self.iVariometerSmoothing = _iValue;
     switch(self.iVariometerSmoothing) {
-    case 0: self.fVariometerSmoothing = 0.2f; break;
-    case 1: self.fVariometerSmoothing = 0.5f; break;
-    case 2: self.fVariometerSmoothing = 0.7f; break;
-    case 3: self.fVariometerSmoothing = 1.0f; break;
+    case 0: self.fVariometerSmoothing = 0.2f; self.sVariometerSmoothingName = Ui.loadResource(Rez.Strings.valueVariometerSmoothingLow); break;
+    case 1: self.fVariometerSmoothing = 0.5f; self.sVariometerSmoothingName = Ui.loadResource(Rez.Strings.valueVariometerSmoothingMedium); break;
+    case 2: self.fVariometerSmoothing = 0.7f; self.sVariometerSmoothingName = Ui.loadResource(Rez.Strings.valueVariometerSmoothingHigh); break;
+    case 3: self.fVariometerSmoothing = 1.0f; self.sVariometerSmoothingName = Ui.loadResource(Rez.Strings.valueVariometerSmoothingUltra); break;
     }
   }
 
@@ -415,6 +417,12 @@ class MySettings {
   }
   function setActivityType(_iValue as Number) as Void {
     self.iActivityType = _iValue;
+    switch(self.iActivityType) {
+      case 0: self.sActivityType = Ui.loadResource(Rez.Strings.valueActivityTypeFlight); break;
+      case 1: self.sActivityType = Ui.loadResource(Rez.Strings.valueActivityTypeHike); break;
+      case 2: self.sActivityType = Ui.loadResource(Rez.Strings.valueActivityTypeHG); break;
+      case 3: self.sActivityType = Ui.loadResource(Rez.Strings.valueActivityTypeKitesurf); break;
+    }
   }
 
   function loadGeneralBackgroundColor() as Number {
@@ -424,7 +432,12 @@ class MySettings {
     App.Properties.setValue("userGeneralBackgroundColor", _iValue as App.PropertyValueType);
   }
   function setGeneralBackgroundColor(_iValue as Number) as Void {
-    self.iGeneralBackgroundColor = _iValue;
+    if(_iValue==0) {
+      self.iGeneralBackgroundColor = Gfx.COLOR_BLACK;
+    }
+    else {
+      self.iGeneralBackgroundColor = Gfx.COLOR_WHITE;
+    }
   }
 
   function loadActiveLook() as Boolean {

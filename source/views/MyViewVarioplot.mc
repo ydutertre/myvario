@@ -668,9 +668,9 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
       $.iMyViewVarioplotPanZoom = 0;  // ... cancel pan/zoom
       $.iMyViewVarioplotOffsetX = 0;
       $.iMyViewVarioplotOffsetY = 0;
-      Ui.pushView(new MyMenuGeneric(:menuSettings),
-                  new MyMenuGenericDelegate(:menuSettings),
-                  Ui.SLIDE_IMMEDIATE);
+      Ui.pushView(new MyMenu2Generic(:menuSettings, 2),
+                  new MyMenu2GenericDelegate(:menuSettings),
+                  Ui.SLIDE_RIGHT);
     }
     else {
       $.iMyViewVarioplotPanZoom = 1;  // ... enter pan/zoom
@@ -689,14 +689,14 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
       Ui.requestUpdate();
     }
     else if($.oMyActivity == null) {
-      Ui.pushView(new MyMenuGenericConfirm(:contextActivity, :actionStart),
+      Ui.pushView(new Ui.Confirmation(Ui.loadResource(Rez.Strings.titleActivityStart) + "?"),
                   new MyMenuGenericConfirmDelegate(:contextActivity, :actionStart, false),
                   Ui.SLIDE_IMMEDIATE);
     }
     else {
-      Ui.pushView(new MyMenuGeneric(:menuActivity),
-                  new MyMenuGenericDelegate(:menuActivity),
-                  Ui.SLIDE_IMMEDIATE);
+      Ui.pushView(new MyMenu2Generic(:menuActivity, 0),
+                  new MyMenu2GenericDelegate(:menuActivity),
+                  Ui.SLIDE_BLINK);
     }
     return true;
   }

@@ -71,7 +71,7 @@ class MyDrawableHeader extends Ui.Drawable {
     oRezHeaderAccuracy4 = new Rez.Drawables.drawHeaderAccuracy4();
   }
 
-  function draw(_oDC) {
+  function draw(_oDC) { 
     // Draw
     // ... background
     _oDC.setColor(self.iColorBackground, self.iColorBackground);

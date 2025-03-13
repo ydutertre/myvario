@@ -46,10 +46,10 @@ class MyPickerGenericElevation extends PickerGenericElevation {
   function initialize(_context as Symbol, _item as Symbol) {
     if(_context == :contextSettings) {
 
-      if(_item == :itemAltimeterCalibration) {
+      if(_item == :menuAltimeterCalibrationElevation) {
         PickerGenericElevation.initialize(Ui.loadResource(Rez.Strings.titleAltimeterCalibrationElevation) as String,
                                           $.oMyAltimeter.fAltitudeActual,
-                                          $.oMySettings.iUnitElevation,
+                                          $.oMySettings.iUnitElevation as Number,
                                           false);
       }
     }
@@ -65,34 +65,60 @@ class MyPickerGenericElevationDelegate extends Ui.PickerDelegate {
 
   private var context as Symbol = :contextNone;
   private var item as Symbol = :itemNone;
-
+  private var parent as Symbol = :parentNone;
+  private var focus as Number = 0;
 
   //
   // FUNCTIONS: Ui.PickerDelegate (override/implement)
   //
 
-  function initialize(_context as Symbol, _item as Symbol) {
+  function initialize(_context as Symbol, _item as Symbol, _parent as Symbol) {
     PickerDelegate.initialize();
     self.context = _context;
     self.item = _item;
+    self.parent = _parent;
   }
 
   function onAccept(_amValues) {
-    var fValue = PickerGenericElevation.getValue(_amValues, $.oMySettings.iUnitElevation);
-    if(self.context == :contextSettings) {
-
-      if(self.item == :itemAltimeterCalibration) {
-        $.oMyAltimeter.setAltitudeActual(fValue);
-        $.oMySettings.saveAltimeterCalibrationQNH($.oMyAltimeter.fQNH);
+    // Input validation
+    // ... unit
+    var iUnit = $.oMySettings.iUnitElevation != null ? $.oMySettings.iUnitElevation : -1;
+    if(iUnit < 0) {
+      var oDeviceSettings = System.getDeviceSettings();
+      if(oDeviceSettings has :elevationUnits and oDeviceSettings.elevationUnits != null) {
+        iUnit = oDeviceSettings.elevationUnits;
+      }
+      else {
+        iUnit = System.UNIT_METRIC;
       }
     }
+    // Assemble components
+    var fValue = _amValues[1]*1000.0f + _amValues[2]*100.0f + _amValues[3]*10.0f + _amValues[4];
+    if(_amValues[0] != null) {
+      fValue *= _amValues[0];
+    }
+    // Use user-specified elevation unit (NB: metric units are always used internally)
+    if(iUnit == System.UNIT_STATUTE) {
+      fValue *= 0.3048f;  // ft -> m
+    }
+    
+    if(self.context == :contextSettings) {
+
+      if(self.item == :menuAltimeterCalibrationElevation) {
+        $.oMyAltimeter.setAltitudeActual(fValue);
+        $.oMySettings.saveAltimeterCalibrationQNH($.oMyAltimeter.fQNH);
+        focus = 0;
+      }
+    }
+
     Ui.popView(Ui.SLIDE_IMMEDIATE);
+    Ui.switchToView(new MyMenu2Generic(self.parent, focus), new MyMenu2GenericDelegate(self.parent), WatchUi.SLIDE_RIGHT);
     return true;
   }
 
   function onCancel() {
     // Exit
-    Ui.popView(Ui.SLIDE_IMMEDIATE);
+    Ui.popView(Ui.SLIDE_RIGHT);
     return true;
   }
 

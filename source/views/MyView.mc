@@ -58,6 +58,8 @@ class MyView extends Ui.View {
 
   // Internals
   protected var iColorText as Number = Gfx.COLOR_BLACK;
+  protected var iColorTextGr as Number = Gfx.COLOR_LT_GRAY;
+  protected var iColorBG as Number = Gfx.COLOR_DK_RED;
 
 
   //
@@ -103,6 +105,8 @@ class MyView extends Ui.View {
     (App.getApp() as MyApp).loadSettings();
     // ... colors
     self.iColorText = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE;
+    self.iColorTextGr = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY;
+    self.iColorBG = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_RED : Gfx.COLOR_DK_RED;
   }
 
   function updateUi() as Void {
@@ -119,6 +123,8 @@ class MyView extends Ui.View {
 
     // Set colors
     self.iColorText = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE;
+    self.iColorTextGr = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY;
+    self.iColorBG = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_RED : Gfx.COLOR_DK_RED;
   }
 
 }

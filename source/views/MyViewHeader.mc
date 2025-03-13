@@ -114,7 +114,7 @@ class MyViewHeader extends MyView {
 
     // ... activity status
     if($.oMyActivity == null) {  // ... stand-by
-      (self.oRezValueActivityStatus as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
+      (self.oRezValueActivityStatus as Ui.Text).setColor(self.iColorText);
       sValue = self.sValueActivityStandby;
     }
     else if(($.oMyActivity as MyActivity).isRecording()) {  // ... recording

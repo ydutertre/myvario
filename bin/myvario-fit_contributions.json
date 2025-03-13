@@ -1,1 +1,118 @@
-{"datafields":[{"id":0,"chart-visible":true,"activity-visible":false,"lap-visible":false,"chart-title-key":"titleVerticalSpeed","label-key":"labelVerticalSpeed","unit-label-key":"unitVerticalSpeed","sort-order":1,"precision":1,"fill-color":"rgba(255, 0, 0, 1.0)"},{"id":1,"chart-visible":true,"activity-visible":false,"lap-visible":false,"chart-title-key":"titleAltitude","label-key":"labelAltitude","unit-label-key":"unitAltitude","sort-order":0,"precision":0,"fill-color":"rgba(255, 0, 255, 1.0)"},{"id":80,"chart-visible":false,"activity-visible":true,"lap-visible":false,"chart-title-key":null,"label-key":"titleDistance","unit-label-key":"unitDistance","sort-order":80,"precision":null,"fill-color":null},{"id":81,"chart-visible":false,"activity-visible":true,"lap-visible":false,"chart-title-key":null,"label-key":"titleAscent","unit-label-key":"unitAltitude","sort-order":81,"precision":null,"fill-color":null},{"id":82,"chart-visible":false,"activity-visible":true,"lap-visible":false,"chart-title-key":null,"label-key":"titleAscent","unit-label-key":"unitTime","sort-order":82,"precision":null,"fill-color":null},{"id":83,"chart-visible":false,"activity-visible":true,"lap-visible":false,"chart-title-key":null,"label-key":"titleAltitudeMin","unit-label-key":"unitAltitude","sort-order":83,"precision":null,"fill-color":null},{"id":84,"chart-visible":false,"activity-visible":true,"lap-visible":false,"chart-title-key":null,"label-key":"titleAltitudeMin","unit-label-key":"unitTime","sort-order":84,"precision":null,"fill-color":null},{"id":85,"chart-visible":false,"activity-visible":true,"lap-visible":false,"chart-title-key":null,"label-key":"titleAltitudeMax","unit-label-key":"unitAltitude","sort-order":85,"precision":null,"fill-color":null},{"id":86,"chart-visible":false,"activity-visible":true,"lap-visible":false,"chart-title-key":null,"label-key":"titleAltitudeMax","unit-label-key":"unitTime","sort-order":86,"precision":null,"fill-color":null}],"strings":{"default":{"titleVerticalSpeed":"Vertical Speed","labelVerticalSpeed":"Vert.Speed","unitVerticalSpeed":"m/s|ft/m","titleAltitude":"(Barometric) Altitude","labelAltitude":"Altitude","unitAltitude":"m|ft","titleDistance":"Distance (~FAI)","unitDistance":"km|sm|nm","titleAscent":"Ascent (cumulative)","unitTime":"hh:mm:ss","titleAltitudeMin":"Mininum Altitude","titleAltitudeMax":"Maxinum Altitude"}}}
+{
+  "datafields" : [ {
+    "id" : 0,
+    "chart-visible" : true,
+    "activity-visible" : false,
+    "lap-visible" : false,
+    "chart-title-key" : "titleVerticalSpeed",
+    "label-key" : "labelVerticalSpeed",
+    "unit-label-key" : "unitVerticalSpeed",
+    "sort-order" : 1,
+    "precision" : 1,
+    "fill-color" : "rgba(255, 0, 0, 1.0)"
+  }, {
+    "id" : 1,
+    "chart-visible" : true,
+    "activity-visible" : false,
+    "lap-visible" : false,
+    "chart-title-key" : "titleAltitude",
+    "label-key" : "labelAltitude",
+    "unit-label-key" : "unitAltitude",
+    "sort-order" : 0,
+    "precision" : 0,
+    "fill-color" : "rgba(255, 0, 255, 1.0)"
+  }, {
+    "id" : 80,
+    "chart-visible" : false,
+    "activity-visible" : true,
+    "lap-visible" : false,
+    "chart-title-key" : null,
+    "label-key" : "titleDistance",
+    "unit-label-key" : "unitDistance",
+    "sort-order" : 80,
+    "precision" : null,
+    "fill-color" : null
+  }, {
+    "id" : 81,
+    "chart-visible" : false,
+    "activity-visible" : true,
+    "lap-visible" : false,
+    "chart-title-key" : null,
+    "label-key" : "titleAscent",
+    "unit-label-key" : "unitAltitude",
+    "sort-order" : 81,
+    "precision" : null,
+    "fill-color" : null
+  }, {
+    "id" : 82,
+    "chart-visible" : false,
+    "activity-visible" : true,
+    "lap-visible" : false,
+    "chart-title-key" : null,
+    "label-key" : "titleAscent",
+    "unit-label-key" : "unitTime",
+    "sort-order" : 82,
+    "precision" : null,
+    "fill-color" : null
+  }, {
+    "id" : 83,
+    "chart-visible" : false,
+    "activity-visible" : true,
+    "lap-visible" : false,
+    "chart-title-key" : null,
+    "label-key" : "titleAltitudeMin",
+    "unit-label-key" : "unitAltitude",
+    "sort-order" : 83,
+    "precision" : null,
+    "fill-color" : null
+  }, {
+    "id" : 84,
+    "chart-visible" : false,
+    "activity-visible" : true,
+    "lap-visible" : false,
+    "chart-title-key" : null,
+    "label-key" : "titleAltitudeMin",
+    "unit-label-key" : "unitTime",
+    "sort-order" : 84,
+    "precision" : null,
+    "fill-color" : null
+  }, {
+    "id" : 85,
+    "chart-visible" : false,
+    "activity-visible" : true,
+    "lap-visible" : false,
+    "chart-title-key" : null,
+    "label-key" : "titleAltitudeMax",
+    "unit-label-key" : "unitAltitude",
+    "sort-order" : 85,
+    "precision" : null,
+    "fill-color" : null
+  }, {
+    "id" : 86,
+    "chart-visible" : false,
+    "activity-visible" : true,
+    "lap-visible" : false,
+    "chart-title-key" : null,
+    "label-key" : "titleAltitudeMax",
+    "unit-label-key" : "unitTime",
+    "sort-order" : 86,
+    "precision" : null,
+    "fill-color" : null
+  } ],
+  "strings" : {
+    "default" : {
+      "titleVerticalSpeed" : "Vertical Speed",
+      "labelVerticalSpeed" : "Vert.Speed",
+      "unitVerticalSpeed" : "m/s|ft/m",
+      "titleAltitude" : "(Barometric) Altitude",
+      "labelAltitude" : "Altitude",
+      "unitAltitude" : "m|ft",
+      "titleDistance" : "Distance (~FAI)",
+      "unitDistance" : "km|sm|nm",
+      "titleAscent" : "Ascent (cumulative)",
+      "unitTime" : "hh:mm:ss",
+      "titleAltitudeMin" : "Minimum Altitude",
+      "titleAltitudeMax" : "Maximum Altitude"
+    }
+  }
+}

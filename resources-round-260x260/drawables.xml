@@ -1,6 +1,12 @@
 <!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
 <drawables>
   <bitmap id="AppIcon" filename="../resources/drawables/launcher-40x40.png" />
+  <bitmap id="pauseIcon" personality="system_icon_dark__warning prompt_size__title_icon" />
+  <bitmap id="resumeIcon" personality="system_icon_dark__revert prompt_size__title_icon" />
+  <bitmap id="saveIcon" personality="system_icon_dark__save prompt_size__title_icon" />
+  <bitmap id="discardIcon" personality="system_icon_destructive__discard prompt_size__title_icon" />
+  <bitmap id="rightTop" personality="system_icon_dark__hint_button_right_top system_loc__hint_button_right_top" />
+  <bitmap id="rightBottom" personality="system_icon_dark__hint_button_right_bottom system_loc__hint_button_right_bottom" />
   <drawable-list id="drawHeaderAccuracy1" x="119" y="19" width="4" height="8" >
     <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
   </drawable-list>

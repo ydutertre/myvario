@@ -94,23 +94,23 @@ class MyViewGlobalDelegate extends Ui.BehaviorDelegate {
 
   function onMenu() {
     //Sys.println("DEBUG: MyViewHeaderDelegate.onMenu()");
-    Ui.pushView(new MyMenuGeneric(:menuSettings),
-                new MyMenuGenericDelegate(:menuSettings),
-                Ui.SLIDE_IMMEDIATE);
+    Ui.pushView(new MyMenu2Generic(:menuSettings, 0),
+                new MyMenu2GenericDelegate(:menuSettings),
+                Ui.SLIDE_RIGHT);
     return true;
   }
 
   function onSelect() {
     //Sys.println("DEBUG: MyViewHeaderDelegate.onSelect()");
     if($.oMyActivity == null) {
-      Ui.pushView(new MyMenuGenericConfirm(:contextActivity, :actionStart),
+      Ui.pushView(new Ui.Confirmation(Ui.loadResource(Rez.Strings.titleActivityStart) + "?"),
                   new MyMenuGenericConfirmDelegate(:contextActivity, :actionStart, false),
                   Ui.SLIDE_IMMEDIATE);
     }
     else {
-      Ui.pushView(new MyMenuGeneric(:menuActivity),
-                  new MyMenuGenericDelegate(:menuActivity),
-                  Ui.SLIDE_IMMEDIATE);
+      Ui.pushView(new MyMenu2Generic(:menuActivity, 0),
+                  new MyMenu2GenericDelegate(:menuActivity),
+                  Ui.SLIDE_BLINK);
     }
     return true;
   }

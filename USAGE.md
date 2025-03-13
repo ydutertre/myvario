@@ -45,7 +45,6 @@ not be used in a pressurized aircraft.”
   - [General](#general)
   - [Units](#units)
   - [Livetrack](#livetrack)
-  - [Storage](#storage)
 * [Live Tracking](#live-tracking)
   - [SportsTrackLive](#sportstracklive)
   - [Livetrack24](#livetrack24)
@@ -53,7 +52,6 @@ not be used in a pressurized aircraft.”
 * [About Data Filtering](#about-data-filtering)
 * [About Thermal Detection](#about-thermal-detection)
 * [About touchscreen models (no 5 button control)](#about-touchscreen-models-no-5-button-control)
-* [Calibrating the Device Sensor](#calibrating-the-device-sensor)
 
 ## Foreword
 
@@ -266,14 +264,6 @@ The application allows you to specify the following settings:
   - `Elevation`:
     calibrate the altimeter using the current known elevation
     (QNH shall be adjusted accordingly)
-- Correction
-  - `Absolute`:
-    set the absolute device's sensor error correction
-  - `Relative`:
-    set the relative device's sensor error correction
-
-> Note: absolute and relative corrections shouldn't be needed in most cases. Check the
-"[Calibrating the deivce sensor](#calibrating-the-device-sensor)" for more information.
 
 ### Variometer
 - `Range`:
@@ -282,7 +272,7 @@ The application allows you to specify the following settings:
 - `Auto Thermal`:
   whether the app will switch to Varioplot view automatically when circling is
   detected, and switch back once circling is no longer detected
-- `Thermal Detect` (*EXPERIMENTAL*):
+- `Thermal Detect`
   whether the app will try to detect and map a thermal in the Varioplot view
   see "[About thermal detection](#about-thermal-detection)" for more information
 - `Smoothing`:
@@ -292,13 +282,15 @@ The application allows you to specify the following settings:
   the time range (in minutes) for plotting the variometer-vs-location history
 - `Plot Orientation`:
   the orientation of the plot, either "North up" (default) or "Heading up"
+- `Plot Zoom`:
+  the zoom level of the plot, in meters per pixel
   
 ### Sounds
 - `Variometer Tones`:
   whether to play variometer tones
 - `Vario Vibrations`:
   whether to use variometer vibrations
-- `Sound Driver`
+- `Tone Driver`
   Setting this to `Buzzer` will use custom frequency curves played with a buzzer for variometer tones,
   but some devices do not have a buzzer and can only play system sounds, for this use `Speaker` driver.
   This will try to *poorly* emulate vario sounds using system sounds and the speaker. Only use this setting
@@ -331,6 +323,8 @@ The application allows you to specify the following settings:
   restart
 - `GPS Precision`:
   Select "Best" to use all Constellations available, "Normal" to limit to GPS (for energy efficiency)
+- `Clear logs`:
+  Delete logs (internal application flight logs only)
 
 ### Units
 - `Distance`:
@@ -364,10 +358,6 @@ The application allows you to specify the following settings:
   The higher the frequency the smoother the track (one data point sent with each update).
   to the FlySafe server. Livetracking via FlySafe can also be disabled completely
   by setting this to Off.
-
-### Storage
-- `Clear logs`:
-  delete logs
 
 ## Live Tracking
 
@@ -448,9 +438,7 @@ was derived from implementations in the SkyDrop vario and Arduino Open Vario.
 
 Other values are not filtered.
 
-> The filter currently doesn't use data from the accelerometer, as gyroscope data 
-is not yet available from the Garmin SDK. I am planning on adding this for System 5
-devices, once SDK 4.1.0 comes out of Beta.
+> The filter currently doesn't use data from the accelerometer.
 
 In general, filtered values are used.
 
@@ -503,35 +491,3 @@ This can become particularly counterintuitive when changing zoom and pan in the
 thermal assistant/varioplot view, but it works. Log view is a bit weird as well
 since to scroll through the logs, the back button and tap on screen commands are
 used, while swipe up/swipe down bring to the other watch screens.
-
-## Calibrating the Device Sensor
-
-My Vario allows you to calibrate/correct your device's barometric sensor using
-the following formulas:
-
-`QFEcalibrated = QFEsensor * Crel + Cabs`
-
-Please note that this is very optional (like, extremely optional, extremely nerdy,
-and wholly unnecessary). This functionality is inherited from GliderSK and is here
-for people who need absolute precision in atltitude display and recording.
-
-If you suspect your device's sensor is inaccurate, you shall:
-
-1. install the PilotAltimeter widget to access the device's *QFE* readings
-   (unfortunately, this falls out of My Vario scope/purpose)
-
-2. take down multiple QFE readings, at different altitude, using your device's
-   *raw* QFE and a reliable, calibrated, reference barometer
-
-3. import those readings in a LibreOffice Calc (or Microsoft Excel) spreadsheet
-   and obtain the Crel and Cabs coefficients by performing a linear regression:
-
-     https://help.libreoffice.org/Calc/Regression_Analysis
-     where Crel = Slope and Cabs = Intercept
-
-   (curve-fitting for dummies: https://xkcd.com/2048/)
-
-4. set `Altimeter` -> `Correction` -> `Relative`/`Absolute` values to the calculated
-   cofficients
-
-Not an easy feat. But if you must...
