@@ -1,0 +1,43 @@
+<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
+<layouts>
+  <layout id="layoutGlobal">
+    <drawable class="MyDrawableHeader" />
+    <drawable class="MyDrawableGlobal" />
+    <drawable id="drawContentBorders" />
+    <drawable id="drawFieldsBorders" />
+    <!-- Header -->
+    <label id="valueBatteryLevel" x="149" y="18" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontStatus" />
+    <label id="valueActivityStatus" x="267" y="18" color="Gfx.COLOR_LT_GRAY" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontStatus" />
+    <!-- Fields -->
+    <label id="labelTopLeft" x="68" y="53" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitTopLeft" x="199" y="53" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueTopLeft" x="116" y="79" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelTopRight" x="212" y="53" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitTopRight" x="346" y="53" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueTopRight" x="299" y="79" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelLeft" x="10" y="157" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitLeft" x="150" y="157" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueLeft" x="77" y="183" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelCenter" x="208" y="157" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontLabel" />
+    <label id="valueCenter" x="208" y="183" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelRight" x="266" y="157" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitRight" x="406" y="157" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueRight" x="339" y="183" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelBottomLeft" x="18" y="261" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitBottomLeft" x="202" y="261" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueBottomLeft" x="126" y="287" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelBottomRight" x="214" y="261" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitBottomRight" x="395" y="261" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueBottomRight" x="290" y="287" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <!-- Footer -->
+    <label id="valueFooter" x="208" y="363" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_TINY" />
+  </layout>
+  <layout id="DeleteConfirmationPage">
+    <!-- Confirm -->
+    <!-- <bitmap id="confirmIcon" personality="confirmation_icon__hint_keep confirmation_loc__hint_keep" /> -->
+    <!-- Delete -->
+    <!-- <bitmap id="deleteIcon" personality="confirmation_icon__hint_delete confirmation_loc__hint_delete" /> -->
+    <!-- Prompt body -->
+    <!-- <text-area text="@Strings.titleConfirmDiscard" personality="confirmation_color_dark__body confirmation_size__body confirmation_loc__body confirmation_font__body" /> -->
+  </layout>
+</layouts>

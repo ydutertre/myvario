@@ -3,6 +3,7 @@
 - Ability to set almost all settings from the Connect IQ phone app
 - Changes based on GlideApp by Pablo Castro https://github.com/pacastro/GlideApp
 - Added Kitesurfing to activity types
+- Removed support for D2 Delta Series
 
 * 3.59
 - Trying to fix poor GPS signal on Fenix 8/Enduro 3 series

@@ -4,15 +4,45 @@ project.typecheck = 0
 
 # Annotations
 # ... exclude all by default
-base.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_246x322;layout_260x260;layout_280x280;layout_282x470;layout_240x400;layout_360x360;layout_390x390;layout_416x416
+base.excludeAnnotations = noicon
 # ... per (supported) form factor
-round-218x218.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_240x240;layout_246x322;layout_260x260;layout_280x280;layout_282x470;layout_240x400;layout_390x390;layout_416x416;layout_360x360;layout_454x454
-round-240x240.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_246x322;layout_260x260;layout_280x280;layout_282x470;layout_240x400;layout_390x390;layout_416x416;layout_360x360;layout_454x454
-round-260x260.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_246x322;layout_280x280;layout_282x470;layout_240x400;layout_390x390;layout_416x416;layout_360x360;layout_454x454
-round-280x280.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_246x322;layout_260x260;layout_282x470;layout_240x400;layout_390x390;layout_416x416;layout_360x360;layout_454x454
-round-360x360.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_246x322;layout_260x260;layout_282x470;layout_240x400;layout_280x280;layout_416x416;layout_390x390;layout_454x454
-round-390x390.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_246x322;layout_260x260;layout_282x470;layout_240x400;layout_280x280;layout_416x416;layout_360x360;layout_454x454
-round-416x416.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_246x322;layout_260x260;layout_282x470;layout_240x400;layout_390x390;layout_280x280;layout_360x360;layout_454x454
-round-454x454.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_246x322;layout_260x260;layout_282x470;layout_240x400;layout_390x390;layout_280x280;layout_360x360;layout_416x416
-rectangle-246x322.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_260x260;layout_280x280;layout_282x470;layout_240x400;layout_390x390;layout_416x416;layout_360x360;layout_454x454
-rectangle-282x470.excludeAnnotations = layout_148x205;layout_200x265;layout_205x148;layout_215x180;layout_218x218;layout_240x240;layout_246x322;layout_260x260;layout_280x280;layout_240x400;layout_390x390;layout_416x416;layout_360x360;layout_454x454
+round-240x240.excludeAnnotations = noicon
+round-260x260.excludeAnnotations = noicon
+round-280x280.excludeAnnotations = noicon
+round-360x360.excludeAnnotations = noicon
+round-390x390.excludeAnnotations = noicon
+round-416x416.excludeAnnotations = noicon
+round-454x454.excludeAnnotations = noicon
+
+d2air.excludeAnnotations = icon
+fenix5plus.excludeAnnotations = icon
+fenix5splus.excludeAnnotations = icon
+fenix5xplus.excludeAnnotations = icon
+fr245m.excludeAnnotations = icon
+fr645m.excludeAnnotations = icon
+fr745.excludeAnnotations = icon
+fr945.excludeAnnotations = icon
+fr945lte.excludeAnnotations = icon
+legacysagadarthvader.excludeAnnotations = icon
+legacyherofirstavenger.excludeAnnotations = icon
+vivoactive4.excludeAnnotations = icon
+vivoactive4s.excludeAnnotations = icon
+descentmk2s.excludeAnnotations = icon
+descentmk2.excludeAnnotations = icon
+
+# Resources
+d2air.resourcePath = resources; resources-noicon-416x416
+fenix5plus.resourcePath = resources; resources-noicon-240x240
+fenix5splus.resourcePath = resources; resources-noicon-240x240
+fenix5xplus.resourcePath = resources; resources-noicon-240x240
+fr245m.resourcePath = resources; resources-noicon-240x240
+fr645m.resourcePath = resources; resources-noicon-240x240
+fr745.resourcePath = resources; resources-noicon-240x240
+fr945.resourcePath = resources; resources-noicon-240x240
+fr945lte.resourcePath = resources; resources-noicon-240x240
+legacysagadarthvader.resourcePath = resources; resources-noicon-260x260
+legacyherofirstavenger.resourcePath = resources; resources-noicon-260x260
+vivoactive4.resourcePath = resources; resources-noicon-260x260
+vivoactive4s.resourcePath = resources; resources-noicon-218x218
+descentmk2s.resourcePath = resources; resources-noicon-240x240
+descentmk2.resourcePath = resources; resources-noicon-280x280

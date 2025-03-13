@@ -71,174 +71,20 @@ class MyViewVarioplot extends MyViewHeader {
   private var iFontPlotHeight as Number = 0;
 
   // Layout-specific
-  private var iLayoutCenter as Number = 120;
-  private var iLayoutClipY as Number = 31;
-  private var iLayoutClipW as Number = 240;
-  private var iLayoutClipH as Number = 178;
-  private var iLayoutValueXleft as Number = 40;
-  private var iLayoutValueXright as Number = 200;
-  private var iLayoutValueYtop as Number = 30;
-  private var iLayoutValueYbottom as Number = 193;
-  private var iDotRadius = 5 as Number;
-  private var iCompassRadius = 20 as Number;
+  private var iLayoutCenter as Number = (Sys.getDeviceSettings().screenWidth * 0.5).toNumber();
+  private var iLayoutClipY as Number = (Sys.getDeviceSettings().screenHeight * 0.13).toNumber();
+  private var iLayoutClipW as Number = Sys.getDeviceSettings().screenWidth;
+  private var iLayoutClipH as Number = (Sys.getDeviceSettings().screenHeight * 0.742).toNumber();
+  private var iLayoutValueXleft as Number = (Sys.getDeviceSettings().screenWidth * 0.165).toNumber();
+  private var iLayoutValueXright as Number = Sys.getDeviceSettings().screenWidth - iLayoutValueXleft;
+  private var iLayoutValueYtop as Number = (Sys.getDeviceSettings().screenHeight * 0.125).toNumber();
+  private var iLayoutValueYbottom as Number = ((Sys.getDeviceSettings().screenHeight - iLayoutValueYtop)*0.9).toNumber();
+  private var iDotRadius as Number = (Sys.getDeviceSettings().screenWidth * 0.0164).toNumber();
+  private var iCompassRadius as Number = (Sys.getDeviceSettings().screenHeight * 0.0385).toNumber();
+
 
   // Color scale
   private var aiScale as Array<Number> = [-3000, -2000, -1000, -50, 50, 1000, 2000, 3000] as Array<Number>;
-
-
-  //
-  // FUNCTIONS: Layout-specific
-  //
-
-  (:layout_218x218)
-  function initLayout() as Void {
-    self.iLayoutCenter = 109;
-    self.iLayoutClipY = 28;
-    self.iLayoutClipW = 218;
-    self.iLayoutClipH = 162;
-    self.iLayoutValueXleft = 36;
-    self.iLayoutValueXright = 182;
-    self.iLayoutValueYtop = 27;
-    self.iLayoutValueYbottom = 173;
-    self.iDotRadius = 3;
-    self.iCompassRadius = 10;
-    $.iPlotScaleBarSize = 44;
-  }
-
-  (:layout_246x322)
-  function initLayout() as Void {
-    self.iLayoutCenter = 120;
-    self.iLayoutClipY = 31;
-    self.iLayoutClipW = 240;
-    self.iLayoutClipH = 178;
-    self.iLayoutValueXleft = 40;
-    self.iLayoutValueXright = 200;
-    self.iLayoutValueYtop = 30;
-    self.iLayoutValueYbottom = 190;
-    self.iDotRadius = 3;
-    self.iCompassRadius = 10;
-    $.iPlotScaleBarSize = 49;
-  }
-
-  (:layout_240x240)
-  function initLayout() as Void {
-    self.iLayoutCenter = 120;
-    self.iLayoutClipY = 31;
-    self.iLayoutClipW = 240;
-    self.iLayoutClipH = 178;
-    self.iLayoutValueXleft = 40;
-    self.iLayoutValueXright = 200;
-    self.iLayoutValueYtop = 30;
-    self.iLayoutValueYbottom = 190;
-    self.iDotRadius = 3;
-    self.iCompassRadius = 10;
-    $.iPlotScaleBarSize = 48;
-  }
-
-  (:layout_260x260)
-  function initLayout() as Void {
-    self.iLayoutCenter = 130;
-    self.iLayoutClipY = 34;
-    self.iLayoutClipW = 260;
-    self.iLayoutClipH = 192;
-    self.iLayoutValueXleft = 43;
-    self.iLayoutValueXright = 217;
-    self.iLayoutValueYtop = 33;
-    self.iLayoutValueYbottom = 205;
-    self.iDotRadius = 4;
-    self.iCompassRadius = 12;
-    $.iPlotScaleBarSize = 52;
-  }
-
-  (:layout_280x280)
-  function initLayout() as Void {
-    self.iLayoutCenter = 140;
-    self.iLayoutClipY = 36;
-    self.iLayoutClipW = 280;
-    self.iLayoutClipH = 208;
-    self.iLayoutValueXleft = 47;
-    self.iLayoutValueXright = 233;
-    self.iLayoutValueYtop = 35;
-    self.iLayoutValueYbottom = 221;
-    self.iDotRadius = 5;
-    self.iCompassRadius = 14;
-    $.iPlotScaleBarSize = 56;
-  }
-
-  (:layout_282x470)
-  function initLayout() as Void {
-    self.iLayoutCenter = 140;
-    self.iLayoutClipY = 36;
-    self.iLayoutClipW = 280;
-    self.iLayoutClipH = 208;
-    self.iLayoutValueXleft = 47;
-    self.iLayoutValueXright = 233;
-    self.iLayoutValueYtop = 35;
-    self.iLayoutValueYbottom = 221;
-    self.iDotRadius = 5;
-    self.iCompassRadius = 14;
-    $.iPlotScaleBarSize = 56;
-  }
-
-  (:layout_360x360)
-  function initLayout() as Void {
-    self.iLayoutCenter = 180;
-    self.iLayoutClipY = 46;
-    self.iLayoutClipW = 360;
-    self.iLayoutClipH = 268;
-    self.iLayoutValueXleft = 61;
-    self.iLayoutValueXright = 299;
-    self.iLayoutValueYtop = 45;
-    self.iLayoutValueYbottom = 281;
-    self.iDotRadius = 6;
-    self.iCompassRadius = 18;
-    $.iPlotScaleBarSize = 72;
-  }
-
-  (:layout_390x390)
-  function initLayout() as Void {
-    self.iLayoutCenter = 195;
-    self.iLayoutClipY = 50;
-    self.iLayoutClipW = 390;
-    self.iLayoutClipH = 290;
-    self.iLayoutValueXleft = 66;
-    self.iLayoutValueXright = 324;
-    self.iLayoutValueYtop = 49;
-    self.iLayoutValueYbottom = 304;
-    self.iDotRadius = 7;
-    self.iCompassRadius = 20;
-    $.iPlotScaleBarSize = 78;
-  }
-
-  (:layout_416x416)
-  function initLayout() as Void {
-    self.iLayoutCenter = 208;
-    self.iLayoutClipY = 53;
-    self.iLayoutClipW = 416;
-    self.iLayoutClipH = 309;
-    self.iLayoutValueXleft = 70;
-    self.iLayoutValueXright = 346;
-    self.iLayoutValueYtop = 52;
-    self.iLayoutValueYbottom = 328;
-    self.iDotRadius = 7;
-    self.iCompassRadius = 20;
-    $.iPlotScaleBarSize = 83;
-  }
-
-  (:layout_454x454)
-  function initLayout() as Void {
-    self.iLayoutCenter = 227;
-    self.iLayoutClipY = 58;
-    self.iLayoutClipW = 454;
-    self.iLayoutClipH = 337;
-    self.iLayoutValueXleft = 76;
-    self.iLayoutValueXright = 378;
-    self.iLayoutValueYtop = 57;
-    self.iLayoutValueYbottom = 358;
-    self.iDotRadius = 8;
-    self.iCompassRadius = 22;
-    $.iPlotScaleBarSize = 91;
-  }
 
   //
   // FUNCTIONS: MyViewHeader (override/implement)
@@ -248,7 +94,7 @@ class MyViewVarioplot extends MyViewHeader {
     MyViewHeader.initialize();
 
     // Layout-specific initialization
-    self.initLayout();
+    $.iPlotScaleBarSize = (iLayoutCenter * 0.4).toNumber();
   }
 
   function prepare() {

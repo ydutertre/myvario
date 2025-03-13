@@ -5,13 +5,9 @@
         <iq:products>
             <iq:product id="d2air"/>
             <iq:product id="d2airx10"/>
-            <iq:product id="d2delta"/>
-            <iq:product id="d2deltapx"/>
-            <iq:product id="d2deltas"/>
             <iq:product id="d2mach1"/>
             <iq:product id="descentmk2"/>
             <iq:product id="descentmk2s"/>
-            <iq:product id="edge530"/>
             <iq:product id="enduro3"/>
             <iq:product id="epix2"/>
             <iq:product id="epix2pro42mm"/>
