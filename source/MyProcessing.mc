@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+// Copyright (c) 2025 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -112,6 +112,9 @@ class MyProcessing {
   public var aiPlotLatitude as Array<Number>;
   public var aiPlotLongitude as Array<Number>;
   public var aiPlotVariometer as Array<Number>;
+  // ... Map Polyline
+  public var oPolyline as Ui.MapPolyline?;
+  public var iPositionCount = 0;
   // Thermal core calculation
   public var iCenterLongitude as Number = 0;
   public var iCenterLatitude as Number = 0;
@@ -146,6 +149,10 @@ class MyProcessing {
     for(var i=0; i<self.PLOTBUFFER_SIZE; i++) { self.aiPlotVariometer[i] = 0; }
     aiPointAltitude = new Array<Number>[self.PLOTBUFFER_SIZE];
     for(var i=0; i<self.PLOTBUFFER_SIZE; i++) { self.aiPointAltitude[i] = 0; }
+    // ... Map Polyline
+    if(Ui has :MapView) {
+      oPolyline = new Ui.MapPolyline();
+    }
   }
 
   function resetSensorData() as Void {
@@ -273,6 +280,10 @@ class MyProcessing {
     self.bPositionStateful = false;
     if(_oInfo has :position and _oInfo.position != null) {
       self.oLocation = _oInfo.position;
+      self.iPositionCount++;
+      if((iAccuracy >= Pos.QUALITY_POOR) && (Ui has :MapView) && ($.oMySettings.bMapDisplay) && ($.oMyActivity != null) && (self.iPositionCount % 10 == 0)) {
+        self.oPolyline.addLocation(self.oLocation);
+      }
       //Sys.println(format("DEBUG: (Position.Info) position = $1$, $2$", [self.oLocation.toDegrees()[0], self.oLocation.toDegrees()[1]]));
     }
     //else {

@@ -1,6 +1,6 @@
 <strings>
   <string id="AppName">My Vario</string>
-  <string id="AppVersion">4.0</string>
+  <string id="AppVersion">4.10</string>
   <!-- Properties -->
   <string id="titleVersion">Version</string>
   <string id="titleLicense">License</string>
@@ -59,6 +59,10 @@
   <string id="valueUnitTimeLT">LT</string>
   <string id="valueUnitTimeUTC">UTC</string>
   <string id="titleUnitWindSpeed">Wind Speed</string>
+  <!-- Menu (Map Display) -->
+  <string id="titleSettingsMapView">Map</string>
+  <string id="titleMapDisplay">Display Map</string>
+  <string id="titleMapViewZoom">Map Zoom</string>
   <!-- Menu (storage) -->
   <string id="titleStorage">Storage</string>
   <string id="titleStorageLoad">Load</string>

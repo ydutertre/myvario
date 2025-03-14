@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+// Copyright (c) 2025 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -351,9 +351,16 @@ class MyViewLogDelegate extends MyViewGlobalDelegate {
 
   function onPreviousPage() {
     //Sys.println("DEBUG: MyViewLogDelegate.onPreviousPage()");
-    Ui.switchToView(new MyViewVarioplot(),
-                    new MyViewVarioplotDelegate(),
-                    Ui.SLIDE_IMMEDIATE);
+    if (Ui has :MapView && $.oMySettings.bMapDisplay) {
+        var mapView = new MyViewMap();
+        Ui.switchToView(mapView,
+                        new MyViewMapDelegate(mapView),
+                        Ui.SLIDE_IMMEDIATE);
+    } else {
+        Ui.switchToView(new MyViewVarioplot(),
+          new MyViewVarioplotDelegate(),
+          Ui.SLIDE_IMMEDIATE);
+    }
     return true;
   }
 

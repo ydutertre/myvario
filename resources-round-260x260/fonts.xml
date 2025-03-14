@@ -5,4 +5,6 @@
   <font id="fontStatus" filename="../resources/fonts/ArialBold-NEHE-15.fnt" />
   <font id="fontLabel" filename="../resources/fonts/Arial-NEHE-16.fnt" />
   <font id="fontUnit" filename="../resources/fonts/Arial-NEHE-16.fnt" />
+  <font id="fontPlotS" filename="../resources/fonts/ArialBold-NEHE-14.fnt" />
+  <font id="fontLabelS" filename="../resources/fonts/ArialBold-NEHE-15.fnt" />
 </fonts>

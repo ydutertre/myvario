@@ -31,6 +31,9 @@ thermal core visualization to help keep within the thermal.
 - [Log view](./USAGE.md#log-view), allowing to keep track of your last activities (unavailable during
 flight) including flight start and end times, maximum and minimum altitudes, etc.
 
+- [Map View](./USAGE.md#map-view), allowing to see your location on a map, as well as a line representing your track.
+The Map view is only available on devices that support it.
+
 > An option to [auto-switch](./USAGE.md#variometer) to and from the varioplot/thermal assistant view automa-
 tically (based on circling auto-detection) is available.
 

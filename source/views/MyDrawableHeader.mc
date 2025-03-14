@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+// Copyright (c) 2025 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -49,6 +49,7 @@ class MyDrawableHeader extends Ui.Drawable {
   private var oRezHeaderAccuracy2 as Ui.Drawable;
   private var oRezHeaderAccuracy3 as Ui.Drawable;
   private var oRezHeaderAccuracy4 as Ui.Drawable;
+  private var oRezMapHeaderBg as Ui.Drawable;
 
   // Background color
   private var iColorBackground as Number = Gfx.COLOR_TRANSPARENT;
@@ -69,9 +70,12 @@ class MyDrawableHeader extends Ui.Drawable {
     oRezHeaderAccuracy2 = new Rez.Drawables.drawHeaderAccuracy2();
     oRezHeaderAccuracy3 = new Rez.Drawables.drawHeaderAccuracy3();
     oRezHeaderAccuracy4 = new Rez.Drawables.drawHeaderAccuracy4();
+    oRezMapHeaderBg = new Rez.Drawables.drawMapHeaderBackground();
   }
 
   function draw(_oDC) { 
+    _oDC.setColor($.oMySettings.iGeneralBackgroundColor, Gfx.COLOR_TRANSPARENT);
+    self.oRezMapHeaderBg.draw(_oDC);
     // Draw
     // ... background
     _oDC.setColor(self.iColorBackground, self.iColorBackground);

@@ -1,8 +1,8 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
-//
+// Copyright (c) 2025 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+// Amended using code from fork "GlideApp" by Pablo Castro
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
 // Public License as published by the Free Software Foundation, Version 3.
@@ -55,6 +55,7 @@ class MySettings {
   public var iVariometerSmoothing as Number = 1;
   public var iVariometerPlotRange as Number = 2;
   public var iVariometerPlotZoom as Number = 9;
+  public var iMapViewZoom as Number = 8;
   // ... sounds
   public var bSoundsVariometerTones as Boolean = true;
   public var bVariometerVibrations as Boolean = true;
@@ -69,6 +70,7 @@ class MySettings {
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
   public var bActiveLook as Boolean = false;
   public var iGPS as Number = 0; // 0: full, 1: GPS
+  public var bMapDisplay as Boolean = false;
   // ... units
   public var iUnitDistance as Number = -1;
   public var iUnitElevation as Number = -1;
@@ -103,7 +105,9 @@ class MySettings {
   public var fVariometerRange as Float = 3.0f;
   public var iVariometerPlotOrientation as Number = 0;
   public var fVariometerPlotZoom as Float = 0.0308666666667f;
+  public var fMapViewZoom as Float = 0.0f;
   public var fVariometerPlotScale as Float = 1.0f;
+  public var fMapViewScale as Float = 1.0f;
   public var fMinimumClimb as Float = 0.2;
   public var fMinimumSink as Float = 2.0;
   public var fVariometerSmoothing as Float = 0.5; //Standard deviation of altitude measurement at fixed altitude
@@ -129,6 +133,7 @@ class MySettings {
     self.setVariometerSmoothing(self.loadVariometerSmoothing());
     self.setVariometerPlotRange(self.loadVariometerPlotRange());
     self.setVariometerPlotZoom(self.loadVariometerPlotZoom());
+    self.setMapViewZoom(self.loadMapViewZoom());
     // ... sounds and vibration
     self.setSoundsVariometerTones(self.loadSoundsVariometerTones());
     self.setVariometerVibrations(self.loadVariometerVibrations());
@@ -143,6 +148,7 @@ class MySettings {
     self.setGeneralBackgroundColor(self.loadGeneralBackgroundColor());
     self.setActiveLook(self.loadActiveLook());
     self.setGPS(self.loadGPS());
+    self.setMapDisplay(self.loadMapDisplay());
     // ... units
     self.setUnitDistance(self.loadUnitDistance());
     self.setUnitElevation(self.loadUnitElevation());
@@ -296,6 +302,34 @@ class MySettings {
     case 9: self.fVariometerPlotZoom = 0.0308666666667f; self.fVariometerPlotScale = 1.0f; break;  // 1m/px
     case 10: self.fVariometerPlotZoom = 0.0617333333334f; self.fVariometerPlotScale = 0.5f; break;  // 0.5m/px
     case 11: self.fVariometerPlotZoom = 0.1234666666668f; self.fVariometerPlotScale = 0.25f; break;  // 0.25m/px
+    }
+  }
+
+  function loadMapViewZoom() as Number {
+    return LangUtils.readKeyNumber(App.Properties.getValue("userMapViewZoom"), 9);
+  }
+  function saveMapViewZoom(_iValue as Number) as Void {
+    App.Properties.setValue("userMapViewZoom", _iValue as App.PropertyValueType);
+  }
+  function setMapViewZoom(_iValue as Number) as Void {
+    if(_iValue > 9) {
+      _iValue = 9;
+    }
+    else if(_iValue < 0) {
+      _iValue = 0;
+    }
+    self.iMapViewZoom = _iValue;
+    switch(self.iMapViewZoom) {
+    case 0: self.fMapViewZoom = 0.00899321605f; self.fMapViewScale = 1000.0f; break;  // 1000m/px
+    case 1: self.fMapViewZoom = 0.00449660802f; self.fMapViewScale = 500.0f; break;  // 500m/px
+    case 2: self.fMapViewZoom = 0.00179864321f; self.fMapViewScale = 200.0f; break;  // 200m/px
+    case 3: self.fMapViewZoom = 0.0008993216f; self.fMapViewScale = 100.0f; break;  // 100m/px
+    case 4: self.fMapViewZoom = 0.0004496608f; self.fMapViewScale = 50.0f; break;  // 50m/px
+    case 5: self.fMapViewZoom = 0.00017986432f; self.fMapViewScale = 20.0f; break;  // 20m/px
+    case 6: self.fMapViewZoom = 0.00008993216f; self.fMapViewScale = 10.0f; break;  // 10m/px
+    case 7: self.fMapViewZoom = 0.00004496608f; self.fMapViewScale = 5.0f; break;  // 5m/px
+    case 8: self.fMapViewZoom = 0.00001798643f; self.fMapViewScale = 2.0f; break;  // 2m/px
+    case 9: self.fMapViewZoom = 0.00000899321f; self.fMapViewScale = 1.0f; break;  // 1m/px
     }
   }
 
@@ -465,6 +499,16 @@ class MySettings {
     }
     self.iGPS = _iValue;
   }
+
+  function loadMapDisplay() as Boolean {
+    return LangUtils.readKeyBoolean(App.Properties.getValue("userMapDisplay"), false);
+  }
+  function saveMapDisplay(_bValue as Boolean) as Void {
+    App.Properties.setValue("userMapDisplay", _bValue as App.PropertyValueType);
+  }
+  function setMapDisplay(_bValue as Boolean) as Void {
+    self.bMapDisplay = _bValue;
+  }
   
 
   function loadUnitDistance() as Number {
@@ -600,7 +644,7 @@ class MySettings {
       self.sUnitDirection = "txt";
     }
     else {  // ... Degrees
-      self.sUnitDirection = "°";
+      self.sUnitDirection = "Deg";
     }
   }
 

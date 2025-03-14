@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+// Copyright (c) 2025 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -66,7 +66,7 @@ class MyViewGeneral extends MyViewGlobal {
     // ... Current time
     (View.findDrawableById("labelTopLeft") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelWindDirection) as String);
     if($.oMySettings.iUnitDirection==0) {
-      (View.findDrawableById("unitTopLeft") as Ui.Text).setText("[°]");
+      (View.findDrawableById("unitTopLeft") as Ui.Text).setText("[Deg]");
     }
     // ... activity: elapsed
     (View.findDrawableById("labelTopRight") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelWindSpeed) as String);
@@ -79,7 +79,7 @@ class MyViewGeneral extends MyViewGlobal {
     // ... heading
     (View.findDrawableById("labelRight") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelHeading) as String);
     if($.oMySettings.iUnitDirection==0) {
-      (View.findDrawableById("unitRight") as Ui.Text).setText("[°]");
+      (View.findDrawableById("unitRight") as Ui.Text).setText("[Deg]");
     }
     // ... vertical speed
     (View.findDrawableById("labelBottomLeft") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelVerticalSpeed) as String);
@@ -258,10 +258,17 @@ class MyViewGeneralDelegate extends MyViewGlobalDelegate {
 
   function onPreviousPage() {
     //Sys.println("DEBUG: MyViewGeneralDelegate.onPreviousPage()");
-    if ($.oMyActivity != null) { //Skip the log view if we're recording, e.g. in flight
-      Ui.switchToView(new MyViewVarioplot(),
-                new MyViewVarioplotDelegate(),
-                Ui.SLIDE_IMMEDIATE);
+    if ($.oMyActivity != null) { //Skip the log view if we're recording, e.g. in flight     
+        if (Ui has :MapView && $.oMySettings.bMapDisplay) {
+            var mapView = new MyViewMap();
+            Ui.switchToView(mapView,
+                            new MyViewMapDelegate(mapView),
+                            Ui.SLIDE_IMMEDIATE);
+        } else {
+            Ui.switchToView(new MyViewVarioplot(),
+            new MyViewVarioplotDelegate(),
+            Ui.SLIDE_IMMEDIATE);
+        }
     }
     else {
         Ui.switchToView(new MyViewLog(),

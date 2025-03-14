@@ -92,4 +92,9 @@
     <shape type="rectangle" x="21" y="0" width="2" height="fill" color="Gfx.COLOR_LT_GRAY" />
     <shape type="rectangle" x="11" y="11" width="11" height="11" color="Gfx.COLOR_LT_GRAY" />
   </drawable-list>
+
+   <drawable-list id="drawMapHeaderBackground" x="0" y="0" width="fill" height="fill" >
+    <shape type="rectangle" x="0" y="0" width="fill" height="56" />
+    <shape type="rectangle" x="0" y="400" width="fill" height="fill" />
+  </drawable-list>
 </drawables>

@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+// Copyright (c) 2025 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -240,7 +240,7 @@ class MyPickerGenericSettings extends Ui.Picker {
       else if(_item == :menuUnitDirection) {
         var iUnitDirection = $.oMySettings.loadUnitDirection();
         var oFactory = new PickerFactoryDictionary([0, 1],
-                                                   ["°", "txt"],
+                                                   ["Deg", "txt"],
                                                    null);
         Picker.initialize({
             :title => new Ui.Text({
@@ -314,6 +314,24 @@ class MyPickerGenericSettings extends Ui.Picker {
                 :color => Gfx.COLOR_BLUE}),
             :pattern => [oFactory],
             :defaults => [oFactory.indexOfKey(iFlySafeLivetrackFrequency)]});
+      }
+    }
+
+    else if(_context == :contextMapView) {
+      if(_item == :menuMapViewZoom) {
+        var iMapViewZoom = $.oMySettings.loadMapViewZoom();
+        var oFactory = new PickerFactoryDictionary([0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+                                                   ["1000" ,"500", "200", "100", "50", "20", "10", "5", "2", "1"],
+                                                   null);
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => format("$1$ [m/px]", [Ui.loadResource(Rez.Strings.titleMapViewZoom)]),
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
+                :color => Gfx.COLOR_BLUE}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iMapViewZoom)]});
       }
     }
   }
@@ -417,6 +435,13 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
         $.oMySettings.saveFlySafeLivetrackFrequency(_amValues[0] as Number);
         focus = 2;
       }
+    }
+
+    else if(self.context == :contextMapView) {
+      if(self.item == :menuMapViewZoom) {
+        $.oMySettings.saveMapViewZoom(_amValues[0] as Number);
+        focus = 1;
+      } 
     }
     Ui.popView(Ui.SLIDE_IMMEDIATE);
     Ui.switchToView(new MyMenu2Generic(self.parent, focus), new MyMenu2GenericDelegate(self.parent), WatchUi.SLIDE_RIGHT);

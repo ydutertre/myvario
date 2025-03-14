@@ -1,7 +1,9 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+// Copyright (c) 2025 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+//
+// Amended using code from fork "GlideApp" by Pablo Castro
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -61,6 +63,9 @@ class MyMenu2Generic extends Ui.Menu2 {
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsActivity, null, :menuSettingsActivity, {}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsLivetrack, null, :menuSettingsLivetrack, {}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsUnits, null, :menuSettingsUnits, {}));
+      if (Ui has :MapView) {
+        Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsMapView, null, :menuSettingsMapView, {}));
+      }
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleAbout, null, :menuAbout, {}));
     }
 
@@ -126,6 +131,12 @@ class MyMenu2Generic extends Ui.Menu2 {
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleLivetrack24Frequency, format("$1$$2$", [$.oMySettings.iLivetrack24Frequency, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuLivetrack24Frequency, {}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSportsTrackLiveFrequency, format("$1$$2$", [$.oMySettings.iSportsTrackLiveFrequency, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuSportsTrackLiveFrequency, {}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleFlySafeLivetrackFrequency, format("$1$$2$", [$.oMySettings.iFlySafeLivetrackFrequency, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuFlySafeLivetrackFrequency, {}));
+    }
+
+    else if(menu == :menuSettingsMapView && Ui has :MapView) {
+      Menu2.setTitle(Rez.Strings.titleSettingsMapView);
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleMapDisplay, null, :menuMapDisplay, $.oMySettings.bMapDisplay, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleMapViewZoom, format("$1$ $2$", [$.oMySettings.fMapViewScale.format("%.2f"),Ui.loadResource(Rez.Strings.unitZoom)]), :menuMapViewZoom, {}));
     }
 
     else if(menu == :menuAbout) {
@@ -287,6 +298,18 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
         Ui.pushView(new MyPickerGenericSettings(:contextLivetrackSettings, itemId),
                     new MyPickerGenericSettingsDelegate(:contextLivetrackSettings, itemId, self.menu),
                     Ui.SLIDE_LEFT);      
+    }
+
+    else if(self.menu == :menuSettingsMapView) {
+      if(itemId == :menuMapDisplay) {
+        $.oMySettings.saveMapDisplay(item.isEnabled());
+        $.oMySettings.setMapDisplay(item.isEnabled());
+      }
+      else {
+        Ui.pushView(new MyPickerGenericSettings(:contextMapView, itemId),
+                    new MyPickerGenericSettingsDelegate(:contextMapView, itemId, self.menu),
+                    Ui.SLIDE_LEFT);
+      }
     }
 
     else if(self.menu == :menuActivity) {

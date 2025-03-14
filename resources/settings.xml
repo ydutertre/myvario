@@ -158,8 +158,8 @@
 
     <setting propertyKey="@Properties.userUnitDirection" title="@Strings.titleUnitDirection">
         <settingConfig type="list">
-            <listEntry value="0">°</listEntry>
-            <listEntry value="1">txt</listEntry>
+            <listEntry value="0">Degrees</listEntry>
+            <listEntry value="1">Text (SW, NE, etc.)</listEntry>
         </settingConfig>
     </setting>
   </group>
@@ -184,6 +184,25 @@
     </setting>
     <setting propertyKey="@Properties.userFlySafeToken" title="@Strings.titleFlySafeToken">
       <settingConfig type="password" errorMessage="@Strings.titleInputError" />
+    </setting>
+  </group>
+  <group id="mapView" title="@Strings.titleSettingsMapView">
+    <setting propertyKey="@Properties.userMapDisplay" title="@Strings.titleMapDisplay">
+        <settingConfig type="boolean" />
+    </setting>
+    <setting propertyKey="@Properties.userMapViewZoom" title="@Strings.titleMapViewZoom">
+        <settingConfig type="list">
+            <listEntry value="0">1000 m/px</listEntry>
+            <listEntry value="1">500 m/px</listEntry>
+            <listEntry value="2">200 m/px</listEntry>
+            <listEntry value="3">100 m/px</listEntry>
+            <listEntry value="4">50 m/px</listEntry>
+            <listEntry value="5">20 m/px</listEntry>
+            <listEntry value="6">10 m/px</listEntry>
+            <listEntry value="7">5 m/px</listEntry>
+            <listEntry value="8">2 m/px</listEntry>
+            <listEntry value="9">1 m/px</listEntry>
+        </settingConfig>
     </setting>
   </group>
   <!-- ... storage -->

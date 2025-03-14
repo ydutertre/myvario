@@ -36,6 +36,7 @@ not be used in a pressurized aircraft.”
   - [Variometer View](#variometer-view)
   - [Varioplot / Thermal Assistant View](#varioplot--thermal-assistant-view)
   - [Log View](#log-view)
+  - [Map View](#map-view)
 * [Activity Recording](#activity-recording)
 * [Settings](#settings)
   - [Altimeter](#altimeter)
@@ -49,6 +50,7 @@ not be used in a pressurized aircraft.”
   - [SportsTrackLive](#sportstracklive)
   - [Livetrack24](#livetrack24)
   - [FlySafe](#flysafe)
+
 * [About Data Filtering](#about-data-filtering)
 * [About Thermal Detection](#about-thermal-detection)
 * [About touchscreen models (no 5 button control)](#about-touchscreen-models-no-5-button-control)
@@ -187,11 +189,15 @@ In addition, the following values will be displayed in the corner of the plot:
    thermals. If circling is detected, it will show current circling duration
    and height gain (or loss).
  - `Top-Right`:
-   your current vertical speed (and compass in heading up orientation)
+   your current vertical speed
  - `Bottom-Left`:
    your current ground speed and plot scale
  - `Bottom-Right`:
-   your current finesse and wind direction/speed if available
+   your current finesse
+ - `Left-Center`:
+   current wind orientation and speed (if available)
+ - `Top-Center`:
+   North pointed (if Heading Up is enabled)
 
 If turned on, the current thermal detected core will be displayed as a blue circle.
 See "[About Thermal Detection](#about-thermal-detection)" for more details.
@@ -215,6 +221,13 @@ details; see [Activity Recording](#activity-recording) below).
 Use the SELECT and BACK buttons to browse through the last 100 saved entries.
 
 The Log view is not available in flight (while recording)
+
+### Map View
+
+A Map view is available on devices that support Maps, such as Fenix 7/8,
+Forerunner 965/955, or Enduro 2/3.
+The Map View includes a track, but the track itself is updated every 10
+seconds only to preserve memory and device performance.
 
 
 ## Activity Recording
@@ -358,6 +371,13 @@ The application allows you to specify the following settings:
   The higher the frequency the smoother the track (one data point sent with each update).
   to the FlySafe server. Livetracking via FlySafe can also be disabled completely
   by setting this to Off.
+
+### Map View
+These settings are only available if the device supports Maps.
+- `Map Display`:
+  Whether to display the map or not
+- `Map Zoom` 
+  The desired map zoom, in meters per pixel
 
 ## Live Tracking
 

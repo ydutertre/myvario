@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022-2024 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+// Copyright (c) 2025-2024 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //                         and contributors:
 //                         Lenart Kos <lenart@wgn.si> 
 //

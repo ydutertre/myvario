@@ -31,6 +31,11 @@
   <property id="userUnitDirection" type="number">1</property>
   <property id="userUnitTimeUTC" type="boolean">false</property>
   <property id="userUnitWindSpeed" type="number">-1</property>
+    <!-- ... map -->
+  <property id="userLastLat" type="float">-33.380</property>
+  <property id="userLastLon" type="float">-70.580</property>
+  <property id="userMapViewZoom" type="number">7</property>
+  <property id="userMapDisplay" type="boolean">false</property>
   <!-- ... livetrack -->
   <property id="userLivetrack24UserName" type="string">yourusername</property>
   <property id="userLivetrack24Password" type="string">password</property>

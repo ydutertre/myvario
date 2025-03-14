@@ -1,7 +1,7 @@
 // -*- mode:java; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab:
 
 // My Vario
-// Copyright (C) 2022 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
+// Copyright (c) 2025 Yannick Dutertre <https://yannickd9.wixsite.com/myvario>
 //
 // My Vario is free software:
 // you can redistribute it and/or modify it under the terms of the GNU General
@@ -69,6 +69,9 @@ var oMyTimeStart as Time.Moment?;// = Time.now();
 // Log
 var iMyLogIndex as Number = -1;
 
+// Map
+var bMHChange = false;
+
 // Activity session (recording)
 var oMyActivity as MyActivity?;
 
@@ -82,7 +85,6 @@ var oMyActiveLook as MyActiveLook?;// = new MyActiveLook();
 
 // Current view
 var oMyView as MyView?;
-
 
 //
 // CONSTANTS
@@ -532,4 +534,61 @@ class MyApp extends App.AppBase {
     Pos.enableLocationEvents(options, method(:onLocationEvent));
   }
 
+  function calculateScaleBar(iMaxBarSize as Lang.Number, fPlotScale as Lang.Float, sUnit as Lang.String, fUnitCoefficient as Lang.Float) as Void {
+    var iMinBarSize = 10;
+    var fMinBarScale = iMinBarSize * fUnitCoefficient * fPlotScale;
+    var fMaxBarScale = iMaxBarSize * fUnitCoefficient * fPlotScale;
+
+    var aiSizeSnap = [10, 5, 2, 1];
+
+    // Try to find a nice size
+    for (var i = 0; i < aiSizeSnap.size(); i++) {
+      var iSize = aiSizeSnap[i];
+      var iSizeSnap = (fMaxBarScale / iSize).toNumber() * iSize;
+      if (iSizeSnap >= fMinBarScale && iSizeSnap <= fMaxBarScale) {
+        var iBarSize = iMaxBarSize * iSizeSnap / fMaxBarScale;
+        // return [iBarSize.toNumber(), iSizeSnap + sUnit];
+        $.iScaleBarSize = iBarSize.toNumber();
+        $.sScaleBarUnit = iSizeSnap + sUnit;
+        return;
+      }
+    }
+
+    // Failed, try smaller unit
+    if ($.oMySettings.sUnitDistance.equals("nm") || $.oMySettings.sUnitDistance.equals("sm")) {
+      sUnit = "ft";
+      fUnitCoefficient = 3.280839895f;
+    } else if ($.oMySettings.sUnitDistance.equals("km")) {
+      sUnit = "m";
+      fUnitCoefficient = 1.0f;
+    } else {
+      // "Unreachable" Unknown unit...
+      // return [0, "ERR"];
+      $.iScaleBarSize = 0;
+      $.sScaleBarUnit = "ERR";
+      return;
+    }
+
+    aiSizeSnap = [1000, 500, 200, 100, 50, 10];
+    fMinBarScale = iMinBarSize * fUnitCoefficient * fPlotScale;
+    fMaxBarScale = iMaxBarSize * fUnitCoefficient * fPlotScale;
+
+    // Try to find a nice size with the smaller unit
+    for (var i = 0; i < aiSizeSnap.size(); i++) {
+      var iSize = aiSizeSnap[i];
+      var iSizeSnap = (fMaxBarScale / iSize).toNumber() * iSize;
+      if (iSizeSnap >= fMinBarScale && iSizeSnap <= fMaxBarScale) {
+        var iBarSize = iMaxBarSize * iSizeSnap / fMaxBarScale;
+        // return [iBarSize.toNumber(), iSizeSnap + sUnit];
+        $.iScaleBarSize = iBarSize.toNumber();
+        $.sScaleBarUnit = iSizeSnap + sUnit;
+        return;
+      }
+    }
+
+    // Failed again, do not try snapping
+    // return [iMaxBarSize, fMaxBarScale.format("%.0f") + sUnit];
+    $.iScaleBarSize = iMaxBarSize;
+    $.sScaleBarUnit = fMaxBarScale.format("%.0f") + sUnit;
+  }
 }
