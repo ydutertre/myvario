@@ -173,17 +173,56 @@
     <setting propertyKey="@Properties.userLivetrack24EquipmentName" title="@Strings.titleLivetrack24EquipmentName">
       <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
     </setting>
+    <setting propertyKey="@Properties.userLivetrack24Frequency" title="@Strings.titleLivetrack24Frequency">
+        <settingConfig type="list">
+            <listEntry value="0">Live tracking OFF (0s)</listEntry>
+            <listEntry value="1">2 s</listEntry>
+            <listEntry value="2">5 s</listEntry>
+            <listEntry value="3">15 s</listEntry>
+            <listEntry value="4">30 s</listEntry>
+            <listEntry value="5">60 s</listEntry>
+            <listEntry value="6">120 s</listEntry>
+            <listEntry value="7">180 s</listEntry>
+            <listEntry value="8">300 s</listEntry>
+        </settingConfig>
+    </setting>
     <setting propertyKey="@Properties.userSportsTrackLiveEmail" title="@Strings.titleSportsTrackLiveEmail">
       <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
     </setting>
     <setting propertyKey="@Properties.userSportsTrackLivePassword" title="@Strings.titleSportsTrackLivePassword">
       <settingConfig type="password" errorMessage="@Strings.titleInputError" />
     </setting>
+    <setting propertyKey="@Properties.userSportsTrackLiveFrequency" title="@Strings.titleSportsTrackLiveFrequency">
+        <settingConfig type="list">
+            <listEntry value="0">Live tracking OFF (0s)</listEntry>
+            <listEntry value="1">2 s</listEntry>
+            <listEntry value="2">5 s</listEntry>
+            <listEntry value="3">15 s</listEntry>
+            <listEntry value="4">30 s</listEntry>
+            <listEntry value="5">60 s</listEntry>
+            <listEntry value="6">120 s</listEntry>
+            <listEntry value="7">180 s</listEntry>
+            <listEntry value="8">300 s</listEntry>
+        </settingConfig>
+    </setting>
     <setting propertyKey="@Properties.userFlySafeUserId" title="@Strings.titleFlySafeUserId">
       <settingConfig type="alphaNumeric" errorMessage="@Strings.titleInputError" />
     </setting>
     <setting propertyKey="@Properties.userFlySafeToken" title="@Strings.titleFlySafeToken">
       <settingConfig type="password" errorMessage="@Strings.titleInputError" />
+    </setting>
+    <setting propertyKey="@Properties.userFlySafeLivetrackFrequency" title="@Strings.titleFlySafeLivetrackFrequency">
+        <settingConfig type="list">
+            <listEntry value="0">Live tracking OFF (0s)</listEntry>
+            <listEntry value="1">10 s</listEntry>
+            <listEntry value="2">15 s</listEntry>
+            <listEntry value="3">20 s</listEntry>
+            <listEntry value="4">30 s</listEntry>
+            <listEntry value="5">60 s</listEntry>
+            <listEntry value="6">120 s</listEntry>
+            <listEntry value="7">180 s</listEntry>
+            <listEntry value="8">300 s</listEntry>
+        </settingConfig>
     </setting>
   </group>
   <group id="mapView" title="@Strings.titleSettingsMapView">

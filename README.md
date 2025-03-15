@@ -85,19 +85,23 @@ application at home!
 I have reduced the number of watches supported compared to GliderSK. This is
 because I am using variable frequency tones for the vario, which are only
 supported for SDK 3.1.0 and above. I am testing this application on my Garmin
-Fenix 7X and Forerunner 965.
+Enduro 3 and Forerunner 965.
 
 ## Recommended Watches
 
 These are the watches where the My Vario app has been confirmed to be working
 well:
 - `Forerunner 965, 955, 255, 265`:
-  The 255 and 955 however have easier to see screen in sunlight, in my opinion.
-  Vibration is stronger than Fenix/Epix series.
-  Tone volume seems similar to Fenix/Epix series (maybe slightly higher?)
+  These are my top recommendations for My Vario. Light, cheap(er), accurate,
+  and loud tones + strong vibrations (compared to Fenix/Enduro series)
+  In particular, the 255 and 955 however have easier to see screen in sunlight, in my opinion.
 
-- `Fenix 7` (*all variants, 7S, 7, 7X, Pro, etc.*)\:
-  Note that Fenix watches seem to have a bug in the Garmin altitude calculation,
+- `Fenix 8 and Enduro 3` 
+  My Vario works very well (I had to build a workaround to a GPS bug on the Fenix 8
+  series however). On my Enduro 3, vibrations are somewhat weak, and tones are not loud.
+
+- `Fenix 7, Enduro 2, Fenix 7 Pro` (*all variants, 7S, 7, 7X, 7 Pro, etc.*)\:
+  Note that some Fenix watches seem to have a bug in the Garmin altitude calculation,
   although the barometric sensor works well and MyVario's altitude is accurate.
   The app doesn't rely on the Garmin altitude, so no direct impact.
   However you will see that the Garmin Altitude (from Garmin) and the Baro Altitude

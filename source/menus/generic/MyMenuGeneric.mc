@@ -128,9 +128,9 @@ class MyMenu2Generic extends Ui.Menu2 {
 
     else if(menu == :menuSettingsLivetrack) {
       Menu2.setTitle(Rez.Strings.titleSettingsLivetrack);
-      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleLivetrack24Frequency, format("$1$$2$", [$.oMySettings.iLivetrack24Frequency, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuLivetrack24Frequency, {}));
-      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSportsTrackLiveFrequency, format("$1$$2$", [$.oMySettings.iSportsTrackLiveFrequency, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuSportsTrackLiveFrequency, {}));
-      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleFlySafeLivetrackFrequency, format("$1$$2$", [$.oMySettings.iFlySafeLivetrackFrequency, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuFlySafeLivetrackFrequency, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleLivetrack24Frequency, format("$1$$2$", [$.oMySettings.iLivetrack24FrequencySeconds, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuLivetrack24Frequency, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSportsTrackLiveFrequency, format("$1$$2$", [$.oMySettings.iSportsTrackLiveFrequencySeconds, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuSportsTrackLiveFrequency, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleFlySafeLivetrackFrequency, format("$1$$2$", [$.oMySettings.iFlySafeLivetrackFrequencySeconds, Ui.loadResource(Rez.Strings.unitTimeSecond)]), :menuFlySafeLivetrackFrequency, {}));
     }
 
     else if(menu == :menuSettingsMapView && Ui has :MapView) {
