@@ -1,3 +1,8 @@
+* 4.20
+- Fix buffer issue with Active Look flow control
+- Added support for Vector Vario: you can now get wind
+and variometer data from a VectorVario variometer.
+
 * 4.14
 - Added support for Forerunner 165 and 165 Music
 

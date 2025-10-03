@@ -139,6 +139,13 @@ To enable ActiveLook smart glasses integration, turn the relevant setting on. Yo
 need to restart the app for the setting to become effective - on app start, the app
 will search for and connect to any nearby ActiveLook glasses waiting for connection.
 
+### VectorVario
+
+Instead of using the watch internal sensors, you can choose to use a Vector Vario variometer data as well as wind (speed and direction).
+To do so, enable the setting under General, and restart the app. On app start, the app
+will search for and connect to any nearby VectorVario waiting for connection.
+
+
 ## Views
 
 My Vario offers multiple different views which can be navigated using UP/DOWN buttons or swiping up or down on touchscreen devices.
@@ -333,7 +340,10 @@ The application allows you to specify the following settings:
   the background color (black or white)
 - `ActiveLook`:
   Set to "On" to enable HUD via ActiveLook glasses such as Engo 2. This requires an app
-  restart
+  restart. Cannot be used together with VectorVario.
+- `VectorVario`:
+  Set to "On" to enable getting wind and vario data from Vector Vario. This requires an app
+  restart. Cannot be used together with ActiveLook.
 - `GPS Precision`:
   Select "Best" to use all Constellations available, "Normal" to limit to GPS (for energy efficiency)
 - `Clear logs`:

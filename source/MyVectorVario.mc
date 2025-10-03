@@ -217,12 +217,12 @@ class BleOperationsVV extends Ble.BleDelegate
     function onScanResults(scanResults) { 
         // add/update result
         var scanResult = scanResults.next();
-        var raw = scanResult.getRawData();
-        var options = {
-            :offset => 0,
-            :endianness => 0
-        };
-        var rawNumber=raw.decodeNumber(5,options);
+        // var raw = scanResult.getRawData();
+        // var options = {
+        //     :offset => 0,
+        //     :endianness => 0
+        // };
+        // var rawNumber=raw.decodeNumber(5,options);
 
         while (scanResult != null) {
             var serviceUuids=scanResult.getServiceUuids();
