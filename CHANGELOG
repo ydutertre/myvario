@@ -1,7 +1,11 @@
+* 4.21
+- Fix wind from VV not used
+
 * 4.20
 - Fix buffer issue with Active Look flow control
 - Added support for Vector Vario: you can now get wind
-and variometer data from a VectorVario variometer.
+and variometer data from a VectorVario variometer rather than
+internal sensors
 
 * 4.14
 - Added support for Forerunner 165 and 165 Music

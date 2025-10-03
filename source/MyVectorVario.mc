@@ -159,12 +159,12 @@ class BleOperationsVV extends Ble.BleDelegate
     private var bWindDirectionReady = false;
 
     //! Custom Service
-    private static const BLE_VECTORVARIO_SERVICE_SENSING           as Ble.Uuid = Ble.longToUuid(0x0000181A00001000l, 0x800000805F9B34FBl);
-    private static const BLE_VECTORVARIO_SERVICE_VARIO  as Ble.Uuid = Ble.longToUuid(0x2FCE4890019747E0l, 0xA825D4777B9A5D67l);
+    private static const BLE_VECTORVARIO_SERVICE_SENSING as Ble.Uuid = Ble.longToUuid(0x0000181A00001000l, 0x800000805F9B34FBl);
+    private static const BLE_VECTORVARIO_SERVICE_VARIO as Ble.Uuid = Ble.longToUuid(0x2FCE4890019747E0l, 0xA825D4777B9A5D67l);
     //! Custom Service Characteristics
-    private static const BLE_VECTORVARIO_WINDSPEED       as Ble.Uuid = Ble.longToUuid(0x00002A7000001000l, 0x800000805F9B34FBl);
-    private static const BLE_VECTORVARIO_WINDDIRECTION      as Ble.Uuid = Ble.longToUuid(0x00002A7100001000l, 0x800000805F9B34FBl);
-    private static const BLE_VECTORVARIO_VARIO          as Ble.Uuid = Ble.longToUuid(0x2FCE4891019747E0l, 0xA825D4777B9A5D67l);
+    private static const BLE_VECTORVARIO_WINDSPEED as Ble.Uuid = Ble.longToUuid(0x00002A7000001000l, 0x800000805F9B34FBl);
+    private static const BLE_VECTORVARIO_WINDDIRECTION as Ble.Uuid = Ble.longToUuid(0x00002A7100001000l, 0x800000805F9B34FBl);
+    private static const BLE_VECTORVARIO_VARIO as Ble.Uuid = Ble.longToUuid(0x2FCE4891019747E0l, 0xA825D4777B9A5D67l);
 
     function initialize() {
         BleDelegate.initialize();
@@ -195,7 +195,7 @@ class BleOperationsVV extends Ble.BleDelegate
                 if (oVarioCharacteristic != null) {
                     var oCccd = oVarioCharacteristic.getDescriptor(BluetoothLowEnergy.cccdUuid()); // Control descriptor
                     if (oCccd != null) {
-                        try{ oCccd.requestWrite([0x01,0x00]b); } catch(e) {} //Turn notifications on to vario, this will trigger turning notifications on for other services
+                        try{ oCccd.requestWrite([0x01,0x00]b); } catch(e) {} //Turn notifications on to vario, this will trigger turning notifications on for other services via "onCharacteristicChanged()" event
                     }
                 }
             }

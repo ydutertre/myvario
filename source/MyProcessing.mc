@@ -676,9 +676,12 @@ class MyProcessing {
         if (self.cWindSpeedColor == 0 || (fNewSpeed - self.fWindSpeed).abs() > 1) {
           self.cWindSpeedColor = getWindColor(fNewSpeed);
         }
-        self.fWindSpeed = fNewSpeed;
-        self.iWindDirection = (self.aiAngle[iMax] + 180) % 360;
-        self.bWindValid = true;
+        // Set the value only if we're not getting them from the VectorVario
+        if(!$.oMySettings.bVectorVario || !$.oMyVectorVario.bBleConnected || !LangUtils.notNaN($.oMyVectorVario.fWindSpeed) || !LangUtils.notNaN($.oMyVectorVario.iWindDirection) || $.oMyVectorVario.fWindSpeed<=0) {
+          self.fWindSpeed = fNewSpeed;
+          self.iWindDirection = (self.aiAngle[iMax] + 180) % 360;
+          self.bWindValid = true;
+        }
       }
     }
     else {
@@ -688,6 +691,7 @@ class MyProcessing {
 
     // Replace values if we have them from Vector Vario - can't skip the computation since we need to circling vs not circling for auto-screen transition
     if($.oMySettings.bVectorVario && $.oMyVectorVario.bBleConnected && LangUtils.notNaN($.oMyVectorVario.fWindSpeed) && LangUtils.notNaN($.oMyVectorVario.iWindDirection) && $.oMyVectorVario.fWindSpeed>0) {
+      self.bWindValid = true;
       self.fWindSpeed = $.oMyVectorVario.fWindSpeed;
       self.iWindDirection = $.oMyVectorVario.iWindDirection;
     }
