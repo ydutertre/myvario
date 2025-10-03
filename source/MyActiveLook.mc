@@ -37,6 +37,7 @@ class MyActiveLook
     public var bBleIsWriting as Boolean;
     public var bBleConnected as Boolean;
     public var bBleBufferWarning as Boolean;
+    public var iBleBufferWarningStartEpoch as Number = 0;
     public var bReconnecting as Boolean;
     public var iTimer as Number = 100000;
     public var bExpectedDisconnect = false;
@@ -67,6 +68,7 @@ class MyActiveLook
         bBleIsWriting = false;
         bBleConnected = false;
         bBleBufferWarning = false;
+        iBleBufferWarningStartEpoch = 0;
         bReconnecting = false;
         bExpectedDisconnect = false;
         iTimer = 100000;
@@ -110,6 +112,9 @@ class MyActiveLook
             catch(ex) {
                 iTimer = 100000;
                 iCommandCounter--;
+            }
+            if (abaCommandQueue.size() > 90) { //More than 10 seconds worth of updates -> clear the queue!
+                self.clearQueue();
             }
         }
     }
@@ -279,6 +284,7 @@ class MyActiveLook
             bBleConnected = false;
             bBleIsWriting = false;
             bBleBufferWarning = false;
+            iBleBufferWarningStartEpoch = 0;
             iCommandCounter = 0;
             clearQueue();
             $.oMyProcessing.timeElapsed = 0;    //Reset scanning timeout to attempt to reconnect to device
@@ -507,11 +513,14 @@ class BleOperations extends Ble.BleDelegate
     function onCharacteristicChanged(characteristic, value) {
         if(characteristic.getUuid().equals(BLE_CHAR_ACTIVELOOK_FLOW_CONTROL) && value != null && value.size() > 0) { // Flow control characteristic
             if(value[0] == 0x01) {
+                $.oMyActiveLook.clearQueue(); //commands may have accumulated
                 $.oMyActiveLook.bBleBufferWarning = false;
+                $.oMyActiveLook.iBleBufferWarningStartEpoch = 0;
             } 
             if(value[0] == 0x02 || value[0] == 0x04) {  //Flow control! Stop sending commands
                 $.oMyActiveLook.clearQueue();
                 $.oMyActiveLook.bBleBufferWarning = true;
+                $.oMyActiveLook.iBleBufferWarningStartEpoch = $.oMyProcessing.iPositionEpoch;
             } 
         }
     }

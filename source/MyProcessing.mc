@@ -234,7 +234,7 @@ class MyProcessing {
         
       }
       // If using Vector Vario, replace with value provided by Vector Vario
-      if($.oMySettings.bVectorVario && LangUtils.notNaN($.oMyVectorVario.fVario)) { // && $.oMyVectorVario.fVario != 0) {
+      if($.oMySettings.bVectorVario && $.oMyVectorVario.bBleConnected && LangUtils.notNaN($.oMyVectorVario.fVario) && $.oMyVectorVario.fVario != 0) {
         self.fVariometer_filtered = $.oMyVectorVario.fVario;
       }
       self.iPreviousAltitudeEpoch = _iEpoch;
@@ -687,7 +687,7 @@ class MyProcessing {
     }
 
     // Replace values if we have them from Vector Vario - can't skip the computation since we need to circling vs not circling for auto-screen transition
-    if($.oMySettings.bVectorVario && LangUtils.notNaN($.oMyVectorVario.fWindSpeed) && LangUtils.notNaN($.oMyVectorVario.iWindDirection) && $.oMyVectorVario.fWindSpeed>0) {
+    if($.oMySettings.bVectorVario && $.oMyVectorVario.bBleConnected && LangUtils.notNaN($.oMyVectorVario.fWindSpeed) && LangUtils.notNaN($.oMyVectorVario.iWindDirection) && $.oMyVectorVario.fWindSpeed>0) {
       self.fWindSpeed = $.oMyVectorVario.fWindSpeed;
       self.iWindDirection = $.oMyVectorVario.iWindDirection;
     }
