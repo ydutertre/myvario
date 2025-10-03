@@ -73,6 +73,7 @@ class MyMenu2Generic extends Ui.Menu2 {
       Menu2.setTitle(Rez.Strings.titleSettingsGeneral);
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleGeneralBackgroundColor, {:enabled=>Ui.loadResource(Rez.Strings.valueColorBlack), :disabled=>Ui.loadResource(Rez.Strings.valueColorWhite)}, :menuGeneralBackgroundColor, ($.oMySettings.iGeneralBackgroundColor?false:true), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleActiveLook, null, :menuActiveLook, $.oMySettings.bActiveLook, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleVectorVario, null, :menuVectorVario, $.oMySettings.bVectorVario, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleGPS, {:enabled=>Ui.loadResource(Rez.Strings.valueGPSBest), :disabled=>Ui.loadResource(Rez.Strings.valueGPSNormal)}, :menuGPS, ($.oMySettings.iGPS?false:true), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleStorageClearLogs, null, :menuStorageClearLogs, {}));
     }
@@ -199,6 +200,10 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
       else if(itemId == :menuActiveLook) {
         $.oMySettings.saveActiveLook(item.isEnabled());
         $.oMySettings.setActiveLook(item.isEnabled());
+      }
+      else if(itemId == :menuVectorVario) {
+        $.oMySettings.saveVectorVario(item.isEnabled());
+        $.oMySettings.setVectorVario(item.isEnabled());
       }
       else if(itemId == :menuGPS) {
         $.oMySettings.saveGPS(item.isEnabled()?0:1);

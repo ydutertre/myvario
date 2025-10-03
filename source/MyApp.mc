@@ -83,6 +83,9 @@ var oMyFlySafeLivetrack as MyFlySafeLivetrack?;// = new MyFlySafeLivetrack();
 //ActiveLook
 var oMyActiveLook as MyActiveLook?;// = new MyActiveLook();
 
+//Vector Vario
+var oMyVectorVario as MyVectorVario?;
+
 // Current view
 var oMyView as MyView?;
 
@@ -150,6 +153,7 @@ class MyApp extends App.AppBase {
     oMySportsTrackLive = new MySportsTrackLive();
     oMyFlySafeLivetrack = new MyFlySafeLivetrack();
     oMyActiveLook = new MyActiveLook();
+    oMyVectorVario = new MyVectorVario();
 
 
     // Log
@@ -215,6 +219,11 @@ class MyApp extends App.AppBase {
     if($.oMySettings.bActiveLook){
       $.oMyActiveLook.findAndPair();
     }
+
+    $.oMyVectorVario.init();
+    if($.oMySettings.bVectorVario) {
+      $.oMyVectorVario.findAndPair();
+    }
   }
 
   function onStop(state) {
@@ -242,6 +251,7 @@ class MyApp extends App.AppBase {
     if($.oMySettings.bActiveLook){
       $.oMyActiveLook.unPair();
     }
+    $.oMyVectorVario.unPair();
 
   }
 

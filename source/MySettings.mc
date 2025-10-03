@@ -69,6 +69,7 @@ class MySettings {
   // ... general
   public var iGeneralBackgroundColor as Number = Gfx.COLOR_WHITE;
   public var bActiveLook as Boolean = false;
+  public var bVectorVario as Boolean = false;
   public var iGPS as Number = 0; // 0: full, 1: GPS
   public var bMapDisplay as Boolean = false;
   // ... units
@@ -147,6 +148,7 @@ class MySettings {
     // ... general
     self.setGeneralBackgroundColor(self.loadGeneralBackgroundColor());
     self.setActiveLook(self.loadActiveLook());
+    self.setVectorVario(self.loadVectorVario());
     self.setGPS(self.loadGPS());
     self.setMapDisplay(self.loadMapDisplay());
     // ... units
@@ -483,6 +485,17 @@ class MySettings {
   function setActiveLook(_bValue as Boolean) as Void {
     self.bActiveLook = _bValue;
   }
+
+  function loadVectorVario() as Boolean {
+    return LangUtils.readKeyBoolean(App.Properties.getValue("userVectorVario"), false);
+  }
+  function saveVectorVario(_bValue as Boolean) as Void {
+    App.Properties.setValue("userVectorVario", _bValue as App.PropertyValueType);
+  }
+  function setVectorVario(_bValue as Boolean) as Void {
+    self.bVectorVario = _bValue;
+  }
+
 
   function loadGPS() as Number {
     return LangUtils.readKeyNumber(App.Properties.getValue("userGPS"), 0);

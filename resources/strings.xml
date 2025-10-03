@@ -45,6 +45,7 @@
   <string id="titleSettingsGeneral">General</string>
   <string id="titleGeneralBackgroundColor">Background Color</string>
   <string id="titleActiveLook">ActiveLook</string>
+  <string id="titleVectorVario">VectorVario</string>
   <string id="titleGPS">GPS Precision</string>
   <string id="valueGPSBest">Best</string>
   <string id="valueGPSNormal">Normal</string>

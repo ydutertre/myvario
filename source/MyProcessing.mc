@@ -233,6 +233,10 @@ class MyProcessing {
         //Sys.println(format("DEBUG: (Calculated) altimetric variometer = $1$ ~ $2$ ~ $3$", [self.fVariometer, self.fVariometer_filtered]));
         
       }
+      // If using Vector Vario, replace with value provided by Vector Vario
+      if($.oMySettings.bVectorVario && LangUtils.notNaN($.oMyVectorVario.fVario)) { // && $.oMyVectorVario.fVario != 0) {
+        self.fVariometer_filtered = $.oMyVectorVario.fVario;
+      }
       self.iPreviousAltitudeEpoch = _iEpoch;
       self.fPreviousAltitude = self.fAltitude;
     }
@@ -619,6 +623,7 @@ class MyProcessing {
   }
 
   function windStep() as Void {
+
     if(LangUtils.notNaN(self.fHeading) && LangUtils.notNaN(self.fGroundSpeed) && self.fHeading != null && self.fGroundSpeed != null) {
       self.iAngle = Math.toDegrees(self.fHeading).toNumber() % 360;
       self.fSpeed = self.fGroundSpeed;      
@@ -679,6 +684,12 @@ class MyProcessing {
     else {
       if(self.bNotCirclingCount >= 20) { self.bCirclingCount = 0; } //No longer circling
       bNotCirclingCount += 1;
+    }
+
+    // Replace values if we have them from Vector Vario - can't skip the computation since we need to circling vs not circling for auto-screen transition
+    if($.oMySettings.bVectorVario && LangUtils.notNaN($.oMyVectorVario.fWindSpeed) && LangUtils.notNaN($.oMyVectorVario.iWindDirection) && $.oMyVectorVario.fWindSpeed>0) {
+      self.fWindSpeed = $.oMyVectorVario.fWindSpeed;
+      self.iWindDirection = $.oMyVectorVario.iWindDirection;
     }
   }
 

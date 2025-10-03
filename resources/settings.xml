@@ -10,6 +10,9 @@
     <setting propertyKey="@Properties.userActiveLook" title="@Strings.titleActiveLook">
         <settingConfig type="boolean" />
     </setting>
+    <setting propertyKey="@Properties.userVectorVario" title="@Strings.titleVectorVario">
+        <settingConfig type="boolean" />
+    </setting>
     <setting propertyKey="@Properties.userGPS" title="@Strings.titleGPS">
         <settingConfig type="list">
             <listEntry value="0">Best</listEntry>

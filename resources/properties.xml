@@ -24,6 +24,7 @@
   <property id="userGeneralBackgroundColor" type="number">0</property>
   <property id="userActiveLook" type="boolean">false</property>
   <property id="userGPS" type="number">0</property>
+  <property id="userVectorVario" type="boolean">false</property>
   <!-- ... units -->
   <property id="userUnitDistance" type="number">-1</property>
   <property id="userUnitElevation" type="number">-1</property>
