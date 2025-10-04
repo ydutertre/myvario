@@ -82,58 +82,6 @@ class MyVectorVario
         }
     }
 
-    function stringToByteArray(_text as String) as ByteArray {
-        var caNumberAsChars = _text.toCharArray();
-        var baNumberAsByteArray = []b;
-        
-        if(caNumberAsChars.size() == 0) {
-            return baNumberAsByteArray;
-        }
-        else if(caNumberAsChars.size() == 1) {
-            baNumberAsByteArray.addAll(['&','$','$','$']);
-        }
-        else if (caNumberAsChars.size() == 2) {
-            baNumberAsByteArray.addAll(['&','$','$']);
-        }
-        else if(caNumberAsChars.size() == 3) {
-            baNumberAsByteArray.addAll(['&','$']);
-        }
-        else if (caNumberAsChars.size() == 4) {
-            baNumberAsByteArray.add('&');
-        }
-        for(var i = 0; i < caNumberAsChars.size(); i++) {
-            if (i > 4) { break; }
-            baNumberAsByteArray.add(caNumberAsChars[i]);
-        }
-        return baNumberAsByteArray;
-    }
-
-    function headingToByteArray(_text as String) as ByteArray {
-        var caNumberAsChars = _text.toCharArray();
-        var baNumberAsByteArray = []b;
-        
-        if(caNumberAsChars.size() == 0) {
-            return baNumberAsByteArray;
-        }
-        else if(caNumberAsChars.size() == 1) {
-            baNumberAsByteArray.addAll(['&','&','&','&']);
-        }
-        else if (caNumberAsChars.size() == 2) {
-            baNumberAsByteArray.addAll(['&','&','&']);
-        }
-        else if(caNumberAsChars.size() == 3) {
-            baNumberAsByteArray.addAll(['&','&']);
-        }
-        else if (caNumberAsChars.size() == 4) {
-            baNumberAsByteArray.add('&');
-        }
-        for(var i = 0; i < caNumberAsChars.size(); i++) {
-            if (i > 4) { break; }
-            baNumberAsByteArray.add(caNumberAsChars[i]);
-        }
-        return baNumberAsByteArray;
-    }
-
     function unPair() {
         if(oBleOperations.oBleDevice != null) {
             Ble.unpairDevice(oBleOperations.oBleDevice);
@@ -195,7 +143,7 @@ class BleOperationsVV extends Ble.BleDelegate
                 if (oVarioCharacteristic != null) {
                     var oCccd = oVarioCharacteristic.getDescriptor(BluetoothLowEnergy.cccdUuid()); // Control descriptor
                     if (oCccd != null) {
-                        try{ oCccd.requestWrite([0x01,0x00]b); } catch(e) {} //Turn notifications on to vario, this will trigger turning notifications on for other services via "onCharacteristicChanged()" event
+                        try{ oCccd.requestWrite([0x01,0x00]b); } catch(e) {} //Turn notifications on to vario, this will trigger turning notifications on for other services via "onDescriptorcWrite()" event
                     }
                 }
             }
@@ -231,9 +179,9 @@ class BleOperationsVV extends Ble.BleDelegate
             var i = 0;
             while (serviceUuid != null && !bVectorVarioFound && i < 8) {
                 if(serviceUuid.equals(BLE_VECTORVARIO_SERVICE_SENSING)) {
-                    bVectorVarioFound = true;
+                   bVectorVarioFound = true;
                 }
-                serviceUuids.next();
+                serviceUuid = serviceUuids.next();
                 i++;
             }
             if(bVectorVarioFound) { //rawNumber == 84279554
@@ -256,8 +204,8 @@ class BleOperationsVV extends Ble.BleDelegate
         var profileVectorVarioWind = ({
             :uuid => BLE_VECTORVARIO_SERVICE_SENSING,
             :characteristics => [
-                { :uuid => BLE_VECTORVARIO_WINDSPEED},
-                { :uuid => BLE_VECTORVARIO_WINDDIRECTION},
+                { :uuid => BLE_VECTORVARIO_WINDSPEED, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
+                { :uuid => BLE_VECTORVARIO_WINDDIRECTION, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()]},
             ]
         });
         Ble.registerProfile(profileVectorVarioWind);
@@ -271,7 +219,8 @@ class BleOperationsVV extends Ble.BleDelegate
     }
  
     // Only writes for Vector Vario are to turn characteristics on
-    function onCharacteristicWrite(characteristic, status) {
+    function onDescriptorWrite(descriptor, status) {
+        var characteristic = descriptor.getCharacteristic();
         // Keep track of notifications requested
         if (status == 0) {
             if (characteristic.getUuid().equals(BLE_VECTORVARIO_WINDSPEED)) {
