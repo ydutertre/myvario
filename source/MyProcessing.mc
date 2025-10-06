@@ -225,7 +225,7 @@ class MyProcessing {
         self.fVariometer = (self.fAltitude-self.fPreviousAltitude) / (_iEpoch-self.iPreviousAltitudeEpoch);
         if($.oMyKalmanFilter.bFilterReady) {
           $.oMyKalmanFilter.update(fAltitude, 0, _iEpoch);
-          if(!$.oMySettings.bVectorVario || !$.oMyVectorVario.bBleConnected || LangUtils.notNaN(!$.oMyVectorVario.fVario)) {
+          if(!$.oMySettings.bVectorVario || !$.oMyVectorVario.bBleConnected || !LangUtils.notNaN($.oMyVectorVario.fVario)) {
             self.fVariometer_filtered = $.oMyKalmanFilter.fVelocity;
           }
           
