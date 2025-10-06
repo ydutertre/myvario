@@ -1,5 +1,8 @@
+* 4.30
+- Added wind arrow on General Information page
+
 * 4.23
-- Add notification when Vector Vario connects and disconnects
+- Added notification when Vector Vario connects and disconnects
 - Fix conflict between watch and VV-computed vario/climb rate values
 
 * 4.22

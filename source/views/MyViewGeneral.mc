@@ -92,6 +92,14 @@ class MyViewGeneral extends MyViewGlobal {
      (App.getApp() as MyApp).unmuteTones();
   }
 
+  function onUpdate(_oDC as Gfx.Dc) as Void {
+    // Sys.println("DEBUG: MyViewGeneral.onUpdate()");
+
+    // Update layout
+    MyViewGlobal.onUpdate(_oDC);
+    self.drawArrow(_oDC);
+  }
+
   function updateLayout(_b) {  
     //Sys.println("DEBUG: MyViewGeneral.updateLayout()");
     MyViewGlobal.updateLayout(true);
@@ -246,6 +254,31 @@ class MyViewGeneral extends MyViewGlobal {
 
     // Mute tones
     (App.getApp() as MyApp).muteTones();
+  }
+
+  function drawArrow(_oDC as Gfx.Dc) as Void {
+    if($.oMyProcessing.bWindValid) {
+      var iRadius = _oDC.getWidth()*0.05f;;
+      var iCompassX = _oDC.getWidth()/2;
+      var iCompassY = _oDC.getHeight()/4;
+
+      // Draw compass arrow
+      var fArrowDir = Math.toRadians($.oMyProcessing.iWindDirection + 180) - $.oMyProcessing.fHeading;;
+
+      var fArrowWidth = Math.PI * (1 - 0.15f);
+      var fArrowBackLeft = fArrowDir - fArrowWidth;
+      var fArrowBackRight = fArrowDir + fArrowWidth;
+
+      var aiiArrow = [
+        [iCompassX + iRadius * Math.sin(fArrowDir),     iCompassY - iRadius * Math.cos(fArrowDir)],
+        [iCompassX + iRadius * Math.sin(fArrowBackLeft),  iCompassY - iRadius * Math.cos(fArrowBackLeft)],
+        [iCompassX + iRadius * 0.2f * Math.sin(fArrowDir + Math.PI),  iCompassY - iRadius * 0.2f * Math.cos(fArrowDir - Math.PI)],
+        [iCompassX + iRadius * Math.sin(fArrowBackRight), iCompassY - iRadius * Math.cos(fArrowBackRight)]
+      ];
+
+      _oDC.setColor(Gfx.COLOR_BLUE, Gfx.COLOR_TRANSPARENT);
+      _oDC.fillPolygon(aiiArrow);
+    }
   }
 
 }
