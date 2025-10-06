@@ -1,3 +1,7 @@
+* 4.23
+- Add notification when Vector Vario connects and disconnects
+- Fix conflict between watch and VV-computed vario/climb rate values
+
 * 4.22
 - Fix wind from VV not received
 

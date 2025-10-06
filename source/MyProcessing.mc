@@ -225,7 +225,10 @@ class MyProcessing {
         self.fVariometer = (self.fAltitude-self.fPreviousAltitude) / (_iEpoch-self.iPreviousAltitudeEpoch);
         if($.oMyKalmanFilter.bFilterReady) {
           $.oMyKalmanFilter.update(fAltitude, 0, _iEpoch);
-          self.fVariometer_filtered = $.oMyKalmanFilter.fVelocity;
+          if(!$.oMySettings.bVectorVario || !$.oMyVectorVario.bBleConnected || LangUtils.notNaN(!$.oMyVectorVario.fVario)) {
+            self.fVariometer_filtered = $.oMyKalmanFilter.fVelocity;
+          }
+          
           self.fAltitude = $.oMyKalmanFilter.fPosition;
         //  Sys.println(format("DEBUG: (Calculated) altimetric variometer = $1$ ~ $2$", [self.fAltitude, $.oMyKalmanFilter.fPosition]));
         }
@@ -234,7 +237,7 @@ class MyProcessing {
         
       }
       // If using Vector Vario, replace with value provided by Vector Vario
-      if($.oMySettings.bVectorVario && $.oMyVectorVario.bBleConnected && LangUtils.notNaN($.oMyVectorVario.fVario) && $.oMyVectorVario.fVario != 0) {
+      if($.oMySettings.bVectorVario && $.oMyVectorVario.bBleConnected && LangUtils.notNaN($.oMyVectorVario.fVario)) {
         self.fVariometer_filtered = $.oMyVectorVario.fVario;
       }
       self.iPreviousAltitudeEpoch = _iEpoch;

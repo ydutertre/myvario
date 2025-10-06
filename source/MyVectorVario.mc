@@ -147,12 +147,20 @@ class BleOperationsVV extends Ble.BleDelegate
                     }
                 }
             }
+
+            Ui.switchToView(new MyViewVVConnected(),
+                    new MyViewVVConnectedDelegate(),
+                    Ui.SLIDE_IMMEDIATE);
+
         } else if (state == Ble.CONNECTION_STATE_DISCONNECTED) {
             if($.oMyVectorVario.bExpectedDisconnect) {
                 $.oMyVectorVario.bExpectedDisconnect = false;
             } else {
                 $.oMyVectorVario.resetConnection();
             }
+            Ui.switchToView(new MyViewVVConnected(),
+                    new MyViewVVConnectedDelegate(),
+                    Ui.SLIDE_IMMEDIATE);            
         }
     }
 
