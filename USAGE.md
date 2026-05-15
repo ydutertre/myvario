@@ -169,6 +169,13 @@ any further bells or whistles:
  - `Bottom-Right`:
    your current ground speed
 
+### Custom Views
+
+You can add you own indicator display views by going to settings -> General -> General View Pages.
+There you can add 2-indicator, 4-indicator, or 7-indicator views (each will be a page).
+You can then configure which indicators you wish to see on each view.
+You can delete unneeded views/pages as needed.
+
 ### Variometer View
 
 The My Vario Variometer displays your current ascent/descent rate both textu-

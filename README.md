@@ -20,7 +20,7 @@ Multiple views/dashboards are available.
 - [Global view](./USAGE.md#general-view), displaying all flight data in a single pane: altitude, ground
 and vertical speeds, finesse, heading, wind direction and speed estimate, if
 available (wind direction and speed are computed on the fly based on groundspeeds
-when circling)
+when circling). You can also define your own custom pages.
 
 - [Variometer view](./USAGE.md#variometer-view), where the vertical speed can be visually seen
 

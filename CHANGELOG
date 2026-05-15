@@ -1,3 +1,10 @@
+* 5.00
+- Major change: it is now possible to create you own custom pages with 2, 4, or 7
+indicators.
+You can then specify which indicators (such as ground speed, glide ratio, etc.)
+you wish to display on each page. This should greatly help visibility of the 
+indicators on smaller watches.
+
 * 4.32
 - Added support for FR570 series
 
