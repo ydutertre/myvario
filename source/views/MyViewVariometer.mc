@@ -220,6 +220,7 @@ class MyViewVariometerDelegate extends MyViewGlobalDelegate {
 
   function onPreviousPage() {
     //Sys.println("DEBUG: MyViewVariometerDelegate.onPreviousPage()");
+    $.oMySettings.selectLastGeneralViewPage();
     Ui.switchToView(new MyViewGeneral(),
                     new MyViewGeneralDelegate(),
                     Ui.SLIDE_IMMEDIATE);

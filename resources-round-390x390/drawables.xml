@@ -1,4 +1,4 @@
-<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
+﻿<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
 <drawables>
   <bitmap id="AppIcon" filename="../resources/drawables/launcher-60x60.png" />
   <bitmap id="pauseIcon" personality="system_icon_dark__warning prompt_size__title_icon" />
@@ -34,7 +34,21 @@
     <shape type="rectangle" x="259" y="100" width="2" height="95" color="Gfx.COLOR_LT_GRAY" />
     <shape type="rectangle" x="207" y="198" width="2" height="95" color="Gfx.COLOR_LT_GRAY" />
   </drawable-list>
-  <drawable-list id="drawGlobalAlertLeft" x="0" y="157" width="155" height="101" >
+
+
+  <drawable-list id="drawFieldsBorders4" x="0" y="47" width="fill" height="295" >
+    <shape type="rectangle" x="0" y="148" width="fill" height="3" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="195" y="0" width="3" height="fill" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  
+
+
+  <drawable-list id="drawFieldsBorders2" x="0" y="47" width="fill" height="295" >
+    <shape type="rectangle" x="0" y="148" width="fill" height="3" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  
+
+<drawable-list id="drawGlobalAlertLeft" x="0" y="157" width="155" height="101" >
     <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
   </drawable-list>
   <drawable-list id="drawGlobalAlertCenter" x="157" y="157" width="101" height="101" >
@@ -97,3 +111,7 @@
     <shape type="rectangle" x="0" y="343" width="fill" height="fill" />
   </drawable-list>
 </drawables>
+
+
+
+

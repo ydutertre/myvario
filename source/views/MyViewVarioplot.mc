@@ -570,6 +570,7 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
                         Ui.SLIDE_IMMEDIATE);
       } 
       else if ($.oMyActivity != null) {
+        $.oMySettings.selectFirstGeneralViewPage();
         Ui.switchToView(new MyViewGeneral(),
                 new MyViewGeneralDelegate(),
                 Ui.SLIDE_IMMEDIATE);

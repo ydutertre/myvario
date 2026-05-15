@@ -32,7 +32,60 @@
     <!-- Footer -->
     <label id="valueFooter" x="130" y="226" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_TINY" />
   </layout>
-  <layout id="DeleteConfirmationPage">
+
+
+
+  <layout id="layoutGlobal4">
+    <drawable class="MyDrawableHeader" />
+    <drawable class="MyDrawableGlobal" />
+    <drawable id="drawContentBorders" />
+    <drawable id="drawFieldsBorders4" />
+    <!-- Header -->
+    <label id="valueBatteryLevel" x="93" y="11" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontStatus" />
+    <label id="valueActivityStatus" x="167" y="11" color="Gfx.COLOR_LT_GRAY" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontStatus" />
+    <!-- Fields -->
+    <label id="labelTopLeft" x="19" y="45" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitTopLeft" x="124" y="45" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueTopLeft" x="72" y="69" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelTopRight" x="136" y="45" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitTopRight" x="251" y="45" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueTopRight" x="195" y="69" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelBottomLeft" x="19" y="141" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitBottomLeft" x="124" y="141" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueBottomLeft" x="72" y="165" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelBottomRight" x="136" y="141" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitBottomRight" x="251" y="141" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueBottomRight" x="195" y="165" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <!-- Footer -->
+    <label id="valueFooter" x="130" y="227" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_TINY" />
+  </layout>
+
+
+
+
+
+  <layout id="layoutGlobal2">
+    <drawable class="MyDrawableHeader" />
+    <drawable class="MyDrawableGlobal" />
+    <drawable id="drawContentBorders" />
+    <drawable id="drawFieldsBorders2" />
+    <!-- Header -->
+    <label id="valueBatteryLevel" x="93" y="11" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontStatus" />
+    <label id="valueActivityStatus" x="167" y="11" color="Gfx.COLOR_LT_GRAY" justification="Gfx.TEXT_JUSTIFY_CENTER" font="@Fonts.fontStatus" />
+    <!-- Fields -->
+    <label id="labelTopLeft" x="19" y="56" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitTopLeft" x="241" y="56" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueTopLeft" x="130" y="84" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <label id="labelTopRight" x="19" y="149" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_LEFT" font="@Fonts.fontLabel" />
+    <label id="unitTopRight" x="241" y="149" color="Gfx.COLOR_DK_GRAY" justification="Gfx.TEXT_JUSTIFY_RIGHT" font="@Fonts.fontUnit" />
+    <label id="valueTopRight" x="130" y="176" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_LARGE" />
+    <!-- Footer -->
+    <label id="valueFooter" x="130" y="227" color="Gfx.COLOR_WHITE" justification="Gfx.TEXT_JUSTIFY_CENTER" font="Gfx.FONT_TINY" />
+  </layout>
+
+
+
+<layout id="DeleteConfirmationPage">
     <bitmap id="confirmIcon" personality="confirmation_icon__hint_keep confirmation_loc__hint_keep" />
     <bitmap id="deleteIcon" personality="confirmation_icon__hint_delete confirmation_loc__hint_delete" />
     <text-area text="@Strings.titleConfirmDiscard" personality="confirmation_color_dark__body confirmation_size__body confirmation_loc__body confirmation_font__body" />

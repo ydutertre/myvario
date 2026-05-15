@@ -366,6 +366,7 @@ class MyViewLogDelegate extends MyViewGlobalDelegate {
 
   function onNextPage() {
     //Sys.println("DEBUG: MyViewLogDelegate.onNextPage()");
+    $.oMySettings.selectFirstGeneralViewPage();
     Ui.switchToView(new MyViewGeneral(),
                     new MyViewGeneralDelegate(),
                     Ui.SLIDE_IMMEDIATE);

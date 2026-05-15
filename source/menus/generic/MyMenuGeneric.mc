@@ -48,6 +48,19 @@ class MyMenu2Generic extends Ui.Menu2 {
   // FUNCTIONS: Ui.Menu (override/implement)
   //
 
+  function getFieldIndexFromMenuItemId(_itemId as Symbol) as Number {
+    switch(_itemId) {
+    case :menuGeneralViewPageField0: return 0;
+    case :menuGeneralViewPageField1: return 1;
+    case :menuGeneralViewPageField2: return 2;
+    case :menuGeneralViewPageField3: return 3;
+    case :menuGeneralViewPageField4: return 4;
+    case :menuGeneralViewPageField5: return 5;
+    case :menuGeneralViewPageField6: return 6;
+    default: return -1;
+    }
+  }
+
   function initialize(_menu as Symbol, _focus as Number) {
     Menu2.initialize({:focus=>_focus});
     menu = _menu;
@@ -75,7 +88,94 @@ class MyMenu2Generic extends Ui.Menu2 {
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleActiveLook, null, :menuActiveLook, $.oMySettings.bActiveLook, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleVectorVario, null, :menuVectorVario, $.oMySettings.bVectorVario, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleGPS, {:enabled=>Ui.loadResource(Rez.Strings.valueGPSBest), :disabled=>Ui.loadResource(Rez.Strings.valueGPSNormal)}, :menuGPS, ($.oMySettings.iGPS?false:true), {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      Menu2.addItem(new Ui.MenuItem("General View Pages", null, :menuGeneralViewPages, {}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleStorageClearLogs, null, :menuStorageClearLogs, {}));
+    }
+
+    else if(menu == :menuGeneralViewPages) {
+      Menu2.setTitle("General View Pages");
+      Sys.println("DEBUG: menuGeneralViewPages - Page count: " + $.oMySettings.getGeneralViewPageCount());
+      var iPageCount = $.oMySettings.getGeneralViewPageCount();
+      for(var i=0; i<iPageCount; i++) {
+        var iLayout = $.oMySettings.getGeneralViewPageLayout(i);
+        var sPageName = $.oMySettings.getGeneralViewPageName(i);
+        var sLayoutLabel = iLayout == 2 ? "2" : (iLayout == 4 ? "4" : "7");
+        Sys.println("DEBUG:   Adding page " + i + ": '" + sPageName + "' (" + sLayoutLabel + ")");
+        var pageItemId = :menuGeneralViewPageEdit0;
+        if(i == 1) { pageItemId = :menuGeneralViewPageEdit1; }
+        else if(i == 2) { pageItemId = :menuGeneralViewPageEdit2; }
+        else if(i == 3) { pageItemId = :menuGeneralViewPageEdit3; }
+        else if(i == 4) { pageItemId = :menuGeneralViewPageEdit4; }
+        else if(i == 5) { pageItemId = :menuGeneralViewPageEdit5; }
+        else if(i == 6) { pageItemId = :menuGeneralViewPageEdit6; }
+        else if(i == 7) { pageItemId = :menuGeneralViewPageEdit7; }
+        else if(i == 8) { pageItemId = :menuGeneralViewPageEdit8; }
+        else if(i == 9) { pageItemId = :menuGeneralViewPageEdit9; }
+        Menu2.addItem(new Ui.MenuItem(sPageName + " (" + sLayoutLabel + ")", null, pageItemId, {}));
+      }
+      if(iPageCount < 10) {
+        Menu2.addItem(new Ui.MenuItem("Add Page", null, :menuGeneralViewPageAdd, {}));
+      }
+    }
+
+    else if(menu == :menuGeneralViewPageAdd) {
+      Menu2.setTitle("Select Layout");
+      Menu2.addItem(new Ui.MenuItem("2 Indicators", null, :menuGeneralViewPageLayout2, {}));
+      Menu2.addItem(new Ui.MenuItem("4 Indicators", null, :menuGeneralViewPageLayout4, {}));
+      Menu2.addItem(new Ui.MenuItem("7 Indicators", null, :menuGeneralViewPageLayout7, {}));
+    }
+
+    else if(menu == :menuGeneralViewPageEdit) {
+      var iPageIndex = $.oMySettings.iGeneralViewEditingPageIndex;
+      var sPageName = $.oMySettings.getGeneralViewPageName(iPageIndex);
+      var aFields = $.oMySettings.getGeneralViewPageFields(iPageIndex);
+      var iFieldCount = $.oMySettings.getGeneralViewPageLayout(iPageIndex);
+      if(iFieldCount > aFields.size()) {
+        iFieldCount = aFields.size();
+      }
+      Menu2.setTitle("Edit: " + sPageName);
+      for(var i = 0; i < iFieldCount; i++) {
+        var iIndicator = aFields[i] as Number;
+        var sIndicatorLabel = "";
+        if(iIndicator == $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED) {
+          sIndicatorLabel = "None";
+        } else if(iIndicator == 0) {
+          sIndicatorLabel = "Wind Direction";
+        } else if(iIndicator == 1) {
+          sIndicatorLabel = "Wind Speed";
+        } else if(iIndicator == 2) {
+          sIndicatorLabel = "Altitude";
+        } else if(iIndicator == 3) {
+          sIndicatorLabel = "Finesse";
+        } else if(iIndicator == 4) {
+          sIndicatorLabel = "Heading";
+        } else if(iIndicator == 5) {
+          sIndicatorLabel = "Vert. Speed";
+        } else if(iIndicator == 6) {
+          sIndicatorLabel = "Ground Speed";
+        }
+        var fieldItemId = :menuGeneralViewPageField0;
+        if(i == 1) { fieldItemId = :menuGeneralViewPageField1; }
+        else if(i == 2) { fieldItemId = :menuGeneralViewPageField2; }
+        else if(i == 3) { fieldItemId = :menuGeneralViewPageField3; }
+        else if(i == 4) { fieldItemId = :menuGeneralViewPageField4; }
+        else if(i == 5) { fieldItemId = :menuGeneralViewPageField5; }
+        else if(i == 6) { fieldItemId = :menuGeneralViewPageField6; }
+        Menu2.addItem(new Ui.MenuItem("Field " + (i+1), sIndicatorLabel, fieldItemId, {}));
+      }
+      Menu2.addItem(new Ui.MenuItem("Delete", null, :menuGeneralViewPageDelete, {}));
+    }
+
+    else if(self.getFieldIndexFromMenuItemId(menu) >= 0) {
+      Menu2.setTitle("Field " + (self.getFieldIndexFromMenuItemId(menu) + 1));
+      Menu2.addItem(new Ui.MenuItem("Wind Direction", null, :menuGeneralViewPageIndicator0, {}));
+      Menu2.addItem(new Ui.MenuItem("Wind Speed", null, :menuGeneralViewPageIndicator1, {}));
+      Menu2.addItem(new Ui.MenuItem("Altitude", null, :menuGeneralViewPageIndicator2, {}));
+      Menu2.addItem(new Ui.MenuItem("Finesse (Glide Ratio)", null, :menuGeneralViewPageIndicator3, {}));
+      Menu2.addItem(new Ui.MenuItem("Heading", null, :menuGeneralViewPageIndicator4, {}));
+      Menu2.addItem(new Ui.MenuItem("Vertical Speed", null, :menuGeneralViewPageIndicator5, {}));
+      Menu2.addItem(new Ui.MenuItem("Ground Speed", null, :menuGeneralViewPageIndicator6, {}));
+      Menu2.addItem(new Ui.MenuItem("None", null, :menuGeneralViewPageIndicatorNone, {}));
     }
 
     else if(menu == :menuSettingsAltimeter) {
@@ -183,6 +283,58 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
     self.menu = _menu;
   }
 
+  function getPageIndexFromMenuItemId(_itemId as Symbol) as Number {
+    switch(_itemId) {
+    case :menuGeneralViewPageEdit0: return 0;
+    case :menuGeneralViewPageEdit1: return 1;
+    case :menuGeneralViewPageEdit2: return 2;
+    case :menuGeneralViewPageEdit3: return 3;
+    case :menuGeneralViewPageEdit4: return 4;
+    case :menuGeneralViewPageEdit5: return 5;
+    case :menuGeneralViewPageEdit6: return 6;
+    case :menuGeneralViewPageEdit7: return 7;
+    case :menuGeneralViewPageEdit8: return 8;
+    case :menuGeneralViewPageEdit9: return 9;
+    default: return -1;
+    }
+  }
+
+  function getFieldIndexFromMenuItemId(_itemId as Symbol) as Number {
+    switch(_itemId) {
+    case :menuGeneralViewPageField0: return 0;
+    case :menuGeneralViewPageField1: return 1;
+    case :menuGeneralViewPageField2: return 2;
+    case :menuGeneralViewPageField3: return 3;
+    case :menuGeneralViewPageField4: return 4;
+    case :menuGeneralViewPageField5: return 5;
+    case :menuGeneralViewPageField6: return 6;
+    default: return -1;
+    }
+  }
+
+  function getLayoutFromMenuItemId(_itemId as Symbol) as Number {
+    switch(_itemId) {
+    case :menuGeneralViewPageLayout2: return $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2;
+    case :menuGeneralViewPageLayout4: return $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_4;
+    case :menuGeneralViewPageLayout7: return $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_7;
+    default: return -1;
+    }
+  }
+
+  function getIndicatorFromMenuItemId(_itemId as Symbol) as Number {
+    switch(_itemId) {
+    case :menuGeneralViewPageIndicator0: return 0;
+    case :menuGeneralViewPageIndicator1: return 1;
+    case :menuGeneralViewPageIndicator2: return 2;
+    case :menuGeneralViewPageIndicator3: return 3;
+    case :menuGeneralViewPageIndicator4: return 4;
+    case :menuGeneralViewPageIndicator5: return 5;
+    case :menuGeneralViewPageIndicator6: return 6;
+    case :menuGeneralViewPageIndicatorNone: return $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED;
+    default: return -2;
+    }
+  }
+
   function onSelect(_item as Ui.MenuItem) {
     var item = _item as Ui.ToggleMenuItem;
     var itemId = _item.getId() as Symbol;
@@ -214,8 +366,88 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
                     (self has :NoExclude)?(new MyMenuConfirmDiscardDelegate(:actionClearLogs, false)) : (new MyMenuGenericConfirmDelegate(:contextStorage, :actionClearLogs, false)),
                     Ui.SLIDE_IMMEDIATE);
       }
-    }  
-  
+      else if(itemId == :menuGeneralViewPages) {
+        Ui.pushView(new MyMenu2Generic(:menuGeneralViewPages, 0),
+                    new MyMenu2GenericDelegate(:menuGeneralViewPages),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+    }
+
+    else if(self.menu == :menuGeneralViewPages) {
+      var iPageIndex = self.getPageIndexFromMenuItemId(itemId);
+      if(iPageIndex >= 0) {
+        $.oMySettings.iGeneralViewEditingPageIndex = iPageIndex;
+        Ui.pushView(new MyMenu2Generic(:menuGeneralViewPageEdit, 0),
+                    new MyMenu2GenericDelegate(:menuGeneralViewPageEdit),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if(itemId == :menuGeneralViewPageAdd) {
+        Ui.pushView(new MyMenu2Generic(:menuGeneralViewPageAdd, 2),
+                    new MyMenu2GenericDelegate(:menuGeneralViewPageAdd),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+    }
+
+    else if(self.menu == :menuGeneralViewPageAdd) {
+      var iLayout = self.getLayoutFromMenuItemId(itemId);
+      if(iLayout > 0) {
+        $.oMySettings.createGeneralViewPage("Page " + ($.oMySettings.getGeneralViewPageCount() + 1), iLayout);
+        Ui.popView(Ui.SLIDE_IMMEDIATE);
+        Ui.popView(Ui.SLIDE_IMMEDIATE);
+        Ui.pushView(new MyMenu2Generic(:menuGeneralViewPages, 0),
+                    new MyMenu2GenericDelegate(:menuGeneralViewPages),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+    }
+
+    else if(self.menu == :menuGeneralViewPageEdit) {
+      var iFieldIndex = self.getFieldIndexFromMenuItemId(itemId);
+      if(iFieldIndex >= 0) {
+        var aFields = $.oMySettings.getGeneralViewPageFields($.oMySettings.iGeneralViewEditingPageIndex);
+        var iCurrentIndicator = (iFieldIndex < aFields.size()) ? (aFields[iFieldIndex] as Number) : $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED;
+        var iFocus = iCurrentIndicator == $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED ? 7 : iCurrentIndicator;
+        Ui.pushView(new MyMenu2Generic(itemId, iFocus),
+                    new MyMenu2GenericDelegate(itemId),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if(itemId == :menuGeneralViewPageDelete) {
+        var iPageIndex = $.oMySettings.iGeneralViewEditingPageIndex;
+        Sys.println("DEBUG: Delete handler - iPageIndex=" + iPageIndex + " pageCount=" + $.oMySettings.getGeneralViewPageCount());
+        var bDeleted = false;
+        if(iPageIndex >= 0 && iPageIndex < $.oMySettings.getGeneralViewPageCount() && $.oMySettings.getGeneralViewPageCount() > 1) {
+          Sys.println("DEBUG: Delete handler - Calling deleteGeneralViewPage(" + iPageIndex + ")");
+          bDeleted = $.oMySettings.deleteGeneralViewPage(iPageIndex);
+          Sys.println("DEBUG: Delete handler - bDeleted=" + bDeleted);
+          if(bDeleted) {
+            $.oMySettings.iGeneralViewEditingPageIndex = -1;
+          }
+        }
+        Ui.popView(Ui.SLIDE_IMMEDIATE);
+        if(bDeleted) {
+          // Replace stale pages list with a fresh one after deleting so the UI reflects the change.
+          Ui.popView(Ui.SLIDE_IMMEDIATE);
+          Ui.pushView(new MyMenu2Generic(:menuGeneralViewPages, 0),
+                      new MyMenu2GenericDelegate(:menuGeneralViewPages),
+                      Ui.SLIDE_IMMEDIATE);
+        } else {
+          // Keep the existing pages list if deletion did not happen.
+        }
+      }
+    }
+
+    else if(self.getFieldIndexFromMenuItemId(self.menu) >= 0) {
+      var iIndicator = self.getIndicatorFromMenuItemId(itemId);
+      if(iIndicator >= $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED) {
+        var iPageIndex = $.oMySettings.iGeneralViewEditingPageIndex;
+        var iFieldIndex = self.getFieldIndexFromMenuItemId(self.menu);
+        $.oMySettings.setGeneralViewPageField(iPageIndex, iFieldIndex, iIndicator);
+        Ui.popView(Ui.SLIDE_IMMEDIATE);
+        Ui.switchToView(new MyMenu2Generic(:menuGeneralViewPageEdit, iFieldIndex),
+                        new MyMenu2GenericDelegate(:menuGeneralViewPageEdit),
+                        Ui.SLIDE_IMMEDIATE);
+      }
+    }
+
     else if(self.menu == :menuSettingsAltimeter) {
       if(itemId == :menuAltimeterCalibration) {
         Ui.pushView(new MyMenu2Generic(:menuAltimeterCalibration, 0),
@@ -223,6 +455,7 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
                     Ui.SLIDE_IMMEDIATE);
       }
     }
+
     else if(self.menu == :menuAltimeterCalibration) {
       if(itemId == :menuAltimeterCalibrationQNH) {
         Ui.pushView(new MyPickerGenericPressure(:contextSettings, :menuAltimeterCalibrationQNH),

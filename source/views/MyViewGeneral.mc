@@ -48,6 +48,23 @@ class MyViewGeneral extends MyViewGlobal {
   //strings
   private var sUnitElapsed as String = "elapsed";
 
+  // active page tracking
+  private var iCurrentGeneralViewPageIndex as Number = -1;
+
+  // page slots
+  private const GENERAL_VIEW_SLOT_NAMES as Array = ["TopLeft", "TopRight", "Left", "Center", "Right", "BottomLeft", "BottomRight"];
+
+  // supported indicators
+  private const GENERAL_VIEW_INDICATOR_WIND_DIRECTION as Number = 0;
+  private const GENERAL_VIEW_INDICATOR_WIND_SPEED as Number = 1;
+  private const GENERAL_VIEW_INDICATOR_ALTITUDE as Number = 2;
+  private const GENERAL_VIEW_INDICATOR_FINESSE as Number = 3;
+  private const GENERAL_VIEW_INDICATOR_HEADING as Number = 4;
+  private const GENERAL_VIEW_INDICATOR_VERTICAL_SPEED as Number = 5;
+  private const GENERAL_VIEW_INDICATOR_GROUND_SPEED as Number = 6;
+
+  private const GENERAL_VIEW_INDICATOR_COUNT as Number = 7;
+
   //
   // FUNCTIONS: MyViewGlobal (override/implement)
   //
@@ -55,6 +72,7 @@ class MyViewGeneral extends MyViewGlobal {
   function initialize() {
     //Populate last view
     $.oMyProcessing.bIsPreviousGeneral = true;
+    self.iCurrentGeneralViewPageIndex = -1;
     MyViewGlobal.initialize();
   }
 
@@ -62,47 +80,388 @@ class MyViewGeneral extends MyViewGlobal {
     //Sys.println("DEBUG: MyViewGeneral.prepare()");
     MyViewGlobal.prepare();
 
-    // Set colors (value-independent), labels and units
-    // ... Current time
-    (View.findDrawableById("labelTopLeft") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelWindDirection) as String);
-    if($.oMySettings.iUnitDirection==0) {
-      (View.findDrawableById("unitTopLeft") as Ui.Text).setText("[Deg]");
-    }
-    // ... activity: elapsed
-    (View.findDrawableById("labelTopRight") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelWindSpeed) as String);
-    (View.findDrawableById("unitTopRight") as Ui.Text).setText(Lang.format("[$1$]", [$.oMySettings.sUnitWindSpeed]));
-    // ... altitude
-    (View.findDrawableById("labelLeft") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelAltitude) as String);
-    (View.findDrawableById("unitLeft") as Ui.Text).setText(Lang.format("[$1$]", [$.oMySettings.sUnitElevation]));
-    // ... finesse
-    (View.findDrawableById("labelCenter") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelFinesse) as String);
-    // ... heading
-    (View.findDrawableById("labelRight") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelHeading) as String);
-    if($.oMySettings.iUnitDirection==0) {
-      (View.findDrawableById("unitRight") as Ui.Text).setText("[Deg]");
-    }
-    // ... vertical speed
-    (View.findDrawableById("labelBottomLeft") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelVerticalSpeed) as String);
-    (View.findDrawableById("unitBottomLeft") as Ui.Text).setText(Lang.format("[$1$]", [$.oMySettings.sUnitVerticalSpeed]));
-    // ... ground speed
-    (View.findDrawableById("labelBottomRight") as Ui.Text).setText(Ui.loadResource(Rez.Strings.labelGroundSpeed) as String);
-    (View.findDrawableById("unitBottomRight") as Ui.Text).setText(Lang.format("[$1$]", [$.oMySettings.sUnitHorizontalSpeed]));
+    self.updatePageLabels();
 
     // Unmute tones
-     (App.getApp() as MyApp).unmuteTones();
+    (App.getApp() as MyApp).unmuteTones();
+  }
+
+  function getGlobalLayout(_oDC) {
+    var iLayout = $.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewActivePageIndex);
+    switch(iLayout) {
+    case $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_4:
+      return Rez.Layouts.layoutGlobal4(_oDC);
+    case $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2:
+      return Rez.Layouts.layoutGlobal2(_oDC);
+    default:
+      return Rez.Layouts.layoutGlobal(_oDC);
+    }
+  }
+
+  function getGeneralViewSlotName(_iFieldIndex as Number, _iLayout as Number) as String {
+    switch(_iLayout) {
+    case $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2:
+      return (_iFieldIndex == 0) ? "TopLeft" : "TopRight";
+    case $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_4:
+      switch(_iFieldIndex) {
+      case 0:
+        return "TopLeft";
+      case 1:
+        return "TopRight";
+      case 2:
+        return "BottomLeft";
+      case 3:
+        return "BottomRight";
+      default:
+        return "TopLeft";
+      }
+    default:
+      return GENERAL_VIEW_SLOT_NAMES[_iFieldIndex] as String;
+    }
+  }
+
+  function clearPageSlot(_sSlot as String) as Void {
+    var oLabel = View.findDrawableById("label" + _sSlot) as Ui.Text;
+    var oUnit = View.findDrawableById("unit" + _sSlot) as Ui.Text;
+    var oValue = View.findDrawableById("value" + _sSlot) as Ui.Text;
+    if(oLabel != null) {
+      oLabel.setText("");
+    }
+    if(oUnit != null) {
+      oUnit.setText("");
+    }
+    if(oValue != null) {
+      oValue.setText("");
+    }
+  }
+
+  function updateFieldSlot(_sSlot as String, _iIndicator as Number, _bRecording as Boolean) as Void {
+    var oValue = View.findDrawableById("value" + _sSlot) as Ui.Text;
+    if(oValue == null) {
+      return;
+    }
+    if(_iIndicator == $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED) {
+      oValue.setText("");
+      return;
+    }
+    var sText = self.getIndicatorValueText(_iIndicator);
+    var iColor = self.getIndicatorValueColor(_iIndicator, _bRecording);
+    oValue.setFont(self.getIndicatorValueFont(_iIndicator, sText));
+    oValue.setColor(iColor);
+    oValue.setText(sText);
+  }
+
+  function updatePageLabels() {
+    var aFields = $.oMySettings.getGeneralViewPageFields($.oMySettings.iGeneralViewActivePageIndex);
+    var iLayout = $.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewActivePageIndex);
+    for(var i=0; i<iLayout; i++) {
+      var sSlot = self.getGeneralViewSlotName(i, iLayout);
+      var oLabel = View.findDrawableById("label" + sSlot) as Ui.Text;
+      var oUnit = View.findDrawableById("unit" + sSlot) as Ui.Text;
+      var iIndicator = (i < aFields.size()) ? (aFields[i] as Number) : $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED;
+      if(iIndicator >= 0 && iIndicator < GENERAL_VIEW_INDICATOR_COUNT) {
+        if(oLabel != null) {
+          oLabel.setText(self.getIndicatorLabelText(iIndicator));
+          oLabel.setColor(Gfx.COLOR_DK_GRAY);
+        }
+        if(oUnit != null) {
+          oUnit.setText(self.getIndicatorUnitText(iIndicator));
+          oUnit.setColor(Gfx.COLOR_DK_GRAY);
+        }
+      }
+      else {
+        if(oLabel != null) {
+          oLabel.setText("");
+        }
+        if(oUnit != null) {
+          oUnit.setText("");
+        }
+      }
+    }
+  }
+
+  function getIndicatorLabelText(_iIndicator as Number) as String {
+    switch(_iIndicator) {
+    case GENERAL_VIEW_INDICATOR_WIND_DIRECTION:
+      return Ui.loadResource(Rez.Strings.labelWindDirection) as String;
+    case GENERAL_VIEW_INDICATOR_WIND_SPEED:
+      return Ui.loadResource(Rez.Strings.labelWindSpeed) as String;
+    case GENERAL_VIEW_INDICATOR_ALTITUDE:
+      return Ui.loadResource(Rez.Strings.labelAltitude) as String;
+    case GENERAL_VIEW_INDICATOR_FINESSE:
+      return Ui.loadResource(Rez.Strings.labelFinesse) as String;
+    case GENERAL_VIEW_INDICATOR_HEADING:
+      return Ui.loadResource(Rez.Strings.labelHeading) as String;
+    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
+      return Ui.loadResource(Rez.Strings.labelVerticalSpeed) as String;
+    case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
+      return Ui.loadResource(Rez.Strings.labelGroundSpeed) as String;
+    default:
+      return "";
+    }
+  }
+
+  function getIndicatorUnitText(_iIndicator as Number) as String {
+    switch(_iIndicator) {
+    case GENERAL_VIEW_INDICATOR_WIND_DIRECTION:
+    case GENERAL_VIEW_INDICATOR_HEADING:
+      return ($.oMySettings.iUnitDirection == 0) ? "[Deg]" : "";
+    case GENERAL_VIEW_INDICATOR_WIND_SPEED:
+      return Lang.format("[$1$]", [$.oMySettings.sUnitWindSpeed]);
+    case GENERAL_VIEW_INDICATOR_ALTITUDE:
+      return Lang.format("[$1$]", [$.oMySettings.sUnitElevation]);
+    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
+      return Lang.format("[$1$]", [$.oMySettings.sUnitVerticalSpeed]);
+    case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
+      return Lang.format("[$1$]", [$.oMySettings.sUnitHorizontalSpeed]);
+    default:
+      return "";
+    }
+  }
+
+  function getIndicatorValueText(_iIndicator as Number) as String {
+    var sValue = "";
+    var fValue;
+    var iValue;
+    switch(_iIndicator) {
+    case GENERAL_VIEW_INDICATOR_ALTITUDE:
+      fValue = $.oMyProcessing.fAltitude;
+      if(LangUtils.notNaN(fValue)) {
+        fValue *= $.oMySettings.fUnitElevationCoefficient;
+        sValue = fValue.format("%.0f");
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
+      fValue = $.oMyProcessing.fVariometer_filtered;
+      if(LangUtils.notNaN(fValue)) {
+        fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
+        if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
+          sValue = fValue.format("%+.1f");
+        }
+        else {
+          sValue = fValue.format("%+.0f");
+        }
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_WIND_DIRECTION:
+      iValue = $.oMyProcessing.iWindDirection;
+      if(LangUtils.notNaN(iValue) && $.oMyProcessing.bWindValid) {
+        if($.oMySettings.iUnitDirection == 1) {
+          sValue = $.oMyProcessing.convertDirection(iValue);
+        }
+        else {
+          sValue = iValue.format("%d");
+        }
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_WIND_SPEED:
+      fValue = $.oMyProcessing.fWindSpeed;
+      if(LangUtils.notNaN(fValue) && $.oMyProcessing.bWindValid) {
+        fValue *= $.oMySettings.fUnitWindSpeedCoefficient;
+        sValue = fValue.format("%.0f");
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_FINESSE:
+      if(LangUtils.notNaN($.oMyProcessing.fFinesse) && !$.oMyProcessing.bAscent) {
+        sValue = $.oMyProcessing.fFinesse.format("%.0f");
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN2;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_HEADING:
+      fValue = $.oMyProcessing.fHeading;
+      if(LangUtils.notNaN(fValue)) {
+        fValue = ((fValue * 57.2957795131f).toNumber()) % 360;
+        if($.oMySettings.iUnitDirection == 1) {
+          sValue = $.oMyProcessing.convertDirection(fValue);
+        }
+        else {
+          sValue = fValue.format("%d");
+        }
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
+      fValue = $.oMyProcessing.fGroundSpeed;
+      if(LangUtils.notNaN(fValue)) {
+        fValue *= $.oMySettings.fUnitHorizontalSpeedCoefficient;
+        sValue = fValue.format("%.0f");
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    default:
+      sValue = "";
+    }
+    return sValue;
+  }
+
+  function isIndicatorValueNumeric(_iIndicator as Number, _sText as String) as Boolean {
+    if(_sText == "" || _sText == $.MY_NOVALUE_LEN2 || _sText == $.MY_NOVALUE_LEN3) {
+      return false;
+    }
+
+    switch(_iIndicator) {
+    case GENERAL_VIEW_INDICATOR_WIND_DIRECTION:
+    case GENERAL_VIEW_INDICATOR_HEADING:
+      return $.oMySettings.iUnitDirection != 1;
+    case GENERAL_VIEW_INDICATOR_ALTITUDE:
+    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
+    case GENERAL_VIEW_INDICATOR_WIND_SPEED:
+    case GENERAL_VIEW_INDICATOR_FINESSE:
+    case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
+      return true;
+    default:
+      return false;
+    }
+  }
+
+  function getIndicatorValueFont(_iIndicator as Number, _sText as String) {
+    var iLayout = $.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewActivePageIndex);
+    if(iLayout == $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_7) {
+      return Gfx.FONT_LARGE;
+    }
+    if(!self.isIndicatorValueNumeric(_iIndicator, _sText)) {
+      return Gfx.FONT_LARGE;
+    }
+    return Gfx.FONT_NUMBER_MILD;
+  }
+
+  function getIndicatorValueColor(_iIndicator as Number, _bRecording as Boolean) as Number {
+    var iColor = self.iColorText;
+    var fValue;
+    switch(_iIndicator) {
+    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
+      fValue = $.oMyProcessing.fVariometer_filtered;
+      if(LangUtils.notNaN(fValue)) {
+        fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
+        if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
+          if(fValue >= 0.05f) {
+            iColor = Gfx.COLOR_DK_GREEN;
+          }
+          else if(fValue <= -0.05f) {
+            iColor = Gfx.COLOR_RED;
+          }
+        }
+        else {
+          if(fValue >= 0.5f) {
+            iColor = Gfx.COLOR_DK_GREEN;
+          }
+          else if(fValue <= -0.5f) {
+            iColor = Gfx.COLOR_RED;
+          }
+        }
+      }
+      else {
+        iColor = Gfx.COLOR_LT_GRAY;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_WIND_SPEED:
+      if(!_bRecording) {
+        iColor = Gfx.COLOR_LT_GRAY;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_WIND_DIRECTION:
+      if(!($.oMyProcessing.bWindValid && LangUtils.notNaN($.oMyProcessing.iWindDirection))) {
+        iColor = Gfx.COLOR_LT_GRAY;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_HEADING:
+      if(!LangUtils.notNaN($.oMyProcessing.fHeading)) {
+        iColor = Gfx.COLOR_LT_GRAY;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_ALTITUDE:
+      if(!LangUtils.notNaN($.oMyProcessing.fAltitude)) {
+        iColor = Gfx.COLOR_LT_GRAY;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
+      if(!LangUtils.notNaN($.oMyProcessing.fGroundSpeed)) {
+        iColor = Gfx.COLOR_LT_GRAY;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_FINESSE:
+      if(!(LangUtils.notNaN($.oMyProcessing.fFinesse) && !$.oMyProcessing.bAscent)) {
+        iColor = Gfx.COLOR_LT_GRAY;
+      }
+      break;
+    default:
+      iColor = Gfx.COLOR_LT_GRAY;
+    }
+    return iColor;
+  }
+
+  function clearPageField(_iSlot as Number) {
+    var sSlot = GENERAL_VIEW_SLOT_NAMES[_iSlot] as String;
+    var oLabel = View.findDrawableById("label" + sSlot) as Ui.Text;
+    var oUnit = View.findDrawableById("unit" + sSlot) as Ui.Text;
+    var oValue = View.findDrawableById("value" + sSlot) as Ui.Text;
+    if(oLabel != null) {
+      oLabel.setText("");
+    }
+    if(oUnit != null) {
+      oUnit.setText("");
+    }
+    if(oValue != null) {
+      oValue.setText("");
+    }
+  }
+
+  function updateFieldValue(_iSlot as Number, _iIndicator as Number, _bRecording as Boolean) {
+    var sSlot = GENERAL_VIEW_SLOT_NAMES[_iSlot] as String;
+    var oValue = View.findDrawableById("value" + sSlot) as Ui.Text;
+    if(oValue == null) {
+      return;
+    }
+    if(_iIndicator == $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED) {
+      oValue.setText("");
+      return;
+    }
+    var sText = self.getIndicatorValueText(_iIndicator);
+    var iColor = self.getIndicatorValueColor(_iIndicator, _bRecording);
+    oValue.setFont(Gfx.FONT_LARGE);
+    oValue.setColor(iColor);
+    oValue.setText(sText);
   }
 
   function onUpdate(_oDC as Gfx.Dc) as Void {
     // Sys.println("DEBUG: MyViewGeneral.onUpdate()");
+
+    // Reload layout when active general view page changes so device-specific 2/4/7 layouts apply.
+    var iActivePageIndex = $.oMySettings.iGeneralViewActivePageIndex;
+    if(iActivePageIndex != self.iCurrentGeneralViewPageIndex) {
+      self.iCurrentGeneralViewPageIndex = iActivePageIndex;
+      self.onLayout(_oDC);
+    }
 
     // Update layout
     MyViewGlobal.onUpdate(_oDC);
     self.drawArrow(_oDC);
   }
 
-  function updateLayout(_b) {  
+  function updateLayout(_b) {
     //Sys.println("DEBUG: MyViewGeneral.updateLayout()");
     MyViewGlobal.updateLayout(true);
+
+    // Update labels/units if the active page changed
+    self.updatePageLabels();
 
     // Colors
     if($.oMyProcessing.iAccuracy == Pos.QUALITY_LAST_KNOWN) {
@@ -113,139 +472,33 @@ class MyViewGeneral extends MyViewGlobal {
       (self.oRezDrawableGlobal as MyDrawableGlobal).setColorFieldsBackground(Gfx.COLOR_TRANSPARENT);
     }
 
-    // Set values (and dependent colors)
-    var fValue;
-    var iValue;
-    var sValue;
     var bRecording = ($.oMyActivity != null);
+    var aFields = $.oMySettings.getGeneralViewPageFields($.oMySettings.iGeneralViewActivePageIndex);
+    var iLayout = $.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewActivePageIndex);
 
-    // ... altitude
-    (self.oRezValueLeft as Ui.Text).setColor(self.iColorText);
-    fValue = $.oMyProcessing.fAltitude;
-    if(LangUtils.notNaN(fValue)) {
-      fValue *= $.oMySettings.fUnitElevationCoefficient;
-      sValue = fValue.format("%.0f");
-    }
-    else {
-      (self.oRezValueLeft as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      sValue = $.MY_NOVALUE_LEN3;
-    }
-    (self.oRezValueLeft as Ui.Text).setText(sValue);
-
-    // ... variometer
-    (self.oRezValueBottomLeft as Ui.Text).setColor(self.iColorText);
-    fValue = $.oMyProcessing.fVariometer_filtered;
-    if(LangUtils.notNaN(fValue)) {
-      fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
-      if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
-        sValue = fValue.format("%+.1f");
-        if(fValue >= 0.05f) {
-          (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_DK_GREEN);
-        }
-        else if(fValue <= -0.05f) {
-          (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_RED);
-        }
+    for(var i=0; i<iLayout; i++) {
+      var sSlot = self.getGeneralViewSlotName(i, iLayout);
+      var iIndicator = (i < aFields.size()) ? (aFields[i] as Number) : $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED;
+      if(iIndicator == $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED) {
+        self.clearPageSlot(sSlot);
       }
       else {
-        sValue = fValue.format("%+.0f");
-        if(fValue >= 0.5f) {
-          (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_DK_GREEN);
-        }
-        else if(fValue <= -0.5f) {
-          (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_RED);
-        }
+        self.updateFieldSlot(sSlot, iIndicator, bRecording);
       }
     }
-    else {
-      (self.oRezValueBottomLeft as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      sValue = $.MY_NOVALUE_LEN3;
-    }
-    (self.oRezValueBottomLeft as Ui.Text).setText(sValue);
 
     if($.oMyProcessing.iAccuracy == Pos.QUALITY_NOT_AVAILABLE) {
-      (self.oRezDrawableGlobal as MyDrawableGlobal).setColorFieldsBackground(Gfx.COLOR_DK_RED);
-      (self.oRezValueTopLeft as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueTopLeft as Ui.Text).setText($.MY_NOVALUE_LEN3);
-      (self.oRezValueTopRight as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueTopRight as Ui.Text).setText($.MY_NOVALUE_LEN3);
-      (self.oRezValueCenter as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueCenter as Ui.Text).setText($.MY_NOVALUE_LEN2);
-      (self.oRezValueRight as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueRight as Ui.Text).setText($.MY_NOVALUE_LEN3);
-      (self.oRezValueBottomRight as Ui.Text).setColor(Gfx.COLOR_LT_GRAY);
-      (self.oRezValueBottomRight as Ui.Text).setText($.MY_NOVALUE_LEN3);
+      for(var i=0; i<iLayout; i++) {
+        var sSlot = self.getGeneralViewSlotName(i, iLayout);
+        var oValue = View.findDrawableById("value" + sSlot) as Ui.Text;
+        if(oValue != null) {
+          oValue.setFont(Gfx.FONT_LARGE);
+          oValue.setColor(Gfx.COLOR_LT_GRAY);
+          oValue.setText((i == 1 && iLayout == $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2) ? $.MY_NOVALUE_LEN2 : $.MY_NOVALUE_LEN3);
+        }
+      }
       return;
     }
-
-    // ... Wind Direction
-    (self.oRezValueTopLeft as Ui.Text).setColor(self.iColorText);
-    //sValue = LangUtils.formatTime(oTimeNow, $.oMySettings.bUnitTimeUTC, false);
-    iValue = $.oMyProcessing.iWindDirection;
-    if(LangUtils.notNaN(iValue) && $.oMyProcessing.bWindValid) {
-      if($.oMySettings.iUnitDirection == 1) {
-        sValue = $.oMyProcessing.convertDirection(iValue);
-      } else {
-        sValue = iValue.format("%d");
-      }
-        
-    } else {
-      sValue = $.MY_NOVALUE_LEN3;
-    }
-    (self.oRezValueTopLeft as Ui.Text).setText(sValue);
-
-    // ... Wind Speed
-    (self.oRezValueTopRight as Ui.Text).setColor(bRecording ? self.iColorText : Gfx.COLOR_LT_GRAY);
-    fValue = $.oMyProcessing.fWindSpeed;
-    if(LangUtils.notNaN(fValue) && $.oMyProcessing.bWindValid) {
-      fValue *= $.oMySettings.fUnitWindSpeedCoefficient;
-      sValue = fValue.format("%.0f");
-    }
-    else {
-      sValue = $.MY_NOVALUE_LEN3;
-    }
-    (self.oRezValueTopRight as Ui.Text).setText(sValue);
-
-    // ... finesse
-    (self.oRezValueCenter as Ui.Text).setColor(self.iColorText);
-    if(LangUtils.notNaN($.oMyProcessing.fFinesse) and !$.oMyProcessing.bAscent) {
-      fValue = $.oMyProcessing.fFinesse;
-      sValue = fValue.format("%.0f");
-    }
-    else {
-      sValue = $.MY_NOVALUE_LEN2;
-    }
-    (self.oRezValueCenter as Ui.Text).setText(sValue);
-
-    // ... heading
-    (self.oRezValueRight as Ui.Text).setColor(self.iColorText);
-    fValue = $.oMyProcessing.fHeading;
-
-    if(LangUtils.notNaN(fValue)) {
-      //fValue = ((fValue * 180.0f/Math.PI).toNumber()) % 360;
-      fValue = ((fValue * 57.2957795131f).toNumber()) % 360;
-      if($.oMySettings.iUnitDirection == 1) {
-        sValue = $.oMyProcessing.convertDirection(fValue);
-      }
-      else {
-        sValue = fValue.format("%d");
-      }
-    }
-    else {
-      sValue = $.MY_NOVALUE_LEN3;
-    }
-    (self.oRezValueRight as Ui.Text).setText(sValue);
-
-    // ... ground speed
-    (self.oRezValueBottomRight as Ui.Text).setColor(self.iColorText);
-    fValue = $.oMyProcessing.fGroundSpeed;
-    if(LangUtils.notNaN(fValue)) {
-      fValue *= $.oMySettings.fUnitHorizontalSpeedCoefficient;
-      sValue = fValue.format("%.0f");
-    }
-    else {
-      sValue = $.MY_NOVALUE_LEN3;
-    }
-    (self.oRezValueBottomRight as Ui.Text).setText(sValue);
   }
 
   function onHide() {
@@ -291,6 +544,15 @@ class MyViewGeneralDelegate extends MyViewGlobalDelegate {
 
   function onPreviousPage() {
     //Sys.println("DEBUG: MyViewGeneralDelegate.onPreviousPage()");
+    
+    // Check if we should cycle to previous general view page
+    if($.oMySettings.previousGeneralViewPage()) {
+      Ui.requestUpdate();
+      return true;
+    }
+    
+    // At first general page, fall through to the previous view
+    // Switch to previous view
     if ($.oMyActivity != null) { //Skip the log view if we're recording, e.g. in flight     
         if (Ui has :MapView && $.oMySettings.bMapDisplay) {
             var mapView = new MyViewMap();
@@ -313,6 +575,15 @@ class MyViewGeneralDelegate extends MyViewGlobalDelegate {
 
   function onNextPage() {
     //Sys.println("DEBUG: MyViewGeneralDelegate.onNextPage()");
+    
+    // Check if we should cycle to next general view page
+    if($.oMySettings.nextGeneralViewPage()) {
+      Ui.requestUpdate();
+      return true;
+    }
+    
+    // At last general page, fall through to the next view
+    // Otherwise, switch to next view
     Ui.switchToView(new MyViewVariometer(),
                     new MyViewVariometerDelegate(),
                     Ui.SLIDE_IMMEDIATE);

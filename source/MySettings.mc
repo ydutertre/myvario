@@ -102,6 +102,19 @@ class MySettings {
   public var fUnitPressureCoefficient as Float = 0.01f;
   public var fUnitWindSpeedCoefficient as Float = 3.6f;
 
+  // General view page customization
+  public const GENERAL_VIEW_PAGE_COUNT as Number = 7;
+  public const GENERAL_VIEW_PAGE_SLOT_UNUSED as Number = -1;
+  public const GENERAL_VIEW_PAGE_LAYOUT_2 as Number = 2;
+  public const GENERAL_VIEW_PAGE_LAYOUT_4 as Number = 4;
+  public const GENERAL_VIEW_PAGE_LAYOUT_7 as Number = 7;
+  public const GENERAL_VIEW_INDICATOR_COUNT as Number = 7;
+  public var iGeneralViewActivePageIndex as Number = 0;
+  public var iGeneralViewEditingPageIndex as Number = -1;
+  public var aGeneralViewPageNames as Array = [];
+  public var aGeneralViewPageLayouts as Array = [];
+  public var aaGeneralViewPageFields as Array = [];
+
   // Other
   public var fVariometerRange as Float = 3.0f;
   public var iVariometerPlotOrientation as Number = 0;
@@ -151,6 +164,7 @@ class MySettings {
     self.setVectorVario(self.loadVectorVario());
     self.setGPS(self.loadGPS());
     self.setMapDisplay(self.loadMapDisplay());
+    self.loadGeneralViewPages();
     // ... units
     self.setUnitDistance(self.loadUnitDistance());
     self.setUnitElevation(self.loadUnitElevation());
@@ -511,6 +525,348 @@ class MySettings {
       _iValue = 0;
     }
     self.iGPS = _iValue;
+  }
+
+  function loadGeneralViewActivePageIndex() as Number {
+    try {
+      return LangUtils.readKeyNumber(App.Properties.getValue("userGeneralViewActivePageIndex"), 0);
+    } catch (e) {
+      try {
+        return LangUtils.readKeyNumber(App.Storage.getValue("userGeneralViewActivePageIndex"), 0);
+      } catch (e2) {
+        return 0;
+      }
+    }
+  }
+  function saveGeneralViewActivePageIndex(_iValue as Number) as Void {
+    try {
+      App.Properties.setValue("userGeneralViewActivePageIndex", _iValue as App.PropertyValueType);
+    } catch (e) {
+      try {
+        App.Storage.setValue("userGeneralViewActivePageIndex", _iValue as App.PropertyValueType);
+      } catch (e2) {
+        // Ignore persistence failure silently.
+      }
+    }
+  }
+  function setGeneralViewActivePageIndex(_iValue as Number) as Void {
+    if(_iValue < 0) {
+      _iValue = 0;
+    }
+    else if(_iValue >= self.aGeneralViewPageNames.size()) {
+      _iValue = self.aGeneralViewPageNames.size() - 1;
+    }
+    self.iGeneralViewActivePageIndex = _iValue;
+  }
+
+  function nextGeneralViewPage() as Boolean {
+    var iPageCount = self.getGeneralViewPageCount();
+    if(iPageCount <= 1) {
+      return false;
+    }
+    var iCurrentPage = self.iGeneralViewActivePageIndex;
+    if(iCurrentPage < iPageCount - 1) {
+      var iNextPage = iCurrentPage + 1;
+      self.setGeneralViewActivePageIndex(iNextPage);
+      self.saveGeneralViewActivePageIndex(iNextPage);
+      return true;
+    }
+    return false;
+  }
+
+  function previousGeneralViewPage() as Boolean {
+    var iPageCount = self.getGeneralViewPageCount();
+    if(iPageCount <= 1) {
+      return false;
+    }
+    var iCurrentPage = self.iGeneralViewActivePageIndex;
+    if(iCurrentPage > 0) {
+      var iPreviousPage = iCurrentPage - 1;
+      self.setGeneralViewActivePageIndex(iPreviousPage);
+      self.saveGeneralViewActivePageIndex(iPreviousPage);
+      return true;
+    }
+    return false;
+  }
+
+  function selectFirstGeneralViewPage() as Void {
+    if(self.getGeneralViewPageCount() > 0) {
+      self.setGeneralViewActivePageIndex(0);
+      self.saveGeneralViewActivePageIndex(self.iGeneralViewActivePageIndex);
+    }
+  }
+
+  function selectLastGeneralViewPage() as Void {
+    var iPageCount = self.getGeneralViewPageCount();
+    if(iPageCount > 0) {
+      self.setGeneralViewActivePageIndex(iPageCount - 1);
+      self.saveGeneralViewActivePageIndex(self.iGeneralViewActivePageIndex);
+    }
+  }
+
+  function saveGeneralViewPageData(_sValue as String) as Void {
+    if(_sValue == null) {
+      _sValue = "";
+    }
+    //// Sys.println("DEBUG: saveGeneralViewPageData() - Saving: '" + _sValue + "'");
+    try {
+      App.Properties.setValue("userGeneralViewPageData", _sValue as App.PropertyValueType);
+      // Sys.println("DEBUG: saveGeneralViewPageData() - Saved to Properties");
+    } catch (e) {
+      // Sys.println("DEBUG: saveGeneralViewPageData() - Properties failed, trying Storage");
+      try {
+        App.Storage.setValue("userGeneralViewPageData", _sValue as App.PropertyValueType);
+        // Sys.println("DEBUG: saveGeneralViewPageData() - Saved to Storage");
+      } catch (e2) {
+        // Ignore persistence failure silently.
+        // Sys.println("DEBUG: saveGeneralViewPageData() - Storage also failed!");
+      }
+    }
+  }
+
+  function loadGeneralViewPageData() as String {
+    try {
+      var sValue = LangUtils.readKeyString(App.Properties.getValue("userGeneralViewPageData"), "");
+      // Sys.println("DEBUG: loadGeneralViewPageData() - Loaded from Properties: '" + sValue + "'");
+      return sValue;
+    } catch (e) {
+      // Sys.println("DEBUG: loadGeneralViewPageData() - Properties failed, trying Storage");
+      try {
+        var sValue2 = LangUtils.readKeyString(App.Storage.getValue("userGeneralViewPageData"), "");
+        // Sys.println("DEBUG: loadGeneralViewPageData() - Loaded from Storage: '" + sValue2 + "'");
+        return sValue2;
+      } catch (e2) {
+        // Sys.println("DEBUG: loadGeneralViewPageData() - Storage also failed, returning empty");
+        return "";
+      }
+    }
+  }
+
+  function loadGeneralViewPages() as Void {
+    self.aGeneralViewPageNames = [];
+    self.aGeneralViewPageLayouts = [];
+    self.aaGeneralViewPageFields = [];
+    self.iGeneralViewActivePageIndex = self.loadGeneralViewActivePageIndex();
+
+    var sPageData = self.loadGeneralViewPageData();
+    // Sys.println("DEBUG: loadGeneralViewPages() - sPageData = '" + (sPageData as String) + "'");
+    if(sPageData == null || sPageData == "") {
+      self.createDefaultGeneralViewPages();
+      // Sys.println("DEBUG: loadGeneralViewPages() - Created default pages");
+      return;
+    }
+
+    var asPageStrings = LangUtils.split(sPageData, ";");
+    for(var i=0; i<asPageStrings.size(); i++) {
+      var sPageEntry = asPageStrings[i];
+      if(sPageEntry == null || sPageEntry == "") {
+        continue;
+      }
+      var asParts = LangUtils.split(sPageEntry, "|");
+      if(asParts.size() < 3) {
+        continue;
+      }
+      var sName = LangUtils.replace(asParts[0], "|", "_");
+      sName = LangUtils.replace(sName, ";", "_");
+      var iLayout = asParts[1].toNumber();
+      var sFields = asParts[2];
+      var aFields = [];
+      if(sFields != null && sFields != "") {
+        var asFieldTokens = LangUtils.split(sFields, ",");
+        for(var j=0; j<asFieldTokens.size(); j++) {
+          aFields.add(asFieldTokens[j].toNumber());
+        }
+      }
+      while(aFields.size() < self.GENERAL_VIEW_PAGE_COUNT) {
+        aFields.add(self.GENERAL_VIEW_PAGE_SLOT_UNUSED);
+      }
+      self.aGeneralViewPageNames.add(sName);
+      self.aGeneralViewPageLayouts.add(iLayout);
+      self.aaGeneralViewPageFields.add(aFields);
+    }
+
+    if(self.aGeneralViewPageNames.size() == 0) {
+      self.createDefaultGeneralViewPages();
+    }
+    if(self.iGeneralViewActivePageIndex < 0 || self.iGeneralViewActivePageIndex >= self.aGeneralViewPageNames.size()) {
+      self.iGeneralViewActivePageIndex = 0;
+    }
+    // Sys.println("DEBUG: loadGeneralViewPages() - Loaded " + self.aGeneralViewPageNames.size() + " pages");
+    for(var i=0; i<self.aGeneralViewPageNames.size(); i++) {
+      // Sys.println("DEBUG:   Page " + i + ": name='" + self.aGeneralViewPageNames[i] + "' layout=" + self.aGeneralViewPageLayouts[i]);
+    }
+  }
+
+  function createGeneralViewPage(_sName as String, _iLayout as Number) as Void {
+    if(self.aGeneralViewPageNames.size() >= 10) {
+      // Sys.println("DEBUG: createGeneralViewPage() - Page limit reached, cannot add more pages.");
+      return;
+    }
+    // Sys.println("DEBUG: createGeneralViewPage() - Adding page: name='" + _sName + "' layout=" + _iLayout);
+    if(_sName == null || _sName == "") {
+      _sName = "Page " + (self.aGeneralViewPageNames.size() + 1).format("%d");
+    }
+    if(_iLayout != self.GENERAL_VIEW_PAGE_LAYOUT_2 && _iLayout != self.GENERAL_VIEW_PAGE_LAYOUT_4) {
+      _iLayout = self.GENERAL_VIEW_PAGE_LAYOUT_7;
+    }
+    var aFields = [];
+    var iDefaultCount = _iLayout;
+    for(var i=0; i<self.GENERAL_VIEW_PAGE_COUNT; i++) {
+      if(i < iDefaultCount) {
+        aFields.add(i);
+      }
+      else {
+        aFields.add(self.GENERAL_VIEW_PAGE_SLOT_UNUSED);
+      }
+    }
+    self.aGeneralViewPageNames.add(_sName);
+    self.aGeneralViewPageLayouts.add(_iLayout);
+    self.aaGeneralViewPageFields.add(aFields);
+    self.iGeneralViewActivePageIndex = self.aGeneralViewPageNames.size() - 1;
+    self.saveGeneralViewPages();
+    self.saveGeneralViewActivePageIndex(self.iGeneralViewActivePageIndex);
+  }
+
+  function removeArrayIndex(_aArray as Array, _iIndex as Number) as Array {
+    var aResult = [];
+    for(var i=0; i<_aArray.size(); i++) {
+      if(i != _iIndex) {
+        aResult.add(_aArray[i]);
+      }
+    }
+    return aResult;
+  }
+
+  function deleteGeneralViewPage(_iPageIndex as Number) as Boolean {
+    // Sys.println("DEBUG: deleteGeneralViewPage() - Deleting page " + _iPageIndex + " from " + self.aGeneralViewPageNames.size() + " pages");
+    // Prevent deletion of the last page; always keep at least one page
+    if(self.aGeneralViewPageNames.size() <= 1) {
+      // Sys.println("DEBUG: deleteGeneralViewPage() - Cannot delete last page");
+      return false;
+    }
+    if(_iPageIndex < 0 || _iPageIndex >= self.aGeneralViewPageNames.size()) {
+      // Sys.println("DEBUG: deleteGeneralViewPage() - Invalid page index");
+      return false;
+    }
+    // Sys.println("DEBUG: deleteGeneralViewPage() - Removing page '" + (self.aGeneralViewPageNames[_iPageIndex] as String) + "'");
+    self.aGeneralViewPageNames = self.removeArrayIndex(self.aGeneralViewPageNames, _iPageIndex);
+    self.aGeneralViewPageLayouts = self.removeArrayIndex(self.aGeneralViewPageLayouts, _iPageIndex);
+    self.aaGeneralViewPageFields = self.removeArrayIndex(self.aaGeneralViewPageFields, _iPageIndex);
+    
+    // Ensure arrays stay in sync
+    while(self.aGeneralViewPageLayouts.size() > self.aGeneralViewPageNames.size()) {
+      self.aGeneralViewPageLayouts = self.removeArrayIndex(self.aGeneralViewPageLayouts, self.aGeneralViewPageLayouts.size() - 1);
+    }
+    while(self.aaGeneralViewPageFields.size() > self.aGeneralViewPageNames.size()) {
+      self.aaGeneralViewPageFields = self.removeArrayIndex(self.aaGeneralViewPageFields, self.aaGeneralViewPageFields.size() - 1);
+    }
+    
+    // Adjust active page index if needed
+    if(self.iGeneralViewActivePageIndex >= self.aGeneralViewPageNames.size()) {
+      self.iGeneralViewActivePageIndex = self.aGeneralViewPageNames.size() - 1;
+    }
+    if(self.iGeneralViewActivePageIndex < 0) {
+      self.iGeneralViewActivePageIndex = 0;
+    }
+    // Sys.println("DEBUG: deleteGeneralViewPage() - Now " + self.aGeneralViewPageNames.size() + " pages");
+    self.saveGeneralViewPages();
+    self.saveGeneralViewActivePageIndex(self.iGeneralViewActivePageIndex);
+    return true;
+  }
+
+  function getGeneralViewPageCount() as Number {
+    return self.aGeneralViewPageNames.size();
+  }
+
+  function getGeneralViewPageLayout(_iPageIndex as Number) as Number {
+    if(_iPageIndex < 0 || _iPageIndex >= self.aGeneralViewPageLayouts.size()) {
+      return self.GENERAL_VIEW_PAGE_LAYOUT_7;
+    }
+    return self.aGeneralViewPageLayouts[_iPageIndex] as Number;
+  }
+
+  function getGeneralViewPageFields(_iPageIndex as Number) as Array {
+    if(_iPageIndex < 0 || _iPageIndex >= self.aaGeneralViewPageFields.size()) {
+      return [];
+    }
+    return self.aaGeneralViewPageFields[_iPageIndex] as Array;
+  }
+
+  function setGeneralViewPageField(_iPageIndex as Number, _iFieldIndex as Number, _iIndicator as Number) as Void {
+    if(_iPageIndex < 0 || _iPageIndex >= self.aaGeneralViewPageFields.size()) {
+      return;
+    }
+    var aFields = self.aaGeneralViewPageFields[_iPageIndex] as Array;
+    if(_iFieldIndex < 0 || _iFieldIndex >= aFields.size()) {
+      return;
+    }
+    aFields[_iFieldIndex] = _iIndicator;
+    self.saveGeneralViewPages();
+  }
+
+  function getGeneralViewPageName(_iPageIndex as Number) as String {
+    if(_iPageIndex < 0 || _iPageIndex >= self.aGeneralViewPageNames.size()) {
+      return "Unknown";
+    }
+    return self.aGeneralViewPageNames[_iPageIndex] as String;
+  }
+
+  function saveGeneralViewPages() as Void {
+    // Sys.println("DEBUG: saveGeneralViewPages() - Saving " + self.aGeneralViewPageNames.size() + " pages");
+    // Ensure all arrays are synchronized before saving
+    var iCount = self.aGeneralViewPageNames.size();
+    if(self.aGeneralViewPageLayouts.size() != iCount || self.aaGeneralViewPageFields.size() != iCount) {
+      // Sys.println("DEBUG: saveGeneralViewPages() - Arrays out of sync, syncing...");
+      // Arrays out of sync; attempt to truncate or extend to match
+      while(self.aGeneralViewPageLayouts.size() < iCount) {
+        self.aGeneralViewPageLayouts.add(self.GENERAL_VIEW_PAGE_LAYOUT_7);
+      }
+      while(self.aGeneralViewPageLayouts.size() > iCount) {
+        self.aGeneralViewPageLayouts = self.removeArrayIndex(self.aGeneralViewPageLayouts, self.aGeneralViewPageLayouts.size() - 1);
+      }
+      while(self.aaGeneralViewPageFields.size() < iCount) {
+        var aDefaultFields = [];
+        for(var k=0; k<self.GENERAL_VIEW_PAGE_COUNT; k++) {
+          aDefaultFields.add(self.GENERAL_VIEW_PAGE_SLOT_UNUSED);
+        }
+        self.aaGeneralViewPageFields.add(aDefaultFields);
+      }
+      while(self.aaGeneralViewPageFields.size() > iCount) {
+        self.aaGeneralViewPageFields = self.removeArrayIndex(self.aaGeneralViewPageFields, self.aaGeneralViewPageFields.size() - 1);
+      }
+    }
+    
+    var sPageData = "";
+    for(var i=0; i<self.aGeneralViewPageNames.size(); i++) {
+      if(i > 0) {
+        sPageData += ";";
+      }
+      var sName = self.aGeneralViewPageNames[i] as String;
+      sName = LangUtils.replace(sName, "|", "_");
+      sName = LangUtils.replace(sName, ";", "_");
+      var iLayout = (i < self.aGeneralViewPageLayouts.size()) ? (self.aGeneralViewPageLayouts[i] as Number) : self.GENERAL_VIEW_PAGE_LAYOUT_7;
+      var aFields = (i < self.aaGeneralViewPageFields.size()) ? (self.aaGeneralViewPageFields[i] as Array) : [];
+      var sFields = "";
+      for(var j=0; j<aFields.size(); j++) {
+        if(j > 0) {
+          sFields += ",";
+        }
+        sFields += (aFields[j] as Number).format("%d");
+      }
+      sPageData += sName + "|" + iLayout.format("%d") + "|" + sFields;
+      // Sys.println("DEBUG:   Page " + i + ": '" + sName + "|" + iLayout.format("%d") + "|" + sFields + "'");
+    }
+    // Sys.println("DEBUG: saveGeneralViewPages() - Final data: '" + sPageData + "'");
+    self.saveGeneralViewPageData(sPageData);
+  }
+
+  function createDefaultGeneralViewPages() as Void {
+    self.aGeneralViewPageNames = ["General"];
+    self.aGeneralViewPageLayouts = [self.GENERAL_VIEW_PAGE_LAYOUT_7];
+    self.aaGeneralViewPageFields = [[0,1,2,3,4,5,6]];
+    self.iGeneralViewActivePageIndex = 0;
+    self.saveGeneralViewPages();
+    self.saveGeneralViewActivePageIndex(self.iGeneralViewActivePageIndex);
   }
 
   function loadMapDisplay() as Boolean {

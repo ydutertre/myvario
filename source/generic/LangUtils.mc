@@ -105,6 +105,44 @@ module LangUtils {
     return value;
   }
 
+  function split(_sText as Object, _sDelimiter as Object) as Array<String> {
+    var aParts = [];
+    var sText = LangUtils.readKeyString(_sText, "");
+    var sDelimiter = LangUtils.readKeyString(_sDelimiter, "");
+    if(sDelimiter == "") {
+      aParts.add(sText);
+      return aParts;
+    }
+    var sRemaining = sText;
+    var iIndex = sRemaining.find(sDelimiter);
+    while(iIndex != null && iIndex >= 0) {
+      aParts.add(sRemaining.substring(0, iIndex));
+      sRemaining = sRemaining.substring(iIndex + sDelimiter.length(), sRemaining.length());
+      iIndex = sRemaining.find(sDelimiter);
+    }
+    aParts.add(sRemaining);
+    return aParts;
+  }
+
+  function replace(_sText as Object, _sFind as Object, _sReplace as Object) as String {
+    var sText = LangUtils.readKeyString(_sText, "");
+    var sFind = LangUtils.readKeyString(_sFind, "");
+    var sReplace = LangUtils.readKeyString(_sReplace, "");
+    if(sText == null) {
+      sText = "";
+    }
+    if(sFind == null || sFind == "") {
+      return sText;
+    }
+    var sResult = sText;
+    var iIndex = sResult.find(sFind);
+    while(iIndex != null && iIndex >= 0) {
+      sResult = sResult.substring(0, iIndex) + sReplace + sResult.substring(iIndex + sFind.length(), sResult.length());
+      iIndex = sResult.find(sFind);
+    }
+    return sResult;
+  }
+
   function readKeyNumber(_oValue as Object, _nDefault as Number) as Number {
     if(_oValue != null && !(_oValue instanceof Lang.Number)) {
       try {

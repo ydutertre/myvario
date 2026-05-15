@@ -360,6 +360,7 @@ class MyViewMapDelegate extends Ui.BehaviorDelegate {
     function onNextPage() {
         //Sys.println("DEBUG: MyViewVarioplotDelegate.onNextPage()");
         if($.oMyActivity != null) { //Skip the log view if we are recording, e.g. in flight
+            $.oMySettings.selectFirstGeneralViewPage();
             Ui.switchToView(new MyViewGeneral(),
                     new MyViewGeneralDelegate(),
                     Ui.SLIDE_IMMEDIATE);

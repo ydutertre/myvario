@@ -68,8 +68,12 @@ class MyViewHeader extends MyView {
     MyView.initialize();
   }
 
+  function getGlobalLayout(_oDC) {
+    return Rez.Layouts.layoutGlobal(_oDC);
+  }
+
   function onLayout(_oDC) {
-    View.setLayout(self.bHeaderOnly ? Rez.Layouts.layoutHeader(_oDC) : Rez.Layouts.layoutGlobal(_oDC));
+    View.setLayout(self.bHeaderOnly ? Rez.Layouts.layoutHeader(_oDC) : self.getGlobalLayout(_oDC));
 
     // Load resources
     // ... drawable

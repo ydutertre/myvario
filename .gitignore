@@ -13,3 +13,7 @@ bin/optimized-myvario.prg.debug.xml
 bin/myvario-fit_contributions.json
 bin/myvario.prg
 bin/myvario.prg.debug.xml
+DEBUG_ANALYSIS.md
+.vscode/settings.json
+bin/myvario.prg
+bin/myvario.prg.debug.xml

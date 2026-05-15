@@ -1,4 +1,4 @@
-<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
+﻿<!-- -*- mode:xml; tab-width:2; c-basic-offset:2; intent-tabs-mode:nil; -*- ex: set tabstop=2 expandtab: -->
 <drawables>
   <bitmap id="AppIcon" filename="../resources/drawables/launcher-40x40.png" />
   <!-- <bitmap id="pauseIcon" personality="system_icon_dark__warning prompt_size__title_icon" />
@@ -32,11 +32,14 @@
     <shape type="rectangle" x="174" y="72" width="2" height="68" color="Gfx.COLOR_LT_GRAY" />
     <shape type="rectangle" x="139" y="142" width="2" height="68" color="Gfx.COLOR_LT_GRAY" />
   </drawable-list>
-  <drawable-list id="drawFieldsBordersChart" x="0" y="34" width="fill" height="212" >
-    <shape type="rectangle" x="0" y="70" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
-    <shape type="rectangle" x="0" y="140" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
-    <shape type="rectangle" x="139" y="2" width="2" height="68" color="Gfx.COLOR_LT_GRAY" />
-    <shape type="rectangle" x="139" y="142" width="2" height="68" color="Gfx.COLOR_LT_GRAY" />
+
+  <drawable-list id="drawFieldsBorders4" x="0" y="34" width="fill" height="212" >
+    <shape type="rectangle" x="0" y="106" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
+    <shape type="rectangle" x="140" y="0" width="2" height="fill" color="Gfx.COLOR_LT_GRAY" />
+  </drawable-list>
+  
+  <drawable-list id="drawFieldsBorders2" x="0" y="34" width="fill" height="212" >
+    <shape type="rectangle" x="0" y="106" width="fill" height="2" color="Gfx.COLOR_LT_GRAY" />
   </drawable-list>
   <drawable-list id="drawGlobalAlertLeft" x="0" y="106" width="104" height="68" >
     <shape type="rectangle" x="0" y="0" width="fill" height="fill" />
@@ -102,3 +105,4 @@
     <shape type="rectangle" x="0" y="246" width="fill" height="fill" />
   </drawable-list>
 </drawables>
+
