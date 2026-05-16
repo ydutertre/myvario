@@ -10,12 +10,13 @@
 
 This free and open-source application provides all the information you need for
 free flight, tracking/logging, as well as Live Tracking via SportsTrackLive,
-Livetrack24 and FlySafe, and even HUD integration with ActiveLook! A true free flight one-
-stop-shop, on your watch.
+Livetrack24 and FlySafe, integration with Vector Vario, and even HUD integration with ActiveLook!
+This app also has Competition Mode, and can be used to complete a competition.
+A true free flight one-stop-shop, on your watch.
 
 ## Dashboards
 
-Multiple views/dashboards are available.
+Multiple views/dashboards are available. A full-featured competition mode is also available.
 
 - [Global view](./USAGE.md#general-view), Fully customizable, displaying all flight data in a single pane: altitude, ground
 and vertical speeds, finesse, heading, wind direction and speed estimate, if
@@ -23,7 +24,7 @@ available (wind direction and speed are computed on the fly based on groundspeed
 when circling).
 
 - [Custom views](./USAGE.md#custom-views), Create your own screens with various indicators, including heartbeat,
-Altitude Chart (2-indicator view only), Flight Time, etc.
+Altitude Chart (2-indicator view only), Flight Time, Competition indicators, etc.
 
 - [Variometer view](./USAGE.md#variometer-view), where the vertical speed can be visually seen
 
@@ -36,6 +37,9 @@ flight) including flight start and end times, maximum and minimum altitudes, etc
 
 - [Map View](./USAGE.md#map-view), allowing to see your location on a map, as well as a line representing your track.
 The Map view is only available on devices that support it.
+
+- [Competition View](./USAGE.md#competition-mode), allowing you to see the direction to your next waypoint, distance, etc.
+The view is available when competition mode is turned on. 
 
 > An option to [auto-switch](./USAGE.md#variometer) to and from the varioplot/thermal assistant view automa-
 tically (based on circling auto-detection) is available.

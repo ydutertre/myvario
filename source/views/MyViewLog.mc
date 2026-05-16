@@ -366,10 +366,17 @@ class MyViewLogDelegate extends MyViewGlobalDelegate {
 
   function onNextPage() {
     //Sys.println("DEBUG: MyViewLogDelegate.onNextPage()");
-    $.oMySettings.selectFirstGeneralViewPage();
-    Ui.switchToView(new MyViewGeneral(),
-                    new MyViewGeneralDelegate(),
-                    Ui.SLIDE_IMMEDIATE);
+    if($.oMySettings.bCompetitionMode) {
+      Ui.switchToView(new MyViewCompetition(),
+                      new MyViewCompetitionDelegate(),
+                      Ui.SLIDE_IMMEDIATE);
+    }
+    else {
+      $.oMySettings.selectFirstGeneralViewPage();
+      Ui.switchToView(new MyViewGeneral(),
+                      new MyViewGeneralDelegate(),
+                      Ui.SLIDE_IMMEDIATE);
+    }
     return true;
   }
 

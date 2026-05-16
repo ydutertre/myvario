@@ -72,6 +72,10 @@ class MySettings {
   public var bVectorVario as Boolean = false;
   public var iGPS as Number = 0; // 0: full, 1: GPS
   public var bMapDisplay as Boolean = false;
+  public var bCompetitionMode as Boolean = false;
+  public var sCompetitionTaskUrl as String = "";
+  public var sCompetitionTaskCode as String = "";
+  public var sCompetitionTaskSource as String = "";
   // ... units
   public var iUnitDistance as Number = -1;
   public var iUnitElevation as Number = -1;
@@ -108,7 +112,7 @@ class MySettings {
   public const GENERAL_VIEW_PAGE_LAYOUT_2 as Number = 2;
   public const GENERAL_VIEW_PAGE_LAYOUT_4 as Number = 4;
   public const GENERAL_VIEW_PAGE_LAYOUT_7 as Number = 7;
-  public const GENERAL_VIEW_INDICATOR_COUNT as Number = 12;
+  public const GENERAL_VIEW_INDICATOR_COUNT as Number = 23;
   public var iGeneralViewActivePageIndex as Number = 0;
   public var iGeneralViewEditingPageIndex as Number = -1;
   public var aGeneralViewPageNames as Array = [];
@@ -164,6 +168,10 @@ class MySettings {
     self.setVectorVario(self.loadVectorVario());
     self.setGPS(self.loadGPS());
     self.setMapDisplay(self.loadMapDisplay());
+    self.setCompetitionMode(self.loadCompetitionMode());
+    self.setCompetitionTaskUrl(self.loadCompetitionTaskUrl());
+    self.setCompetitionTaskCode(self.loadCompetitionTaskCode());
+    self.setCompetitionTaskSource(self.resolveCompetitionTaskSource());
     self.loadGeneralViewPages();
     // ... units
     self.setUnitDistance(self.loadUnitDistance());
@@ -883,6 +891,56 @@ class MySettings {
   }
   function setMapDisplay(_bValue as Boolean) as Void {
     self.bMapDisplay = _bValue;
+  }
+
+  function loadCompetitionMode() as Boolean {
+    return LangUtils.readKeyBoolean(App.Properties.getValue("userCompetitionMode"), false);
+  }
+  function saveCompetitionMode(_bValue as Boolean) as Void {
+    App.Properties.setValue("userCompetitionMode", _bValue as App.PropertyValueType);
+  }
+  function setCompetitionMode(_bValue as Boolean) as Void {
+    self.bCompetitionMode = _bValue;
+  }
+
+  function loadCompetitionTaskUrl() as String {
+    return LangUtils.readKeyString(App.Properties.getValue("userCompetitionTaskUrl"), "");
+  }
+  function saveCompetitionTaskUrl(_sValue as String) as Void {
+    App.Properties.setValue("userCompetitionTaskUrl", _sValue as App.PropertyValueType);
+  }
+  function setCompetitionTaskUrl(_sValue as String) as Void {
+    self.sCompetitionTaskUrl = LangUtils.readKeyString(_sValue, "");
+  }
+
+  function loadCompetitionTaskCode() as String {
+    return LangUtils.readKeyString(App.Properties.getValue("userCompetitionTaskCode"), "");
+  }
+  function saveCompetitionTaskCode(_sValue as String) as Void {
+    App.Properties.setValue("userCompetitionTaskCode", _sValue as App.PropertyValueType);
+  }
+  function setCompetitionTaskCode(_sValue as String) as Void {
+    self.sCompetitionTaskCode = LangUtils.readKeyString(_sValue, "");
+  }
+
+  function loadCompetitionTaskSource() as String {
+    return LangUtils.readKeyString(App.Properties.getValue("userCompetitionTaskSource"), "");
+  }
+  function saveCompetitionTaskSource(_sValue as String) as Void {
+    App.Properties.setValue("userCompetitionTaskSource", _sValue as App.PropertyValueType);
+  }
+  function setCompetitionTaskSource(_sValue as String) as Void {
+    self.sCompetitionTaskSource = LangUtils.readKeyString(_sValue, "");
+  }
+
+  function resolveCompetitionTaskSource() as String {
+    if(self.sCompetitionTaskUrl.length() > 0) {
+      return self.sCompetitionTaskUrl;
+    }
+    if(self.sCompetitionTaskCode.length() > 0) {
+      return self.sCompetitionTaskCode;
+    }
+    return self.loadCompetitionTaskSource();
   }
   
 

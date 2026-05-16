@@ -1,6 +1,6 @@
 <strings>
   <string id="AppName">My Vario</string>
-  <string id="AppVersion">5.11</string>
+  <string id="AppVersion">6.00</string>
   <!-- Properties -->
   <string id="titleVersion">Version</string>
   <string id="titleLicense">License</string>
@@ -64,6 +64,12 @@
   <string id="titleSettingsMapView">Map</string>
   <string id="titleMapDisplay">Display Map</string>
   <string id="titleMapViewZoom">Map Zoom</string>
+  <!-- Menu (competition) -->
+  <string id="titleSettingsCompetition">Competition</string>
+  <string id="titleCompetitionMode">Competition Mode</string>
+  <string id="titleCompetitionTaskSource">Task Source</string>
+  <string id="titleCompetitionTaskUrl">Task URL</string>
+  <string id="titleCompetitionTaskCode">Task Code</string>
   <!-- Menu (storage) -->
   <string id="titleStorage">Storage</string>
   <string id="titleStorageLoad">Load</string>
@@ -103,6 +109,17 @@
   <string id="labelWindDirection">Wind Dir.</string>
   <string id="labelWindSpeed">WdSpd</string>
   <string id="labelDistance">Distance</string>
+  <string id="labelCompetitionNext">Next WP</string>
+  <string id="labelCompetitionDistance">WP Dist.</string>
+  <string id="labelCompetitionRemaining">Task Dist.</string>
+  <string id="labelCompetitionBearing">WP Bearing</string>
+  <string id="labelCompetitionWaypointAltitude">WP Alt.</string>
+  <string id="labelCompetitionExpectedAltitude">Arr Alt.</string>
+  <string id="labelCompetitionAltitudeMargin">Alt Margin</string>
+  <string id="labelCompetitionStatus">Comp</string>
+  <string id="labelCompetitionStart">Start</string>
+  <string id="labelCompetitionStartIn">Start In</string>
+  <string id="labelCompetitionTaskLeft">Task Left</string>
   <string id="labelAscent">Ascent</string>
   <string id="labelAltitudeMin">Min.Alt.</string>
   <string id="labelAltitudeMax">Max.Alt.</string>

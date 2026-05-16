@@ -1,3 +1,8 @@
+* 6.00
+- Added competition mode and related screens and indicators
+- This is in BETA! Please provide feedback when trying it.
+- Please refer to USAGE to check how to use
+
 * 5.11
 - Added Thermal Climb as available indicator (how much was climbed during current circling)
 - Added 30s Climb as available indicator (how much was climbed in the last 30s)

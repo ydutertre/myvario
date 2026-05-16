@@ -569,6 +569,11 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
                         new MyViewMapDelegate(mapView),
                         Ui.SLIDE_IMMEDIATE);
       } 
+      else if($.oMySettings.bCompetitionMode) {
+        Ui.switchToView(new MyViewCompetition(),
+                        new MyViewCompetitionDelegate(),
+                        Ui.SLIDE_IMMEDIATE);
+      }
       else if ($.oMyActivity != null) {
         $.oMySettings.selectFirstGeneralViewPage();
         Ui.switchToView(new MyViewGeneral(),

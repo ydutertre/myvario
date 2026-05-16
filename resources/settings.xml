@@ -226,4 +226,15 @@
       <listEntry value="9">1 m/px</listEntry>
     </settingConfig>
   </setting>
+
+  <!-- Competition -->
+  <setting propertyKey="@Properties.userCompetitionMode" title="@Strings.titleCompetitionMode">
+    <settingConfig type="boolean" />
+  </setting>
+  <setting propertyKey="@Properties.userCompetitionTaskUrl" title="@Strings.titleCompetitionTaskUrl">
+    <settingConfig type="url" errorMessage="@Strings.titleInputError" />
+  </setting>
+  <setting propertyKey="@Properties.userCompetitionTaskCode" title="@Strings.titleCompetitionTaskCode">
+    <settingConfig type="alphaNumeric" maxLength="32" errorMessage="@Strings.titleInputError" />
+  </setting>
 </settings>

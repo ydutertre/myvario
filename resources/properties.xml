@@ -31,6 +31,11 @@
     <!-- ... map -->
   <property id="userMapViewZoom" type="number">7</property>
   <property id="userMapDisplay" type="boolean">false</property>
+  <!-- ... competition -->
+  <property id="userCompetitionMode" type="boolean">false</property>
+  <property id="userCompetitionTaskUrl" type="string"></property>
+  <property id="userCompetitionTaskCode" type="string"></property>
+  <property id="userCompetitionTaskSource" type="string"></property>
   <!-- ... livetrack -->
   <property id="userLivetrack24UserName" type="string">yourusername</property>
   <property id="userLivetrack24Password" type="string">password</property>

@@ -37,6 +37,7 @@ not be used in a pressurized aircraft.”
   - [Varioplot / Thermal Assistant View](#varioplot--thermal-assistant-view)
   - [Log View](#log-view)
   - [Map View](#map-view)
+  - [Competition Mode](#competition-mode)
 * [Activity Recording](#activity-recording)
 * [Settings](#settings)
   - [Altimeter](#altimeter)
@@ -46,6 +47,7 @@ not be used in a pressurized aircraft.”
   - [General](#general)
   - [Units](#units)
   - [Livetrack](#livetrack)
+  - [Competition](#competition)
 * [Live Tracking](#live-tracking)
   - [SportsTrackLive](#sportstracklive)
   - [Livetrack24](#livetrack24)
@@ -187,6 +189,31 @@ List of additional indicators available in addition to the seven above:
  - `Altitude Chart`:
    A chart of Altitude over time. Only available on 2-indicator pages
 
+When Competition Mode is enabled, additional competition indicators become
+available for custom views:
+ - `Next WP`:
+   name of the active competition waypoint
+ - `WP Distance`:
+   distance to the optimized edge of the active waypoint cylinder
+ - `Task Distance`:
+   estimated remaining task distance
+ - `WP Bearing`:
+   bearing to the optimized active waypoint target
+ - `WP Altitude`:
+   altitude of the active waypoint, if provided by the task file
+ - `Arrival Alt`:
+   estimated altitude at the active waypoint based on current glide ratio
+ - `Alt Margin`:
+   estimated arrival altitude minus waypoint altitude
+ - `Comp Status`:
+   current competition state, such as Wait, Start Open, On Course, Expired, or Done
+ - `Start Time`:
+   fixed start gate time
+ - `Start In`:
+   countdown to the start gate opening
+ - `Task Left`:
+   countdown to the task deadline
+
 ### Variometer View
 
 The My Vario Variometer displays your current ascent/descent rate both textu-
@@ -253,6 +280,51 @@ A Map view is available on devices that support Maps, such as Fenix 7/8,
 Forerunner 965/955, or Enduro 2/3.
 The Map View includes a track, but the track itself is updated every 10
 seconds only to preserve memory and device performance.
+
+### Competition Mode
+
+Competition mode is currently in BETA! Please use the feedback function on
+the Garmin store if you run into issues!
+
+Competition Mode adds navigation support for XCTrack/XContest paragliding task
+files. When enabled, a Competition view is added to the normal view rotation.
+The Competition view is only shown when Competition Mode is turned on.
+
+The Competition view displays:
+ - competition status:
+   Wait, Start Open, On Course, Expired, or Done
+ - start information:
+   before the start opens, `Start in` shows a countdown; after the start opens,
+   `Start` shows the fixed start time
+ - task time left:
+   after the task has started, the top time line shows time remaining before
+   the task deadline
+ - direction arrow:
+   a red arrow points to the optimized target on the active waypoint cylinder
+ - active waypoint name
+ - distance to the active waypoint cylinder target
+
+Competition Mode uses the task start cylinder and task timing:
+ - before the start time, the active target remains the start cylinder
+ - entering the start cylinder before start time does not start the task
+ - if you are already inside the start cylinder when the start opens, the app
+   shows `START!`
+ - if you enter the start cylinder after the start opens, the app shows `START!`
+ - waypoint and goal notifications only count after a valid start
+ - if ESS is before goal, reaching ESS shows an `ESS` notification and navigation
+   continues to goal
+ - `GOAL!` is only shown after a valid start, ordered waypoint completion, ESS
+   reached before the task deadline, and final goal reached before the deadline
+
+Waypoint reached, START, ESS, and GOAL events display a brief full-screen
+message and play distinct notification tones/vibrations.
+
+The app caches a successfully loaded task so it can be reviewed and used after
+restart even if the network is unavailable. A task reload can still be forced
+from the Competition settings menu.
+
+Competition mode uses a shortest path logic to compute the overall path to take,
+distance to next waypoint, etc.
 
 
 ## Activity Recording
@@ -406,6 +478,65 @@ These settings are only available if the device supports Maps.
   Whether to display the map or not
 - `Map Zoom` 
   The desired map zoom, in meters per pixel
+
+### Competition
+
+Competition settings are configured from the app settings in Garmin Connect IQ
+on your smartphone.
+
+To enable Competition Mode:
+ - Open the Garmin Connect IQ app on your smartphone
+ - Open the settings for My Vario
+ - Turn `Competition Mode` on
+ - Paste a full task URL into `Task URL`, or enter a short XContest task code
+   into `Task Code`
+ - Save the settings
+ - Close and restart My Vario on the watch
+
+The app loads the task when it starts. If you change the task URL/code or turn
+Competition Mode on or off, close and restart the app to make sure the new task
+is loaded cleanly.
+
+You can use either a task code or an XCTrack/XContest task URL. For example:
+
+```
+coco
+```
+
+or:
+
+```
+https://tools.xcontest.org/xctsk/load?taskCode=coco
+```
+
+or the raw API URL:
+
+```
+https://tools.xcontest.org/api/xctsk/load/coco
+```
+
+The app normalizes XContest preview URLs into the raw task API URL internally.
+If both `Task URL` and `Task Code` are filled, `Task URL` takes priority.
+
+From the watch, open `Settings` -> `Competition` for:
+ - `Review Task`:
+   scroll through loaded task details such as status, waypoint count, local
+   start time, local deadline, SSS, ESS, goal, active waypoint, each waypoint's
+   type/radius/altitude, and source
+ - `Reload Task`:
+   fetch the task again from the configured source
+ - `Reset Progress`:
+   reset competition progress to the start cylinder/pre-start state
+ - `Clear Cache`:
+   delete the cached task and reload from the network
+
+Competition-related custom-view fields are only selectable while Competition
+Mode is on. Existing custom pages that already contain competition fields will
+continue to display them.
+
+Arrival altitude and altitude margin are estimates based on current glide ratio.
+They do not account for wind, terrain, safety altitude, goal minimum altitude,
+or task-specific scoring rules. Use them as situational information only.
 
 ## Live Tracking
 

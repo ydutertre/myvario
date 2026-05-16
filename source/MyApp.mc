@@ -80,6 +80,9 @@ var oMyLivetrack24 as MyLivetrack24?;// = new MyLivetrack24();
 var oMySportsTrackLive as MySportsTrackLive?;// = new MySportsTrackLive();
 var oMyFlySafeLivetrack as MyFlySafeLivetrack?;// = new MyFlySafeLivetrack();
 
+// Competition task navigation
+var oMyCompetitionTask as MyCompetitionTask?;// = new MyCompetitionTask();
+
 //ActiveLook
 var oMyActiveLook as MyActiveLook?;// = new MyActiveLook();
 
@@ -126,6 +129,7 @@ class MyApp extends App.AppBase {
   // ... UI update
   private var oUpdateTimer as Timer.Timer?;
   private var iUpdateLastEpoch as Number = 0;
+  private var oCompetitionMessageTimer as Timer.Timer?;
   // ... tones
   private var oTonesTimer as Timer.Timer?;
   private var iTonesTick as Number = 1000;
@@ -152,6 +156,7 @@ class MyApp extends App.AppBase {
     oMyLivetrack24 = new MyLivetrack24();
     oMySportsTrackLive = new MySportsTrackLive();
     oMyFlySafeLivetrack = new MyFlySafeLivetrack();
+    oMyCompetitionTask = new MyCompetitionTask();
     oMyActiveLook = new MyActiveLook();
     oMyVectorVario = new MyVectorVario();
 
@@ -235,6 +240,11 @@ class MyApp extends App.AppBase {
       (self.oUpdateTimer as Timer.Timer).stop();
       self.oUpdateTimer = null;
     }
+    if(self.oCompetitionMessageTimer != null) {
+      (self.oCompetitionMessageTimer as Timer.Timer).stop();
+      self.oCompetitionMessageTimer = null;
+      Ui.popView(Ui.SLIDE_IMMEDIATE);
+    }
     // ... tones
     if(self.oTonesTimer != null) {
       (self.oTonesTimer as Timer.Timer).stop();
@@ -308,6 +318,9 @@ class MyApp extends App.AppBase {
     $.oMyAltimeter.importSettings();
     //self.enablePositioning();
 
+    // Competition task
+    $.oMyCompetitionTask.init($.oMySettings.bCompetitionMode, $.oMySettings.sCompetitionTaskSource);
+
     // ... tones
     self.muteTones();
   }
@@ -357,6 +370,7 @@ class MyApp extends App.AppBase {
 
     // Process position data
     $.oMyProcessing.processPositionInfo(_oInfo, iEpoch);
+    self.processCompetitionEvent();
     if($.oMyActivity != null) {
       ($.oMyActivity as MyActivity).processPositionInfo(_oInfo, iEpoch, oTimeNow);
     }
@@ -395,6 +409,79 @@ class MyApp extends App.AppBase {
     //Sys.println("DEBUG: MyApp.onTonesTimer()");
     self.playTones();
     self.iTonesTick++;
+  }
+
+  function processCompetitionEvent() as Void {
+    if($.oMyCompetitionTask == null) {
+      return;
+    }
+    var iEvent = $.oMyCompetitionTask.consumeEvent();
+    if(iEvent == $.oMyCompetitionTask.EVENT_START) {
+      self.playCompetitionStartTone();
+      self.showCompetitionMessage("START!", "");
+    }
+    else if(iEvent == $.oMyCompetitionTask.EVENT_WAYPOINT) {
+      self.playCompetitionWaypointTone();
+      self.showCompetitionMessage("Waypoint", "Reached!");
+    }
+    else if(iEvent == $.oMyCompetitionTask.EVENT_ESS) {
+      self.playCompetitionWaypointTone();
+      self.showCompetitionMessage("ESS", "Reached!");
+    }
+    else if(iEvent == $.oMyCompetitionTask.EVENT_GOAL) {
+      self.playCompetitionGoalTone();
+      self.showCompetitionMessage("GOAL!", "");
+    }
+  }
+
+  function showCompetitionMessage(_sTitle as String, _sSubtitle as String) as Void {
+    if(self.oCompetitionMessageTimer != null) {
+      (self.oCompetitionMessageTimer as Timer.Timer).stop();
+      self.oCompetitionMessageTimer = null;
+    }
+    Ui.pushView(new MyViewCompetitionMessage(_sTitle, _sSubtitle),
+                new MyViewCompetitionMessageDelegate(),
+                Ui.SLIDE_IMMEDIATE);
+    self.oCompetitionMessageTimer = new Timer.Timer();
+    self.oCompetitionMessageTimer.start(method(:hideCompetitionMessage), 2000, false);
+  }
+
+  function hideCompetitionMessage() as Void {
+    if(self.oCompetitionMessageTimer != null) {
+      (self.oCompetitionMessageTimer as Timer.Timer).stop();
+      self.oCompetitionMessageTimer = null;
+    }
+    Ui.popView(Ui.SLIDE_IMMEDIATE);
+  }
+
+  function playCompetitionWaypointTone() as Void {
+    if(Toybox.Attention has :playTone) {
+      var toneProfile = [new Attn.ToneProfile(900, 120), new Attn.ToneProfile(900, 120)];
+      Attn.playTone({:toneProfile=>toneProfile});
+    }
+    if(Toybox.Attention has :vibrate) {
+      Attn.vibrate([new Attn.VibeProfile(100, 120), new Attn.VibeProfile(100, 120)]);
+    }
+  }
+
+  function playCompetitionStartTone() as Void {
+    if(Toybox.Attention has :playTone) {
+      var toneProfile = [new Attn.ToneProfile(800, 120), new Attn.ToneProfile(1000, 180)];
+      Attn.playTone({:toneProfile=>toneProfile});
+    }
+    if(Toybox.Attention has :vibrate) {
+      Attn.vibrate([new Attn.VibeProfile(100, 100), new Attn.VibeProfile(100, 180)]);
+    }
+  }
+
+  function playCompetitionGoalTone() as Void {
+    if(Toybox.Attention has :playTone) {
+      var toneProfile = [new Attn.ToneProfile(700, 120), new Attn.ToneProfile(900, 120), new Attn.ToneProfile(1100, 220)];
+      Attn.playTone({:toneProfile=>toneProfile});
+    }
+    if(Toybox.Attention has :vibrate) {
+      Attn.vibrate([new Attn.VibeProfile(100, 120), new Attn.VibeProfile(80, 120), new Attn.VibeProfile(100, 220)]);
+    }
   }
 
   function updateUi(_iEpoch as Number) as Void {

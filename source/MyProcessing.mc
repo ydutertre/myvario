@@ -394,6 +394,10 @@ class MyProcessing {
         self.aiPlotVariometer[self.iPlotIndex] = (self.fVariometer_filtered*1000.0f).toNumber();
         self.aiPointAltitude[self.iPlotIndex] = self.fAltitude.toNumber();
 
+        if($.oMyCompetitionTask != null) {
+          $.oMyCompetitionTask.processPosition(self.oLocation as Pos.Location, self.fAltitude, self.fFinesse, self.bAscent);
+        }
+
         //Live tracking
         var iLivetrackHeading = LangUtils.notNaN(fHeading) ? ((self.fHeading * 57.2957795131f).toNumber()) % 360 : 0;
 

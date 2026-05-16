@@ -308,6 +308,7 @@ class MyViewMap extends Ui.MapTrackView {
         _oDC.drawText(5, self.iLayoutValueYcenter, self.oRezFontPlotS as Ui.FontResource, (sValue.equals($.MY_NOVALUE_LEN3)?"":"Wind"), Gfx.TEXT_JUSTIFY_LEFT);
         _oDC.drawText(5, self.iLayoutValueYcenter + self.iFontPlotHeight, self.oRezFontPlotS as Ui.FontResource, (sValue.equals($.MY_NOVALUE_LEN3)?"":sValue), Gfx.TEXT_JUSTIFY_LEFT);
         _oDC.drawText(5, self.iLayoutValueYcenter + self.iFontPlotHeight*2, self.oRezFontPlotS as Ui.FontResource, (sValue.equals($.MY_NOVALUE_LEN3)?"":$.oMySettings.sUnitWindSpeed), Gfx.TEXT_JUSTIFY_LEFT);
+
     }
 
     function onHide() {
@@ -369,7 +370,12 @@ class MyViewMapDelegate extends Ui.BehaviorDelegate {
 
     function onNextPage() {
         //Sys.println("DEBUG: MyViewVarioplotDelegate.onNextPage()");
-        if($.oMyActivity != null) { //Skip the log view if we are recording, e.g. in flight
+        if($.oMySettings.bCompetitionMode) {
+            Ui.switchToView(new MyViewCompetition(),
+                            new MyViewCompetitionDelegate(),
+                            Ui.SLIDE_IMMEDIATE);
+        }
+        else if($.oMyActivity != null) { //Skip the log view if we are recording, e.g. in flight
             $.oMySettings.selectFirstGeneralViewPage();
             Ui.switchToView(new MyViewGeneral(),
                     new MyViewGeneralDelegate(),

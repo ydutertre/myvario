@@ -79,6 +79,7 @@ class MyMenu2Generic extends Ui.Menu2 {
       if (Ui has :MapView) {
         Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsMapView, null, :menuSettingsMapView, {}));
       }
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleSettingsCompetition, null, :menuSettingsCompetition, {}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleAbout, null, :menuAbout, {}));
     }
 
@@ -163,6 +164,28 @@ class MyMenu2Generic extends Ui.Menu2 {
           sIndicatorLabel = "30s Climb";
         } else if(iIndicator == 11) {
           sIndicatorLabel = "Therm.Climb";
+        } else if(iIndicator == 12) {
+          sIndicatorLabel = "Next WP";
+        } else if(iIndicator == 13) {
+          sIndicatorLabel = "WP Dist.";
+        } else if(iIndicator == 14) {
+          sIndicatorLabel = "Task Dist.";
+        } else if(iIndicator == 15) {
+          sIndicatorLabel = "WP Bearing";
+        } else if(iIndicator == 16) {
+          sIndicatorLabel = "WP Alt.";
+        } else if(iIndicator == 17) {
+          sIndicatorLabel = "Arr Alt.";
+        } else if(iIndicator == 18) {
+          sIndicatorLabel = "Alt Margin";
+        } else if(iIndicator == 19) {
+          sIndicatorLabel = "Comp";
+        } else if(iIndicator == 20) {
+          sIndicatorLabel = "Start";
+        } else if(iIndicator == 21) {
+          sIndicatorLabel = "Task Left";
+        } else if(iIndicator == 22) {
+          sIndicatorLabel = "Start In";
         }
         var fieldItemId = :menuGeneralViewPageField0;
         if(i == 1) { fieldItemId = :menuGeneralViewPageField1; }
@@ -189,6 +212,19 @@ class MyMenu2Generic extends Ui.Menu2 {
       Menu2.addItem(new Ui.MenuItem("Heartbeat", null, :menuGeneralViewPageIndicator8, {}));
       Menu2.addItem(new Ui.MenuItem("30s Climb", null, :menuGeneralViewPageIndicator10, {}));
       Menu2.addItem(new Ui.MenuItem("Therm.Climb", null, :menuGeneralViewPageIndicator11, {}));
+      if($.oMySettings.bCompetitionMode) {
+        Menu2.addItem(new Ui.MenuItem("Next WP", null, :menuGeneralViewPageIndicator12, {}));
+        Menu2.addItem(new Ui.MenuItem("WP Distance", null, :menuGeneralViewPageIndicator13, {}));
+        Menu2.addItem(new Ui.MenuItem("Task Distance", null, :menuGeneralViewPageIndicator14, {}));
+        Menu2.addItem(new Ui.MenuItem("WP Bearing", null, :menuGeneralViewPageIndicator15, {}));
+        Menu2.addItem(new Ui.MenuItem("WP Altitude", null, :menuGeneralViewPageIndicator16, {}));
+        Menu2.addItem(new Ui.MenuItem("Arrival Alt", null, :menuGeneralViewPageIndicator17, {}));
+        Menu2.addItem(new Ui.MenuItem("Alt Margin", null, :menuGeneralViewPageIndicator18, {}));
+        Menu2.addItem(new Ui.MenuItem("Comp Status", null, :menuGeneralViewPageIndicator19, {}));
+        Menu2.addItem(new Ui.MenuItem("Start Time", null, :menuGeneralViewPageIndicator20, {}));
+        Menu2.addItem(new Ui.MenuItem("Task Left", null, :menuGeneralViewPageIndicator21, {}));
+        Menu2.addItem(new Ui.MenuItem("Start In", null, :menuGeneralViewPageIndicator22, {}));
+      }
       if($.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewEditingPageIndex) == $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2) {
         Menu2.addItem(new Ui.MenuItem("Altitude Chart", null, :menuGeneralViewPageIndicator7, {}));
       }
@@ -255,6 +291,39 @@ class MyMenu2Generic extends Ui.Menu2 {
       Menu2.setTitle(Rez.Strings.titleSettingsMapView);
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleMapDisplay, null, :menuMapDisplay, $.oMySettings.bMapDisplay, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleMapViewZoom, format("$1$ $2$", [$.oMySettings.fMapViewScale.format("%.2f"),Ui.loadResource(Rez.Strings.unitZoom)]), :menuMapViewZoom, {}));
+    }
+
+    else if(menu == :menuSettingsCompetition) {
+      Menu2.setTitle(Rez.Strings.titleSettingsCompetition);
+      Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleCompetitionMode, null, :menuCompetitionMode, $.oMySettings.bCompetitionMode, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
+      var sStatus = $.oMyCompetitionTask == null ? "" : $.oMyCompetitionTask.getStatusText();
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleCompetitionTaskSource, sStatus, :menuCompetitionTaskSource, {}));
+      Menu2.addItem(new Ui.MenuItem("Review Task", null, :menuCompetitionReview, {}));
+      Menu2.addItem(new Ui.MenuItem("Reload Task", null, :menuCompetitionReload, {}));
+      Menu2.addItem(new Ui.MenuItem("Reset Progress", null, :menuCompetitionReset, {}));
+      Menu2.addItem(new Ui.MenuItem("Clear Cache", null, :menuCompetitionClearCache, {}));
+    }
+
+    else if(menu == :menuCompetitionReview) {
+      Menu2.setTitle("Task Review");
+      var task = $.oMyCompetitionTask;
+      if(task == null || task.asNames.size() == 0) {
+        Menu2.addItem(new Ui.MenuItem("Status", task == null ? "---" : task.getStatusText(), :menuCompetitionReviewStatus, {}));
+      }
+      else {
+        Menu2.addItem(new Ui.MenuItem("Status", task.getStatusText(), :menuCompetitionReviewStatus, {}));
+        Menu2.addItem(new Ui.MenuItem("Waypoints", task.asNames.size().format("%d"), :menuCompetitionReviewCount, {}));
+        Menu2.addItem(new Ui.MenuItem("Start", task.formatClock(task.iStartSeconds), :menuCompetitionReviewStart, {}));
+        Menu2.addItem(new Ui.MenuItem("Deadline", task.formatClock(task.iDeadlineSeconds), :menuCompetitionReviewDeadline, {}));
+        Menu2.addItem(new Ui.MenuItem("SSS", task.iStartIndex >= 0 ? (task.asNames[task.iStartIndex] as String) : "---", :menuCompetitionReviewSss, {}));
+        Menu2.addItem(new Ui.MenuItem("ESS", task.iEssIndex >= 0 ? (task.asNames[task.iEssIndex] as String) : "---", :menuCompetitionReviewEss, {}));
+        Menu2.addItem(new Ui.MenuItem("Goal", task.iGoalIndex >= 0 ? (task.asNames[task.iGoalIndex] as String) : "---", :menuCompetitionReviewGoal, {}));
+        Menu2.addItem(new Ui.MenuItem("Active", task.sActiveName.length() > 0 ? task.sActiveName : "---", :menuCompetitionReviewActive, {}));
+        for(var i=0; i<task.asNames.size(); i++) {
+          Menu2.addItem(new Ui.MenuItem(task.getTurnpointReviewLabel(i), task.getTurnpointReviewValue(i), :menuCompetitionReviewWaypoint, {}));
+        }
+        Menu2.addItem(new Ui.MenuItem("Source", $.oMySettings.sCompetitionTaskSource.length() > 0 ? $.oMySettings.sCompetitionTaskSource : "---", :menuCompetitionReviewSource, {}));
+      }
     }
 
     else if(menu == :menuAbout) {
@@ -352,6 +421,17 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
     case :menuGeneralViewPageIndicator9: return 9;
     case :menuGeneralViewPageIndicator10: return 10;
     case :menuGeneralViewPageIndicator11: return 11;
+    case :menuGeneralViewPageIndicator12: return 12;
+    case :menuGeneralViewPageIndicator13: return 13;
+    case :menuGeneralViewPageIndicator14: return 14;
+    case :menuGeneralViewPageIndicator15: return 15;
+    case :menuGeneralViewPageIndicator16: return 16;
+    case :menuGeneralViewPageIndicator17: return 17;
+    case :menuGeneralViewPageIndicator18: return 18;
+    case :menuGeneralViewPageIndicator19: return 19;
+    case :menuGeneralViewPageIndicator20: return 20;
+    case :menuGeneralViewPageIndicator21: return 21;
+    case :menuGeneralViewPageIndicator22: return 22;
     case :menuGeneralViewPageIndicatorNone: return $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED;
     default: return -2;
     }
@@ -588,6 +668,46 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
         Ui.pushView(new MyPickerGenericSettings(:contextMapView, itemId),
                     new MyPickerGenericSettingsDelegate(:contextMapView, itemId, self.menu),
                     Ui.SLIDE_LEFT);
+      }
+    }
+
+    else if(self.menu == :menuSettingsCompetition) {
+      if(itemId == :menuCompetitionMode) {
+        $.oMySettings.saveCompetitionMode(item.isEnabled());
+        $.oMySettings.setCompetitionMode(item.isEnabled());
+        if($.oMyCompetitionTask != null) {
+          $.oMyCompetitionTask.init($.oMySettings.bCompetitionMode, $.oMySettings.sCompetitionTaskSource);
+        }
+      }
+      else if(itemId == :menuCompetitionReview) {
+        Ui.pushView(new MyMenu2Generic(:menuCompetitionReview, 0),
+                    new MyMenu2GenericDelegate(:menuCompetitionReview),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if(itemId == :menuCompetitionReload) {
+        if($.oMyCompetitionTask != null) {
+          $.oMyCompetitionTask.reload();
+        }
+        Ui.switchToView(new MyMenu2Generic(:menuSettingsCompetition, 0),
+                        new MyMenu2GenericDelegate(:menuSettingsCompetition),
+                        Ui.SLIDE_IMMEDIATE);
+      }
+      else if(itemId == :menuCompetitionReset) {
+        if($.oMyCompetitionTask != null) {
+          $.oMyCompetitionTask.resetProgress();
+        }
+        Ui.switchToView(new MyMenu2Generic(:menuSettingsCompetition, 0),
+                        new MyMenu2GenericDelegate(:menuSettingsCompetition),
+                        Ui.SLIDE_IMMEDIATE);
+      }
+      else if(itemId == :menuCompetitionClearCache) {
+        if($.oMyCompetitionTask != null) {
+          $.oMyCompetitionTask.clearCache();
+          $.oMyCompetitionTask.reload();
+        }
+        Ui.switchToView(new MyMenu2Generic(:menuSettingsCompetition, 0),
+                        new MyMenu2GenericDelegate(:menuSettingsCompetition),
+                        Ui.SLIDE_IMMEDIATE);
       }
     }
 

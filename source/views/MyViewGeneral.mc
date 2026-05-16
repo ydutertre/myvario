@@ -67,8 +67,19 @@ class MyViewGeneral extends MyViewGlobal {
   private const GENERAL_VIEW_INDICATOR_FLIGHT_TIME as Number = 9;
   private const GENERAL_VIEW_INDICATOR_CLIMB_30S as Number = 10;
   private const GENERAL_VIEW_INDICATOR_THERMAL_CLIMB as Number = 11;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_NEXT as Number = 12;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE as Number = 13;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING as Number = 14;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_BEARING as Number = 15;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE as Number = 16;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE as Number = 17;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN as Number = 18;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_STATUS as Number = 19;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_START as Number = 20;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT as Number = 21;
+  private const GENERAL_VIEW_INDICATOR_COMPETITION_START_IN as Number = 22;
 
-  private const GENERAL_VIEW_INDICATOR_COUNT as Number = 12;
+  private const GENERAL_VIEW_INDICATOR_COUNT as Number = 23;
 
   //
   // FUNCTIONS: MyViewGlobal (override/implement)
@@ -215,6 +226,28 @@ class MyViewGeneral extends MyViewGlobal {
       return "30s Climb";
     case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
       return "Therm.Climb";
+    case GENERAL_VIEW_INDICATOR_COMPETITION_NEXT:
+      return Ui.loadResource(Rez.Strings.labelCompetitionNext) as String;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE:
+      return Ui.loadResource(Rez.Strings.labelCompetitionDistance) as String;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING:
+      return Ui.loadResource(Rez.Strings.labelCompetitionRemaining) as String;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_BEARING:
+      return Ui.loadResource(Rez.Strings.labelCompetitionBearing) as String;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
+      return Ui.loadResource(Rez.Strings.labelCompetitionWaypointAltitude) as String;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE:
+      return Ui.loadResource(Rez.Strings.labelCompetitionExpectedAltitude) as String;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN:
+      return Ui.loadResource(Rez.Strings.labelCompetitionAltitudeMargin) as String;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
+      return Ui.loadResource(Rez.Strings.labelCompetitionStatus) as String;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
+      return Ui.loadResource(Rez.Strings.labelCompetitionStart) as String;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
+      return Ui.loadResource(Rez.Strings.labelCompetitionTaskLeft) as String;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
+      return Ui.loadResource(Rez.Strings.labelCompetitionStartIn) as String;
     default:
       return "";
     }
@@ -239,6 +272,22 @@ class MyViewGeneral extends MyViewGlobal {
     case GENERAL_VIEW_INDICATOR_HEARTBEAT:
       return "[bpm]";
     case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
+      return $.MY_NOVALUE_BLANK;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING:
+      return Lang.format("[$1$]", [$.oMySettings.sUnitDistance]);
+    case GENERAL_VIEW_INDICATOR_COMPETITION_BEARING:
+      return ($.oMySettings.iUnitDirection == 0) ? "[Deg]" : "";
+    case GENERAL_VIEW_INDICATOR_COMPETITION_NEXT:
+      return $.MY_NOVALUE_BLANK;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN:
+      return Lang.format("[$1$]", [$.oMySettings.sUnitElevation]);
+    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
       return $.MY_NOVALUE_BLANK;
     default:
       return "";
@@ -364,6 +413,88 @@ class MyViewGeneral extends MyViewGlobal {
         sValue = $.MY_NOVALUE_LEN3;
       }
       break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_NEXT:
+      if($.oMyCompetitionTask != null && ($.oMyCompetitionTask.iState == $.oMyCompetitionTask.STATE_READY || $.oMyCompetitionTask.iState == $.oMyCompetitionTask.STATE_DONE)) {
+        sValue = $.oMyCompetitionTask.sActiveName;
+        if(sValue.length() > 8) {
+          sValue = sValue.substring(0, 8);
+        }
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE:
+      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fDistanceNext)) {
+        fValue = $.oMyCompetitionTask.fDistanceNext * $.oMySettings.fUnitDistanceCoefficient;
+        sValue = fValue.format("%.0f");
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING:
+      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fDistanceRemaining)) {
+        fValue = $.oMyCompetitionTask.fDistanceRemaining * $.oMySettings.fUnitDistanceCoefficient;
+        sValue = fValue.format("%.0f");
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_BEARING:
+      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fBearing)) {
+        fValue = (($.oMyCompetitionTask.fBearing * 57.2957795131f).toNumber()) % 360;
+        if($.oMySettings.iUnitDirection == 1) {
+          sValue = $.oMyProcessing.convertDirection(fValue);
+        }
+        else {
+          sValue = fValue.format("%d");
+        }
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
+      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fActiveAltitude)) {
+        fValue = $.oMyCompetitionTask.fActiveAltitude * $.oMySettings.fUnitElevationCoefficient;
+        sValue = fValue.format("%.0f");
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE:
+      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fExpectedAltitudeNext)) {
+        fValue = $.oMyCompetitionTask.fExpectedAltitudeNext * $.oMySettings.fUnitElevationCoefficient;
+        sValue = fValue.format("%.0f");
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN:
+      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fAltitudeMarginNext)) {
+        fValue = $.oMyCompetitionTask.fAltitudeMarginNext * $.oMySettings.fUnitElevationCoefficient;
+        sValue = fValue.format("%+.0f");
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
+      sValue = $.oMyCompetitionTask != null ? $.oMyCompetitionTask.getStatusText() : $.MY_NOVALUE_LEN3;
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
+      sValue = $.oMyCompetitionTask != null ? $.oMyCompetitionTask.getStartText() : "--:--";
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
+      sValue = $.oMyCompetitionTask != null ? $.oMyCompetitionTask.getTaskLeftText() : "--:--";
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
+      sValue = $.oMyCompetitionTask != null ? $.oMyCompetitionTask.getStartInText() : "--:--";
+      break;
     default:
       sValue = "";
     }
@@ -387,7 +518,19 @@ class MyViewGeneral extends MyViewGlobal {
     case GENERAL_VIEW_INDICATOR_FINESSE:
     case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
     case GENERAL_VIEW_INDICATOR_HEARTBEAT:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN:
       return true;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_BEARING:
+      return $.oMySettings.iUnitDirection != 1;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
+      return false;
     default:
       return false;
     }
@@ -466,6 +609,24 @@ class MyViewGeneral extends MyViewGlobal {
     case GENERAL_VIEW_INDICATOR_FINESSE:
       if(!(LangUtils.notNaN($.oMyProcessing.fFinesse) && !$.oMyProcessing.bAscent)) {
         iColor = Gfx.COLOR_LT_GRAY;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_COMPETITION_NEXT:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_BEARING:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
+      if($.oMyCompetitionTask == null || $.oMyCompetitionTask.iState != $.oMyCompetitionTask.STATE_READY) {
+        iColor = Gfx.COLOR_LT_GRAY;
+      }
+      else if(_iIndicator == GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN && LangUtils.notNaN($.oMyCompetitionTask.fAltitudeMarginNext)) {
+        iColor = $.oMyCompetitionTask.fAltitudeMarginNext >= 0.0f ? Gfx.COLOR_DK_GREEN : Gfx.COLOR_RED;
       }
       break;
     default:
@@ -822,7 +983,12 @@ class MyViewGeneralDelegate extends MyViewGlobalDelegate {
     // At first general page, fall through to the previous view
     // Switch to previous view
     if ($.oMyActivity != null) { //Skip the log view if we're recording, e.g. in flight     
-        if (Ui has :MapView && $.oMySettings.bMapDisplay) {
+        if($.oMySettings.bCompetitionMode) {
+            Ui.switchToView(new MyViewCompetition(),
+                            new MyViewCompetitionDelegate(),
+                            Ui.SLIDE_IMMEDIATE);
+        }
+        else if (Ui has :MapView && $.oMySettings.bMapDisplay) {
             var mapView = new MyViewMap();
             Ui.switchToView(mapView,
                             new MyViewMapDelegate(mapView),
