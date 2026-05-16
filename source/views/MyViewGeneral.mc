@@ -65,8 +65,10 @@ class MyViewGeneral extends MyViewGlobal {
   private const GENERAL_VIEW_INDICATOR_ALTITUDE_CHART as Number = 7;
   private const GENERAL_VIEW_INDICATOR_HEARTBEAT as Number = 8;
   private const GENERAL_VIEW_INDICATOR_FLIGHT_TIME as Number = 9;
+  private const GENERAL_VIEW_INDICATOR_CLIMB_30S as Number = 10;
+  private const GENERAL_VIEW_INDICATOR_THERMAL_CLIMB as Number = 11;
 
-  private const GENERAL_VIEW_INDICATOR_COUNT as Number = 10;
+  private const GENERAL_VIEW_INDICATOR_COUNT as Number = 12;
 
   //
   // FUNCTIONS: MyViewGlobal (override/implement)
@@ -209,6 +211,10 @@ class MyViewGeneral extends MyViewGlobal {
       return "Heartbeat";
     case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
       return Ui.loadResource(Rez.Strings.labelElapsed) as String;
+    case GENERAL_VIEW_INDICATOR_CLIMB_30S:
+      return "30s Climb";
+    case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
+      return "Therm.Climb";
     default:
       return "";
     }
@@ -225,6 +231,8 @@ class MyViewGeneral extends MyViewGlobal {
     case GENERAL_VIEW_INDICATOR_ALTITUDE_CHART:
       return Lang.format("[$1$]", [$.oMySettings.sUnitElevation]);
     case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
+    case GENERAL_VIEW_INDICATOR_CLIMB_30S:
+    case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
       return Lang.format("[$1$]", [$.oMySettings.sUnitVerticalSpeed]);
     case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
       return Lang.format("[$1$]", [$.oMySettings.sUnitHorizontalSpeed]);
@@ -343,6 +351,19 @@ class MyViewGeneral extends MyViewGlobal {
         sValue = "--:--";
       }
       break;
+    case GENERAL_VIEW_INDICATOR_CLIMB_30S:
+      fValue = self.getAverageClimb(30, -1);
+      sValue = self.formatClimbValue(fValue);
+      break;
+    case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
+      if($.oMyProcessing.bCirclingCount > 0) {
+        fValue = self.getAverageClimb($.oMyProcessing.PLOTBUFFER_SIZE, $.oMyProcessing.iCirclingStartEpoch);
+        sValue = self.formatClimbValue(fValue);
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
     default:
       sValue = "";
     }
@@ -360,6 +381,8 @@ class MyViewGeneral extends MyViewGlobal {
       return $.oMySettings.iUnitDirection != 1;
     case GENERAL_VIEW_INDICATOR_ALTITUDE:
     case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
+    case GENERAL_VIEW_INDICATOR_CLIMB_30S:
+    case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
     case GENERAL_VIEW_INDICATOR_WIND_SPEED:
     case GENERAL_VIEW_INDICATOR_FINESSE:
     case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
@@ -387,24 +410,16 @@ class MyViewGeneral extends MyViewGlobal {
     switch(_iIndicator) {
     case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
       fValue = $.oMyProcessing.fVariometer_filtered;
-      if(LangUtils.notNaN(fValue)) {
-        fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
-        if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
-          if(fValue >= 0.05f) {
-            iColor = Gfx.COLOR_DK_GREEN;
-          }
-          else if(fValue <= -0.05f) {
-            iColor = Gfx.COLOR_RED;
-          }
-        }
-        else {
-          if(fValue >= 0.5f) {
-            iColor = Gfx.COLOR_DK_GREEN;
-          }
-          else if(fValue <= -0.5f) {
-            iColor = Gfx.COLOR_RED;
-          }
-        }
+      iColor = self.getClimbValueColor(fValue);
+      break;
+    case GENERAL_VIEW_INDICATOR_CLIMB_30S:
+      fValue = self.getAverageClimb(30, -1);
+      iColor = self.getClimbValueColor(fValue);
+      break;
+    case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
+      if($.oMyProcessing.bCirclingCount > 0) {
+        fValue = self.getAverageClimb($.oMyProcessing.PLOTBUFFER_SIZE, $.oMyProcessing.iCirclingStartEpoch);
+        iColor = self.getClimbValueColor(fValue);
       }
       else {
         iColor = Gfx.COLOR_LT_GRAY;
@@ -457,6 +472,77 @@ class MyViewGeneral extends MyViewGlobal {
       iColor = Gfx.COLOR_LT_GRAY;
     }
     return iColor;
+  }
+
+  function formatClimbValue(_fValue as Float) as String {
+    if(LangUtils.notNaN(_fValue)) {
+      _fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
+      if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
+        return _fValue.format("%+.1f");
+      }
+      else {
+        return _fValue.format("%+.0f");
+      }
+    }
+    return $.MY_NOVALUE_LEN3;
+  }
+
+  function getClimbValueColor(_fValue as Float) as Number {
+    if(LangUtils.notNaN(_fValue)) {
+      _fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
+      if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
+        if(_fValue >= 0.05f) {
+          return Gfx.COLOR_DK_GREEN;
+        }
+        else if(_fValue <= -0.05f) {
+          return Gfx.COLOR_RED;
+        }
+      }
+      else {
+        if(_fValue >= 0.5f) {
+          return Gfx.COLOR_DK_GREEN;
+        }
+        else if(_fValue <= -0.5f) {
+          return Gfx.COLOR_RED;
+        }
+      }
+      return self.iColorText;
+    }
+    return Gfx.COLOR_LT_GRAY;
+  }
+
+  function getAverageClimb(_iSeconds as Number, _iStartEpoch as Number) as Float {
+    if($.oMyProcessing.iPlotIndex < 0) {
+      return NaN;
+    }
+
+    var iCurrentEpoch = $.oMyProcessing.iPositionEpoch;
+    var iSampleCount = 0;
+    var iTotalClimb = 0;
+    for(var i=0; i<$.oMyProcessing.PLOTBUFFER_SIZE; i++) {
+      var iIndex = ($.oMyProcessing.iPlotIndex - i + $.oMyProcessing.PLOTBUFFER_SIZE) % $.oMyProcessing.PLOTBUFFER_SIZE;
+      var iEpoch = $.oMyProcessing.aiPlotEpoch[iIndex] as Number;
+      if(iEpoch < 0) {
+        continue;
+      }
+      if(_iStartEpoch >= 0 && iEpoch < _iStartEpoch) {
+        continue;
+      }
+      if(_iSeconds > 0 && iCurrentEpoch - iEpoch >= _iSeconds) {
+        continue;
+      }
+      var iClimb = $.oMyProcessing.aiPlotVariometer[iIndex] as Number;
+      if(!LangUtils.notNaN(iClimb)) {
+        continue;
+      }
+      iTotalClimb += iClimb;
+      iSampleCount++;
+    }
+
+    if(iSampleCount == 0) {
+      return NaN;
+    }
+    return iTotalClimb.toFloat() / (iSampleCount.toFloat() * 1000.0f);
   }
 
   function clearPageField(_iSlot as Number) {

@@ -108,7 +108,7 @@ class MySettings {
   public const GENERAL_VIEW_PAGE_LAYOUT_2 as Number = 2;
   public const GENERAL_VIEW_PAGE_LAYOUT_4 as Number = 4;
   public const GENERAL_VIEW_PAGE_LAYOUT_7 as Number = 7;
-  public const GENERAL_VIEW_INDICATOR_COUNT as Number = 10;
+  public const GENERAL_VIEW_INDICATOR_COUNT as Number = 12;
   public var iGeneralViewActivePageIndex as Number = 0;
   public var iGeneralViewEditingPageIndex as Number = -1;
   public var aGeneralViewPageNames as Array = [];

@@ -175,6 +175,17 @@ You can add you own indicator display views by going to settings -> General -> G
 There you can add 2-indicator, 4-indicator, or 7-indicator views (each will be a page).
 You can then configure which indicators you wish to see on each view.
 You can delete unneeded views/pages as needed.
+List of indicators available in addition to the seven above:
+ - `Heartbeat`:
+   your heartbeat, as measured by the watch. Are you stressed??
+ - `30s Climb`:
+   Your altitude change during the last 30 seconds
+ - `Flight Time`:
+   your current flight time, in hh:mm
+ - `Therm.Climb.`:
+   Altitude gain since you started circling (capped at 3 minutes)
+ - `Altitude Chart`:
+   A chart of Altitude over time. Only available on 2-indicator pages
 
 ### Variometer View
 

@@ -159,6 +159,10 @@ class MyMenu2Generic extends Ui.Menu2 {
           sIndicatorLabel = "Heartbeat";
         } else if(iIndicator == 9) {
           sIndicatorLabel = "Flight Time";
+        } else if(iIndicator == 10) {
+          sIndicatorLabel = "30s Climb";
+        } else if(iIndicator == 11) {
+          sIndicatorLabel = "Therm.Climb";
         }
         var fieldItemId = :menuGeneralViewPageField0;
         if(i == 1) { fieldItemId = :menuGeneralViewPageField1; }
@@ -183,6 +187,8 @@ class MyMenu2Generic extends Ui.Menu2 {
       Menu2.addItem(new Ui.MenuItem("Ground Speed", null, :menuGeneralViewPageIndicator6, {}));
       Menu2.addItem(new Ui.MenuItem("Flight Time", null, :menuGeneralViewPageIndicator9, {}));
       Menu2.addItem(new Ui.MenuItem("Heartbeat", null, :menuGeneralViewPageIndicator8, {}));
+      Menu2.addItem(new Ui.MenuItem("30s Climb", null, :menuGeneralViewPageIndicator10, {}));
+      Menu2.addItem(new Ui.MenuItem("Therm.Climb", null, :menuGeneralViewPageIndicator11, {}));
       if($.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewEditingPageIndex) == $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2) {
         Menu2.addItem(new Ui.MenuItem("Altitude Chart", null, :menuGeneralViewPageIndicator7, {}));
       }
@@ -344,6 +350,8 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
     case :menuGeneralViewPageIndicator7: return 7;
     case :menuGeneralViewPageIndicator8: return 8;
     case :menuGeneralViewPageIndicator9: return 9;
+    case :menuGeneralViewPageIndicator10: return 10;
+    case :menuGeneralViewPageIndicator11: return 11;
     case :menuGeneralViewPageIndicatorNone: return $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED;
     default: return -2;
     }
@@ -422,7 +430,7 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
         var iEditedLayout = $.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewEditingPageIndex);
         var iFocus = iCurrentIndicator;
         if(iCurrentIndicator == $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED) {
-          iFocus = (iEditedLayout == $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2) ? 10 : 9;
+          iFocus = (iEditedLayout == $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2) ? 12 : 11;
         }
         else if(iCurrentIndicator == 9) {
           iFocus = 7;
@@ -431,7 +439,13 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
           iFocus = 8;
         }
         else if(iCurrentIndicator == 7) {
+          iFocus = 11;
+        }
+        else if(iCurrentIndicator == 10) {
           iFocus = 9;
+        }
+        else if(iCurrentIndicator == 11) {
+          iFocus = 10;
         }
         Ui.pushView(new MyMenu2Generic(itemId, iFocus),
                     new MyMenu2GenericDelegate(itemId),
