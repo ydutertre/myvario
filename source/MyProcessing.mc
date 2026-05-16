@@ -78,6 +78,7 @@ class MyProcessing {
   // Public objects
   // ... sensor values (fed by Toybox.Sensor)
   public var iSensorEpoch as Number = -1;
+  public var iHR = NaN;
   // ... altimeter values (fed by Toybox.Activity, on Toybox.Sensor events)
   public var fAltitude as Float = NaN;
   // ... altimeter calculated values
@@ -164,6 +165,7 @@ class MyProcessing {
     self.fPreviousAltitude = 0.0f;
     // ... sensor values
     self.iSensorEpoch = -1;
+    self.iHR = NaN;
     // ... altimeter values
     self.fAltitude = NaN;
     // ... altimeter calculated values
@@ -193,6 +195,11 @@ class MyProcessing {
     //Sys.println("DEBUG: MyProcessing.processSensorInfo()");
 
     // Process sensor data
+
+    // ... heart rate
+    if(_oInfo has :heartRate and _oInfo.heartRate != null) {
+      self.iHR = _oInfo.heartRate;
+    }
 
     // ... acceleration
     // if(_oInfo has :accel and _oInfo.accel != null) {

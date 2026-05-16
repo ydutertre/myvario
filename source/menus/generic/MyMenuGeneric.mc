@@ -153,6 +153,10 @@ class MyMenu2Generic extends Ui.Menu2 {
           sIndicatorLabel = "Vert. Speed";
         } else if(iIndicator == 6) {
           sIndicatorLabel = "Ground Speed";
+        } else if(iIndicator == 7) {
+          sIndicatorLabel = "Altitude Chart";
+        } else if(iIndicator == 8) {
+          sIndicatorLabel = "Heartbeat";
         }
         var fieldItemId = :menuGeneralViewPageField0;
         if(i == 1) { fieldItemId = :menuGeneralViewPageField1; }
@@ -175,6 +179,10 @@ class MyMenu2Generic extends Ui.Menu2 {
       Menu2.addItem(new Ui.MenuItem("Heading", null, :menuGeneralViewPageIndicator4, {}));
       Menu2.addItem(new Ui.MenuItem("Vertical Speed", null, :menuGeneralViewPageIndicator5, {}));
       Menu2.addItem(new Ui.MenuItem("Ground Speed", null, :menuGeneralViewPageIndicator6, {}));
+      Menu2.addItem(new Ui.MenuItem("Heartbeat", null, :menuGeneralViewPageIndicator8, {}));
+      if($.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewEditingPageIndex) == $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2) {
+        Menu2.addItem(new Ui.MenuItem("Altitude Chart", null, :menuGeneralViewPageIndicator7, {}));
+      }
       Menu2.addItem(new Ui.MenuItem("None", null, :menuGeneralViewPageIndicatorNone, {}));
     }
 
@@ -330,6 +338,8 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
     case :menuGeneralViewPageIndicator4: return 4;
     case :menuGeneralViewPageIndicator5: return 5;
     case :menuGeneralViewPageIndicator6: return 6;
+    case :menuGeneralViewPageIndicator7: return 7;
+    case :menuGeneralViewPageIndicator8: return 8;
     case :menuGeneralViewPageIndicatorNone: return $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED;
     default: return -2;
     }
@@ -405,7 +415,17 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
       if(iFieldIndex >= 0) {
         var aFields = $.oMySettings.getGeneralViewPageFields($.oMySettings.iGeneralViewEditingPageIndex);
         var iCurrentIndicator = (iFieldIndex < aFields.size()) ? (aFields[iFieldIndex] as Number) : $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED;
-        var iFocus = iCurrentIndicator == $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED ? 7 : iCurrentIndicator;
+        var iEditedLayout = $.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewEditingPageIndex);
+        var iFocus = iCurrentIndicator;
+        if(iCurrentIndicator == $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED) {
+          iFocus = (iEditedLayout == $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2) ? 9 : 8;
+        }
+        else if(iCurrentIndicator == 8) {
+          iFocus = 7;
+        }
+        else if(iCurrentIndicator == 7) {
+          iFocus = 8;
+        }
         Ui.pushView(new MyMenu2Generic(itemId, iFocus),
                     new MyMenu2GenericDelegate(itemId),
                     Ui.SLIDE_IMMEDIATE);

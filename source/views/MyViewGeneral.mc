@@ -62,8 +62,10 @@ class MyViewGeneral extends MyViewGlobal {
   private const GENERAL_VIEW_INDICATOR_HEADING as Number = 4;
   private const GENERAL_VIEW_INDICATOR_VERTICAL_SPEED as Number = 5;
   private const GENERAL_VIEW_INDICATOR_GROUND_SPEED as Number = 6;
+  private const GENERAL_VIEW_INDICATOR_ALTITUDE_CHART as Number = 7;
+  private const GENERAL_VIEW_INDICATOR_HEARTBEAT as Number = 8;
 
-  private const GENERAL_VIEW_INDICATOR_COUNT as Number = 7;
+  private const GENERAL_VIEW_INDICATOR_COUNT as Number = 9;
 
   //
   // FUNCTIONS: MyViewGlobal (override/implement)
@@ -144,6 +146,10 @@ class MyViewGeneral extends MyViewGlobal {
       oValue.setText("");
       return;
     }
+    if(_iIndicator == GENERAL_VIEW_INDICATOR_ALTITUDE_CHART) {
+      oValue.setText("");
+      return;
+    }
     var sText = self.getIndicatorValueText(_iIndicator);
     var iColor = self.getIndicatorValueColor(_iIndicator, _bRecording);
     oValue.setFont(self.getIndicatorValueFont(_iIndicator, sText));
@@ -196,6 +202,10 @@ class MyViewGeneral extends MyViewGlobal {
       return Ui.loadResource(Rez.Strings.labelVerticalSpeed) as String;
     case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
       return Ui.loadResource(Rez.Strings.labelGroundSpeed) as String;
+    case GENERAL_VIEW_INDICATOR_ALTITUDE_CHART:
+      return Ui.loadResource(Rez.Strings.labelAltitude) as String;
+    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
+      return "Heartbeat";
     default:
       return "";
     }
@@ -209,11 +219,14 @@ class MyViewGeneral extends MyViewGlobal {
     case GENERAL_VIEW_INDICATOR_WIND_SPEED:
       return Lang.format("[$1$]", [$.oMySettings.sUnitWindSpeed]);
     case GENERAL_VIEW_INDICATOR_ALTITUDE:
+    case GENERAL_VIEW_INDICATOR_ALTITUDE_CHART:
       return Lang.format("[$1$]", [$.oMySettings.sUnitElevation]);
     case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
       return Lang.format("[$1$]", [$.oMySettings.sUnitVerticalSpeed]);
     case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
       return Lang.format("[$1$]", [$.oMySettings.sUnitHorizontalSpeed]);
+    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
+      return "[bpm]";
     default:
       return "";
     }
@@ -306,6 +319,17 @@ class MyViewGeneral extends MyViewGlobal {
         sValue = $.MY_NOVALUE_LEN3;
       }
       break;
+    case GENERAL_VIEW_INDICATOR_ALTITUDE_CHART:
+      sValue = "";
+      break;
+    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
+      if(LangUtils.notNaN($.oMyProcessing.iHR)) {
+        sValue = ($.oMyProcessing.iHR as Number).format("%d");
+      }
+      else {
+        sValue = $.MY_NOVALUE_LEN3;
+      }
+      break;
     default:
       sValue = "";
     }
@@ -313,7 +337,7 @@ class MyViewGeneral extends MyViewGlobal {
   }
 
   function isIndicatorValueNumeric(_iIndicator as Number, _sText as String) as Boolean {
-    if(_sText == "" || _sText == $.MY_NOVALUE_LEN2 || _sText == $.MY_NOVALUE_LEN3) {
+    if(_sText == "" or _sText == $.MY_NOVALUE_LEN2 or _sText == $.MY_NOVALUE_LEN3) {
       return false;
     }
 
@@ -326,6 +350,7 @@ class MyViewGeneral extends MyViewGlobal {
     case GENERAL_VIEW_INDICATOR_WIND_SPEED:
     case GENERAL_VIEW_INDICATOR_FINESSE:
     case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
+    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
       return true;
     default:
       return false;
@@ -397,6 +422,14 @@ class MyViewGeneral extends MyViewGlobal {
         iColor = Gfx.COLOR_LT_GRAY;
       }
       break;
+    case GENERAL_VIEW_INDICATOR_ALTITUDE_CHART:
+      iColor = self.iColorText;
+      break;
+    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
+      if(!LangUtils.notNaN($.oMyProcessing.iHR)) {
+        iColor = Gfx.COLOR_LT_GRAY;
+      }
+      break;
     case GENERAL_VIEW_INDICATOR_FINESSE:
       if(!(LangUtils.notNaN($.oMyProcessing.fFinesse) && !$.oMyProcessing.bAscent)) {
         iColor = Gfx.COLOR_LT_GRAY;
@@ -453,6 +486,7 @@ class MyViewGeneral extends MyViewGlobal {
 
     // Update layout
     MyViewGlobal.onUpdate(_oDC);
+    self.drawAltitudeCharts(_oDC);
     self.drawArrow(_oDC);
   }
 
@@ -498,6 +532,136 @@ class MyViewGeneral extends MyViewGlobal {
         }
       }
       return;
+    }
+  }
+
+  function drawAltitudeChart(_oDC as Gfx.Dc, _sSlot as String) as Void {
+    var iLayout = $.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewActivePageIndex);
+    if(iLayout != $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2) {
+      return;
+    }
+
+    var iPlotIndex = $.oMyProcessing.iPlotIndex;
+    if(iPlotIndex < 0 or $.oMyProcessing.aiPointAltitude.size() < $.oMyProcessing.PLOTBUFFER_SIZE) {
+      return;
+    }
+
+    var iWidth = _oDC.getWidth();
+    var iHeight = _oDC.getHeight();
+    var iX1 = (iWidth * 0.14f).toNumber();
+    var iX2 = iWidth - iX1;
+    var iY1 = (_sSlot.equals("TopLeft") ? (iHeight * 0.29f) : (iHeight * 0.65f)).toNumber();
+    var iY2 = (_sSlot.equals("TopLeft") ? (iHeight * 0.46f) : (iHeight * 0.82f)).toNumber();
+    var iChartWidth = iX2 - iX1;
+    var iChartHeight = iY2 - iY1;
+
+    var iSampleCount = 90;
+    if(iSampleCount > $.oMyProcessing.PLOTBUFFER_SIZE) {
+      iSampleCount = $.oMyProcessing.PLOTBUFFER_SIZE;
+    }
+
+    var iMinAltitude = $.oMyProcessing.aiPointAltitude[iPlotIndex] as Number;
+    var iMaxAltitude = iMinAltitude;
+    var iValidCount = 0;
+    for(var i = 0; i < iSampleCount; i++) {
+      var iIndex = (iPlotIndex - i + $.oMyProcessing.PLOTBUFFER_SIZE) % $.oMyProcessing.PLOTBUFFER_SIZE;
+      if(($.oMyProcessing.aiPlotEpoch[iIndex] as Number) >= 0) {
+        var iAltitude = $.oMyProcessing.aiPointAltitude[iIndex] as Number;
+        if(iAltitude < iMinAltitude) {
+          iMinAltitude = iAltitude;
+        }
+        if(iAltitude > iMaxAltitude) {
+          iMaxAltitude = iAltitude;
+        }
+        iValidCount++;
+      }
+    }
+    if(iValidCount < 2) {
+      return;
+    }
+
+    var fCoef = $.oMySettings.fUnitElevationCoefficient;
+    var fMin = iMinAltitude.toFloat();
+    var fMax = iMaxAltitude.toFloat();
+    var fRangeBorder = 5.0f / fCoef;
+    var fRangeMin = fMin - fRangeBorder;
+    var fRangeMax = fMax + fRangeBorder;
+    var fRangeMinSize = 30.0f / fCoef;
+    if(fRangeMax - fRangeMin < fRangeMinSize) {
+      fRangeMax = fRangeMin + fRangeMinSize;
+    }
+
+    var iLineColor = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY;
+    var iBlockColor = $.oMySettings.iGeneralBackgroundColor ? 0x55aaaa : 0x005555;
+    var iTextGray = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY;
+
+    _oDC.setClip(iX1, iY1, iChartWidth, iChartHeight);
+    _oDC.setPenWidth(1);
+
+    var iLastX = null;
+    var iLastY = null;
+    for(var iX = iX1; iX <= iX2; iX++) {
+      var iSampleOffset = ((iX - iX1) * (iSampleCount - 1)) / iChartWidth;
+      var iBack = (iSampleCount - 1) - iSampleOffset;
+      var iIndex = (iPlotIndex - iBack + $.oMyProcessing.PLOTBUFFER_SIZE) % $.oMyProcessing.PLOTBUFFER_SIZE;
+      if(($.oMyProcessing.aiPlotEpoch[iIndex] as Number) >= 0) {
+        var fAltitude = ($.oMyProcessing.aiPointAltitude[iIndex] as Number).toFloat();
+        var iY = iY2 - (iChartHeight * (fAltitude - fRangeMin) / (fRangeMax - fRangeMin)).toNumber();
+        _oDC.setColor(iBlockColor, Gfx.COLOR_TRANSPARENT);
+        _oDC.drawLine(iX, iY, iX, iY2);
+        if(iLastX != null) {
+          _oDC.setColor(iLineColor, Gfx.COLOR_TRANSPARENT);
+          _oDC.drawLine(iLastX, iLastY, iX, iY);
+        }
+        iLastX = iX;
+        iLastY = iY;
+      }
+      else {
+        iLastX = null;
+        iLastY = null;
+      }
+    }
+
+    _oDC.setColor(Gfx.COLOR_DK_GRAY, Gfx.COLOR_TRANSPARENT);
+    self.drawChartTickLine(_oDC, iX1, iY1, iY2, -5, 3, true);
+    self.drawChartTickLine(_oDC, iX2, iY1, iY2, 5, 3, true);
+    self.drawChartTickLine(_oDC, iY2, iX1, iX2 + 1, 0, 3, false);
+
+    _oDC.clearClip();
+    if(LangUtils.notNaN($.oMyProcessing.fAltitude)) {
+      var sAltitude = ($.oMyProcessing.fAltitude * $.oMySettings.fUnitElevationCoefficient).format("%.0f");
+      _oDC.setColor(iTextGray, Gfx.COLOR_TRANSPARENT);
+      _oDC.drawText((iX1 + iX2) / 2, (iY1 + iY2) / 2, Gfx.FONT_TINY, sAltitude, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+    }
+  }
+
+  function drawChartTickLine(_oDC as Gfx.Dc, _iC as Number, _iEnd1 as Number, _iEnd2 as Number, _iTickSize as Number, _iTickCount as Number, _bVertical as Boolean) as Void {
+    self.drawChartTickLine0(_oDC, _iC, _iEnd1, _iEnd2, _bVertical);
+    for(var i = 1; i <= _iTickCount; i++) {
+      self.drawChartTickLine0(_oDC, (((_iTickCount + 1) - i) * _iEnd1 + i * _iEnd2) / (_iTickCount + 1), _iC, _iC + _iTickSize, !_bVertical);
+    }
+  }
+
+  function drawChartTickLine0(_oDC as Gfx.Dc, _iC as Number, _iEnd1 as Number, _iEnd2 as Number, _bVertical as Boolean) as Void {
+    if(_bVertical) {
+      _oDC.drawLine(_iC, _iEnd1, _iC, _iEnd2);
+    }
+    else {
+      _oDC.drawLine(_iEnd1, _iC, _iEnd2, _iC);
+    }
+  }
+
+  function drawAltitudeCharts(_oDC as Gfx.Dc) as Void {
+    var iLayout = $.oMySettings.getGeneralViewPageLayout($.oMySettings.iGeneralViewActivePageIndex);
+    if(iLayout != $.oMySettings.GENERAL_VIEW_PAGE_LAYOUT_2) {
+      return;
+    }
+    var aFields = $.oMySettings.getGeneralViewPageFields($.oMySettings.iGeneralViewActivePageIndex);
+    for(var i = 0; i < iLayout; i++) {
+      var iIndicator = (i < aFields.size()) ? (aFields[i] as Number) : $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED;
+      if(iIndicator == GENERAL_VIEW_INDICATOR_ALTITUDE_CHART) {
+        self.drawAltitudeChart(_oDC, self.getGeneralViewSlotName(i, iLayout));
+      }
     }
   }
 
