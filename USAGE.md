@@ -161,7 +161,7 @@ any further bells or whistles:
  - `Left`:
    your current altitude
  - `Center`:
-   your current finesse
+   your current finesse (glide ratio)
  - `Right`:
    your current (GPS) heading
  - `Bottom-Left`:
@@ -175,7 +175,7 @@ You can add you own indicator display views by going to settings -> General -> G
 There you can add 2-indicator, 4-indicator, or 7-indicator views (each will be a page).
 You can then configure which indicators you wish to see on each view.
 You can delete unneeded views/pages as needed.
-List of indicators available in addition to the seven above:
+List of additional indicators available in addition to the seven above:
  - `Heartbeat`:
    your heartbeat, as measured by the watch. Are you stressed??
  - `30s Climb`:

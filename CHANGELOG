@@ -1,3 +1,8 @@
+* 5.11
+- Added Thermal Climb as available indicator (how much was climbed during current circling)
+- Added 30s Climb as available indicator (how much was climbed in the last 30s)
+- Added Flight Time as available indicator
+
 * 5.10
 - Added Altitude Chart available in the 2-indicator view
 - Added Heartbeat available as an indicator in any view
