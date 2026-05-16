@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="My Vario test track" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>coco task replay</name>
+    <desc>Simulator track for XContest task code coco. Crosses WLTREE SSS, CHERYL, GRASSO, and WLTREE ESS/Goal.</desc>
+    <time>2026-05-17T18:35:00Z</time>
+  </metadata>
+  <wpt lat="28.53303337097168" lon="-81.84666442871094">
+    <ele>37</ele>
+    <name>WLTREE</name>
+    <desc>Takeoff, SSS center, ESS/Goal center</desc>
+  </wpt>
+  <wpt lat="28.671432495117188" lon="-82.0871810913086">
+    <ele>37</ele>
+    <name>CHERYL</name>
+    <desc>Turnpoint, 4000 m cylinder</desc>
+  </wpt>
+  <wpt lat="28.64146614074707" lon="-81.88063049316406">
+    <ele>30</ele>
+    <name>GRASSO</name>
+    <desc>Turnpoint, 1100 m cylinder</desc>
+  </wpt>
+  <trk>
+    <name>coco task replay</name>
+    <trkseg>
+      <trkpt lat="28.53303337097168" lon="-81.76000000000000"><ele>500</ele><time>2026-05-17T18:35:00Z</time></trkpt>
+      <trkpt lat="28.53303337097168" lon="-81.79000000000000"><ele>520</ele><time>2026-05-17T18:37:00Z</time></trkpt>
+      <trkpt lat="28.53303337097168" lon="-81.82000000000000"><ele>540</ele><time>2026-05-17T18:39:00Z</time></trkpt>
+      <trkpt lat="28.53303337097168" lon="-81.84666442871094"><ele>560</ele><time>2026-05-17T18:41:00Z</time></trkpt>
+      <trkpt lat="28.55500000000000" lon="-81.88500000000000"><ele>580</ele><time>2026-05-17T18:43:00Z</time></trkpt>
+      <trkpt lat="28.57700000000000" lon="-81.92300000000000"><ele>590</ele><time>2026-05-17T18:45:00Z</time></trkpt>
+      <trkpt lat="28.59900000000000" lon="-81.96100000000000"><ele>600</ele><time>2026-05-17T18:47:00Z</time></trkpt>
+      <trkpt lat="28.62100000000000" lon="-81.99900000000000"><ele>590</ele><time>2026-05-17T18:49:00Z</time></trkpt>
+      <trkpt lat="28.64300000000000" lon="-82.03700000000000"><ele>570</ele><time>2026-05-17T18:51:00Z</time></trkpt>
+      <trkpt lat="28.671432495117188" lon="-82.0871810913086"><ele>550</ele><time>2026-05-17T18:53:00Z</time></trkpt>
+      <trkpt lat="28.66600000000000" lon="-82.05000000000000"><ele>530</ele><time>2026-05-17T18:55:00Z</time></trkpt>
+      <trkpt lat="28.66000000000000" lon="-82.01000000000000"><ele>510</ele><time>2026-05-17T18:57:00Z</time></trkpt>
+      <trkpt lat="28.65400000000000" lon="-81.97000000000000"><ele>490</ele><time>2026-05-17T18:59:00Z</time></trkpt>
+      <trkpt lat="28.64800000000000" lon="-81.92500000000000"><ele>470</ele><time>2026-05-17T19:01:00Z</time></trkpt>
+      <trkpt lat="28.64146614074707" lon="-81.88063049316406"><ele>450</ele><time>2026-05-17T19:03:00Z</time></trkpt>
+      <trkpt lat="28.62000000000000" lon="-81.87200000000000"><ele>430</ele><time>2026-05-17T19:05:00Z</time></trkpt>
+      <trkpt lat="28.59800000000000" lon="-81.86500000000000"><ele>410</ele><time>2026-05-17T19:07:00Z</time></trkpt>
+      <trkpt lat="28.57600000000000" lon="-81.85800000000000"><ele>390</ele><time>2026-05-17T19:09:00Z</time></trkpt>
+      <trkpt lat="28.55400000000000" lon="-81.85200000000000"><ele>370</ele><time>2026-05-17T19:11:00Z</time></trkpt>
+      <trkpt lat="28.53303337097168" lon="-81.84666442871094"><ele>350</ele><time>2026-05-17T19:13:00Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

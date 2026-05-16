@@ -21,6 +21,7 @@ help:
 	@echo '  run-debug   - launch the project in the simulator (debug version)'
 	@echo '  run-release - launch the project in the simulator (release version)'
 	@echo '  fit-view    - view the FIT-file'
+	@echo '  fit-igc     - convert the FIT-file to IGC'
 	@echo '  clean       - delete all build output'
 .DEFAULT_GOAL := help
 
@@ -78,6 +79,10 @@ run-release: ${OUTPUT_RELEASE} | ${CIQ_SIMULATOR} ${CIQ_MONKEYDO}
 .PHONY: fit-view
 fit-view: ${OUTPUT_IQ} ${CIQ_FITFILE} | ${CIQ_MONKEYGRAPH}
 	java -jar ${CIQ_MONKEYGRAPH}
+
+.PHONY: fit-igc
+fit-igc: ${CIQ_FITFILE}
+	python3 scripts/fit_to_igc.py ${CIQ_FITFILE}
 
 
 ## (Un-)Install

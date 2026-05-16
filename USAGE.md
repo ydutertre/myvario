@@ -360,6 +360,29 @@ the altimeter to Altimeter only in the watch settings before using the applicati
 This can be done in `Settings` -> `Sensors & Accessories` -> `Altimeter` -> `Sensor Mode` ->
 `Altimeter Only`.
 
+### FIT to IGC conversion
+
+The repository includes a small FIT-to-IGC converter for My Vario activities:
+
+```
+python3 scripts/fit_to_igc.py path/to/activity.fit
+```
+
+By default it writes `path/to/activity.igc`. You can also set pilot and glider
+metadata:
+
+```
+python3 scripts/fit_to_igc.py path/to/activity.fit --pilot "Jane Pilot" --glider-type "Advance Xi" --glider-id "ABC123"
+```
+
+The converter uses the My Vario `BarometricAltitude` FIT developer field as the
+IGC pressure altitude when it is present, and falls back to Garmin GPS altitude
+otherwise.
+
+The generated IGC file is meant for analysis and upload workflows. It is not an
+FAI-valid logger file and does not contain an approved-recorder security `G`
+record.
+
 ## Settings
 
 > Note: Unless explicitely stated otherwise for a given view, you may enter the Settings
