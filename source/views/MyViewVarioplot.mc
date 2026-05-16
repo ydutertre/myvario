@@ -553,7 +553,7 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
     }
     else if($.iMyViewVarioplotPanZoom == 1) {  // ... zoom in
       $.oMySettings.setVariometerPlotZoom($.oMySettings.iVariometerPlotZoom+1);
-      App.Properties.setValue("userVariometerPlotZoom", $.oMySettings.iVariometerPlotZoom);
+      $.oMySettings.saveVariometerPlotZoom($.oMySettings.iVariometerPlotZoom);
       (App.getApp() as MyApp).calculateScaleBar($.iPlotScaleBarSize, $.oMySettings.fVariometerPlotScale, $.oMySettings.sUnitDistance, $.oMySettings.fUnitDistanceCoefficient);
       Ui.requestUpdate();
     }
@@ -582,7 +582,7 @@ class MyViewVarioplotDelegate extends Ui.BehaviorDelegate {
     }
     else if($.iMyViewVarioplotPanZoom == 1) {  // ... zoom out
       $.oMySettings.setVariometerPlotZoom($.oMySettings.iVariometerPlotZoom-1);
-      App.Properties.setValue("userVariometerPlotZoom", $.oMySettings.iVariometerPlotZoom);
+      $.oMySettings.saveVariometerPlotZoom($.oMySettings.iVariometerPlotZoom);
       (App.getApp() as MyApp).calculateScaleBar($.iPlotScaleBarSize, $.oMySettings.fVariometerPlotScale, $.oMySettings.sUnitDistance, $.oMySettings.fUnitDistanceCoefficient);
       Ui.requestUpdate();
     }

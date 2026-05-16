@@ -179,10 +179,18 @@ class MySettings {
   }
 
   function loadAltimeterCalibrationQNH() as Float {  // [Pa]
-    return LangUtils.readKeyFloat(App.Properties.getValue("userAltimeterCalibrationQNH"), 101325.0f);
+    try {
+      return LangUtils.readKeyFloat(App.Storage.getValue("userAltimeterCalibrationQNH"), 101325.0f);
+    } catch (e) {
+      try {
+        return LangUtils.readKeyFloat(App.Properties.getValue("userAltimeterCalibrationQNH"), 101325.0f);
+      } catch (e2) {
+        return 101325.0f;
+      }
+    }
   }
   function saveAltimeterCalibrationQNH(_fValue as Float) as Void {  // [Pa]
-    App.Properties.setValue("userAltimeterCalibrationQNH", _fValue as App.PropertyValueType);
+    App.Storage.setValue("userAltimeterCalibrationQNH", _fValue as App.PropertyValueType);
   }
   function setAltimeterCalibrationQNH(_fValue as Float) as Void {  // [Pa]
     // REF: https://en.wikipedia.org/wiki/Atmospheric_pressure#Records
@@ -292,10 +300,18 @@ class MySettings {
   }
 
   function loadVariometerPlotZoom() as Number {
-    return LangUtils.readKeyNumber(App.Properties.getValue("userVariometerPlotZoom"), 9);
+    try {
+      return LangUtils.readKeyNumber(App.Storage.getValue("userVariometerPlotZoom"), 9);
+    } catch (e) {
+      try {
+        return LangUtils.readKeyNumber(App.Properties.getValue("userVariometerPlotZoom"), 9);
+      } catch (e2) {
+        return 9;
+      }
+    }
   }
   function saveVariometerPlotZoom(_iValue as Number) as Void {
-    App.Properties.setValue("userVariometerPlotZoom", _iValue as App.PropertyValueType);
+    App.Storage.setValue("userVariometerPlotZoom", _iValue as App.PropertyValueType);
   }
   function setVariometerPlotZoom(_iValue as Number) as Void {
     if(_iValue > 11) {
@@ -529,10 +545,10 @@ class MySettings {
 
   function loadGeneralViewActivePageIndex() as Number {
     try {
-      return LangUtils.readKeyNumber(App.Properties.getValue("userGeneralViewActivePageIndex"), 0);
+      return LangUtils.readKeyNumber(App.Storage.getValue("userGeneralViewActivePageIndex"), 0);
     } catch (e) {
       try {
-        return LangUtils.readKeyNumber(App.Storage.getValue("userGeneralViewActivePageIndex"), 0);
+        return LangUtils.readKeyNumber(App.Properties.getValue("userGeneralViewActivePageIndex"), 0);
       } catch (e2) {
         return 0;
       }
@@ -540,13 +556,9 @@ class MySettings {
   }
   function saveGeneralViewActivePageIndex(_iValue as Number) as Void {
     try {
-      App.Properties.setValue("userGeneralViewActivePageIndex", _iValue as App.PropertyValueType);
+      App.Storage.setValue("userGeneralViewActivePageIndex", _iValue as App.PropertyValueType);
     } catch (e) {
-      try {
-        App.Storage.setValue("userGeneralViewActivePageIndex", _iValue as App.PropertyValueType);
-      } catch (e2) {
-        // Ignore persistence failure silently.
-      }
+      // Ignore persistence failure silently.
     }
   }
   function setGeneralViewActivePageIndex(_iValue as Number) as Void {
@@ -610,33 +622,27 @@ class MySettings {
     }
     //// Sys.println("DEBUG: saveGeneralViewPageData() - Saving: '" + _sValue + "'");
     try {
-      App.Properties.setValue("userGeneralViewPageData", _sValue as App.PropertyValueType);
-      // Sys.println("DEBUG: saveGeneralViewPageData() - Saved to Properties");
+      App.Storage.setValue("userGeneralViewPageData", _sValue as App.PropertyValueType);
+      // Sys.println("DEBUG: saveGeneralViewPageData() - Saved to Storage");
     } catch (e) {
-      // Sys.println("DEBUG: saveGeneralViewPageData() - Properties failed, trying Storage");
-      try {
-        App.Storage.setValue("userGeneralViewPageData", _sValue as App.PropertyValueType);
-        // Sys.println("DEBUG: saveGeneralViewPageData() - Saved to Storage");
-      } catch (e2) {
-        // Ignore persistence failure silently.
-        // Sys.println("DEBUG: saveGeneralViewPageData() - Storage also failed!");
-      }
+      // Ignore persistence failure silently.
+      // Sys.println("DEBUG: saveGeneralViewPageData() - Storage failed!");
     }
   }
 
   function loadGeneralViewPageData() as String {
     try {
-      var sValue = LangUtils.readKeyString(App.Properties.getValue("userGeneralViewPageData"), "");
-      // Sys.println("DEBUG: loadGeneralViewPageData() - Loaded from Properties: '" + sValue + "'");
+      var sValue = LangUtils.readKeyString(App.Storage.getValue("userGeneralViewPageData"), "");
+      // Sys.println("DEBUG: loadGeneralViewPageData() - Loaded from Storage: '" + sValue + "'");
       return sValue;
     } catch (e) {
-      // Sys.println("DEBUG: loadGeneralViewPageData() - Properties failed, trying Storage");
+      // Sys.println("DEBUG: loadGeneralViewPageData() - Storage failed, trying legacy Properties");
       try {
-        var sValue2 = LangUtils.readKeyString(App.Storage.getValue("userGeneralViewPageData"), "");
-        // Sys.println("DEBUG: loadGeneralViewPageData() - Loaded from Storage: '" + sValue2 + "'");
+        var sValue2 = LangUtils.readKeyString(App.Properties.getValue("userGeneralViewPageData"), "");
+        // Sys.println("DEBUG: loadGeneralViewPageData() - Loaded from legacy Properties: '" + sValue2 + "'");
         return sValue2;
       } catch (e2) {
-        // Sys.println("DEBUG: loadGeneralViewPageData() - Storage also failed, returning empty");
+        // Sys.println("DEBUG: loadGeneralViewPageData() - Legacy Properties also failed, returning empty");
         return "";
       }
     }
@@ -1053,10 +1059,18 @@ class MySettings {
     }
   }
   function loadUnitTimeUTC() as Boolean {
-    return LangUtils.readKeyBoolean(App.Properties.getValue("userUnitTimeUTC"), false);
+    try {
+      return LangUtils.readKeyBoolean(App.Storage.getValue("userUnitTimeUTC"), false);
+    } catch (e) {
+      try {
+        return LangUtils.readKeyBoolean(App.Properties.getValue("userUnitTimeUTC"), false);
+      } catch (e2) {
+        return false;
+      }
+    }
   }
   function saveUnitTimeUTC(_bValue as Boolean) as Void {
-    App.Properties.setValue("userUnitTimeUTC", _bValue as App.PropertyValueType);
+    App.Storage.setValue("userUnitTimeUTC", _bValue as App.PropertyValueType);
   }
   function setUnitTimeUTC(_bValue as Boolean) as Void {
     self.bUnitTimeUTC = _bValue;

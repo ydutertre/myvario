@@ -101,13 +101,23 @@ class MyViewMap extends Ui.MapTrackView {
         // create the bounding box for the map area
         // var top_left = new Position.Location({:latitude => -33.314073 + 0.066, :longitude =>-70.66935 + 0.0896, :format => :degrees});
         // var bottom_right = new Position.Location({:latitude => -33.446114 - 0.066, :longitude =>-70.490243 - 0.0896, :format => :degrees});
-        var lat = App.Properties.getValue("userLastLat") as Float;
-        var lon = App.Properties.getValue("userLastLon") as Float;
+        var lat = -33.380f;
+        var lon = -70.580f;
+        try {
+            lat = LangUtils.readKeyFloat(App.Storage.getValue("userLastLat"), lat);
+            lon = LangUtils.readKeyFloat(App.Storage.getValue("userLastLon"), lon);
+        } catch(e) {
+            try {
+                lat = LangUtils.readKeyFloat(App.Properties.getValue("userLastLat"), lat);
+                lon = LangUtils.readKeyFloat(App.Properties.getValue("userLastLon"), lon);
+            } catch(e2) {
+            }
+        }
         if(($.oMyPositionLocation!=null) || ($.oMyProcessing.iAccuracy > Pos.QUALITY_NOT_AVAILABLE)) {
             lat = $.oMyPositionLocation.toDegrees()[0].toFloat();
             lon = $.oMyPositionLocation.toDegrees()[1].toFloat();
-            App.Properties.setValue("userLastLat", lat as App.PropertyValueType);
-            App.Properties.setValue("userLastLon", lon as App.PropertyValueType);
+            App.Storage.setValue("userLastLat", lat as App.PropertyValueType);
+            App.Storage.setValue("userLastLon", lon as App.PropertyValueType);
         }
         var latChange = $.oMySettings.fMapViewZoom * Sys.getDeviceSettings().screenWidth / 2;
         var lonChange = latChange / Math.cos(lat * Math.PI / 180);

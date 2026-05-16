@@ -1,14 +1,11 @@
 <properties>
   <!-- User preferences -->
-  <!-- ... altimeter -->
-  <property id="userAltimeterCalibrationQNH" type="float">101325.0</property>
   <!-- ... variometer -->
   <property id="userVariometerRange" type="number">0</property>
   <property id="userVariometerAutoThermal" type="boolean">true</property>
   <property id="userVariometerThermalDetect" type="boolean">true</property>
   <property id="userVariometerSmoothing" type="number">1</property> 
   <property id="userVariometerPlotRange" type="number">2</property>
-  <property id="userVariometerPlotZoom" type="number">9</property>
   <property id="userVariometerPlotOrientation" type="number">0</property>
   <!-- ... sounds -->
   <property id="userSoundsVariometerTones" type="boolean">true</property>
@@ -30,11 +27,8 @@
   <property id="userUnitElevation" type="number">-1</property>
   <property id="userUnitPressure" type="number">-1</property>
   <property id="userUnitDirection" type="number">1</property>
-  <property id="userUnitTimeUTC" type="boolean">false</property>
   <property id="userUnitWindSpeed" type="number">-1</property>
     <!-- ... map -->
-  <property id="userLastLat" type="float">-33.380</property>
-  <property id="userLastLon" type="float">-70.580</property>
   <property id="userMapViewZoom" type="number">7</property>
   <property id="userMapDisplay" type="boolean">false</property>
   <!-- ... livetrack -->
