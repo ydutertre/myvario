@@ -351,7 +351,12 @@ class MyViewLogDelegate extends MyViewGlobalDelegate {
 
   function onPreviousPage() {
     //Sys.println("DEBUG: MyViewLogDelegate.onPreviousPage()");
-    if (Ui has :MapView && $.oMySettings.bMapDisplay) {
+    if($.oMySettings.bCompetitionMode) {
+      Ui.switchToView(new MyViewCompetition(),
+                      new MyViewCompetitionDelegate(),
+                      Ui.SLIDE_IMMEDIATE);
+    }
+    else if (Ui has :MapView && $.oMySettings.bMapDisplay) {
         var mapView = new MyViewMap();
         Ui.switchToView(mapView,
                         new MyViewMapDelegate(mapView),
@@ -366,17 +371,10 @@ class MyViewLogDelegate extends MyViewGlobalDelegate {
 
   function onNextPage() {
     //Sys.println("DEBUG: MyViewLogDelegate.onNextPage()");
-    if($.oMySettings.bCompetitionMode) {
-      Ui.switchToView(new MyViewCompetition(),
-                      new MyViewCompetitionDelegate(),
-                      Ui.SLIDE_IMMEDIATE);
-    }
-    else {
-      $.oMySettings.selectFirstGeneralViewPage();
-      Ui.switchToView(new MyViewGeneral(),
-                      new MyViewGeneralDelegate(),
-                      Ui.SLIDE_IMMEDIATE);
-    }
+    $.oMySettings.selectFirstGeneralViewPage();
+    Ui.switchToView(new MyViewGeneral(),
+                    new MyViewGeneralDelegate(),
+                    Ui.SLIDE_IMMEDIATE);
     return true;
   }
 
