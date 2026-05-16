@@ -158,11 +158,8 @@ class MyActiveLook
     }
     
     public function getFlightTime() as String {
-        if($.oMyActivity != null && $.oMyActivity.oTimeStart != null) {
-            var iDurationSeconds = (Time.now().subtract($.oMyActivity.oTimeStart)).value();
-            var iDurationHours = iDurationSeconds / 3600;
-            var iDurationMinutes = (iDurationSeconds % 3600) / 60;
-            return iDurationHours.format("%02d") + ":" + iDurationMinutes.format("%02d");
+        if($.oMyActivity != null) {
+            return ($.oMyActivity as MyActivity).getFlightTime();
         }
         return "--:--";
     }

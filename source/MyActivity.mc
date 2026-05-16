@@ -219,6 +219,16 @@ class MyActivity {
     return self.oSession.isRecording();
   }
 
+  function getFlightTime() as String {
+    if(self.oTimeStart != null) {
+      var iDurationSeconds = Time.now().subtract((self.oTimeStart as Time.Moment)).value();
+      var iDurationHours = iDurationSeconds / 3600;
+      var iDurationMinutes = (iDurationSeconds % 3600) / 60;
+      return iDurationHours.format("%02d") + ":" + iDurationMinutes.format("%02d");
+    }
+    return "--:--";
+  }
+
   function pause() as Void {
     //Sys.println("DEBUG: MyActivity.pause()");
 

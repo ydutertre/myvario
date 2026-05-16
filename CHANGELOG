@@ -1,3 +1,8 @@
+* 5.10
+- Added Altitude Chart available in the 2-indicator view
+- Added Heartbeat available as an indicator in any view
+- Removed preferences grouping in Connect IQ to work around a Garmin bug :(
+
 * 5.00
 - Major change: it is now possible to create you own custom pages with 2, 4, or 7
 indicators.

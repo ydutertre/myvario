@@ -64,8 +64,9 @@ class MyViewGeneral extends MyViewGlobal {
   private const GENERAL_VIEW_INDICATOR_GROUND_SPEED as Number = 6;
   private const GENERAL_VIEW_INDICATOR_ALTITUDE_CHART as Number = 7;
   private const GENERAL_VIEW_INDICATOR_HEARTBEAT as Number = 8;
+  private const GENERAL_VIEW_INDICATOR_FLIGHT_TIME as Number = 9;
 
-  private const GENERAL_VIEW_INDICATOR_COUNT as Number = 9;
+  private const GENERAL_VIEW_INDICATOR_COUNT as Number = 10;
 
   //
   // FUNCTIONS: MyViewGlobal (override/implement)
@@ -206,6 +207,8 @@ class MyViewGeneral extends MyViewGlobal {
       return Ui.loadResource(Rez.Strings.labelAltitude) as String;
     case GENERAL_VIEW_INDICATOR_HEARTBEAT:
       return "Heartbeat";
+    case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
+      return Ui.loadResource(Rez.Strings.labelElapsed) as String;
     default:
       return "";
     }
@@ -227,6 +230,8 @@ class MyViewGeneral extends MyViewGlobal {
       return Lang.format("[$1$]", [$.oMySettings.sUnitHorizontalSpeed]);
     case GENERAL_VIEW_INDICATOR_HEARTBEAT:
       return "[bpm]";
+    case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
+      return $.MY_NOVALUE_BLANK;
     default:
       return "";
     }
@@ -330,6 +335,14 @@ class MyViewGeneral extends MyViewGlobal {
         sValue = $.MY_NOVALUE_LEN3;
       }
       break;
+    case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
+      if($.oMyActivity != null) {
+        sValue = ($.oMyActivity as MyActivity).getFlightTime();
+      }
+      else {
+        sValue = "--:--";
+      }
+      break;
     default:
       sValue = "";
     }
@@ -427,6 +440,11 @@ class MyViewGeneral extends MyViewGlobal {
       break;
     case GENERAL_VIEW_INDICATOR_HEARTBEAT:
       if(!LangUtils.notNaN($.oMyProcessing.iHR)) {
+        iColor = Gfx.COLOR_LT_GRAY;
+      }
+      break;
+    case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
+      if($.oMyActivity == null or ($.oMyActivity as MyActivity).oTimeStart == null) {
         iColor = Gfx.COLOR_LT_GRAY;
       }
       break;
