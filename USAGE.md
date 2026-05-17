@@ -546,6 +546,12 @@ From the watch, open `Settings` -> `Competition` for:
    scroll through loaded task details such as status, waypoint count, local
    start time, local deadline, SSS, ESS, goal, active waypoint, each waypoint's
    type/radius/altitude, and source
+ - `Task Map`:
+   on map-capable watches, available inside `Review Task` to show the full task
+   with cylinders, optimized task path, and direction arrows over a map
+ - `Task Overview`:
+   available on all watches inside `Review Task`; shows the same cylinders,
+   optimized task path, and direction arrows without the map underlay
  - `Reload Task`:
    fetch the task again from the configured source
  - `Reset Progress`:

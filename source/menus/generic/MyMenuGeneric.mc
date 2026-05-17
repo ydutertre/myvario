@@ -312,6 +312,12 @@ class MyMenu2Generic extends Ui.Menu2 {
       }
       else {
         Menu2.addItem(new Ui.MenuItem("Status", task.getStatusText(), :menuCompetitionReviewStatus, {}));
+        Menu2.addItem(new Ui.MenuItem("Task Overview", null, :menuCompetitionTaskOverview, {}));
+        if(Ui has :MapView) {
+          Menu2.addItem(new Ui.MenuItem("Task Map", null, :menuCompetitionTaskMap, {}));
+        }
+        Menu2.addItem(new Ui.MenuItem("Total Distance", task.formatTaskDistance(task.fTotalCenterDistance), :menuCompetitionReviewTotalDistance, {}));
+        Menu2.addItem(new Ui.MenuItem("Optimal Distance", task.formatTaskDistance(task.fOptimalTaskDistance), :menuCompetitionReviewOptimalDistance, {}));
         Menu2.addItem(new Ui.MenuItem("Waypoints", task.asNames.size().format("%d"), :menuCompetitionReviewCount, {}));
         Menu2.addItem(new Ui.MenuItem("Start", task.formatClock(task.iStartSeconds), :menuCompetitionReviewStart, {}));
         Menu2.addItem(new Ui.MenuItem("Deadline", task.formatClock(task.iDeadlineSeconds), :menuCompetitionReviewDeadline, {}));
@@ -708,6 +714,19 @@ class MyMenu2GenericDelegate extends Ui.Menu2InputDelegate {
         Ui.switchToView(new MyMenu2Generic(:menuSettingsCompetition, 0),
                         new MyMenu2GenericDelegate(:menuSettingsCompetition),
                         Ui.SLIDE_IMMEDIATE);
+      }
+    }
+
+    else if(self.menu == :menuCompetitionReview) {
+      if(itemId == :menuCompetitionTaskOverview) {
+        Ui.pushView(new MyViewCompetitionTaskOverview(),
+                    new MyViewCompetitionTaskOverviewDelegate(),
+                    Ui.SLIDE_IMMEDIATE);
+      }
+      else if(itemId == :menuCompetitionTaskMap && Ui has :MapView) {
+        Ui.pushView(new MyViewCompetitionTaskMap(),
+                    new MyViewCompetitionTaskMapDelegate(),
+                    Ui.SLIDE_IMMEDIATE);
       }
     }
 

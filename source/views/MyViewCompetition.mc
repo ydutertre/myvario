@@ -38,6 +38,10 @@ class MyViewCompetition extends MyView {
     var iMuted = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_DK_GRAY : Gfx.COLOR_LT_GRAY;
     var iCenterX = _oDC.getWidth() / 2;
     var iCenterY = _oDC.getHeight() / 2;
+    var iTinyHeight = Gfx.getFontHeight(Gfx.FONT_TINY);
+    var iSmallHeight = Gfx.getFontHeight(Gfx.FONT_SMALL);
+    var iTopY = (_oDC.getHeight() * 0.12f).toNumber();
+    var iTimeY = iTopY + iTinyHeight + 2;
 
     if($.oMyCompetitionTask == null || !$.oMySettings.bCompetitionMode) {
       _oDC.setColor(iMuted, Gfx.COLOR_TRANSPARENT);
@@ -47,7 +51,7 @@ class MyViewCompetition extends MyView {
 
     var task = $.oMyCompetitionTask;
     _oDC.setColor(iMuted, Gfx.COLOR_TRANSPARENT);
-    _oDC.drawText(iCenterX, 14, Gfx.FONT_TINY, task.getStatusText(), Gfx.TEXT_JUSTIFY_CENTER);
+    _oDC.drawText(iCenterX, iTopY, Gfx.FONT_TINY, task.getStatusText(), Gfx.TEXT_JUSTIFY_CENTER);
 
     var sTime = "";
     if(task.iTaskState == task.TASK_WAITING) {
@@ -56,7 +60,7 @@ class MyViewCompetition extends MyView {
     else {
       sTime = "Left " + task.getTaskLeftText();
     }
-    _oDC.drawText(iCenterX, 48, Gfx.FONT_TINY, sTime, Gfx.TEXT_JUSTIFY_CENTER);
+    _oDC.drawText(iCenterX, iTimeY, Gfx.FONT_TINY, sTime, Gfx.TEXT_JUSTIFY_CENTER);
 
     if(task.iState != task.STATE_READY && task.iState != task.STATE_DONE) {
       _oDC.setColor(iText, Gfx.COLOR_TRANSPARENT);
@@ -64,19 +68,21 @@ class MyViewCompetition extends MyView {
       return;
     }
 
-    if(LangUtils.notNaN(task.fBearing)) {
-      self.drawNavigationArrow(_oDC, iCenterX, iCenterY - 30, (_oDC.getWidth() * 0.12f).toNumber(), task.fBearing);
-    }
-
     var sName = task.sActiveName;
     if(sName.length() > 12) {
       sName = sName.substring(0, 12);
     }
     _oDC.setColor(iText, Gfx.COLOR_TRANSPARENT);
-    _oDC.drawText(iCenterX, iCenterY + 20, Gfx.FONT_SMALL, sName, Gfx.TEXT_JUSTIFY_CENTER);
+    var iNameY = (iCenterY + iSmallHeight * 0.7f).toNumber();
+    if(LangUtils.notNaN(task.fBearing)) {
+      var iArrowY = ((iTimeY + iTinyHeight + iNameY) / 2).toNumber();
+      var iArrowRadius = (_oDC.getWidth() * 0.105f).toNumber();
+      self.drawNavigationArrow(_oDC, iCenterX, iArrowY, iArrowRadius, task.fBearing);
+    }
+    _oDC.drawText(iCenterX, iNameY, Gfx.FONT_TINY, sName, Gfx.TEXT_JUSTIFY_CENTER);
 
     var sDistance = LangUtils.notNaN(task.fDistanceNext) ? (task.fDistanceNext * $.oMySettings.fUnitDistanceCoefficient).format("%.0f") + " " + $.oMySettings.sUnitDistance : "---";
-    _oDC.drawText(iCenterX, iCenterY + 54, Gfx.FONT_MEDIUM, sDistance, Gfx.TEXT_JUSTIFY_CENTER);
+    _oDC.drawText(iCenterX, iNameY + iTinyHeight + 4, Gfx.FONT_SMALL, sDistance, Gfx.TEXT_JUSTIFY_CENTER);
   }
 
   function drawNavigationArrow(_oDC as Gfx.Dc, _iCenterX as Number, _iCenterY as Number, _iRadius as Number, _fBearing as Float) as Void {

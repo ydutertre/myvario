@@ -39,9 +39,16 @@ class MyViewCompetitionMessage extends Ui.View {
     var iCenterX = _oDC.getWidth() / 2;
     var iCenterY = _oDC.getHeight() / 2;
     _oDC.setColor(Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
-    _oDC.drawText(iCenterX, iCenterY - 36, Gfx.FONT_LARGE, self.sTitle, Gfx.TEXT_JUSTIFY_CENTER);
+    var titleFont = Gfx.FONT_MEDIUM;
+    var subtitleFont = Gfx.FONT_SMALL;
+    var iTitleHeight = Gfx.getFontHeight(titleFont);
+    var iSubtitleHeight = self.sSubtitle.length() > 0 ? Gfx.getFontHeight(subtitleFont) : 0;
+    var iGap = self.sSubtitle.length() > 0 ? 6 : 0;
+    var iBlockTop = iCenterY - ((iTitleHeight + iGap + iSubtitleHeight) / 2);
+
+    _oDC.drawText(iCenterX, iBlockTop, titleFont, self.sTitle, Gfx.TEXT_JUSTIFY_CENTER);
     if(self.sSubtitle.length() > 0) {
-      _oDC.drawText(iCenterX, iCenterY + 4, Gfx.FONT_MEDIUM, self.sSubtitle, Gfx.TEXT_JUSTIFY_CENTER);
+      _oDC.drawText(iCenterX, iBlockTop + iTitleHeight + iGap, subtitleFont, self.sSubtitle, Gfx.TEXT_JUSTIFY_CENTER);
     }
   }
 }

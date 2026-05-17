@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="My Vario test track" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>fici task replay</name>
+    <desc>Simulator track for XContest task code fici. Crosses SYR02 SSS, SYR03, SYR04, SYR05, and SYR06 ESS/Goal.</desc>
+    <time>2026-05-17T00:05:00Z</time>
+  </metadata>
+  <wpt lat="48.3834343563168" lon="7.283022682745013">
+    <ele>0</ele>
+    <name>SYR01</name>
+    <desc>Takeoff, 100 m cylinder</desc>
+  </wpt>
+  <wpt lat="48.38343363422365" lon="7.2830227464404516">
+    <ele>0</ele>
+    <name>SYR02</name>
+    <desc>SSS, 850 m cylinder</desc>
+  </wpt>
+  <wpt lat="48.37828228290502" lon="7.3265524175834">
+    <ele>0</ele>
+    <name>SYR03</name>
+    <desc>Turnpoint, 400 m cylinder</desc>
+  </wpt>
+  <wpt lat="48.373734722453406" lon="7.236177801025178">
+    <ele>0</ele>
+    <name>SYR04</name>
+    <desc>Turnpoint, 400 m cylinder</desc>
+  </wpt>
+  <wpt lat="48.37943106728801" lon="7.278957155362292">
+    <ele>0</ele>
+    <name>SYR05</name>
+    <desc>Turnpoint, 100 m cylinder</desc>
+  </wpt>
+  <wpt lat="48.36708159949802" lon="7.289538168850072">
+    <ele>0</ele>
+    <name>SYR06</name>
+    <desc>ESS/Goal, 100 m cylinder</desc>
+  </wpt>
+  <trk>
+    <name>fici task replay</name>
+    <trkseg>
+      <trkpt lat="48.3834343563168" lon="7.283022682745013"><ele>850</ele><time>2026-05-17T00:05:00Z</time></trkpt>
+      <trkpt lat="48.38343363422365" lon="7.2830227464404516"><ele>850</ele><time>2026-05-17T00:06:00Z</time></trkpt>
+      <trkpt lat="48.38343300000000" lon="7.29450000000000"><ele>870</ele><time>2026-05-17T00:08:00Z</time></trkpt>
+      <trkpt lat="48.38170000000000" lon="7.30600000000000"><ele>890</ele><time>2026-05-17T00:10:00Z</time></trkpt>
+      <trkpt lat="48.37990000000000" lon="7.31800000000000"><ele>910</ele><time>2026-05-17T00:12:00Z</time></trkpt>
+      <trkpt lat="48.37828228290502" lon="7.3265524175834"><ele>920</ele><time>2026-05-17T00:14:00Z</time></trkpt>
+      <trkpt lat="48.37710000000000" lon="7.30500000000000"><ele>900</ele><time>2026-05-17T00:16:00Z</time></trkpt>
+      <trkpt lat="48.37590000000000" lon="7.28300000000000"><ele>880</ele><time>2026-05-17T00:18:00Z</time></trkpt>
+      <trkpt lat="48.37480000000000" lon="7.25900000000000"><ele>860</ele><time>2026-05-17T00:20:00Z</time></trkpt>
+      <trkpt lat="48.373734722453406" lon="7.236177801025178"><ele>840</ele><time>2026-05-17T00:22:00Z</time></trkpt>
+      <trkpt lat="48.37520000000000" lon="7.24700000000000"><ele>820</ele><time>2026-05-17T00:24:00Z</time></trkpt>
+      <trkpt lat="48.37670000000000" lon="7.25800000000000"><ele>800</ele><time>2026-05-17T00:26:00Z</time></trkpt>
+      <trkpt lat="48.37810000000000" lon="7.26900000000000"><ele>780</ele><time>2026-05-17T00:28:00Z</time></trkpt>
+      <trkpt lat="48.37943106728801" lon="7.278957155362292"><ele>760</ele><time>2026-05-17T00:30:00Z</time></trkpt>
+      <trkpt lat="48.37660000000000" lon="7.28160000000000"><ele>740</ele><time>2026-05-17T00:32:00Z</time></trkpt>
+      <trkpt lat="48.37340000000000" lon="7.28420000000000"><ele>720</ele><time>2026-05-17T00:34:00Z</time></trkpt>
+      <trkpt lat="48.37020000000000" lon="7.28690000000000"><ele>700</ele><time>2026-05-17T00:36:00Z</time></trkpt>
+      <trkpt lat="48.36708159949802" lon="7.289538168850072"><ele>680</ele><time>2026-05-17T00:38:00Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

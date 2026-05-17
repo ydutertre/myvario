@@ -69,6 +69,8 @@ class MyCompetitionTask {
   public var fActiveAltitude as Float = NaN;
   public var fDistanceNext as Float = NaN;
   public var fDistanceRemaining as Float = NaN;
+  public var fTotalCenterDistance as Float = NaN;
+  public var fOptimalTaskDistance as Float = NaN;
   public var fBearing as Float = NaN;
   public var fExpectedAltitudeNext as Float = NaN;
   public var fAltitudeMarginNext as Float = NaN;
@@ -122,6 +124,8 @@ class MyCompetitionTask {
     self.fActiveAltitude = NaN;
     self.fDistanceNext = NaN;
     self.fDistanceRemaining = NaN;
+    self.fTotalCenterDistance = NaN;
+    self.fOptimalTaskDistance = NaN;
     self.fBearing = NaN;
     self.fExpectedAltitudeNext = NaN;
     self.fAltitudeMarginNext = NaN;
@@ -369,6 +373,7 @@ class MyCompetitionTask {
       self.iTaskState = TASK_STARTED;
       self.bEssReached = self.iEssIndex < 0;
     }
+    self.computeTaskDistances();
   }
 
   function parseTimingV1(_task as Dictionary) as Void {
@@ -520,6 +525,13 @@ class MyCompetitionTask {
     return self.formatRemaining(self.iDeadlineSeconds);
   }
 
+  function formatTaskDistance(_fDistance as Float) as String {
+    if(!LangUtils.notNaN(_fDistance)) {
+      return "---";
+    }
+    return (_fDistance * $.oMySettings.fUnitDistanceCoefficient).format("%.0f") + " " + $.oMySettings.sUnitDistance;
+  }
+
   function getTurnpointTypeLabel(_iIndex as Number) as String {
     if(_iIndex < 0 || _iIndex >= self.aiType.size()) {
       return "WP";
@@ -625,7 +637,8 @@ class MyCompetitionTask {
 
     var iNow = self.currentUtcSeconds();
     self.iLastUtcSeconds = iNow;
-    if(self.iTaskState == TASK_WAITING) {
+    var bWasWaiting = self.iTaskState == TASK_WAITING;
+    if(bWasWaiting) {
       self.sStatus = self.isAfterStart(iNow) ? "Start open" : "Wait";
       if(self.bInsideNext && self.isAfterStart(iNow)) {
         self.iTaskState = TASK_STARTED;
@@ -640,11 +653,12 @@ class MyCompetitionTask {
         self.bInsideNext = fCenterDistance <= fRadius;
       }
     }
-    else if(!self.isBeforeDeadline(iNow)) {
+    else if(self.iTaskState == TASK_STARTED && !self.isBeforeDeadline(iNow)) {
       self.iTaskState = TASK_EXPIRED;
       self.sStatus = "Expired";
     }
-    else if(self.bInsideNext && self.iActiveIndex < self.iGoalIndex) {
+
+    if(!bWasWaiting && self.iTaskState != TASK_WAITING && self.bInsideNext && self.iActiveIndex < self.iGoalIndex) {
       var iReached = self.iActiveIndex;
       self.iActiveIndex = self.nextNavigableIndex(self.iActiveIndex);
       if(iReached == self.iEssIndex) {
@@ -658,7 +672,7 @@ class MyCompetitionTask {
       fRadius = self.afRadius[self.iActiveIndex] as Float;
       self.bInsideNext = fCenterDistance <= fRadius;
     }
-    else if(self.bInsideNext && self.iActiveIndex >= self.iGoalIndex) {
+    else if(!bWasWaiting && self.iTaskState != TASK_WAITING && self.bInsideNext && self.iActiveIndex >= self.iGoalIndex) {
       if(self.iActiveIndex == self.iEssIndex) {
         self.bEssReached = true;
       }
@@ -767,6 +781,119 @@ class MyCompetitionTask {
       i = next;
     }
     return total;
+  }
+
+  function computeTaskDistances() as Void {
+    self.fTotalCenterDistance = NaN;
+    self.fOptimalTaskDistance = NaN;
+    if(self.asNames.size() < 2 || self.iGoalIndex < 0) {
+      return;
+    }
+
+    var iStart = self.iStartIndex >= 0 ? self.iStartIndex : self.nextNavigableIndex(-1);
+    if(iStart < 0 || iStart >= self.asNames.size()) {
+      return;
+    }
+
+    var fCenterTotal = 0.0f;
+    var iCurrent = iStart;
+    var iNext = self.nextNavigableIndex(iCurrent);
+    while(iNext < self.asNames.size() && iNext <= self.iGoalIndex) {
+      fCenterTotal += self.distanceMeters(self.afLatitude[iCurrent], self.afLongitude[iCurrent], self.afLatitude[iNext], self.afLongitude[iNext]);
+      iCurrent = iNext;
+      iNext = self.nextNavigableIndex(iCurrent);
+    }
+    self.fTotalCenterDistance = fCenterTotal;
+
+    self.fOptimalTaskDistance = self.computeOptimizedDiskPathDistance(iStart);
+  }
+
+  function computeOptimizedDiskPathDistance(_iStart as Number) as Float {
+    var aiIndices = [];
+    var iCurrent = _iStart;
+    aiIndices.add(iCurrent);
+    var iNext = self.nextNavigableIndex(iCurrent);
+    while(iNext < self.asNames.size() && iNext <= self.iGoalIndex) {
+      aiIndices.add(iNext);
+      iCurrent = iNext;
+      iNext = self.nextNavigableIndex(iCurrent);
+    }
+    if(aiIndices.size() < 2) {
+      return 0.0f;
+    }
+
+    var fRefLat = self.afLatitude[aiIndices[0] as Number] as Float;
+    var fRefLon = self.afLongitude[aiIndices[0] as Number] as Float;
+    var aaCenters = [];
+    var aaPoints = [];
+    for(var i=0; i<aiIndices.size(); i++) {
+      var iIndex = aiIndices[i] as Number;
+      var aCenter = self.toLocalMeters(self.afLatitude[iIndex] as Float, self.afLongitude[iIndex] as Float, fRefLat, fRefLon);
+      aaCenters.add(aCenter);
+      aaPoints.add([aCenter[0] as Float, aCenter[1] as Float]);
+    }
+
+    for(var iteration=0; iteration<12; iteration++) {
+      var iLast = aiIndices.size() - 1;
+      // XCTSK task distance starts at the SSS center; do not shorten by the start cylinder radius.
+      for(var j=1; j<iLast; j++) {
+        aaPoints[j] = self.bestPointInDiskBetween(aaCenters[j] as Array, self.afRadius[aiIndices[j] as Number] as Float, aaPoints[j-1] as Array, aaPoints[j+1] as Array);
+      }
+      aaPoints[iLast] = self.nearestPointOnDisk(aaCenters[iLast] as Array, self.afRadius[aiIndices[iLast] as Number] as Float, aaPoints[iLast-1] as Array);
+    }
+
+    var fTotal = 0.0f;
+    for(var k=0; k<aaPoints.size()-1; k++) {
+      fTotal += self.localDistance(aaPoints[k] as Array, aaPoints[k+1] as Array);
+    }
+    return fTotal;
+  }
+
+  function nearestPointOnDisk(_aCenter as Array, _fRadius as Float, _aTarget as Array) as Array<Float> {
+    var dx = (_aTarget[0] as Float) - (_aCenter[0] as Float);
+    var dy = (_aTarget[1] as Float) - (_aCenter[1] as Float);
+    var len = Math.sqrt(dx*dx + dy*dy);
+    if(len <= 0.0001f) {
+      return [_aCenter[0] as Float, _aCenter[1] as Float];
+    }
+    return [((_aCenter[0] as Float) + dx * _fRadius / len).toFloat(), ((_aCenter[1] as Float) + dy * _fRadius / len).toFloat()];
+  }
+
+  function bestPointInDiskBetween(_aCenter as Array, _fRadius as Float, _aPrev as Array, _aNext as Array) as Array<Float> {
+    var ax = _aPrev[0] as Float;
+    var ay = _aPrev[1] as Float;
+    var bx = _aNext[0] as Float;
+    var by = _aNext[1] as Float;
+    var cx = _aCenter[0] as Float;
+    var cy = _aCenter[1] as Float;
+    var dx = bx - ax;
+    var dy = by - ay;
+    var len2 = dx*dx + dy*dy;
+    if(len2 <= 0.0001f) {
+      return self.nearestPointOnDisk(_aCenter, _fRadius, _aPrev);
+    }
+    var t = ((cx - ax)*dx + (cy - ay)*dy) / len2;
+    if(t < 0.0f) {
+      t = 0.0f;
+    }
+    else if(t > 1.0f) {
+      t = 1.0f;
+    }
+    var px = ax + t*dx;
+    var py = ay + t*dy;
+    var cdx = px - cx;
+    var cdy = py - cy;
+    var dist = Math.sqrt(cdx*cdx + cdy*cdy);
+    if(dist <= _fRadius) {
+      return [px.toFloat(), py.toFloat()];
+    }
+    return [(cx + cdx * _fRadius / dist).toFloat(), (cy + cdy * _fRadius / dist).toFloat()];
+  }
+
+  function localDistance(_aPoint1 as Array, _aPoint2 as Array) as Float {
+    var dx = (_aPoint2[0] as Float) - (_aPoint1[0] as Float);
+    var dy = (_aPoint2[1] as Float) - (_aPoint1[1] as Float);
+    return Math.sqrt(dx*dx + dy*dy).toFloat();
   }
 
   function toLocalMeters(_fLat as Float, _fLon as Float, _fRefLat as Float, _fRefLon as Float) as Array<Float> {
