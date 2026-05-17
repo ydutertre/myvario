@@ -511,8 +511,9 @@ To enable Competition Mode:
 - Open the Garmin Connect IQ app on your smartphone
 - Open the settings for My Vario
 - Turn `Competition Mode` on
-- Paste an offline XCTSK v2 task into `Task QR Code`, paste a full task URL
-  into `Task URL`, or enter a short XContest task code into `Task Code`
+- Paste an offline XCTSK v2 task into `Task QR Code` (read the QR XCTrack QR Code from your
+phone QR reader, copy and paste the string), paste a full task URL into `Task URL`,
+or enter a short XContest task code into `Task Code`
 - Save the settings
 - Close and restart My Vario on the watch
 
