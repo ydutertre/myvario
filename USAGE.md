@@ -508,19 +508,32 @@ Competition settings are configured from the app settings in Garmin Connect IQ
 on your smartphone.
 
 To enable Competition Mode:
- - Open the Garmin Connect IQ app on your smartphone
- - Open the settings for My Vario
- - Turn `Competition Mode` on
- - Paste a full task URL into `Task URL`, or enter a short XContest task code
-   into `Task Code`
- - Save the settings
- - Close and restart My Vario on the watch
+- Open the Garmin Connect IQ app on your smartphone
+- Open the settings for My Vario
+- Turn `Competition Mode` on
+- Paste an offline XCTSK v2 task into `Task QR Code`, paste a full task URL
+  into `Task URL`, or enter a short XContest task code into `Task Code`
+- Save the settings
+- Close and restart My Vario on the watch
 
-The app loads the task when it starts. If you change the task URL/code or turn
-Competition Mode on or off, close and restart the app to make sure the new task
-is loaded cleanly.
+The app loads the task when it starts. If you change the task definition,
+URL/code, or turn Competition Mode on or off, close and restart the app to make
+sure the new task is loaded cleanly.
 
-You can use either a task code or an XCTrack/XContest task URL. For example:
+`Task QR Code` is treated as a one-shot offline import field. After the app
+successfully parses the pasted XCTSK v2 task, it clears the setting
+automatically. This avoids Garmin settings-editor issues with long task strings.
+The imported task is kept in the app's internal storage, so it can survive app
+restarts without leaving the long QR string in Garmin's settings editor.
+
+You can use an offline XCTSK v2 task definition, a task code, or an
+XCTrack/XContest task URL. For example:
+
+```
+XCTSK:{"version":2,"taskType":"CLASSIC","t":[{"z":"osumYgi_wEwpCgE","n":"fuji5.TO","t":2},{"z":"g}wmYceiwEgjAgE","n":"fuji5.LD","t":3}],"s":{"t":1,"d":2,"g":["03:00:00Z"]},"g":{"t":2,"d":"14:00:00Z"}}
+```
+
+or:
 
 ```
 coco
@@ -539,7 +552,8 @@ https://tools.xcontest.org/api/xctsk/load/coco
 ```
 
 The app normalizes XContest preview URLs into the raw task API URL internally.
-If both `Task URL` and `Task Code` are filled, `Task URL` takes priority.
+If multiple task inputs are filled, `Task QR Code` takes priority, then
+`Task URL`, then `Task Code`.
 
 From the watch, open `Settings` -> `Competition` for:
  - `Review Task`:

@@ -33,6 +33,7 @@
   <property id="userMapDisplay" type="boolean">false</property>
   <!-- ... competition -->
   <property id="userCompetitionMode" type="boolean">false</property>
+  <property id="userCompetitionTaskDefinition" type="string"></property>
   <property id="userCompetitionTaskUrl" type="string"></property>
   <property id="userCompetitionTaskCode" type="string"></property>
   <property id="userCompetitionTaskSource" type="string"></property>

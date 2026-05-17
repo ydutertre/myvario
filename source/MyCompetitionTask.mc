@@ -43,6 +43,7 @@ class MyCompetitionTask {
   public const TASK_COMPLETE = 3;
 
   private const EARTH_RADIUS as Float = 6371007.2f;
+  private const IMPORTED_TASK_SOURCE as String = "__imported_task__";
 
   public var bEnabled as Boolean = false;
   public var sSource as String = "";
@@ -151,6 +152,24 @@ class MyCompetitionTask {
       return;
     }
 
+    if(self.isDirectTaskSource(self.sSource)) {
+      self.iState = STATE_LOADING;
+      self.sStatus = "Parsing";
+      if(self.parseDirectTaskSource(self.sSource)) {
+        self.storeImportedTaskDefinition();
+        self.iState = STATE_READY;
+        self.sStatus = "Ready " + self.asNames.size().format("%d") + " WP";
+      }
+      else {
+        self.fail("Parse failed");
+      }
+      return;
+    }
+    if(self.sSource.equals(IMPORTED_TASK_SOURCE)) {
+      self.fail("No imported task");
+      return;
+    }
+
     var sUrl = self.getLoadUrl(self.sSource);
     if(sUrl.length() == 0) {
       self.fail("No task URL");
@@ -196,6 +215,14 @@ class MyCompetitionTask {
     try {
       App.Storage.deleteValue("competitionTaskSource");
       App.Storage.deleteValue("competitionTaskData");
+      App.Storage.deleteValue("competitionTaskDirectSource");
+      if(self.sSource.equals(IMPORTED_TASK_SOURCE)) {
+        App.Properties.setValue("userCompetitionTaskSource", "" as App.PropertyValueType);
+        if($.oMySettings != null) {
+          $.oMySettings.setCompetitionTaskSource("");
+        }
+        self.sSource = "";
+      }
     } catch(e) {
     }
   }
@@ -204,6 +231,18 @@ class MyCompetitionTask {
     try {
       var sCachedSource = LangUtils.readKeyString(App.Storage.getValue("competitionTaskSource"), "");
       if(!sCachedSource.equals(self.sSource)) {
+        return false;
+      }
+      if(sCachedSource.equals(IMPORTED_TASK_SOURCE)) {
+        var sDirectSource = LangUtils.readKeyString(App.Storage.getValue("competitionTaskDirectSource"), "");
+        if(sDirectSource.length() == 0) {
+          return false;
+        }
+        if(self.parseDirectTaskSource(sDirectSource)) {
+          self.iState = STATE_READY;
+          self.sStatus = "Ready " + self.asNames.size().format("%d") + " WP";
+          return true;
+        }
         return false;
       }
       var cachedTask = App.Storage.getValue("competitionTaskData");
@@ -235,6 +274,37 @@ class MyCompetitionTask {
       return s;
     }
     return "https://tools.xcontest.org/api/xctsk/load/" + s;
+  }
+
+  function isDirectTaskSource(_sSource as String) as Boolean {
+    var s = self.stripTaskText(_sSource);
+    var iXctsk = s.find("XCTSK:");
+    var iJson = s.find("{");
+    return (iXctsk != null && iXctsk == 0) || (iJson != null && iJson == 0);
+  }
+
+  function parseDirectTaskSource(_sSource as String) as Boolean {
+    var s = self.stripTaskText(_sSource);
+    var iXctsk = s.find("XCTSK:");
+    if(iXctsk != null && iXctsk == 0) {
+      s = self.stripTaskText(s.substring(6, s.length()));
+    }
+    return self.parseXctskV2Text(s);
+  }
+
+  function storeImportedTaskDefinition() as Void {
+    try {
+      App.Storage.setValue("competitionTaskSource", IMPORTED_TASK_SOURCE as App.PropertyValueType);
+      App.Storage.setValue("competitionTaskDirectSource", self.sSource as App.PropertyValueType);
+      App.Properties.setValue("userCompetitionTaskDefinition", "" as App.PropertyValueType);
+      App.Properties.setValue("userCompetitionTaskSource", IMPORTED_TASK_SOURCE as App.PropertyValueType);
+      if($.oMySettings != null) {
+        $.oMySettings.setCompetitionTaskDefinition("");
+        $.oMySettings.setCompetitionTaskSource(IMPORTED_TASK_SOURCE);
+      }
+      self.sSource = IMPORTED_TASK_SOURCE;
+    } catch(e) {
+    }
   }
 
   function onReceiveTask(_responseCode, _data) as Void {
@@ -592,27 +662,404 @@ class MyCompetitionTask {
     return 0;
   }
 
+  function parseXctskV2Text(_sText as String) as Boolean {
+    self.clearTask();
+    var sTurnpoints = self.readTopLevelArray(_sText, "t");
+    if(sTurnpoints.length() == 0) {
+      return false;
+    }
+
+    var i = 0;
+    while(i < sTurnpoints.length()) {
+      i = self.findNextJsonChar(sTurnpoints, "{", i);
+      if(i < 0) {
+        break;
+      }
+      var iEnd = self.findMatchingJson(sTurnpoints, i);
+      if(iEnd < 0) {
+        break;
+      }
+      var sTp = sTurnpoints.substring(i, iEnd + 1);
+      var values = self.decodePolyline(self.readLocalString(sTp, "z"));
+      if(values.size() >= 4) {
+        var name = self.readLocalString(sTp, "n");
+        if(name.length() == 0) {
+          name = "TP " + (self.asNames.size() + 1).format("%d");
+        }
+        var type = self.readLocalNumber(sTp, "t", 0);
+        self.addTurnpoint(name, values[1] as Float, values[0] as Float, values[2] as Float, values[3] as Float, type);
+      }
+      i = iEnd + 1;
+    }
+
+    var sStart = self.readTopLevelObject(_sText, "s");
+    if(sStart.length() > 0) {
+      var sGates = self.readTopLevelArray(sStart, "g");
+      self.iStartSeconds = self.parseUtcSeconds(self.readFirstJsonString(sGates));
+    }
+    var sGoal = self.readTopLevelObject(_sText, "g");
+    if(sGoal.length() > 0) {
+      self.iDeadlineSeconds = self.parseUtcSeconds(self.readTopLevelString(sGoal, "d"));
+    }
+
+    self.finalizeParsedTask();
+    return self.asNames.size() > 0;
+  }
+
+  function stripTaskText(_sText as String) as String {
+    var iStart = 0;
+    var iEnd = _sText.length();
+    while(iStart < iEnd && self.isJsonWhitespace(_sText.substring(iStart, iStart + 1))) {
+      iStart++;
+    }
+    while(iEnd > iStart && self.isJsonWhitespace(_sText.substring(iEnd - 1, iEnd))) {
+      iEnd--;
+    }
+    var s = _sText.substring(iStart, iEnd);
+    if(s.length() >= 2 && s.substring(0, 1).equals("\"") && s.substring(s.length() - 1, s.length()).equals("\"")) {
+      var sUnquoted = self.readJsonStringAt(s, 0);
+      if(sUnquoted.length() > 0) {
+        return sUnquoted;
+      }
+    }
+    return s;
+  }
+
+  function isJsonWhitespace(_sChar as String) as Boolean {
+    return _sChar.equals(" ") || _sChar.equals("\n") || _sChar.equals("\r") || _sChar.equals("\t");
+  }
+
+  function skipJsonWhitespace(_sText as String, _iIndex as Number) as Number {
+    var i = _iIndex;
+    while(i < _sText.length() && self.isJsonWhitespace(_sText.substring(i, i + 1))) {
+      i++;
+    }
+    return i;
+  }
+
+  function readTopLevelArray(_sText as String, _sKey as String) as String {
+    return self.readTopLevelContainer(_sText, _sKey, "[");
+  }
+
+  function readTopLevelObject(_sText as String, _sKey as String) as String {
+    return self.readTopLevelContainer(_sText, _sKey, "{");
+  }
+
+  function readTopLevelContainer(_sText as String, _sKey as String, _sOpen as String) as String {
+    var iValue = self.findTopLevelKeyValue(_sText, _sKey);
+    if(iValue < 0) {
+      return "";
+    }
+    iValue = self.skipJsonWhitespace(_sText, iValue);
+    if(iValue >= _sText.length() || !_sText.substring(iValue, iValue + 1).equals(_sOpen)) {
+      return "";
+    }
+    var iEnd = self.findMatchingJson(_sText, iValue);
+    if(iEnd < 0) {
+      return "";
+    }
+    return _sText.substring(iValue, iEnd + 1);
+  }
+
+  function readTopLevelString(_sText as String, _sKey as String) as String {
+    var iValue = self.findTopLevelKeyValue(_sText, _sKey);
+    if(iValue < 0) {
+      return "";
+    }
+    return self.readJsonStringAt(_sText, self.skipJsonWhitespace(_sText, iValue));
+  }
+
+  function readTopLevelNumber(_sText as String, _sKey as String, _iDefault as Number) as Number {
+    var iValue = self.findTopLevelKeyValue(_sText, _sKey);
+    if(iValue < 0) {
+      return _iDefault;
+    }
+    var i = self.skipJsonWhitespace(_sText, iValue);
+    var iEnd = i;
+    while(iEnd < _sText.length()) {
+      var c = _sText.substring(iEnd, iEnd + 1);
+      if(c.equals(",") || c.equals("}") || c.equals("]") || self.isJsonWhitespace(c)) {
+        break;
+      }
+      iEnd++;
+    }
+    if(iEnd <= i) {
+      return _iDefault;
+    }
+    try {
+      return _sText.substring(i, iEnd).toNumber();
+    } catch(e) {
+      return _iDefault;
+    }
+  }
+
+  function findLocalKeyValue(_sText as String, _sKey as String) as Number {
+    var sNeedle = "\"" + _sKey + "\":";
+    var i = _sText.find(sNeedle);
+    if(i == null || i < 0) {
+      sNeedle = "\"" + _sKey + "\" :";
+      i = _sText.find(sNeedle);
+      if(i == null || i < 0) {
+        return -1;
+      }
+    }
+    return i + sNeedle.length();
+  }
+
+  function readLocalString(_sText as String, _sKey as String) as String {
+    var iValue = self.findLocalKeyValue(_sText, _sKey);
+    if(iValue < 0) {
+      return "";
+    }
+    return self.readJsonStringAt(_sText, self.skipJsonWhitespace(_sText, iValue));
+  }
+
+  function readLocalNumber(_sText as String, _sKey as String, _iDefault as Number) as Number {
+    var iValue = self.findLocalKeyValue(_sText, _sKey);
+    if(iValue < 0) {
+      return _iDefault;
+    }
+    var i = self.skipJsonWhitespace(_sText, iValue);
+    var iEnd = i;
+    while(iEnd < _sText.length()) {
+      var c = _sText.substring(iEnd, iEnd + 1);
+      if(c.equals(",") || c.equals("}") || self.isJsonWhitespace(c)) {
+        break;
+      }
+      iEnd++;
+    }
+    if(iEnd <= i) {
+      return _iDefault;
+    }
+    try {
+      return _sText.substring(i, iEnd).toNumber();
+    } catch(e) {
+      return _iDefault;
+    }
+  }
+
+  function readNumberAt(_sText as String, _iIndex as Number, _iDefault as Number) as Number {
+    var iEnd = _iIndex;
+    while(iEnd < _sText.length()) {
+      var c = _sText.substring(iEnd, iEnd + 1);
+      if(c.equals(",") || c.equals("}") || self.isJsonWhitespace(c)) {
+        break;
+      }
+      iEnd++;
+    }
+    if(iEnd <= _iIndex) {
+      return _iDefault;
+    }
+    try {
+      return _sText.substring(_iIndex, iEnd).toNumber();
+    } catch(e) {
+      return _iDefault;
+    }
+  }
+
+  function readFirstJsonString(_sText as String) as String {
+    var i = self.findNextJsonChar(_sText, "\"", 0);
+    if(i < 0) {
+      return "";
+    }
+    return self.readJsonStringAt(_sText, i);
+  }
+
+  function readJsonStringAt(_sText as String, _iIndex as Number) as String {
+    if(_iIndex < 0 || _iIndex >= _sText.length() || !_sText.substring(_iIndex, _iIndex + 1).equals("\"")) {
+      return "";
+    }
+    var s = "";
+    var i = _iIndex + 1;
+    var bEscape = false;
+    while(i < _sText.length()) {
+      var c = _sText.substring(i, i + 1);
+      if(bEscape) {
+        s += c;
+        bEscape = false;
+      }
+      else if(self.isJsonBackslash(c)) {
+        bEscape = true;
+      }
+      else if(c.equals("\"")) {
+        return s;
+      }
+      else {
+        s += c;
+      }
+      i++;
+    }
+    return "";
+  }
+
+  function findTopLevelKeyValue(_sText as String, _sKey as String) as Number {
+    var i = 0;
+    var iDepth = 0;
+    var bString = false;
+    var bEscape = false;
+    while(i < _sText.length()) {
+      var c = _sText.substring(i, i + 1);
+      if(bString) {
+        if(bEscape) {
+          bEscape = false;
+        }
+        else if(self.isJsonBackslash(c)) {
+          bEscape = true;
+        }
+        else if(c.equals("\"")) {
+          bString = false;
+        }
+      }
+      else if(c.equals("\"")) {
+        if(iDepth == 1 && self.matchesJsonKey(_sText, i, _sKey)) {
+          var iColon = i + _sKey.length() + 2;
+          iColon = self.skipJsonWhitespace(_sText, iColon);
+          if(iColon < _sText.length() && _sText.substring(iColon, iColon + 1).equals(":")) {
+            return iColon + 1;
+          }
+        }
+        bString = true;
+      }
+      else if(c.equals("{") || c.equals("[")) {
+        iDepth++;
+      }
+      else if(c.equals("}") || c.equals("]")) {
+        iDepth--;
+      }
+      i++;
+    }
+    return -1;
+  }
+
+  function matchesJsonKey(_sText as String, _iQuote as Number, _sKey as String) as Boolean {
+    var iEndQuote = _iQuote + _sKey.length() + 1;
+    if(iEndQuote >= _sText.length()) {
+      return false;
+    }
+    return _sText.substring(_iQuote + 1, iEndQuote).equals(_sKey) && _sText.substring(iEndQuote, iEndQuote + 1).equals("\"");
+  }
+
+  function findNextJsonChar(_sText as String, _sChar as String, _iStart as Number) as Number {
+    var i = _iStart;
+    var bString = false;
+    var bEscape = false;
+    while(i < _sText.length()) {
+      var c = _sText.substring(i, i + 1);
+      if(bString) {
+        if(bEscape) {
+          bEscape = false;
+        }
+        else if(self.isJsonBackslash(c)) {
+          bEscape = true;
+        }
+        else if(c.equals("\"")) {
+          bString = false;
+        }
+      }
+      else if(c.equals("\"")) {
+        if(_sChar.equals("\"")) {
+          return i;
+        }
+        bString = true;
+      }
+      else if(c.equals(_sChar)) {
+        return i;
+      }
+      i++;
+    }
+    return -1;
+  }
+
+  function findMatchingJson(_sText as String, _iOpen as Number) as Number {
+    var sOpen = _sText.substring(_iOpen, _iOpen + 1);
+    var sClose = sOpen.equals("{") ? "}" : "]";
+    var iDepth = 0;
+    var bString = false;
+    var bEscape = false;
+    for(var i=_iOpen; i<_sText.length(); i++) {
+      var c = _sText.substring(i, i + 1);
+      if(bString) {
+        if(bEscape) {
+          bEscape = false;
+        }
+        else if(self.isJsonBackslash(c)) {
+          bEscape = true;
+        }
+        else if(c.equals("\"")) {
+          bString = false;
+        }
+      }
+      else if(c.equals("\"")) {
+        bString = true;
+      }
+      else if(c.equals(sOpen)) {
+        iDepth++;
+      }
+      else if(c.equals(sClose)) {
+        iDepth--;
+        if(iDepth == 0) {
+          return i;
+        }
+      }
+    }
+    return -1;
+  }
+
+  function isJsonBackslash(_sChar as String) as Boolean {
+    return self.isJsonBackslashChar(_sChar);
+  }
+
+  function isJsonBackslashChar(_sChar as String) as Boolean {
+    var sAlphabet = "?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~";
+    var iValue = sAlphabet.find(_sChar);
+    return iValue != null && iValue == 29;
+  }
+
+  function decodePolylineChar(_sChar as String) as Number {
+    var lower = "abcdefghijklmnopqrstuvwxyz";
+    var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    var iLower = lower.find(_sChar);
+    if(iLower != null && iLower >= 0) {
+      return iLower + 34;
+    }
+    var iUpper = upper.find(_sChar);
+    if(iUpper != null && iUpper >= 0) {
+      return iUpper + 2;
+    }
+    if(_sChar.equals("?")) { return 0; }
+    if(_sChar.equals("@")) { return 1; }
+    if(_sChar.equals("[")) { return 28; }
+    if(self.isJsonBackslashChar(_sChar)) { return 29; }
+    if(_sChar.equals("]")) { return 30; }
+    if(_sChar.equals("^")) { return 31; }
+    if(_sChar.equals("_")) { return 32; }
+    if(_sChar.equals("`")) { return 33; }
+    if(_sChar.equals("{")) { return 60; }
+    if(_sChar.equals("|")) { return 61; }
+    if(_sChar.equals("}")) { return 62; }
+    if(_sChar.equals("~")) { return 63; }
+    return 0;
+  }
+
   function decodePolyline(_sText as String) as Array<Float> {
     var values = [];
     var index = 0;
-    var value = 0;
     while(index < _sText.length() && values.size() < 4) {
       var result = 0;
       var shift = 0;
       var b = 0;
       do {
-        b = _sText.substring(index, index + 1).toCharArray()[0] - 63;
+        b = self.decodePolylineChar(_sText.substring(index, index + 1));
         index++;
         result = result | ((b & 0x1f) << shift);
         shift += 5;
       } while(b >= 0x20 && index < _sText.length());
       var delta = ((result & 1) != 0) ? ~(result >> 1) : (result >> 1);
-      value += delta;
       if(values.size() < 2) {
-        values.add(value.toFloat() / 100000.0f);
+        values.add(delta.toFloat() / 100000.0f);
       }
       else {
-        values.add(value.toFloat());
+        values.add(delta.toFloat());
       }
     }
     return values;

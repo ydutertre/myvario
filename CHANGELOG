@@ -1,3 +1,8 @@
+* 6.10
+- Added Task Map overview: review cylinders and path on a map
+- Added Task Overview: same as above, but without the map overlay, for devices without maps
+- Added Total Distance and Optimal Distance information for the task
+
 * 6.01
 - Minor scrolling bug fix
 

@@ -73,6 +73,7 @@ class MySettings {
   public var iGPS as Number = 0; // 0: full, 1: GPS
   public var bMapDisplay as Boolean = false;
   public var bCompetitionMode as Boolean = false;
+  public var sCompetitionTaskDefinition as String = "";
   public var sCompetitionTaskUrl as String = "";
   public var sCompetitionTaskCode as String = "";
   public var sCompetitionTaskSource as String = "";
@@ -169,6 +170,7 @@ class MySettings {
     self.setGPS(self.loadGPS());
     self.setMapDisplay(self.loadMapDisplay());
     self.setCompetitionMode(self.loadCompetitionMode());
+    self.setCompetitionTaskDefinition(self.loadCompetitionTaskDefinition());
     self.setCompetitionTaskUrl(self.loadCompetitionTaskUrl());
     self.setCompetitionTaskCode(self.loadCompetitionTaskCode());
     self.setCompetitionTaskSource(self.resolveCompetitionTaskSource());
@@ -903,6 +905,16 @@ class MySettings {
     self.bCompetitionMode = _bValue;
   }
 
+  function loadCompetitionTaskDefinition() as String {
+    return LangUtils.readKeyString(App.Properties.getValue("userCompetitionTaskDefinition"), "");
+  }
+  function saveCompetitionTaskDefinition(_sValue as String) as Void {
+    App.Properties.setValue("userCompetitionTaskDefinition", _sValue as App.PropertyValueType);
+  }
+  function setCompetitionTaskDefinition(_sValue as String) as Void {
+    self.sCompetitionTaskDefinition = LangUtils.readKeyString(_sValue, "");
+  }
+
   function loadCompetitionTaskUrl() as String {
     return LangUtils.readKeyString(App.Properties.getValue("userCompetitionTaskUrl"), "");
   }
@@ -934,6 +946,9 @@ class MySettings {
   }
 
   function resolveCompetitionTaskSource() as String {
+    if(self.sCompetitionTaskDefinition.length() > 0) {
+      return self.sCompetitionTaskDefinition;
+    }
     if(self.sCompetitionTaskUrl.length() > 0) {
       return self.sCompetitionTaskUrl;
     }

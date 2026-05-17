@@ -1,6 +1,6 @@
 <strings>
   <string id="AppName">My Vario</string>
-  <string id="AppVersion">6.01</string>
+  <string id="AppVersion">6.10</string>
   <!-- Properties -->
   <string id="titleVersion">Version</string>
   <string id="titleLicense">License</string>
@@ -68,6 +68,7 @@
   <string id="titleSettingsCompetition">Competition</string>
   <string id="titleCompetitionMode">Competition Mode</string>
   <string id="titleCompetitionTaskSource">Task Source</string>
+  <string id="titleCompetitionTaskDefinition">Task QR Code</string>
   <string id="titleCompetitionTaskUrl">Task URL</string>
   <string id="titleCompetitionTaskCode">Task Code</string>
   <!-- Menu (storage) -->
