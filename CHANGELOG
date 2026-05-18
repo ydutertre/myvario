@@ -1,3 +1,9 @@
+* 6.22
+- Fix regression introduced by custom views: altitude and vertical speed were no longer
+displayed unless GPS fix was available
+- The following values are now correctly displayed when GPS fix is unavailable: Heartbeat,
+Flight Time, WP Altitude, Comp Status, Start Time, Task Left, Start In
+
 * 6.21
 - The bottom field (currently local time) of the vario view can now be customized.
 To do so, go to Variometer -> Bottom value in the settings.

@@ -233,6 +233,23 @@ class MyViewGeneral extends MyViewGlobal {
     return self.oIndicator.getValueColor(_iIndicator, _bRecording, self.iColorText);
   }
 
+  function isIndicatorAvailableWithoutGps(_iIndicator as Number) as Boolean {
+    switch(_iIndicator) {
+    case GENERAL_VIEW_INDICATOR_ALTITUDE:
+    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
+    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
+    case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
+    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
+      return true;
+    default:
+      return false;
+    }
+  }
+
   function formatClimbValue(_fValue as Float) as String {
     return self.oIndicator.formatClimbValue(_fValue);
   }
@@ -328,6 +345,10 @@ class MyViewGeneral extends MyViewGlobal {
     if($.oMyProcessing.iAccuracy == Pos.QUALITY_NOT_AVAILABLE) {
       for(var i=0; i<iLayout; i++) {
         var sSlot = self.getGeneralViewSlotName(i, iLayout);
+        var iIndicator = (i < aFields.size()) ? (aFields[i] as Number) : $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED;
+        if(self.isIndicatorAvailableWithoutGps(iIndicator)) {
+          continue;
+        }
         var oValue = View.findDrawableById("value" + sSlot) as Ui.Text;
         if(oValue != null) {
           oValue.setFont(Gfx.FONT_LARGE);
