@@ -59,6 +59,15 @@ class MyViewVariometer extends MyView {
   private var iLayoutTimeY as Number = Math.round(Sys.getDeviceSettings().screenHeight * 0.675);
   private var iLayoutAltitudeY as Number = (Sys.getDeviceSettings().screenHeight - iLayoutTimeY);
   private var iLayoutUnitX as Number = (Sys.getDeviceSettings().screenWidth * 0.883).toNumber();
+  private var iLayoutLargeAltitudeX as Number = (Sys.getDeviceSettings().screenWidth * 0.465).toNumber();
+  private var iLayoutLargeAltitudeUnitX as Number = (Sys.getDeviceSettings().screenWidth * 0.700).toNumber();
+  private var iLayoutLargeTopY as Number = (Sys.getDeviceSettings().screenHeight * 0.140).toNumber();
+  private var iLayoutLargeActivityY as Number = (Sys.getDeviceSettings().screenHeight * 0.290).toNumber();
+  private var iLayoutLargeVarioX as Number = (Sys.getDeviceSettings().screenWidth * 0.415).toNumber();
+  private var iLayoutLargeVarioY as Number = (Sys.getDeviceSettings().screenHeight * 0.530).toNumber();
+  private var iLayoutLargeUnitX as Number = (Sys.getDeviceSettings().screenWidth * 0.705).toNumber();
+  private var iLayoutLargeBatteryY as Number = (Sys.getDeviceSettings().screenHeight * 0.675).toNumber();
+  private var iLayoutLargeTimeY as Number = (Sys.getDeviceSettings().screenHeight * 0.775).toNumber();
   
   //
   // FUNCTIONS: MyView (override/implement)
@@ -103,6 +112,11 @@ class MyViewVariometer extends MyView {
   //
 
   function drawLayout(_oDC) {
+    if($.oMySettings.iVariometerViewLayout == 1) {
+      self.drawLargeLayout(_oDC);
+      return;
+    }
+
     // Draw background
     _oDC.setPenWidth(self.iLayoutCenter);
 
@@ -209,6 +223,84 @@ class MyViewVariometer extends MyView {
     _oDC.drawText(self.iLayoutCacheX, self.iLayoutCenter, Gfx.FONT_NUMBER_MEDIUM, sValue, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
     _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
     _oDC.drawText(self.iLayoutUnitX, self.iLayoutCenter, Gfx.FONT_TINY, $.oMySettings.sUnitVerticalSpeed, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+  }
+
+  function drawLargeLayout(_oDC) {
+    var fValue;
+    var sValue;
+    var iColor = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE;
+
+    _oDC.setColor($.oMySettings.iGeneralBackgroundColor, $.oMySettings.iGeneralBackgroundColor);
+    _oDC.clear();
+
+    // ... altitude
+    fValue = $.oMyProcessing.fAltitude;
+    if(LangUtils.notNaN(fValue)) {
+      fValue *= $.oMySettings.fUnitElevationCoefficient;
+      sValue = fValue.format("%.0f");
+    }
+    else {
+      sValue = $.MY_NOVALUE_LEN3;
+    }
+    _oDC.setColor(iColor, Gfx.COLOR_TRANSPARENT);
+    _oDC.drawText(self.iLayoutLargeAltitudeX, self.iLayoutLargeTopY, Gfx.FONT_NUMBER_MILD, sValue, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+    _oDC.drawText(self.iLayoutLargeAltitudeUnitX, self.iLayoutLargeTopY, Gfx.FONT_SMALL, $.oMySettings.sUnitElevation, Gfx.TEXT_JUSTIFY_LEFT | Gfx.TEXT_JUSTIFY_VCENTER);
+
+    // ... activity
+    if($.oMyActivity == null) {  // ... stand-by
+      _oDC.setColor(self.iColorTextGr, Gfx.COLOR_TRANSPARENT);
+      sValue = self.sValueActivityStandby;
+    }
+    else if(($.oMyActivity as MyActivity).isRecording()) {  // ... recording
+      _oDC.setColor(Gfx.COLOR_RED, Gfx.COLOR_TRANSPARENT);
+      sValue = self.sValueActivityRecording;
+    }
+    else {  // ... paused
+      _oDC.setColor(Gfx.COLOR_YELLOW, Gfx.COLOR_TRANSPARENT);
+      sValue = self.sValueActivityPaused;
+    }
+    _oDC.drawText(self.iLayoutCenter, self.iLayoutLargeActivityY, Gfx.FONT_SMALL, sValue, Gfx.TEXT_JUSTIFY_CENTER);
+
+    // ... variometer
+    fValue = $.oMyProcessing.fVariometer_filtered;
+    if(LangUtils.notNaN(fValue)) {
+      if(fValue > 0.0f) {
+        iColor = Gfx.COLOR_DK_GREEN;
+      }
+      else if(fValue < 0.0f) {
+        iColor = Gfx.COLOR_RED;
+      }
+      else {
+        iColor = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE;
+      }
+
+      fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
+      if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
+        sValue = fValue.format("%+.1f");
+      }
+      else {
+        sValue = fValue.format("%+.0f");
+      }
+    }
+    else {
+      sValue = $.MY_NOVALUE_LEN3;
+    }
+    _oDC.setColor(iColor, Gfx.COLOR_TRANSPARENT);
+    _oDC.drawText(self.iLayoutLargeVarioX, self.iLayoutLargeVarioY, Gfx.FONT_NUMBER_HOT, sValue, Gfx.TEXT_JUSTIFY_CENTER | Gfx.TEXT_JUSTIFY_VCENTER);
+    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+    _oDC.drawText(self.iLayoutLargeUnitX, self.iLayoutLargeVarioY, Gfx.FONT_SMALL, $.oMySettings.sUnitVerticalSpeed, Gfx.TEXT_JUSTIFY_LEFT | Gfx.TEXT_JUSTIFY_VCENTER);
+
+    // ... battery
+    _oDC.setColor(self.iColorTextGr, Gfx.COLOR_TRANSPARENT);
+    sValue = Lang.format("$1$%", [Sys.getSystemStats().battery.format("%.0f")]);
+    _oDC.drawText(self.iLayoutCenter, self.iLayoutLargeBatteryY, Gfx.FONT_SMALL, sValue, Gfx.TEXT_JUSTIFY_CENTER);
+
+    // ... time
+    var oTimeNow = Time.now();
+    var oTimeInfo = $.oMySettings.bUnitTimeUTC ? Gregorian.utcInfo(oTimeNow, Time.FORMAT_SHORT) : Gregorian.info(oTimeNow, Time.FORMAT_SHORT);
+    sValue = Lang.format("$1$$2$$3$ $4$", [oTimeInfo.hour.format("%02d"), oTimeNow.value() % 2 ? "." : ":", oTimeInfo.min.format("%02d"), $.oMySettings.sUnitTime]);
+    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
+    _oDC.drawText(self.iLayoutCenter, self.iLayoutLargeTimeY, Gfx.FONT_MEDIUM, sValue, Gfx.TEXT_JUSTIFY_CENTER);
   }
 }
 

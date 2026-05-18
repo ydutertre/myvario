@@ -27,6 +27,12 @@
       <listEntry value="2">9.0 m/s</listEntry>
     </settingConfig>
   </setting>
+  <setting propertyKey="@Properties.userVariometerViewLayout" title="@Strings.titleVariometerViewLayout">
+    <settingConfig type="list">
+      <listEntry value="0">Ring</listEntry>
+      <listEntry value="1">Large</listEntry>
+    </settingConfig>
+  </setting>
   <setting propertyKey="@Properties.userVariometerSmoothing" title="@Strings.titleVariometerSmoothing">
     <settingConfig type="list">
       <listEntry value="0">Low</listEntry>

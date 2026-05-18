@@ -1,3 +1,8 @@
+* 6.20
+ - It is now possible to change the variometer view so that the indicators take the
+ entirety of the screen. To do this, in the settings, go to Variometer -> Vario View
+ and set it to either Ring (default) or Large.
+
 * 6.11
 - Added ability to input tasks from QR Code (once read as strings) based on the XCTSKv2 format,
 which is used by XCTrack.

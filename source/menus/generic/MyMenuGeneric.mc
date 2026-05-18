@@ -246,6 +246,7 @@ class MyMenu2Generic extends Ui.Menu2 {
     else if(menu == :menuSettingsVariometer) {
       Menu2.setTitle(Rez.Strings.titleSettingsVariometer);
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerRange, format("$1$ $2$", [($.oMySettings.fVariometerRange*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed]), :menuVariometerRange, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerViewLayout, $.oMySettings.iVariometerViewLayout == 1 ? Ui.loadResource(Rez.Strings.valueVariometerViewLayoutLarge) : Ui.loadResource(Rez.Strings.valueVariometerViewLayoutRing), :menuVariometerViewLayout, {}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerSmoothing, $.oMySettings.sVariometerSmoothingName, :menuVariometerSmoothing, {}));
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleVariometerAutoThermal, null, :menuVariometerAutoThermal, $.oMySettings.bVariometerAutoThermal, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleVariometerThermalDetect, null, :menuVariometerThermalDetect, $.oMySettings.bVariometerThermalDetect, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));

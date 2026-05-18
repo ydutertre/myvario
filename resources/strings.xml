@@ -1,6 +1,6 @@
 <strings>
   <string id="AppName">My Vario</string>
-  <string id="AppVersion">6.11</string>
+  <string id="AppVersion">6.20</string>
   <!-- Properties -->
   <string id="titleVersion">Version</string>
   <string id="titleLicense">License</string>
@@ -15,6 +15,9 @@
   <!-- Menu (settings:variometer) -->
   <string id="titleSettingsVariometer">Variometer</string>
   <string id="titleVariometerRange">Range</string>
+  <string id="titleVariometerViewLayout">Vario View</string>
+  <string id="valueVariometerViewLayoutRing">Ring</string>
+  <string id="valueVariometerViewLayoutLarge">Large</string>
   <string id="titleVariometerAutoThermal">Auto Thermal</string>
   <string id="titleVariometerThermalDetect">Thermal Detect</string>
   <string id="titleVariometerSmoothing">Smoothing</string>

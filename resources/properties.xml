@@ -2,6 +2,7 @@
   <!-- User preferences -->
   <!-- ... variometer -->
   <property id="userVariometerRange" type="number">0</property>
+  <property id="userVariometerViewLayout" type="number">0</property>
   <property id="userVariometerAutoThermal" type="boolean">true</property>
   <property id="userVariometerThermalDetect" type="boolean">true</property>
   <property id="userVariometerSmoothing" type="number">1</property> 

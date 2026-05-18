@@ -50,6 +50,7 @@ class MySettings {
   public var fAltimeterCalibrationQNH as Float = 101325.0f;
   // ... variometer
   public var iVariometerRange as Number = 0;
+  public var iVariometerViewLayout as Number = 0;
   public var bVariometerAutoThermal as Boolean = true;
   public var bVariometerThermalDetect as Boolean = true;
   public var iVariometerSmoothing as Number = 1;
@@ -146,6 +147,7 @@ class MySettings {
     self.setAltimeterCalibrationQNH(self.loadAltimeterCalibrationQNH());
     // ... variometer
     self.setVariometerRange(self.loadVariometerRange());
+    self.setVariometerViewLayout(self.loadVariometerViewLayout());
     self.setVariometerPlotOrientation(self.loadVariometerPlotOrientation());
     self.setVariometerAutoThermal(self.loadVariometerAutoThermal());
     self.setVariometerThermalDetect(self.loadVariometerThermalDetect());
@@ -233,6 +235,22 @@ class MySettings {
     case 1: self.fVariometerRange = 6.0f; break;
     case 2: self.fVariometerRange = 9.0f; break;
     }
+  }
+
+  function loadVariometerViewLayout() as Number {
+    return LangUtils.readKeyNumber(App.Properties.getValue("userVariometerViewLayout"), 0);
+  }
+  function saveVariometerViewLayout(_iValue as Number) as Void {
+    App.Properties.setValue("userVariometerViewLayout", _iValue as App.PropertyValueType);
+  }
+  function setVariometerViewLayout(_iValue as Number) as Void {
+    if(_iValue > 1) {
+      _iValue = 1;
+    }
+    else if(_iValue < 0) {
+      _iValue = 0;
+    }
+    self.iVariometerViewLayout = _iValue;
   }
 
   function loadVariometerPlotOrientation () as Number {

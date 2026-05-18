@@ -67,6 +67,21 @@ class MyPickerGenericSettings extends Ui.Picker {
             :defaults => [oFactory.indexOfKey(iVariometerRange)]});
       }
 
+      else if(_item == :menuVariometerViewLayout) {
+        var iVariometerViewLayout = $.oMySettings.loadVariometerViewLayout();
+        var asValues = [Ui.loadResource(Rez.Strings.valueVariometerViewLayoutRing), Ui.loadResource(Rez.Strings.valueVariometerViewLayoutLarge)];
+        var oFactory = new PickerFactoryDictionary([0, 1], asValues, {:font => Gfx.FONT_TINY});
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => Ui.loadResource(Rez.Strings.titleVariometerViewLayout) as String,
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
+                :color => Gfx.COLOR_BLUE}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iVariometerViewLayout)]});
+      }
+
       else if(_item == :menuVariometerSmoothing) {
         var iVariometerSmoothing = $.oMySettings.loadVariometerSmoothing();
         $.oMySettings.load();  // ... reload potentially modified settings
@@ -375,17 +390,21 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
         $.oMySettings.saveVariometerRange(_amValues[0] as Number);
         focus = 0;
       }
+      else if(self.item == :menuVariometerViewLayout) {
+        $.oMySettings.saveVariometerViewLayout(_amValues[0] as Number);
+        focus = 1;
+      }
       else if(self.item == :menuVariometerSmoothing) {
         $.oMySettings.saveVariometerSmoothing(_amValues[0] as Number);
-        focus = 1;
+        focus = 2;
       }
       else if(self.item == :menuVariometerPlotRange) {
         $.oMySettings.saveVariometerPlotRange(_amValues[0] as Number);
-        focus = 5;
+        focus = 6;
       }
       else if(self.item == :menuVariometerPlotZoom) {
         $.oMySettings.saveVariometerPlotZoom(_amValues[0] as Number);
-        focus = 6;
+        focus = 7;
       }
     }
     else if(self.context == :contextUnit) {

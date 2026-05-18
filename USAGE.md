@@ -220,6 +220,9 @@ The My Vario Variometer displays your current ascent/descent rate both textu-
 ally and graphically, using visually appealing colors:
  - `GREEN` for ascent
  - `RED` for descent
+ It is possible to change the variometer view so that the indicators take the
+ entirety of the screen. To do this, in the settings, go to Variometer -> Vario View
+ and set it to either Ring (default) or Large.
 
 
 ### Varioplot / Thermal Assistant View
