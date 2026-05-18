@@ -1,3 +1,7 @@
+* 6.21
+- The bottom field (currently local time) of the vario view can now be customized.
+To do so, go to Variometer -> Bottom value in the settings.
+
 * 6.20
  - It is now possible to change the variometer view so that the indicators take the
  entirety of the screen. To do this, in the settings, go to Variometer -> Vario View

@@ -44,6 +44,7 @@ using Toybox.Graphics as Gfx;
 class MyMenu2Generic extends Ui.Menu2 {
   private var menu as Symbol = :menuNone;
   (:icon) var NoExclude as Symbol = :NoExclude;
+  private var oIndicator as MyGeneralViewIndicator;
   //
   // FUNCTIONS: Ui.Menu (override/implement)
   //
@@ -64,6 +65,7 @@ class MyMenu2Generic extends Ui.Menu2 {
   function initialize(_menu as Symbol, _focus as Number) {
     Menu2.initialize({:focus=>_focus});
     menu = _menu;
+    self.oIndicator = new MyGeneralViewIndicator();
     $.oMySettings.load();
     var sFormat = $.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f ? "%.1f" : "%.0f";
     
@@ -137,56 +139,7 @@ class MyMenu2Generic extends Ui.Menu2 {
       Menu2.setTitle("Edit: " + sPageName);
       for(var i = 0; i < iFieldCount; i++) {
         var iIndicator = aFields[i] as Number;
-        var sIndicatorLabel = "";
-        if(iIndicator == $.oMySettings.GENERAL_VIEW_PAGE_SLOT_UNUSED) {
-          sIndicatorLabel = "None";
-        } else if(iIndicator == 0) {
-          sIndicatorLabel = "Wind Direction";
-        } else if(iIndicator == 1) {
-          sIndicatorLabel = "Wind Speed";
-        } else if(iIndicator == 2) {
-          sIndicatorLabel = "Altitude";
-        } else if(iIndicator == 3) {
-          sIndicatorLabel = "Finesse";
-        } else if(iIndicator == 4) {
-          sIndicatorLabel = "Heading";
-        } else if(iIndicator == 5) {
-          sIndicatorLabel = "Vert. Speed";
-        } else if(iIndicator == 6) {
-          sIndicatorLabel = "Ground Speed";
-        } else if(iIndicator == 7) {
-          sIndicatorLabel = "Altitude Chart";
-        } else if(iIndicator == 8) {
-          sIndicatorLabel = "Heartbeat";
-        } else if(iIndicator == 9) {
-          sIndicatorLabel = "Flight Time";
-        } else if(iIndicator == 10) {
-          sIndicatorLabel = "30s Climb";
-        } else if(iIndicator == 11) {
-          sIndicatorLabel = "Therm.Climb";
-        } else if(iIndicator == 12) {
-          sIndicatorLabel = "Next WP";
-        } else if(iIndicator == 13) {
-          sIndicatorLabel = "WP Dist.";
-        } else if(iIndicator == 14) {
-          sIndicatorLabel = "Task Dist.";
-        } else if(iIndicator == 15) {
-          sIndicatorLabel = "WP Bearing";
-        } else if(iIndicator == 16) {
-          sIndicatorLabel = "WP Alt.";
-        } else if(iIndicator == 17) {
-          sIndicatorLabel = "Arr Alt.";
-        } else if(iIndicator == 18) {
-          sIndicatorLabel = "Alt Margin";
-        } else if(iIndicator == 19) {
-          sIndicatorLabel = "Comp";
-        } else if(iIndicator == 20) {
-          sIndicatorLabel = "Start";
-        } else if(iIndicator == 21) {
-          sIndicatorLabel = "Task Left";
-        } else if(iIndicator == 22) {
-          sIndicatorLabel = "Start In";
-        }
+        var sIndicatorLabel = self.oIndicator.getMenuLabel(iIndicator);
         var fieldItemId = :menuGeneralViewPageField0;
         if(i == 1) { fieldItemId = :menuGeneralViewPageField1; }
         else if(i == 2) { fieldItemId = :menuGeneralViewPageField2; }
@@ -247,6 +200,7 @@ class MyMenu2Generic extends Ui.Menu2 {
       Menu2.setTitle(Rez.Strings.titleSettingsVariometer);
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerRange, format("$1$ $2$", [($.oMySettings.fVariometerRange*$.oMySettings.fUnitVerticalSpeedCoefficient).format(sFormat), $.oMySettings.sUnitVerticalSpeed]), :menuVariometerRange, {}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerViewLayout, $.oMySettings.iVariometerViewLayout == 1 ? Ui.loadResource(Rez.Strings.valueVariometerViewLayoutLarge) : Ui.loadResource(Rez.Strings.valueVariometerViewLayoutRing), :menuVariometerViewLayout, {}));
+      Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerBottomIndicator, self.oIndicator.getMenuLabel($.oMySettings.iVariometerBottomIndicator), :menuVariometerBottomIndicator, {}));
       Menu2.addItem(new Ui.MenuItem(Rez.Strings.titleVariometerSmoothing, $.oMySettings.sVariometerSmoothingName, :menuVariometerSmoothing, {}));
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleVariometerAutoThermal, null, :menuVariometerAutoThermal, $.oMySettings.bVariometerAutoThermal, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));
       Menu2.addItem(new Ui.ToggleMenuItem(Rez.Strings.titleVariometerThermalDetect, null, :menuVariometerThermalDetect, $.oMySettings.bVariometerThermalDetect, {:alignment=>WatchUi.MenuItem.MENU_ITEM_LABEL_ALIGN_RIGHT}));

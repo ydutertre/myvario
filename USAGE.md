@@ -223,6 +223,8 @@ ally and graphically, using visually appealing colors:
  It is possible to change the variometer view so that the indicators take the
  entirety of the screen. To do this, in the settings, go to Variometer -> Vario View
  and set it to either Ring (default) or Large.
+ The bottom field (currently local time) of the vario view can be customized.
+ To do so, go to Variometer -> Bottom value in the settings.
 
 
 ### Varioplot / Thermal Assistant View

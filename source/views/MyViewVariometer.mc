@@ -56,7 +56,8 @@ class MyViewVariometer extends MyView {
   private var iLayoutBatteryY as Number = (Sys.getDeviceSettings().screenHeight * 0.615).toNumber();
   // private var iLayoutActivityY as Number = (iLayoutBatteryY * 0.5).toNumber();
   private var iLayoutActivityY as Number = (Sys.getDeviceSettings().screenHeight - iLayoutBatteryY);
-  private var iLayoutTimeY as Number = Math.round(Sys.getDeviceSettings().screenHeight * 0.675);
+  private var iLayoutTimeY as Number = Math.round(Sys.getDeviceSettings().screenHeight * 0.690);
+  private var iLayoutBottomUnitX as Number = (Sys.getDeviceSettings().screenWidth * 0.540).toNumber();
   private var iLayoutAltitudeY as Number = (Sys.getDeviceSettings().screenHeight - iLayoutTimeY);
   private var iLayoutUnitX as Number = (Sys.getDeviceSettings().screenWidth * 0.883).toNumber();
   private var iLayoutLargeAltitudeX as Number = (Sys.getDeviceSettings().screenWidth * 0.465).toNumber();
@@ -67,13 +68,16 @@ class MyViewVariometer extends MyView {
   private var iLayoutLargeVarioY as Number = (Sys.getDeviceSettings().screenHeight * 0.530).toNumber();
   private var iLayoutLargeUnitX as Number = (Sys.getDeviceSettings().screenWidth * 0.705).toNumber();
   private var iLayoutLargeBatteryY as Number = (Sys.getDeviceSettings().screenHeight * 0.675).toNumber();
-  private var iLayoutLargeTimeY as Number = (Sys.getDeviceSettings().screenHeight * 0.775).toNumber();
+  private var iLayoutLargeTimeY as Number = (Sys.getDeviceSettings().screenHeight * 0.790).toNumber();
+  private var iLayoutLargeBottomUnitX as Number = (Sys.getDeviceSettings().screenWidth * 0.680).toNumber();
+  private var oIndicator as MyGeneralViewIndicator;
   
   //
   // FUNCTIONS: MyView (override/implement)
   //
 
   function initialize() {
+    self.oIndicator = new MyGeneralViewIndicator();
     MyView.initialize();
   }
 
@@ -180,12 +184,8 @@ class MyViewVariometer extends MyView {
     }
     _oDC.drawText(self.iLayoutCacheX, self.iLayoutActivityY - Gfx.getFontHeight(Gfx.FONT_XTINY), Gfx.FONT_XTINY, sValue, Gfx.TEXT_JUSTIFY_CENTER);
 
-    // ... time
-    var oTimeNow = Time.now();
-    var oTimeInfo = $.oMySettings.bUnitTimeUTC ? Gregorian.utcInfo(oTimeNow, Time.FORMAT_SHORT) : Gregorian.info(oTimeNow, Time.FORMAT_SHORT);
-    sValue = Lang.format("$1$$2$$3$ $4$", [oTimeInfo.hour.format("%02d"), oTimeNow.value() % 2 ? "." : ":", oTimeInfo.min.format("%02d"), $.oMySettings.sUnitTime]);
-    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
-    _oDC.drawText(self.iLayoutCacheX, self.iLayoutTimeY, Gfx.FONT_MEDIUM, sValue, Gfx.TEXT_JUSTIFY_CENTER);
+    // ... bottom field
+    self.drawBottomField(_oDC, self.iLayoutCacheX, self.iLayoutBottomUnitX, self.iLayoutTimeY, Gfx.FONT_MEDIUM);
 
     // Draw position values
 
@@ -295,12 +295,26 @@ class MyViewVariometer extends MyView {
     sValue = Lang.format("$1$%", [Sys.getSystemStats().battery.format("%.0f")]);
     _oDC.drawText(self.iLayoutCenter, self.iLayoutLargeBatteryY, Gfx.FONT_SMALL, sValue, Gfx.TEXT_JUSTIFY_CENTER);
 
-    // ... time
-    var oTimeNow = Time.now();
-    var oTimeInfo = $.oMySettings.bUnitTimeUTC ? Gregorian.utcInfo(oTimeNow, Time.FORMAT_SHORT) : Gregorian.info(oTimeNow, Time.FORMAT_SHORT);
-    sValue = Lang.format("$1$$2$$3$ $4$", [oTimeInfo.hour.format("%02d"), oTimeNow.value() % 2 ? "." : ":", oTimeInfo.min.format("%02d"), $.oMySettings.sUnitTime]);
-    _oDC.setColor($.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE, Gfx.COLOR_TRANSPARENT);
-    _oDC.drawText(self.iLayoutCenter, self.iLayoutLargeTimeY, Gfx.FONT_MEDIUM, sValue, Gfx.TEXT_JUSTIFY_CENTER);
+    // ... bottom field
+    self.drawBottomField(_oDC, self.iLayoutCenter, self.iLayoutLargeBottomUnitX, self.iLayoutLargeTimeY, Gfx.FONT_MEDIUM);
+  }
+
+  function drawBottomField(_oDC as Gfx.Dc, _iCenterX as Number, _iUnitX as Number, _iY as Number, _font) as Void {
+    var iIndicator = $.oMySettings.iVariometerBottomIndicator;
+    var sValue = self.oIndicator.getValueText(iIndicator);
+    var sUnit = self.oIndicator.getPlainUnitText(iIndicator);
+    var iDefaultColor = $.oMySettings.iGeneralBackgroundColor ? Gfx.COLOR_BLACK : Gfx.COLOR_WHITE;
+    var bRecording = $.oMyActivity != null && ($.oMyActivity as MyActivity).isRecording();
+    var iColor = self.oIndicator.getValueColor(iIndicator, bRecording, iDefaultColor);
+    _oDC.setColor(iColor, Gfx.COLOR_TRANSPARENT);
+    if(sUnit == "") {
+      _oDC.drawText(_iCenterX, _iY, _font, sValue, Gfx.TEXT_JUSTIFY_CENTER);
+    }
+    else {
+      _oDC.drawText(_iCenterX, _iY, _font, sValue, Gfx.TEXT_JUSTIFY_CENTER);
+      _oDC.setColor(iDefaultColor, Gfx.COLOR_TRANSPARENT);
+      _oDC.drawText(_iUnitX, _iY, Gfx.FONT_XTINY, sUnit, Gfx.TEXT_JUSTIFY_LEFT);
+    }
   }
 }
 

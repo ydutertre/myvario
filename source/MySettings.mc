@@ -51,6 +51,7 @@ class MySettings {
   // ... variometer
   public var iVariometerRange as Number = 0;
   public var iVariometerViewLayout as Number = 0;
+  public var iVariometerBottomIndicator as Number = -2;
   public var bVariometerAutoThermal as Boolean = true;
   public var bVariometerThermalDetect as Boolean = true;
   public var iVariometerSmoothing as Number = 1;
@@ -148,6 +149,7 @@ class MySettings {
     // ... variometer
     self.setVariometerRange(self.loadVariometerRange());
     self.setVariometerViewLayout(self.loadVariometerViewLayout());
+    self.setVariometerBottomIndicator(self.loadVariometerBottomIndicator());
     self.setVariometerPlotOrientation(self.loadVariometerPlotOrientation());
     self.setVariometerAutoThermal(self.loadVariometerAutoThermal());
     self.setVariometerThermalDetect(self.loadVariometerThermalDetect());
@@ -251,6 +253,19 @@ class MySettings {
       _iValue = 0;
     }
     self.iVariometerViewLayout = _iValue;
+  }
+
+  function loadVariometerBottomIndicator() as Number {
+    return LangUtils.readKeyNumber(App.Properties.getValue("userVariometerBottomIndicator"), -2);
+  }
+  function saveVariometerBottomIndicator(_iValue as Number) as Void {
+    App.Properties.setValue("userVariometerBottomIndicator", _iValue as App.PropertyValueType);
+  }
+  function setVariometerBottomIndicator(_iValue as Number) as Void {
+    if(_iValue == 7 || _iValue < -2 || _iValue > self.GENERAL_VIEW_INDICATOR_COUNT - 1) {
+      _iValue = -2;
+    }
+    self.iVariometerBottomIndicator = _iValue;
   }
 
   function loadVariometerPlotOrientation () as Number {

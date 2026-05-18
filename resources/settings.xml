@@ -33,6 +33,33 @@
       <listEntry value="1">Large</listEntry>
     </settingConfig>
   </setting>
+  <setting propertyKey="@Properties.userVariometerBottomIndicator" title="@Strings.titleVariometerBottomIndicator">
+    <settingConfig type="list">
+      <listEntry value="-2">Clock</listEntry>
+      <listEntry value="0">Wind Direction</listEntry>
+      <listEntry value="1">Wind Speed</listEntry>
+      <listEntry value="2">Altitude</listEntry>
+      <listEntry value="3">Finesse</listEntry>
+      <listEntry value="4">Heading</listEntry>
+      <listEntry value="5">Vertical Speed</listEntry>
+      <listEntry value="6">Ground Speed</listEntry>
+      <listEntry value="8">Heartbeat</listEntry>
+      <listEntry value="9">Flight Time</listEntry>
+      <listEntry value="10">30s Climb</listEntry>
+      <listEntry value="11">Therm.Climb</listEntry>
+      <listEntry value="12">Next WP</listEntry>
+      <listEntry value="13">WP Distance</listEntry>
+      <listEntry value="14">Task Distance</listEntry>
+      <listEntry value="15">WP Bearing</listEntry>
+      <listEntry value="16">WP Altitude</listEntry>
+      <listEntry value="17">Arrival Alt</listEntry>
+      <listEntry value="18">Alt Margin</listEntry>
+      <listEntry value="19">Comp Status</listEntry>
+      <listEntry value="20">Start Time</listEntry>
+      <listEntry value="21">Task Left</listEntry>
+      <listEntry value="22">Start In</listEntry>
+    </settingConfig>
+  </setting>
   <setting propertyKey="@Properties.userVariometerSmoothing" title="@Strings.titleVariometerSmoothing">
     <settingConfig type="list">
       <listEntry value="0">Low</listEntry>

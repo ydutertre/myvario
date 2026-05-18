@@ -50,6 +50,7 @@ class MyViewGeneral extends MyViewGlobal {
 
   // active page tracking
   private var iCurrentGeneralViewPageIndex as Number = -1;
+  private var oIndicator as MyGeneralViewIndicator;
 
   // page slots
   private const GENERAL_VIEW_SLOT_NAMES as Array = ["TopLeft", "TopRight", "Left", "Center", "Right", "BottomLeft", "BottomRight"];
@@ -89,6 +90,7 @@ class MyViewGeneral extends MyViewGlobal {
     //Populate last view
     $.oMyProcessing.bIsPreviousGeneral = true;
     self.iCurrentGeneralViewPageIndex = -1;
+    self.oIndicator = new MyGeneralViewIndicator();
     MyViewGlobal.initialize();
   }
 
@@ -201,339 +203,19 @@ class MyViewGeneral extends MyViewGlobal {
   }
 
   function getIndicatorLabelText(_iIndicator as Number) as String {
-    switch(_iIndicator) {
-    case GENERAL_VIEW_INDICATOR_WIND_DIRECTION:
-      return Ui.loadResource(Rez.Strings.labelWindDirection) as String;
-    case GENERAL_VIEW_INDICATOR_WIND_SPEED:
-      return Ui.loadResource(Rez.Strings.labelWindSpeed) as String;
-    case GENERAL_VIEW_INDICATOR_ALTITUDE:
-      return Ui.loadResource(Rez.Strings.labelAltitude) as String;
-    case GENERAL_VIEW_INDICATOR_FINESSE:
-      return Ui.loadResource(Rez.Strings.labelFinesse) as String;
-    case GENERAL_VIEW_INDICATOR_HEADING:
-      return Ui.loadResource(Rez.Strings.labelHeading) as String;
-    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
-      return Ui.loadResource(Rez.Strings.labelVerticalSpeed) as String;
-    case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
-      return Ui.loadResource(Rez.Strings.labelGroundSpeed) as String;
-    case GENERAL_VIEW_INDICATOR_ALTITUDE_CHART:
-      return Ui.loadResource(Rez.Strings.labelAltitude) as String;
-    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
-      return "Heartbeat";
-    case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
-      return Ui.loadResource(Rez.Strings.labelElapsed) as String;
-    case GENERAL_VIEW_INDICATOR_CLIMB_30S:
-      return "30s Climb";
-    case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
-      return "Therm.Climb";
-    case GENERAL_VIEW_INDICATOR_COMPETITION_NEXT:
-      return Ui.loadResource(Rez.Strings.labelCompetitionNext) as String;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE:
-      return Ui.loadResource(Rez.Strings.labelCompetitionDistance) as String;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING:
-      return Ui.loadResource(Rez.Strings.labelCompetitionRemaining) as String;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_BEARING:
-      return Ui.loadResource(Rez.Strings.labelCompetitionBearing) as String;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
-      return Ui.loadResource(Rez.Strings.labelCompetitionWaypointAltitude) as String;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE:
-      return Ui.loadResource(Rez.Strings.labelCompetitionExpectedAltitude) as String;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN:
-      return Ui.loadResource(Rez.Strings.labelCompetitionAltitudeMargin) as String;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
-      return Ui.loadResource(Rez.Strings.labelCompetitionStatus) as String;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
-      return Ui.loadResource(Rez.Strings.labelCompetitionStart) as String;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
-      return Ui.loadResource(Rez.Strings.labelCompetitionTaskLeft) as String;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
-      return Ui.loadResource(Rez.Strings.labelCompetitionStartIn) as String;
-    default:
-      return "";
-    }
+    return self.oIndicator.getLabelText(_iIndicator);
   }
 
   function getIndicatorUnitText(_iIndicator as Number) as String {
-    switch(_iIndicator) {
-    case GENERAL_VIEW_INDICATOR_WIND_DIRECTION:
-    case GENERAL_VIEW_INDICATOR_HEADING:
-      return ($.oMySettings.iUnitDirection == 0) ? "[Deg]" : "";
-    case GENERAL_VIEW_INDICATOR_WIND_SPEED:
-      return Lang.format("[$1$]", [$.oMySettings.sUnitWindSpeed]);
-    case GENERAL_VIEW_INDICATOR_ALTITUDE:
-    case GENERAL_VIEW_INDICATOR_ALTITUDE_CHART:
-      return Lang.format("[$1$]", [$.oMySettings.sUnitElevation]);
-    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
-    case GENERAL_VIEW_INDICATOR_CLIMB_30S:
-    case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
-      return Lang.format("[$1$]", [$.oMySettings.sUnitVerticalSpeed]);
-    case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
-      return Lang.format("[$1$]", [$.oMySettings.sUnitHorizontalSpeed]);
-    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
-      return "[bpm]";
-    case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
-      return $.MY_NOVALUE_BLANK;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING:
-      return Lang.format("[$1$]", [$.oMySettings.sUnitDistance]);
-    case GENERAL_VIEW_INDICATOR_COMPETITION_BEARING:
-      return ($.oMySettings.iUnitDirection == 0) ? "[Deg]" : "";
-    case GENERAL_VIEW_INDICATOR_COMPETITION_NEXT:
-      return $.MY_NOVALUE_BLANK;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN:
-      return Lang.format("[$1$]", [$.oMySettings.sUnitElevation]);
-    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
-      return $.MY_NOVALUE_BLANK;
-    default:
-      return "";
-    }
+    return self.oIndicator.getUnitText(_iIndicator);
   }
 
   function getIndicatorValueText(_iIndicator as Number) as String {
-    var sValue = "";
-    var fValue;
-    var iValue;
-    switch(_iIndicator) {
-    case GENERAL_VIEW_INDICATOR_ALTITUDE:
-      fValue = $.oMyProcessing.fAltitude;
-      if(LangUtils.notNaN(fValue)) {
-        fValue *= $.oMySettings.fUnitElevationCoefficient;
-        sValue = fValue.format("%.0f");
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
-      fValue = $.oMyProcessing.fVariometer_filtered;
-      if(LangUtils.notNaN(fValue)) {
-        fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
-        if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
-          sValue = fValue.format("%+.1f");
-        }
-        else {
-          sValue = fValue.format("%+.0f");
-        }
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_WIND_DIRECTION:
-      iValue = $.oMyProcessing.iWindDirection;
-      if(LangUtils.notNaN(iValue) && $.oMyProcessing.bWindValid) {
-        if($.oMySettings.iUnitDirection == 1) {
-          sValue = $.oMyProcessing.convertDirection(iValue);
-        }
-        else {
-          sValue = iValue.format("%d");
-        }
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_WIND_SPEED:
-      fValue = $.oMyProcessing.fWindSpeed;
-      if(LangUtils.notNaN(fValue) && $.oMyProcessing.bWindValid) {
-        fValue *= $.oMySettings.fUnitWindSpeedCoefficient;
-        sValue = fValue.format("%.0f");
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_FINESSE:
-      if(LangUtils.notNaN($.oMyProcessing.fFinesse) && !$.oMyProcessing.bAscent) {
-        sValue = $.oMyProcessing.fFinesse.format("%.0f");
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN2;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_HEADING:
-      fValue = $.oMyProcessing.fHeading;
-      if(LangUtils.notNaN(fValue)) {
-        fValue = ((fValue * 57.2957795131f).toNumber()) % 360;
-        if($.oMySettings.iUnitDirection == 1) {
-          sValue = $.oMyProcessing.convertDirection(fValue);
-        }
-        else {
-          sValue = fValue.format("%d");
-        }
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
-      fValue = $.oMyProcessing.fGroundSpeed;
-      if(LangUtils.notNaN(fValue)) {
-        fValue *= $.oMySettings.fUnitHorizontalSpeedCoefficient;
-        sValue = fValue.format("%.0f");
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_ALTITUDE_CHART:
-      sValue = "";
-      break;
-    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
-      if(LangUtils.notNaN($.oMyProcessing.iHR)) {
-        sValue = ($.oMyProcessing.iHR as Number).format("%d");
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
-      if($.oMyActivity != null) {
-        sValue = ($.oMyActivity as MyActivity).getFlightTime();
-      }
-      else {
-        sValue = "--:--";
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_CLIMB_30S:
-      fValue = self.getAverageClimb(30, -1);
-      sValue = self.formatClimbValue(fValue);
-      break;
-    case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
-      if($.oMyProcessing.bCirclingCount > 0) {
-        fValue = self.getAverageClimb($.oMyProcessing.PLOTBUFFER_SIZE, $.oMyProcessing.iCirclingStartEpoch);
-        sValue = self.formatClimbValue(fValue);
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_NEXT:
-      if($.oMyCompetitionTask != null && ($.oMyCompetitionTask.iState == $.oMyCompetitionTask.STATE_READY || $.oMyCompetitionTask.iState == $.oMyCompetitionTask.STATE_DONE)) {
-        sValue = $.oMyCompetitionTask.sActiveName;
-        if(sValue.length() > 8) {
-          sValue = sValue.substring(0, 8);
-        }
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE:
-      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fDistanceNext)) {
-        fValue = $.oMyCompetitionTask.fDistanceNext * $.oMySettings.fUnitDistanceCoefficient;
-        sValue = fValue.format("%.0f");
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING:
-      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fDistanceRemaining)) {
-        fValue = $.oMyCompetitionTask.fDistanceRemaining * $.oMySettings.fUnitDistanceCoefficient;
-        sValue = fValue.format("%.0f");
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_BEARING:
-      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fBearing)) {
-        fValue = (($.oMyCompetitionTask.fBearing * 57.2957795131f).toNumber()) % 360;
-        if($.oMySettings.iUnitDirection == 1) {
-          sValue = $.oMyProcessing.convertDirection(fValue);
-        }
-        else {
-          sValue = fValue.format("%d");
-        }
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
-      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fActiveAltitude)) {
-        fValue = $.oMyCompetitionTask.fActiveAltitude * $.oMySettings.fUnitElevationCoefficient;
-        sValue = fValue.format("%.0f");
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE:
-      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fExpectedAltitudeNext)) {
-        fValue = $.oMyCompetitionTask.fExpectedAltitudeNext * $.oMySettings.fUnitElevationCoefficient;
-        sValue = fValue.format("%.0f");
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN:
-      if($.oMyCompetitionTask != null && LangUtils.notNaN($.oMyCompetitionTask.fAltitudeMarginNext)) {
-        fValue = $.oMyCompetitionTask.fAltitudeMarginNext * $.oMySettings.fUnitElevationCoefficient;
-        sValue = fValue.format("%+.0f");
-      }
-      else {
-        sValue = $.MY_NOVALUE_LEN3;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
-      sValue = $.oMyCompetitionTask != null ? $.oMyCompetitionTask.getStatusText() : $.MY_NOVALUE_LEN3;
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
-      sValue = $.oMyCompetitionTask != null ? $.oMyCompetitionTask.getStartText() : "--:--";
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
-      sValue = $.oMyCompetitionTask != null ? $.oMyCompetitionTask.getTaskLeftText() : "--:--";
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
-      sValue = $.oMyCompetitionTask != null ? $.oMyCompetitionTask.getStartInText() : "--:--";
-      break;
-    default:
-      sValue = "";
-    }
-    return sValue;
+    return self.oIndicator.getValueText(_iIndicator);
   }
 
   function isIndicatorValueNumeric(_iIndicator as Number, _sText as String) as Boolean {
-    if(_sText == "" or _sText == $.MY_NOVALUE_LEN2 or _sText == $.MY_NOVALUE_LEN3) {
-      return false;
-    }
-
-    switch(_iIndicator) {
-    case GENERAL_VIEW_INDICATOR_WIND_DIRECTION:
-    case GENERAL_VIEW_INDICATOR_HEADING:
-      return $.oMySettings.iUnitDirection != 1;
-    case GENERAL_VIEW_INDICATOR_ALTITUDE:
-    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
-    case GENERAL_VIEW_INDICATOR_CLIMB_30S:
-    case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
-    case GENERAL_VIEW_INDICATOR_WIND_SPEED:
-    case GENERAL_VIEW_INDICATOR_FINESSE:
-    case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
-    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN:
-      return true;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_BEARING:
-      return $.oMySettings.iUnitDirection != 1;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
-      return false;
-    default:
-      return false;
-    }
+    return self.oIndicator.isValueNumeric(_iIndicator, _sText);
   }
 
   function getIndicatorValueFont(_iIndicator as Number, _sText as String) {
@@ -548,162 +230,19 @@ class MyViewGeneral extends MyViewGlobal {
   }
 
   function getIndicatorValueColor(_iIndicator as Number, _bRecording as Boolean) as Number {
-    var iColor = self.iColorText;
-    var fValue;
-    switch(_iIndicator) {
-    case GENERAL_VIEW_INDICATOR_VERTICAL_SPEED:
-      fValue = $.oMyProcessing.fVariometer_filtered;
-      iColor = self.getClimbValueColor(fValue);
-      break;
-    case GENERAL_VIEW_INDICATOR_CLIMB_30S:
-      fValue = self.getAverageClimb(30, -1);
-      iColor = self.getClimbValueColor(fValue);
-      break;
-    case GENERAL_VIEW_INDICATOR_THERMAL_CLIMB:
-      if($.oMyProcessing.bCirclingCount > 0) {
-        fValue = self.getAverageClimb($.oMyProcessing.PLOTBUFFER_SIZE, $.oMyProcessing.iCirclingStartEpoch);
-        iColor = self.getClimbValueColor(fValue);
-      }
-      else {
-        iColor = Gfx.COLOR_LT_GRAY;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_WIND_SPEED:
-      if(!_bRecording) {
-        iColor = Gfx.COLOR_LT_GRAY;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_WIND_DIRECTION:
-      if(!($.oMyProcessing.bWindValid && LangUtils.notNaN($.oMyProcessing.iWindDirection))) {
-        iColor = Gfx.COLOR_LT_GRAY;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_HEADING:
-      if(!LangUtils.notNaN($.oMyProcessing.fHeading)) {
-        iColor = Gfx.COLOR_LT_GRAY;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_ALTITUDE:
-      if(!LangUtils.notNaN($.oMyProcessing.fAltitude)) {
-        iColor = Gfx.COLOR_LT_GRAY;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_GROUND_SPEED:
-      if(!LangUtils.notNaN($.oMyProcessing.fGroundSpeed)) {
-        iColor = Gfx.COLOR_LT_GRAY;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_ALTITUDE_CHART:
-      iColor = self.iColorText;
-      break;
-    case GENERAL_VIEW_INDICATOR_HEARTBEAT:
-      if(!LangUtils.notNaN($.oMyProcessing.iHR)) {
-        iColor = Gfx.COLOR_LT_GRAY;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_FLIGHT_TIME:
-      if($.oMyActivity == null or ($.oMyActivity as MyActivity).oTimeStart == null) {
-        iColor = Gfx.COLOR_LT_GRAY;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_FINESSE:
-      if(!(LangUtils.notNaN($.oMyProcessing.fFinesse) && !$.oMyProcessing.bAscent)) {
-        iColor = Gfx.COLOR_LT_GRAY;
-      }
-      break;
-    case GENERAL_VIEW_INDICATOR_COMPETITION_NEXT:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_DISTANCE:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_REMAINING:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_BEARING:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_WAYPOINT_ALTITUDE:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_EXPECTED_ALTITUDE:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_STATUS:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_START:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_TASK_LEFT:
-    case GENERAL_VIEW_INDICATOR_COMPETITION_START_IN:
-      if($.oMyCompetitionTask == null || $.oMyCompetitionTask.iState != $.oMyCompetitionTask.STATE_READY) {
-        iColor = Gfx.COLOR_LT_GRAY;
-      }
-      else if(_iIndicator == GENERAL_VIEW_INDICATOR_COMPETITION_ALTITUDE_MARGIN && LangUtils.notNaN($.oMyCompetitionTask.fAltitudeMarginNext)) {
-        iColor = $.oMyCompetitionTask.fAltitudeMarginNext >= 0.0f ? Gfx.COLOR_DK_GREEN : Gfx.COLOR_RED;
-      }
-      break;
-    default:
-      iColor = Gfx.COLOR_LT_GRAY;
-    }
-    return iColor;
+    return self.oIndicator.getValueColor(_iIndicator, _bRecording, self.iColorText);
   }
 
   function formatClimbValue(_fValue as Float) as String {
-    if(LangUtils.notNaN(_fValue)) {
-      _fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
-      if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
-        return _fValue.format("%+.1f");
-      }
-      else {
-        return _fValue.format("%+.0f");
-      }
-    }
-    return $.MY_NOVALUE_LEN3;
+    return self.oIndicator.formatClimbValue(_fValue);
   }
 
   function getClimbValueColor(_fValue as Float) as Number {
-    if(LangUtils.notNaN(_fValue)) {
-      _fValue *= $.oMySettings.fUnitVerticalSpeedCoefficient;
-      if($.oMySettings.fUnitVerticalSpeedCoefficient < 100.0f) {
-        if(_fValue >= 0.05f) {
-          return Gfx.COLOR_DK_GREEN;
-        }
-        else if(_fValue <= -0.05f) {
-          return Gfx.COLOR_RED;
-        }
-      }
-      else {
-        if(_fValue >= 0.5f) {
-          return Gfx.COLOR_DK_GREEN;
-        }
-        else if(_fValue <= -0.5f) {
-          return Gfx.COLOR_RED;
-        }
-      }
-      return self.iColorText;
-    }
-    return Gfx.COLOR_LT_GRAY;
+    return self.oIndicator.getClimbValueColor(_fValue, self.iColorText);
   }
 
   function getAverageClimb(_iSeconds as Number, _iStartEpoch as Number) as Float {
-    if($.oMyProcessing.iPlotIndex < 0) {
-      return NaN;
-    }
-
-    var iCurrentEpoch = $.oMyProcessing.iPositionEpoch;
-    var iSampleCount = 0;
-    var iTotalClimb = 0;
-    for(var i=0; i<$.oMyProcessing.PLOTBUFFER_SIZE; i++) {
-      var iIndex = ($.oMyProcessing.iPlotIndex - i + $.oMyProcessing.PLOTBUFFER_SIZE) % $.oMyProcessing.PLOTBUFFER_SIZE;
-      var iEpoch = $.oMyProcessing.aiPlotEpoch[iIndex] as Number;
-      if(iEpoch < 0) {
-        continue;
-      }
-      if(_iStartEpoch >= 0 && iEpoch < _iStartEpoch) {
-        continue;
-      }
-      if(_iSeconds > 0 && iCurrentEpoch - iEpoch >= _iSeconds) {
-        continue;
-      }
-      var iClimb = $.oMyProcessing.aiPlotVariometer[iIndex] as Number;
-      if(!LangUtils.notNaN(iClimb)) {
-        continue;
-      }
-      iTotalClimb += iClimb;
-      iSampleCount++;
-    }
-
-    if(iSampleCount == 0) {
-      return NaN;
-    }
-    return iTotalClimb.toFloat() / (iSampleCount.toFloat() * 1000.0f);
+    return self.oIndicator.getAverageClimb(_iSeconds, _iStartEpoch);
   }
 
   function clearPageField(_iSlot as Number) {

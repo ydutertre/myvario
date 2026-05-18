@@ -82,6 +82,24 @@ class MyPickerGenericSettings extends Ui.Picker {
             :defaults => [oFactory.indexOfKey(iVariometerViewLayout)]});
       }
 
+      else if(_item == :menuVariometerBottomIndicator) {
+        var iVariometerBottomIndicator = $.oMySettings.loadVariometerBottomIndicator();
+        var oIndicator = new MyGeneralViewIndicator();
+        var aKeys = [];
+        var asValues = [];
+        oIndicator.addPickerEntries(aKeys, asValues, true, false, false);
+        var oFactory = new PickerFactoryDictionary(aKeys, asValues, {:font => Gfx.FONT_TINY});
+        Picker.initialize({
+            :title => new Ui.Text({
+                :text => Ui.loadResource(Rez.Strings.titleVariometerBottomIndicator) as String,
+                :font => Gfx.FONT_TINY,
+                :locX=>Ui.LAYOUT_HALIGN_CENTER,
+                :locY=>Ui.LAYOUT_VALIGN_BOTTOM,
+                :color => Gfx.COLOR_BLUE}),
+            :pattern => [oFactory],
+            :defaults => [oFactory.indexOfKey(iVariometerBottomIndicator)]});
+      }
+
       else if(_item == :menuVariometerSmoothing) {
         var iVariometerSmoothing = $.oMySettings.loadVariometerSmoothing();
         $.oMySettings.load();  // ... reload potentially modified settings
@@ -394,17 +412,21 @@ class MyPickerGenericSettingsDelegate extends Ui.PickerDelegate {
         $.oMySettings.saveVariometerViewLayout(_amValues[0] as Number);
         focus = 1;
       }
+      else if(self.item == :menuVariometerBottomIndicator) {
+        $.oMySettings.saveVariometerBottomIndicator(_amValues[0] as Number);
+        focus = 2;
+      }
       else if(self.item == :menuVariometerSmoothing) {
         $.oMySettings.saveVariometerSmoothing(_amValues[0] as Number);
-        focus = 2;
+        focus = 3;
       }
       else if(self.item == :menuVariometerPlotRange) {
         $.oMySettings.saveVariometerPlotRange(_amValues[0] as Number);
-        focus = 6;
+        focus = 7;
       }
       else if(self.item == :menuVariometerPlotZoom) {
         $.oMySettings.saveVariometerPlotZoom(_amValues[0] as Number);
-        focus = 7;
+        focus = 8;
       }
     }
     else if(self.context == :contextUnit) {
