@@ -74,7 +74,7 @@ class MyActiveLook
         iTimer = 100000;
         iCommandCounter = 0;
         iCurrentFirmwareMajor = 4;
-        iCurrentFirmwareMinor = 6;
+        iCurrentFirmwareMinor = 12;
         setDefaults();
     }
 
@@ -379,13 +379,18 @@ class MyActiveLook
 class BleOperations extends Ble.BleDelegate
 {
     public var _scanState as Number;
-    public var _profileRegistered = false;
     public var oBleDevice;
     public var oBleService;
     public var oBleCharacteristic;
     public var oControlNotificationCharacteristic;
     public var oDeviceInformationService;
     public var oFirmwareVersionCharacteristic;
+
+    // Profile registration tracking — replaces the old single _profileRegistered flag.
+    // Profiles are registered up front (in initialize()), one at a time, and we don't
+    // act on scan results until both are confirmed via onProfileRegister().
+    private var _profilesToRegister = [];
+    private var _registeredProfileUuids = [];
 
     //! Custom Service (ActiveLook® Commands Interface)
     private static const BLE_SERV_ACTIVELOOK               as Ble.Uuid = Ble.longToUuid(0x0783B03E8535B5A0l, 0x7140A304D2495CB7l);
@@ -399,9 +404,63 @@ class BleOperations extends Ble.BleDelegate
     //! Device Information Service Characteristics
     private static const BLE_CHAR_FIRMWARE_VERSION         as Ble.Uuid = Ble.longToUuid(0x00002A2600001000l, 0x800000805F9B34FBl);
 
+    //! ActiveLook / Microoled Bluetooth SIG company identifier (0x08F2 / 2290)
+    private const MANUFACTURER_ID_ACTIVELOOK = 0x08F2;
+
     function initialize() {
         BleDelegate.initialize();
         _scanState = Ble.SCAN_STATE_OFF;
+
+        // Build the queue of profiles to register, then kick off registration
+        // immediately at startup rather than waiting for a scan match. This
+        // mirrors the official ActiveLook reference implementation, which
+        // never calls pairDevice() until profile registration is confirmed.
+        var profileActiveLook = ({
+            :uuid => BLE_SERV_ACTIVELOOK,
+            :characteristics => [
+                { :uuid => BLE_CHAR_ACTIVELOOK_RX },
+                { :uuid => BLE_CHAR_ACTIVELOOK_TX, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
+                { :uuid => BLE_CHAR_ACTIVELOOK_FLOW_CONTROL, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
+            ]
+        });
+        var profileDeviceInfo = ({
+            :uuid => BLE_SERV_DEVICE_INFORMATION,
+            :characteristics => [
+                { :uuid => BLE_CHAR_FIRMWARE_VERSION }
+            ]
+        });
+        _profilesToRegister = [profileActiveLook, profileDeviceInfo];
+        registerNextProfile();
+    }
+
+    private function registerNextProfile() {
+        if (_profilesToRegister.size() > 0) {
+            var profile = _profilesToRegister[0];
+            try {
+                Ble.registerProfile(profile);
+            } catch (ex) {
+                // Don't get stuck retrying a profile that fails synchronously.
+                _profilesToRegister.remove(profile);
+                registerNextProfile();
+            }
+        }
+    }
+
+    //! Called by the platform once registration of a profile succeeds or fails.
+    function onProfileRegister(uuid, status) {
+        if (status == Ble.STATUS_SUCCESS) {
+            if (_registeredProfileUuids.indexOf(uuid) == -1) {
+                _registeredProfileUuids.add(uuid);
+            }
+            if (_profilesToRegister.size() > 0 && _profilesToRegister[0].get(:uuid).equals(uuid)) {
+                _profilesToRegister.remove(_profilesToRegister[0]);
+            }
+        }
+        registerNextProfile(); // move on to the next queued profile, success or not
+    }
+
+    public function profilesRegistered() {
+        return _registeredProfileUuids.size() >= 2;
     }
  
     function onStart() {
@@ -467,17 +526,45 @@ class BleOperations extends Ble.BleDelegate
         $.oMyActiveLook.processQueue(Ble.WRITE_TYPE_DEFAULT); //This will do the initial queue processing (Clear screen, initial values)
     }
  
-    function onScanResults(scanResults) { 
-        // add/update result
+    function onScanResults(scanResults) {
+        // Don't act on scan results until both profiles are confirmed registered —
+        // mirrors the official ActiveLook reference implementation's guard.
+        if (!profilesRegistered()) {
+            return;
+        }
+
         var scanResult = scanResults.next();
 
         while (scanResult != null) {
-            var manufacturerInfo = scanResult.getManufacturerSpecificDataIterator().next();
-            if(manufacturerInfo != null && manufacturerInfo.get(:data).decodeNumber(Lang.NUMBER_FORMAT_UINT16, {:offset => 0, :endianness => Lang.ENDIAN_BIG}) == 2290) { //Search for ActiveLook manufacturer
-                if(!_profileRegistered) {
-                    registerProfiles();
-                    _profileRegistered = true;
+            var bActiveLookFound = false;
+
+            // Primary: dedicated manufacturer-data lookup by company ID (matches
+            // the official ActiveLook Garmin data field's approach).
+            var manufacturerData = scanResult.getManufacturerSpecificData(MANUFACTURER_ID_ACTIVELOOK);
+            if (manufacturerData != null) {
+                bActiveLookFound = true;
+            } else {
+                // Fallback: iterate manufacturer-specific data entries and decode
+                // the company ID from the raw payload directly, in case
+                // getManufacturerSpecificData() doesn't surface it on this
+                // particular device/firmware.
+                var msdIterator = scanResult.getManufacturerSpecificDataIterator();
+                var msd = msdIterator.next();
+                while (msd != null && !bActiveLookFound) {
+                    var msdData = msd.get(:data);
+                    if (msdData != null && msdData.size() >= 2) {
+                        try {
+                            if (msdData.decodeNumber(Lang.NUMBER_FORMAT_UINT16, {:offset => 0, :endianness => Lang.ENDIAN_BIG}) == MANUFACTURER_ID_ACTIVELOOK) {
+                                bActiveLookFound = true;
+                            }
+                        } catch (ex) {
+                        }
+                    }
+                    msd = msdIterator.next();
                 }
+            }
+
+            if (bActiveLookFound) {
                 Ble.setScanState(Ble.SCAN_STATE_OFF);
                 try {
                     Ble.pairDevice(scanResult);
@@ -486,25 +573,6 @@ class BleOperations extends Ble.BleDelegate
             }
             scanResult = scanResults.next();
         }
-    }
- 
-    function registerProfiles() {
-        var profileActiveLook = ({
-            :uuid => BLE_SERV_ACTIVELOOK,
-            :characteristics => [
-                { :uuid => BLE_CHAR_ACTIVELOOK_RX },
-                { :uuid => BLE_CHAR_ACTIVELOOK_TX, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
-                { :uuid => BLE_CHAR_ACTIVELOOK_FLOW_CONTROL, :descriptors => [Toybox.BluetoothLowEnergy.cccdUuid()] },
-            ]
-        });
-        Ble.registerProfile(profileActiveLook);
-        var profileDeviceInfo = ({
-            :uuid => BLE_SERV_DEVICE_INFORMATION,
-            :characteristics => [
-                { :uuid => BLE_CHAR_FIRMWARE_VERSION }
-            ]
-        });
-        Ble.registerProfile(profileDeviceInfo);
     }
  
     function onCharacteristicChanged(characteristic, value) {
