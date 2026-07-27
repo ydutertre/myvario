@@ -13,6 +13,7 @@ free flight, tracking/logging, as well as Live Tracking via SportsTrackLive,
 Livetrack24 and FlySafe, integration with Vector Vario, and even HUD integration with ActiveLook!
 This app also has Competition Mode, and can be used to complete a competition.
 A true free flight one-stop-shop, on your watch.
+This app is NOT meant for paragliding, as this is considered an extreme sport by Garmin.
 
 ## Dashboards
 

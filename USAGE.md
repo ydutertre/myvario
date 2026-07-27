@@ -20,6 +20,9 @@ used as a primary information source. This app contains a barometric
 altimeter, it will not function in a pressurized aircraft and should
 not be used in a pressurized aircraft.”
 
+This app is NOT meant for paragliding, as this is considered an extreme sport
+by Garmin.
+
 **!!! WARNING !!! DISCLAIMER !!! WARNING !!! DISCLAIMER !!! WARNING !!!**
 
 
