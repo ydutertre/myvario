@@ -1,3 +1,9 @@
+* 6.26
+- Replace STL API key
+
+* 6.24
+- Fix potential SportsTrackLive issue
+
 * 6.23
 - Fix ActiveLook in the blind
 
