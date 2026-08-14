@@ -459,7 +459,7 @@ class MyProcessing {
             $.oMySportsTrackLive.addPoint(adPositionDegrees[0], adPositionDegrees[1], self.fAltitude.toNumber(), self.fGroundSpeed.toNumber(), iLivetrackHeading);
             if(($.oMySportsTrackLive.iCounter % $.oMySettings.iSportsTrackLiveFrequencySeconds) == 0) {
               $.oMySportsTrackLive.updateSession();
-              $.oMySportsTrackLive.adPoints = new Array<Dictionary>[$.oMySettings.iSportsTrackLiveFrequencySeconds];
+              $.oMySportsTrackLive.adPoints = [] as Array<Dictionary>;
             }
           }
           $.oMySportsTrackLive.iCounter++;
