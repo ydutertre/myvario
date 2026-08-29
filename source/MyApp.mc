@@ -612,6 +612,7 @@ class MyApp extends App.AppBase {
   }
 
   function enablePositioning() as Void {
+    var callback = method(:onLocationEvent);
     var options = {
         :acquisitionType => Pos.LOCATION_CONTINUOUS
     };
@@ -632,8 +633,33 @@ class MyApp extends App.AppBase {
         options = Pos.LOCATION_CONTINUOUS;
     }
 
-    // Continuous location updates using selected options
-    Pos.enableLocationEvents(options, method(:onLocationEvent));
+    // Some devices/simulators report support for a configuration but reject it
+    // when location events are enabled. Try the preferred options first, then
+    // progressively fall back to options without a configuration and finally
+    // to the legacy API.
+    try {
+        Pos.enableLocationEvents(options, callback);
+        return;
+    } catch(e) {
+        // Continue with a configuration-free request.
+    }
+
+    options = {
+        :acquisitionType => Pos.LOCATION_CONTINUOUS
+    };
+
+    if (Pos has :POSITIONING_MODE_AVIATION) {
+        options[:mode] = Pos.POSITIONING_MODE_AVIATION;
+    }
+
+    try {
+        Pos.enableLocationEvents(options, callback);
+        return;
+    } catch(e) {
+        // The positioning mode may also be unavailable at runtime.
+    }
+
+    Pos.enableLocationEvents(Pos.LOCATION_CONTINUOUS, callback);
   }
 
   function calculateScaleBar(iMaxBarSize as Lang.Number, fPlotScale as Lang.Float, sUnit as Lang.String, fUnitCoefficient as Lang.Float) as Void {

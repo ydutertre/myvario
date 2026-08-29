@@ -1,3 +1,8 @@
+* 6.27
+- Add support to Fenix 9 series
+- Adds workaround to Fenix 9 series bug
+- Fixes a buzzer initialization bug
+
 * 6.26
 - Replace STL API key
 
