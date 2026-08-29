@@ -547,6 +547,11 @@ class MyApp extends App.AppBase {
     // properly map thermals (especially broken up thermals)
     if(self.iTones || self.iVibrations) {
       var fValue = $.oMyProcessing.fVariometer_filtered;
+      // Do not schedule tones or vibrations until the altimeter/Kalman filter
+      // has produced a valid vertical-speed value.
+      if(!LangUtils.notNaN(fValue)) {
+        return;
+      }
       var bSpeaker = $.oMySettings.iSoundsToneDriver == 1;
       var iDeltaTick = (self.iTonesTick-self.iTonesLastTick) > 8 ? 8 : self.iTonesTick-self.iTonesLastTick;
       var bVarioDoTick = iDeltaTick >= 8.0f - fValue;
